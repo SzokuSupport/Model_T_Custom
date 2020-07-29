@@ -12,7 +12,9 @@
 		"configurablebundlefacades",
 		"configurablebundlebackoffice",
 		"acceleratorstorefrontcommons",
-		"configurablebundleaddon"
+		"configurablebundleaddon",
+		"pcmbackoffice",
+		"validation"
 	],
 	"storefrontAddons":[
 		{
