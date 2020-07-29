@@ -10,7 +10,7 @@
 		"addonsupport",
 		"configurablebundleservices",
 		"configurablebundlefacades",
-		"configurablebundlecockpits",
+		"configurablebundlebackoffice",
 		"acceleratorstorefrontcommons",
 		"configurablebundleaddon"
 	],
