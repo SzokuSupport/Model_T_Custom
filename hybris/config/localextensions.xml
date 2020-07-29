@@ -12,7 +12,6 @@
     <extension name='solrfacetsearchbackoffice' />
     <extension name='solrserver' />
     <extension name='yacceleratorinitialdata' />
-	<extension name='configurablebundlebackoffice'/>
 	  <extension name= 'yacceleratorstorefront' />
 	  <extension name= 'electronicsstore' />
 	  <extension name= 'apparelstore' />
