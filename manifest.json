@@ -1,90 +1,516 @@
 {
-	"commerceSuiteVersion": "1905",
-	"extensions": [
-		"cloudmediaconversion",  
-		"mediaconversionbackoffice",
-		"modeltacceleratorservices",
-		"electronicsstore",
-		"yacceleratorstorefront",
-		"backoffice",
-		"addonsupport",
-		"configurablebundleservices",
-		"configurablebundlefacades",
-		"acceleratorstorefrontcommons",
-		"configurablebundleaddon"
-	],
-	"storefrontAddons":[
-		{
-			"addon":"configurablebundleaddon",
-			"storefront":"yacceleratorstorefront",
-		  	"template":"yacceleratorstorefront"
-		}
-	],
-	"aspects": [{
-			"name": "backoffice",
-			"webapps": [{
-					"name": "hac",
-					"contextPath": "/hac"
-				},
-				{
-					"name": "mediaweb",
-					"contextPath": "/medias"
-				},
-				{
-					"name": "backoffice",
-					"contextPath": "/backoffice"
-				}
-			]
-		},
-		{
-			"name": "accstorefront",
-			"properties": [{
-					"key": "spring.session.enabled",
-					"value": "true"
-				},
-				{
-					"key": "spring.session.yacceleratorstorefront.save",
-					"value": "async"
-				},
-				{
-					"key": "spring.session.yacceleratorstorefront.cookie.name",
-					"value": "JSESSIONID"
-				},
-				{
-					"key": "spring.session.yacceleratorstorefront.cookie.path",
-					"value": "/"
-				},
-				{
-					"key": "storefrontContextRoot",
-					"value": ""
-				}
-			],
-			"webapps": [{
-					"name": "mediaweb",
-					"contextPath": "/medias"
-				},
-				{
-					"name": "yacceleratorstorefront",
-					"contextPath": ""
-				},
-				{
-					"name": "acceleratorservices",
-					"contextPath": "/acceleratorservices"
-				}
-			]
-		},
-		{
-			"name": "backgroundProcessing",
-			"properties": [],
-			"webapps": [{
-					"name": "hac",
-					"contextPath": ""
-				},
-				{
-					"name": "mediaweb",
-					"contextPath": "/medias"
-				}
-			]
-		}
-	]
+  "commerceSuiteVersion": "2005",
+  "extensionPacks" : [
+    {
+      "name" : "hybris-commerce-integrations",
+      "version" : "2005.0"
+    }
+  ],
+  "storefrontAddons": [
+    {
+      "addon": "smarteditaddon",
+      "storefront": "walesandweststorefront",
+      "template": "yacceleratorstorefront"
+    },
+    {
+      "addon": "assistedservicestorefront",
+      "storefront": "walesandweststorefront",
+      "template": "yacceleratorstorefront"
+    },
+    {
+      "addon" : "secureportaladdon",
+      "storefront": "walesandweststorefront",
+      "template": "yacceleratorstorefront"
+    },
+    {
+      "addon" : "spartacussampledataaddon",
+      "storefront": "walesandweststorefront",
+      "template": "yacceleratorstorefront"
+    },
+    {
+      "addon": "relationshipaddon",
+      "storefront": "walesandweststorefront",
+      "template": "yacceleratorstorefront"
+    },
+    {
+      "addon": "billaddon",
+      "storefront": "walesandweststorefront",
+      "template": "yacceleratorstorefront"
+    },
+    {
+      "addon": "publicsectoracceleratoraddon",
+      "storefront": "walesandweststorefront",
+      "template": "yacceleratorstorefront"
+    },
+    {
+      "addon": "cmsoccaddon",
+      "storefront": "wwucommercewebservices",
+      "template": "ycommercewebservices"
+    }
+  ],
+  "aspects": [ {
+    "name": "backoffice",
+    "properties": [],
+    "webapps": [
+      {
+        "name": "hac",
+        "contextPath": "/hac"
+      },
+      {
+        "name": "mediaweb",
+        "contextPath": "/medias"
+      },
+      {
+        "name": "backoffice",
+        "contextPath": "/backoffice"
+      },
+      {
+        "name":"odata2webservices",
+        "contextPath":"/odata2webservices"
+      }
+    ]
+  },
+    {
+      "name": "accstorefront",
+      "properties": [
+        {
+          "key": "spring.session.enabled",
+          "value": "true"
+        },
+        {
+          "key": "spring.session.walesandweststorefront.save",
+          "value": "async"
+        },
+        {
+          "key": "spring.session.walesandweststorefront.cookie.name",
+          "value": "JSESSIONID"
+        },
+        {
+          "key": "spring.session.walesandweststorefront.cookie.path",
+          "value": "/"
+        },
+        {
+          "key": "storefrontContextRoot",
+          "value": ""
+        },
+        {
+          "key":"website.walesandwestutilities.https",
+          "value":"https://accstorefront.cm4wsh7ghp-walesandw1-d1-public.model-t.cc.commerce.ondemand.com/",
+          "persona" :"development"
+        },
+         {
+          "key":"website.walesandwestutilities.http",
+          "value":"http://accstorefront.cm4wsh7ghp-walesandw1-d1-public.model-t.cc.commerce.ondemand.com/",
+          "persona" :"development"
+        },
+        {
+          "key":"media.walesandwestutilities.https",
+          "value":"https://accstorefront.cm4wsh7ghp-walesandw1-d1-public.model-t.cc.commerce.ondemand.com/",
+          "persona" :"development"
+        },
+        {
+          "key":"media.walesandwestutilities.http",
+          "value":"http://accstorefront.cm4wsh7ghp-walesandw1-d1-public.model-t.cc.commerce.ondemand.com/",
+          "persona" :"development"
+        }
+      ],
+      "webapps": [
+        {
+          "name": "hac",
+          "contextPath": "/hac"
+        },
+        {
+          "name": "mediaweb",
+          "contextPath": "/medias"
+        },
+        {
+          "name": "walesandweststorefront",
+          "contextPath": ""
+        },
+        {
+          "name": "acceleratorservices",
+          "contextPath": "/acceleratorservices"
+        }
+      ]
+    },
+    {
+      "name": "backgroundProcessing",
+      "properties": [
+        {
+          "key": "cluster.node.groups",
+          "value": "integration"
+        }
+      ],
+      "webapps": [
+        {
+          "name": "hac",
+          "contextPath": "/hac"
+        },
+        {
+          "name": "mediaweb",
+          "contextPath": "/medias"
+        }
+      ]
+    },
+    {
+      "name": "api",
+      "properties": [
+        {
+          "key": "xss.filter.header.X-Frame-Options",
+          "value": ""
+        },
+        {
+          "key": "tomcat.maxthreads",
+          "value": "1200"
+        },
+        {
+          "key": "xss.filter.header.X-Frame-Options",
+          "value": ""
+        },
+        {
+          "key": "storefrontContextRoot",
+          "value": "/walesandweststorefront"
+        },
+        {
+          "key" :"webroot.commercewebservices.http",
+          "value": "http://api.cm4wsh7ghp-walesandw1-d1-public.model-t.cc.commerce.ondemand.com/rest",
+          "persona":"development"
+        },
+        {
+          "key" :"webroot.commercewebservices.https",
+          "value": "https://api.cm4wsh7ghp-walesandw1-d1-public.model-t.cc.commerce.ondemand.com/rest",
+          "persona":"development"
+        }
+      ],
+      "webapps": [
+        {
+          "name": "hac",
+          "contextPath": "/hac"
+        },
+        {
+          "name": "commercewebservices",
+          "contextPath": "/occ"
+        },
+        {
+          "name": "wwucommercewebservices",
+          "contextPath": "/rest"
+        },
+        {
+          "name": "walesandweststorefront",
+          "contextPath": "/walesandweststorefront"
+        },
+        {
+          "name": "smartedit",
+          "contextPath": "/smartedit"
+        },
+        {
+          "name": "cmssmartedit",
+          "contextPath": "/cmssmartedit"
+        },
+        {
+          "name": "smarteditwebservices",
+          "contextPath": "/smarteditwebservices"
+        },
+        {
+          "name": "cmssmarteditwebservices",
+          "contextPath": "/cmssmarteditwebservices"
+        },
+        {
+          "name": "acceleratorservices",
+          "contextPath": "/acceleratorservices"
+        },
+        {
+          "name": "oauth2",
+          "contextPath": "/authorizationserver"
+        },
+        {
+          "name": "cmswebservices",
+          "contextPath": "/cmswebservices"
+        },
+        {
+          "name": "permissionswebservices",
+          "contextPath": "/permissionswebservices"
+        },
+        {
+          "name": "previewwebservices",
+          "contextPath": "/previewwebservices"
+        },
+        {
+          "name": "mediaweb",
+          "contextPath": "/medias"
+        }
+      ]
+    }
+  ],
+  "tests": {
+    "extensions": [],
+    "annotations": [
+      "UnitTests",
+      "IntegrationTests"
+    ],
+    "packages": [
+      "com.keytree.*"
+    ]
+  },
+  "webTests": {},
+  "extensions": [
+    "adaptivesearchsolr",
+    "adaptivesearchbackoffice",
+    "commerceservicesbackoffice",
+    "backofficesolrsearch",
+    "solrfacetsearchbackoffice",
+    "solrserver",
+    "pcmbackoffice",
+    "odata2webservices",
+    "integrationbackoffice",
+    "integrationmonitoringbackoffice",
+    "inboundservices",
+    "outboundservices",
+    "customersupportbackoffice",
+    "rulebuilderbackoffice",
+    "couponbackoffice",
+    "droolsruleengineservices",
+    "couponfacades",
+    "smarteditaddon",
+    "cmssmartedit",
+    "cmsbackoffice",
+
+    "assistedservicefacades",
+    "assistedservicewebservices",
+    "assistedserviceservices",
+    "assistedservicestorefront",
+
+    "cmssmarteditwebservices",
+    "cmswebservices",
+    "permissionswebservices",
+    "previewwebservices",
+    "npmancillary",
+    "smartedit",
+    "smarteditwebservices",
+
+    "acceleratorwebservicesaddon",
+    "auditreportservices",
+
+    "publicsectoracceleratoraddon",
+    "publicsectorbackoffice",
+    "publicsectorcockpits",
+    "publicsectorconsignmentexchange",
+    "publicsectordocmanagement",
+    "publicsectordocmanagementexchange",
+    "publicsectorfacades",
+    "publicsectorfulfilment",
+    "publicsectoroccaddon",
+    "publicsectorservices",
+
+    "cmsoccaddon",
+
+    "billaddon",
+    "billbackoffice",
+    "billfacades",
+    "billservices",
+
+    "relationshipaddon",
+    "relationshipbackoffice",
+    "relationshipfacades",
+    "relationshipservices",
+
+    "configurablebundlecockpits",
+    "configurablebundlefacades",
+    "configurablebundlebackoffice",
+    "configurablebundleservices",
+
+    "ticketsystem",
+    "ticketsystembackoffice",
+    "customerticketingfacades",
+
+    "secureportaladdon",
+
+    "sapcpiadapter",
+    "scpiconnectorbackoffice",
+    "wwusapc4ccustomer",
+
+    "wwucommercewebservices",
+    "walesandwestcore",
+    "walesandwestbackoffice",
+    "walesandwestfacades",
+    "walesandweststorefront",
+
+    "walesandwestutilitiesstore",
+    "spartacussampledataaddon"
+
+
+  ],
+  "properties": [
+    {
+      "key": "lang.packs",
+      "value": "en,de"
+    },
+    {
+      "key": "ansi.colors",
+      "value": "true"
+    },
+    {
+      "key": "default.password.encoder",
+      "value": "sha512PasswordEncoder"
+    },
+    {
+      "key": "hac.webroot",
+      "value": "/hac"
+    },
+    {
+      "key":"registration.consent.id.publicsector", 
+      "value" :"MARKETING_NEWSLETTER"
+    },
+    {
+      "key":"impex.generation.supported.locales", 
+      "value" :"en"
+    },
+    {
+      "key":"publicsector.application.domain.whitelist", 
+      "value" :"publicsector.local"
+    },
+    {
+      "key":"publicsectorservices.encoder.algorithm", 
+      "value" :"AES"
+    },
+    {
+      "key":"publicsectorservices.encoder.aes.key", 
+      "value" :"d2cb415e067c7b13"
+    },
+    {
+      "key":"publicsectorservices.encoder.encryption.cipher", 
+      "value" :"AES/CBC/PKCS5Padding"
+    },
+    {
+      "key": "publicsectorservices.encoder.initialization.vector", 
+      "value" :"e36dc751d0433f05"
+    },
+    {
+      "key": "sop.post.url",
+      "value" :"https://localhost:9002/acceleratorservices/sop-mock/process"
+
+    },
+    {
+      "key": "occ.rewrite.overlapping.paths.enabled",
+      "value" :"true"
+
+    },
+    {
+      "key": "corsfilter.default.allowedOrigins",
+      "value" :"*"
+
+    },
+    {
+      "key": "corsfilter.acceleratorservices.allowedOrigins",
+      "value" :"*"
+
+    },
+    {
+      "key": "corsfilter.permissionswebservices.allowedOrigins",
+      "value" :"*"
+
+    },
+    {
+      "key": "corsfilter.assistedservicewebservices.allowedOrigins",
+      "value": "*"
+    },
+    {
+      "key": "corsfilter.assistedservicewebservices.allowedMethods",
+      "value": "GET HEAD OPTIONS PATCH PUT POST DELETE"
+    },
+    {
+      "key": "corsfilter.assistedservicewebservices.allowedHeaders",
+      "value": "origin content-type accept authorization cache-control x-anonymous-consents x-profile-tag-debug x-consent-reference occ-personalization-id occ-personalization-time"
+    },
+    {
+      "key": "corsfilter.assistedservicewebservices.exposedHeaders",
+      "value": "x-anonymous-consents occ-personalization-id occ-personalization-time"
+    },
+    {
+      "key": "corsfilter.assistedservicewebservices.allowCredentials",
+      "value": "true"
+    },
+    {
+      "key": "corsfilter.assistedservicewebservices.allowedOrigins",
+      "value" :"*"
+
+    },
+    {
+      "key": "corsfilter.assistedservicewebservices.allowedHeaders",
+      "value" :"origin content-type accept authorization cache-control x-anonymous-consents x-profile-tag-debug x-consent-reference"
+
+    },
+    {
+      "key": "corsfilter.assistedservicewebservices.exposedHeaders",
+      "value" :"x-anonymous-consents"
+
+    },
+    {
+      "key": "mockup.payment.label.billTo.region",
+      "value" :"billTo_state"
+
+    },
+    {
+      "key": "mockup.payment.label.billTo.phoneNumber",
+      "value" :"billTo_phoneNumber"
+
+    },
+    {
+    "key": "task.polling.interval.min",
+    "value" :"0"
+
+    },
+    {
+    "key": "smarteditaddon.dynamicattribute.enabled",
+    "value" :"true"
+
+    },
+    {
+    "key": "build.parallel",
+    "value" :"true"
+
+    },
+    {
+      "key": "mail.smtp.server",
+      "value" :"smtp.sendgrid.net"
+
+    },
+    {
+      "key": "mail.smtp.port",
+      "value" :"25"
+
+    },
+    {
+      "key": "mail.smtp.user",
+      "value" :"apikey"
+
+    },
+    {
+      "key": "mail.from",
+      "value" : "fff66677788qewjfhj@wwutilities.co.uk"
+    },
+    {
+      "key": "solrserver.instances.default.autostart",
+      "value" : "false",
+      "persona" : "development"
+    },
+    {
+      "key": "solrserver.instances.cloud.autostart",
+      "value" : "true",
+      "persona" : "development"
+    },
+    {
+      "key":"sapc4ccustomerb2c.customer.cpi.replicate",
+      "value" : "true",
+      "persona" :"development"
+    },
+    {
+      "key":"sapc4ccustomerb2c.customer.senderparty",
+      "value" : "walesandwestutilities-spa"
+    },
+    {
+      "key":"sapc4ccustomerb2c.customer.recipientparty",
+      "value" : "0M2UQTR"
+    }
+  ]
 }
