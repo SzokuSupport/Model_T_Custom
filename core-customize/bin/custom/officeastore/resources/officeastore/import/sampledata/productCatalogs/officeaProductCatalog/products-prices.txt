@@ -1,0 +1,119 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# ImpEx for Importing OfficeA Store Prices
+#% impex.setLocale( Locale.GERMAN ); 
+
+$productCatalog=officeaProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default='$productCatalog:Staged']
+$prices=Europe1prices[translator=de.hybris.platform.europe1.jalo.impex.Europe1PricesTranslator]
+$taxGroup=Europe1PriceFactory_PTG(code)[default=US-UTXJ-1]
+
+# Set product approval status to Approved only for those products that have prices.
+$approved=approvalstatus(code)[default='approved']
+
+UPDATE Product;code[unique=true];$prices;$approved;$catalogVersion;$taxGroup
+#;1128762;1 pieces = 117 USD G
+#;2222485;1 pieces = 10 USD G, 10 pieces = 9,49 USD G, 30 pieces = 8,99 USD G, 50 pieces = 8,19 USD G, 100 pieces = 6,99 USD G
+;141;1 EA = 99.99 USD G
+;451;1 EA = 259 USD G
+;559;1 EA = 199 USD G
+;562;1 EA = 279 USD G
+;563;1 EA = 159 USD G
+;564;1 EA = 159 USD G
+;565;1 EA = 115 USD G
+;566;1 EA = 319 USD G
+;567;1 EA = 179 USD G
+;568;1 EA = 99 USD G
+;569;1 EA = 99 USD G
+;570;1 EA = 55 USD G
+;669;1 EA = 289 USD G
+;572;1 EA = 264 USD G
+;573;1 EA = 26.1 USD G
+;574;1 EA = 23.56 USD G
+;575;1 EA = 38.92 USD G
+;576;1 EA = 59.96 USD G
+;577;1 EA = 44.47 USD G
+;578;1 EA = 12.34 USD G
+;673;1 EA = 29.99 USD G
+;580;1 EA = 87.89 USD G
+;581;1 EA = 145 USD G
+;667;1 EA = 29.98 USD G
+;584;1 EA = 29.96 USD G
+;585;1 EA = 9.97 USD G
+;586;1 EA = 38.92 USD G
+;587;1 EA = 44.88 USD G
+;678;1 EA = 77.99 USD G
+;589;1 EA = 75.99 USD G
+;591;1 EA = 769 USD G
+;672;1 EA = 1059 USD G
+;593;1 EA = 159 USD G
+;676;1 EA = 22.58 USD G
+;595;1 EA = 3.59 USD G
+;677;1 EA = 3.59 USD G
+;597;1 EA = 7.23 USD G
+;598;1 EA = 3.96 USD G
+;599;1 EA = 8.13 USD G
+;600;1 EA = 14.48 USD G
+;601;1 EA = 21.98 USD G
+;602;1 EA = 3.97 USD G
+;603;1 EA = 2.96 USD G
+;604;1 EA = 18.99 USD G
+;668;1 EA = 6.99 USD G
+;606;1 EA = 25 USD G
+;607;1 EA = 10.49 USD G
+;608;1 EA = 10.49 USD G
+;609;1 EA = 120 USD G
+;610;1 EA = 3.65 USD G
+;611;1 EA = 2.25 USD G
+;675;1 EA = 7.45 USD G
+;613;1 EA = 5.97 USD G
+;671;1 EA = 5.97 USD G
+;670;1 EA = 14.98 USD G
+;616;1 EA = 14.98 USD G
+;617;1 EA = 3.97 USD G
+;618;1 EA = 8.97 USD G
+;619;1 EA = 13.37 USD G
+;674;1 EA = 4.98 USD G
+;621;1 EA = 15 USD G
+;663;1 EA = 9.95 USD G
+;623;1 EA = 16.47 USD G
+;624;1 EA = 12.54 USD G
+;625;1 EA = 6.59 USD G
+;626;1 EA = 11.48 USD G
+;627;1 EA = 5.5 USD G
+;628;1 EA = 15.58 USD G
+;629;1 EA = 297 USD G
+;630;1 EA = 267 USD G
+;631;1 EA = 249 USD G
+;632;1 EA = 498 USD G
+;633;1 EA = 198 USD G
+;634;1 EA = 399 USD G
+;635;1 EA = 499 USD G
+;636;1 EA = 848 USD G
+;637;1 EA = 151 USD G
+;638;1 EA = 112 USD G
+;639;1 EA = 150 USD G
+;640;1 EA = 206 USD G
+;641;1 EA = 150 USD G
+;642;1 EA = 69 USD G
+;643;1 EA = 138 USD G
+;644;1 EA = 161 USD G
+;645;1 EA = 167 USD G
+;665;1 EA = 262 USD G
+;647;1 EA = 59.96 USD G
+;666;1 EA = 399 USD G
+;649;1 EA = 13 USD G
+;650;1 EA = 36.97 USD G
+;651;1 EA = 29.97 USD G
+;652;1 EA = 69 USD G
+;653;1 EA = 52.59 USD G
+;654;1 EA = 189 USD G
+;655;1 EA = 9.98 USD G
+;656;1 EA = 9.98 USD G
+;664;1 EA = 24.99 USD G
+;658;1 EA = 19.43 USD G
+;659;1 EA = 49.95 USD G
+;660;1 EA = 69.95 USD G
+;661;1 EA = 19.17 USD G
+;662;1 EA = 39.95 USD G

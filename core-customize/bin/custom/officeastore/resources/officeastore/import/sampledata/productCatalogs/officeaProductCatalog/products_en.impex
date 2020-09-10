@@ -1,0 +1,686 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+#UTF-8: √Ø¬ø¬Ω√Ø¬ø¬Ω√Ø¬ø¬Ω
+# Localization en
+
+##UPDATE## 
+# Macros / Replacement Parameter definitions
+$productCatalog=officeaProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+
+# Language
+$lang=en
+
+UPDATE Product;code[unique=true];$catalogVersion;name[lang=$lang];description[lang=$lang];summary[lang=$lang]
+;141;;Ergolux Lite Height Adjst Desk White;"It’s time to take a stand. Ergonomically designed with your health in mind, the Ergolux Lite Height Adjustable Sit Stand Desk Riser sits on top of your existing desk and can be raised or lowered in seconds.-Can help to eliminate back pain caused by sitting at work
+-Sits right on top of your existing desk
+-Height adjustable with innovative gas lift function
+-Sturdy and durable – holds up to 10kg with ease
+-Quick release & easy installation for keyboard stand
+-Even easier to move up and down – transition to your desired height with only one lever!
+-Angular aluminum structure with elegant appearance
+-Anti Scratch surface finish
+-Smooth edges";;
+;451;;Ergolux Duo Cmpt Height Adjst Desk Black;"It’s time to take a stand. Ergonomically designed with your health in mind, the Ergolux Duopro Compact Height Adjustable Sit Stand Desk Riser sits on top of your existing desk and can be raised or lowered in seconds.-Suitable for corner desks
+-Can help to eliminate back pain caused by sitting at work
+-Sits right on top of your existing desk
+-Height adjustable with innovative gas lift function
+-Sturdy and durable – holds up to 15kg with ease
+-Quick release & easy installation for keyboard stand
+-Even easier to move up and down – transition with only one lever!
+-Anti Scratch surface finish
+-Compact & thin design – 12cm at lowest
+-Smooth edges";;
+;559;;Copenhagen Solid Timber 1500mm Desk;"It’s time to take a stand. Ergonomically designed with your health in mind, the Ergolux Duopro Compact Height Adjustable Sit Stand Desk Riser sits on top of your existing desk and can be raised or lowered in seconds.-Suitable for corner desks
+-Can help to eliminate back pain caused by sitting at work
+-Sits right on top of your existing desk
+-Height adjustable with innovative gas lift function
+-Sturdy and durable – holds up to 15kg with ease
+-Quick release & easy installation for keyboard stand
+-Even easier to move up and down – transition with only one lever!
+-Anti Scratch surface finish
+-Compact & thin design – 12cm at lowest
+-Smooth edges";;
+;562;;Copenhagen Solid 1500x1500 Corner Desk;"It’s time to take a stand. Ergonomically designed with your health in mind, the Ergolux Duopro Compact Height Adjustable Sit Stand Desk Riser sits on top of your existing desk and can be raised or lowered in seconds.-Suitable for corner desks
+-Can help to eliminate back pain caused by sitting at work
+-Sits right on top of your existing desk
+-Height adjustable with innovative gas lift function
+-Sturdy and durable – holds up to 15kg with ease
+-Quick release & easy installation for keyboard stand
+-Even easier to move up and down – transition with only one lever!
+-Anti Scratch surface finish
+-Compact & thin design – 12cm at lowest
+-Smooth edges";;
+;563;;Copenhagen 3 Drawer Filing Pedestal;"It’s time to take a stand. Ergonomically designed with your health in mind, the Ergolux Duopro Compact Height Adjustable Sit Stand Desk Riser sits on top of your existing desk and can be raised or lowered in seconds.-Suitable for corner desks
+-Can help to eliminate back pain caused by sitting at work
+-Sits right on top of your existing desk
+-Height adjustable with innovative gas lift function
+-Sturdy and durable – holds up to 15kg with ease
+-Quick release & easy installation for keyboard stand
+-Even easier to move up and down – transition with only one lever!
+-Anti Scratch surface finish
+-Compact & thin design – 12cm at lowest
+-Smooth edges";;
+;564;;Copenhagen 2 Door 1080mm Cupboard;"It’s time to take a stand. Ergonomically designed with your health in mind, the Ergolux Duopro Compact Height Adjustable Sit Stand Desk Riser sits on top of your existing desk and can be raised or lowered in seconds.-Suitable for corner desks
+-Can help to eliminate back pain caused by sitting at work
+-Sits right on top of your existing desk
+-Height adjustable with innovative gas lift function
+-Sturdy and durable – holds up to 15kg with ease
+-Quick release & easy installation for keyboard stand
+-Even easier to move up and down – transition with only one lever!
+-Anti Scratch surface finish
+-Compact & thin design – 12cm at lowest
+-Smooth edges";;
+;565;;J.Burrows Ashford Chair Black;"It’s time to take a stand. Ergonomically designed with your health in mind, the Ergolux Duopro Compact Height Adjustable Sit Stand Desk Riser sits on top of your existing desk and can be raised or lowered in seconds.-Suitable for corner desks
+-Can help to eliminate back pain caused by sitting at work
+-Sits right on top of your existing desk
+-Height adjustable with innovative gas lift function
+-Sturdy and durable – holds up to 15kg with ease
+-Quick release & easy installation for keyboard stand
+-Even easier to move up and down – transition with only one lever!
+-Anti Scratch surface finish
+-Compact & thin design – 12cm at lowest
+-Smooth edges";;
+;566;;Professional Ergo Heavy-Duty Chair Black;"This Professional Ergonomic Extra-Heavy-Duty Mesh Back Chair has chair height, armrest height, seat and back adjustable functionality so you can be sure to find a position that's comfortable for you. It has a high weight capacity and a sturdy construction making it a durable option for your work space.-It comes with a 15 year warranty for your peace of mind.
+-It's recommended for 8+ hours of usage.
+-The chair has a weight capacity of 160 kg.
+-This chair has a mesh back, chrome-plated steel base and metal armrests with a moulded contoured padded seat.
+-The adjustable back tilt, chair tilt, gas lift, back height and armrests will allow you to alter the chair in a way that suits you.
+-This chair is Blue Load rated meaning that it has a weight capacity of up to 160 kg and is suitable for use in heavy duty, industrial environments, plus it is also Green Tick rated to be environmentally friendly.
+-This chair measures of 685 W x 650 D x 1,110 H mm with a minimum height of 995 mm.
+-This chair is suitable for commercial use.";;
+;567;;Copenhagen High Back Chair Light Pink;"The Copenhagen Chair is a stylish and functional addition to your workspace. It has a high backrest that gives you support while you're working or studying and flip-back armrests, you can choose a posture that suits you and your space best.-For your peace of mind, this chair comes with a 3 year warranty.
+-This chair is designed for between 3 and 5 hours of continuous use.
+-It has a weight capacity of 130 kg.
+-The chair has fabric upholstery with a metal and plywood internal construction.
+-Easily adjust the chair to your liking with its flip-up armrests.
+-This chair measures 720 W x 680 D x 1,190 H mm with a minimum height of 1,090 mm.
+-Assembly takes approximately 20 minutes.
+-This chair has colourful, pink fabric upholstery.
+-This chair is not suitable for commercial use.";;
+;568;;Malmo Medium Back Chair Grey,Light Green;"The Malmo Medium Back Chair is a great option for your workspace and has adjustable features to help you find comfort. It has 5 castor wheels to move around your workspace.-This chair comes with a 3 year warranty.
+-It's suitable for between 3 and 5 hours of use.
+-It has a weight capacity of 120 kg.
+-This chair has a metal base with a plywood and metal frame finished with a foam and fabric seat and backrest.
+-It has gas lift height and chair tilt functionality to help you find a comfortable position.
+-This chair measures 450 W x 540 D x 1,000 H mm with a minimum height of 900 mm.
+-This chair takes approximately 15 minutes to assemble.
+-This chair has a stylish white base and is upholstered in a fabric that is grey with a light green tint.
+-This chair is not suitable for commercial use.";;
+;569;;Horsens 8 Cube Bookcase White;"The Horsens 8 Cube Bookcase is the perfect addition to any home or office. This modern Bookshelf offers a stylish and contemporary storage solution which has 8 separate compartments to store books, photo frames and home decorations.-Once assembled, it measures 744 W x 390 D x 1436 H mm.
+-The bookcase has a sophisticated melamine and paper finish.
+-It features 8 storage cubes.
+-The shelves are fixed.
+-The cube inner dimensions are 335 W x 390 D x 335 H mm.
+-It has an estimated assembly time of 60 minutes.
+-It comes with a 3 year manufacturer's warranty.
+-Each shelf has a weight capacity of 15 kg.
+-The packaging dimensions are 420 W x 1460 D x 135 H mm.
+-In an environment where children are present this product should be anchored to prevent serious injury.";;
+;570;;Horsen 4 Cube Bookcase Oak;"The Horsen 4 Cube Bookcase has minimalist, contemporary design that makes it perfect for the modern home or office. For convenience and extra floor space, it can be wall mounted.-When assembled the bookcase measures 744 W x 390 D x 744 H mm.
+-The bookcase is constructed from particle board with a melamine finish.
+-It has 4 shelves.
+-The cube interior measures 335 W x 390 D x 335 H mm.
+-The shelves have a 15 kg weight capacity.
+-Assembly takes approximately 40 minutes.
+-It comes with a 3 year warranty.
+-The Horsen Bookcase also comes in an 8 cube variety.";;
+;669;;OM Stationery Cupboard White Charcoal;Sturdy 25mm Tops over 25mm Sides-E1 grade melamine boards;;
+;572;;OM Bookcase Redwood Charcoal;Sturdy 25mm Tops over 25mm Sides-E1 grade melamine boards;;
+;573;;J.Burrows Chalkboard 450 x 900mm Black;"This J.Burrows Chalkboard measures 45 x 90 cm making it suitable for use in your workspace. It has a stylish black frame and can be used for your notes, memos, lists and more.-The chalkboard surface can be used to add notes, memos and lists.
+-It measures 450 x 900 mm.
+-There are fixings included so you can mount the board on a wall.
+-The forestry content of this product has been sourced from an FSC certified supplier, supporting healthy forests and protecting wildlife.";;
+;574;;J.Burrows Chalkboard 600 x 450mm;"This J.Burrows Board has a chalk surface for writing and drawing your notes and ideas. It's framed in wide MDF and comes with chalk for instant use.-It has a chalkboard surface so you can draw and write notes.
+-It measures 600 x 450 mm making it suitable for use in your workspace.
+-It comes with chalk so you can start using it right away.
+-It comes with wall mounting tape for hassle-free installation.
+-This product is FSC certified, so you can be sure your purchase supports healthy forests and protects wildlife.";;
+;575;;Bi-Office Kamashi Chalkbrd 900x600 Gold;"This Bi-Office Kamashi Chalkboard is a great option for keeping in your kitchen, shared workspace, office or other area where you might need to write notes, lists and memos. It comes with wall fixings for added convenience while the bright gold design will add an interesting touch to your space.-It has a board surface that you can use chalk on.
+-The frame has a durable MDF frame.
+-The surface measures 900 x 600 mm.
+-Mount fixings are included for hassle-free installation.
+-The board weighs 1.7 kg.
+-It comes with a 2 year warranty for added peace of mind.
+-The frame has a modern gold design.";;
+;576;;Bi-Office Rustic Chalkboard 900 x 600mm;"This Bi-Office Chalkboard is a great option for keeping in your kitchen, shared workspace, office or other area where you might need to write notes, lists and memos. It has a rustic design for creating a coordinated space and comes with fixings so you'll be able to wall mount it yourself.-It has a board surface that you can use chalk on.
+-The frame has a durable wooden frame.
+-The surface measures 900 x 600 mm.
+-Mount fixings are included for hassle free installation.
+-The board weighs 2.6 kg.
+-It comes with a 2 year warranty for added peace of mind.
+-The board has a rustic design so you can coordinate it with your space.";;
+;577;;J.Burrows Aluminium Frame Board 900x600;"The J.Burrows Combination Board has both a magnetic and pinnable surface so you can adhere notes and memos however you like. It comes with 2 markers, 2 magnets, 6 push pins and an eraser so you can start using it right away.-It has a combination magnetic and pinnable surface.
+-It measures 900 x 600 mm making it suitable for your workspace.
+-The board comes with 2 markers, 2 magnets, 6 push pins, an eraser and pen tray for added convenience.
+-There are wall mounting accessories included for hassle-free installation.
+-This board has a sturdy aluminium frame.
+-This product is FSC certified, so you can be sure your purchase supports healthy forests and protects wildlife.";;
+;578;;J.Burrows Calendar Board 580x270;"The J.Burrows Combination Board features both a corkboard and a whiteboard surface so you can add and remove notes however you like. It's suitable for use in your workspace and has an elegant white wooden frame that will match any decor at home or in the office.-It's been designed to be displayed in landscape orientation.
+-It measures 580 x 270 mm making it ideal for use in your workspace.
+-The board is wall mountable and mounting accessories are included so you can hang it right away and keep it in view.
+-The elegant white wooden frame compliments most modern decor.";;
+;673;;Quartet Combo Planner Board;"This Quarter Combo Planner is ideal for keeping organised throughout the year, combining a dry-erase calendar for writing down tasks and removing them later, with a cork strip and magnetic surface for pinning reminder notes, bills and more. It is wall-mountable for your convenience, allowing you to present it openly in your house or workspace.-This board combines a dry-erase whiteboard surface with that of a corkboard surface.
+-The aluminium frame adds practicality and style to your weekly planning.
+-It's wall-mountable for easily presenting in your house or workspace.
+-The calendar planning template allows you to organise your schedule.
+-The magnetic surface and cork strip are designed for mounting reminders, magnets, bills and more so you can keep track of your daily tasks.
+-It measures 15 W x 508 D x 406 H mm.
+-A 12 month warranty is included.";;
+;580;;Quartet Aluminium Frame Board 900x600;"This Quartet Aluminium Frame Combination Board is both a corkboard and a whiteboard so you can attach or display your notes and reminders however you please. The high density cork is self healing so you won't see any pre-existing pin holes. The whiteboard is writable with dry erase markers and includes an accessory tray so you can keep your markers and eraser close by.-This board is great for messages, reminders, notes and more.
+-The corkboard is self healing so you won't see the pinholes.
+-It measures 900 x 600 mm.
+-The plastic accessory tray can be used to keep markers and an eraser nearby.
+-It can be mounted to the wall through the corner caps with the screws provided.
+-It has a weight of 4.1 kg.
+-It has a stylish, silver aluminium frame.
+-Dry erase markers can be used to write on the whiteboard.
+-The rounded corner caps prevent bumps and scratches.";;
+;581;;Quartet Aluminium Frame Board 1200x900;"This Quartet Aluminium Frame Combination Board is both a corkboard and a whiteboard so you can attach or display your notes and reminders however you please. The high density cork is self healing so you won't see any pre-existing pin holes. The whiteboard is writable with dry erase markers and includes an accessory tray so you can keep your markers and eraser close by.-This board is great for messages, reminders, notes and more.
+-The corkboard is self healing so you won't see the pinholes.
+-It measures 1200 x 900 mm.
+-The plastic accessory tray can be used to keep markers and an eraser nearby.
+-It can be mounted to the wall through the corner caps with the screws provided.
+-It has a weight of 8.2 kg.
+-It has a stylish, silver aluminium frame.
+-Dry erase markers can be used to write on the whiteboard.
+-The rounded corner caps prevent bumps and scratches.";;
+;667;;J.Burrows Felt Board with Pins 900 x 600;"The J.Burrows Felt Board is an excellent option for collating your lists, notes, ideas and more. It comes with wall mounting accessories for easy installation, as well as 6 small push pins to get you started. It is ideal for use at home, at the office, at school or at your workspace.-The surface is made of a pink felt material.
+-It measures 900 x 600 mm.
+-It is wall mountable and comes with accessories for mounting it.
+-It can be displayed in a portrait or landscape orientation.
+-It has a 2 year warranty.
+-This product is FSC certified, so you can be sure your purchase supports healthy forests and protects wildlife.";;
+;584;;J.Burrows Feltboard 900 x 600mm Black;"This J.Burrows Feltboard has a stylish and professional design, making it perfect for bedrooms, kitchens or offices. Its felt surface is perfect for displaying reminders, memos, certificates, photographs and anything else you want to show off.-It has a stylish black wooden frame which is sure to look great in your workspace.
+-The board measures 900 x 600 cm.
+-It can be displayed in portrait or landscape orientation.
+-This product is FSC certified, so you can be sure your purchase supports healthy forests and protects wildlife.";;
+;585;;J.Burrows Hessian Board 600 x 450mm Oak;"This J.Burrows Hessican Board has a pinnable surface so you can display memos, lists, photos and more. It's surrounded by an oak-coloured MDF frame and comes with wall mounting accessories for your convenience.-It has a pinnable hessian surface for memos, lists and photos.
+-It measures 600 x 450 mm making it suitable for use in your workspace.
+-There are wall mounting accessories included for hassle-free installation.
+-The frame is oak coloured making it a stylish addition to your home or office.
+-This product is FSC certified, so you can be sure your purchase supports healthy forests and protects wildlife.";;
+;586;;Bi-Office Kamashi Board 900x600 Choc;"This Bi-Office Kamashi Notice Board features a soft touch, fabric surface for comfortable use. The surface is pinnable so you'll be able to add notes, memos, lists, photos and more.-It has a soft fabric surface that's pinnable.
+-The frame has a durable MDF construction.
+-The surface measures 900 x 600 mm.
+-Mount fixings are included so you'll be able to wall hang it yourself.
+-The board weighs 2.5 kg.
+-It comes with a 2 year warranty for your peace of mind.
+-The frame has a modern chocolate brown colour design.";;
+;587;;Bi-Office Gallery Board 800x800BlackGrey;"This Bi-Office Gallery Notice Board is a great option for when you want to add an organisational tool to your workspace or shared area. It features a pinnable surface which is ideal for use with push pins and can be used to display notes, memos, lists, photos and more.-The surface is pinnable so you'll be able to add and remove notes.
+-The surface measures 800 x 800 mm.
+-Mount fixings are included so you'll be able to wall hang it yourself.
+-The board weighs 3.9 kg.
+-It comes with a 2 year warranty for your peace of mind.
+-The frame has a modern black design.";;
+;678;;WallMounted Magnet Whitebrd Glass 100x60;Our magnetic glass dry-erase whiteboard is an ideal solution if you are looking to create a central place in your home where you can write notes, doodle, or display photos.The dry-erase board has a magnetic, tempered glass surface that is easy to clean with the included eraser. The required wall mounting materials are included, which makes it easy to attach the whiteboard to any wall in your home, office or school.;;
+;589;;WallMounted Magnet Blackbrd Glass 100x60;Our magnetic glass dry-erase blackboard is an ideal solution if you are looking to create a central place in your home where you can write notes, doodle, or display photos.The dry-erase board has a magnetic, tempered glass surface that is easy to clean with the included eraser. The required wall mounting materials are included, which makes it easy to attach the blackboard to any wall in your home, office or school.;;
+;591;;Penrite Magnet Mobile Whitebrd 1200x900;"This Penrite Magnetic Mobile Whiteboard is portable so you can move it around for conferences, presentations and more. It's double-sided and rotates 360 degrees so you can write more notes and save time. It's magnetic so you can attach notices and keep the magnets handy in the built-in accessory tray.-This board is great for use during meetings, presentations, conferences and more.
+-The stand has wheels making the board portable and easy to move.
+-The board size measures 1200 x 900 mm.
+-It comes with a built-in accessory tray where you can store your markers, eraser and magnets.
+-Once assembled, it measures 1330 x 563 x 1870 mm.
+-The board is magnetic so you can easily attach and remove notices.
+-It has a weight of 14 kg.
+-The corner caps are rounded to prevent bumps and scratches.
+-The board and castors can be locked into position for stability.
+-We recommend that you measure the space where the board will go before placing your order";;
+;672;;Penrite Premium Magnet Whitebrd 1200x900;"This Penrite Premium Magnetic Whiteboard is double-sided which allows you to write more information onto 1 unit. The board comes with a stand with lockable castors to keep it in place and the ability to pivot 360 degrees making it a versatile unit. The magnetic surface will also allow you to expand your organisational system by attaching notes using magnets.-The porcelain surface is scratch resistant and non porous so it won't discolour or stain.
+-You can write messages on both sides of the board using non-permanent dry erase markers.
+-You can also attach notices or photos to the board using magnets which expands your organisational system while still being contained on the 1 unit.
+-The board measures 900 W x 1200 H mm.
+-The board can also be detached from the stand and mounted on a wall for interchangeable display options.
+-The board is framed in sleek aluminium which adds sophistication to any room.
+-A full length accessory tray is included so you have a place to store your markers, eraser and magnets.
+-It comes with a stand on wheels so that you can easily move it around the room.";;
+;593;;J.Burrows Magnet GlassBrd 1200x900 White;"This J.Burrows Glass Board is a contemporary and functional addition to your home or workspace. The tempered glass surface can be written on using dry erase or glass board markers, plus it's magnetic so you can display photos, memos, invitations and more. It uses an invisible mounting system for an overall stylish look.-This glass board has a white, tempered glass surface.
+-It measures 1200 x 900 mm so there's plenty of space for writing notes and displaying memos.
+-It's easy to wipe your board clean as necessary.
+-Mounting screws are included so you'll be able to hang your board right away.
+-The board has a modern, frameless design to make it a stylish addition to your home or workspace.
+-It would be ideal for use in a meeting room, office, or even in your home to organise your family's events.";;
+;676;;Staedtler Lumocolor Whitebrd Marker 8pck;"These Staedtler 351 Whiteboard Markers are a great option for marking a variety of dry erase surfaces, including whiteboards, glass and porcelain. The markers feature dry safe ink which allows you to leave the cap off for days before they dry out.-These markers have a 2 mm bullet nib.
+-They are perfect for marking surfaces such as whiteboards, glass and porcelain.
+-The drysafe ink allows you to leave the lid off for days without it drying out.
+-The markers come with pocket clips so that you can easily take it on the go.
+-The low odour ink is xylene and toluene free.
+-There are 8 markers in this pack in an assortment of colours.";;
+;595;;Staedtler Lumocolor Whitebrd Marker Blck;"The Staedtler Lumocolor 351 Whiteboard Marker features ink technology that allows you to leave it uncapped for days at a time without the ink drying up. It has a variable tip for different line widths and can be erased from dry-erase surfaces without leaving residue behind.-The durable, 2.0-5.0 mm chisel tip marker offers the versatility of creating a fine line with the tip or a broader line with the flat side.
+-The ink can easily be dry-wiped from whiteboards and surfaces such as glass or porcelain without leaving a trace.
+-The durable polypropylene barrel ensures that the marker writes for longer as it has a high resistance to ink evaporation.
+-The marker is airplane-safe as it has automatic pressure equalization that prevents the pen from leaking on board.
+-The marker is environmentally friendly as it is free of harmful substances such as toluene and xylene.
+-The ink in this marker is black.
+-The markers are also easy to refill using Staedtler refill stations.";;
+;677;;Staedtler Lumocolor Whitebrd Marker Grn;"The Staedtler Lumocolor 351 Whiteboard Marker features ink technology that allows you to leave it uncapped for days at a time without the ink drying up. It has a variable tip for different line widths and can be erased from dry-erase surfaces without leaving residue behind.-The durable, 2.0-5.0 mm chisel tip marker offers the versatility of creating a fine line with the tip or a broader line with the flat side.
+-The ink can easily be dry-wiped from whiteboards and surfaces such as glass or porcelain without leaving a trace.
+-The durable polypropylene barrel ensures that the marker writes for longer as it has a high resistance to ink evaporation.
+-The marker is airplane-safe as it has automatic pressure equalization that prevents the pen from leaking on board.
+-The marker is environmentally friendly as it is free of harmful substances such as toluene and xylene.
+-The ink in this marker is green.
+-The markers are also easy to refill using Staedtler refill stations.";;
+;597;;J.Burrows Whiteboard Markers 4pck;"These J.Burrows Whiteboard Markers have bold ink colours with a low odour. They feature a 2.0 mm bullet nib which will draw lines big enough to be seen from the back of the room. The 4 coloured markers come in a handy plastic wallet.-They have a 2.0 mm bullet nib.
+-They are perfect for any workspace that often uses whiteboards.
+-The pigment ink is water based and xylene free.
+-The caps have clips so you can take them on the go.
+-There are 4 markers in this pack, in assorted colours.";;
+;598;;J.Burrows Round Magnets Assorted 10 Pack;"J.Burrows Round Magnets are a great option for holding, storing and displaying documents and photos on any magnetic surface. The pack contains an assortment of colours so you can brighten up your home or workspace.
+-These magnets are ideal for use on whiteboards and fridges.
+-Each magnet is 24 mm in diameter.
+-The magnets come in assorted colours making them ideal for colour coding.
+-The pack contains 10 magnets in assorted colours.
+-They come in a handy reusable, recyclable plastic box so you can keep them all together.";;
+;599;;J.Burrows 38mm Magnetic LetterClips 8pck;"J.Burrows Magnetic Letter Clips makes it easy to hang and display documents, photos or memos on magnetic surfaces. The soft spring action is easy to clip and unclip yet still holds documents firmly.-Each clip measures 38 mm.
+-They come in a handy reusable, recyclable plastic box so you can keep them all together.
+-The clips are small so they won't cover your documents while displaying them.
+-Your items will be held firmly in place thanks to the springs.
+-They come packaged in a handy pack of 8.";;
+;600;;Quartet Whiteboard Cleaner 500mL;"Quartet Whiteboard Cleaner is specially formulated to erase and clean all whiteboard surfaces. For the best results, use this regularly to remove marker residue, dirt and grease which may cause whiteboard ghosting. This bottle also features a spray nozzle for a nice and easy clean application.-You can use this on your whiteboard at home or school to erase marker residue, dirt and grease.
+-You can use this regularly and it won't leave a residue.
+-The bottle also features a spray nozzle for easy application.
+-There is 500 mL in each bottle.";;
+;601;;Quartet Glass Board Cleaner 250mL;"Quartet Glass Board Cleaner will help you to remove glass marker ink, dirt and grease from your glass board surface. It has a simple spray and wipe design which makes it easy to use to effectively clean your board.-The bottle contains 250 mL of cleaning fluid.
+-It is easy to use, simply spray it onto your glass board surface, wipe it off and enjoy streak-free cleaning.
+-It is suitable for use on all Quartet Glass Board Surfaces.";;
+;602;;Otto Round Push Pins 100 Pack;"These Otto Round Push Pins are ideal for displaying documents, posters and photos on corkboards and other pinnable surfaces. They have a durable construction which makes them ideal for repeated use.-They're great for displaying documents, posters, photos and more.
+-They come in a handy reusable, recyclable plastic box so you can keep them all together.
+-They have a durable construction making them ideal for repeated use.
+-There are 100 pins in this pack.
+-The container is recyclable for hassle free disposal.";;
+;603;;J.Burrows Thumb Tacks Gold 150 Pack;"These J.Burrows Thumb Tacks are perfect for keeping in your home or workspace so you can display photos, flyers, invitations, cards and other notices. Each tack has a strong steel point which will resist breaking during use.-These thumb tacks have an 11 mm diameter with 7 mm points which are sharp for easy pinning.
+-They come in a handy reusable, recyclable plastic box so you can keep them all together.
+-The thumb tacks are gold to look subtle in your space.
+-There are a total of 150 thumb tacks included in the pack.
+-You can use the tacks to hold and display items on pinboards, fabric boards, notice boards and other porous surfaces.";;
+		
+;604;;Marbig Strong Archive Box 3 Pack;"These Marbig Strong Archive Boxes are an ideal sturdy solution for storing all your important documents such as contracts, financial records, reports and personnel data as well as general papers, folders, loose items and more. Built for strength and convenience, these Strong Archive boxes can withstand more frequent file access and handling than the Standard range.-Each box can hold up to a maximum load weight of 30 kg.
+-You can stack the boxes up to 7 high.
+-They each have double-end short walls, with a double base layer and a single long side construction.
+-They’re made from 100% recycled materials making it a great option for those who are environmentally conscious.
+-The boxes are also 100% recyclable for easy disposal when you don’t need them anymore.
+Each box is Australian made.
+-When assembled with the lid on, each box measures 420 W x 320 D x 260 H mm.
+-Each box can fit foolscap suspension files, manila folders, or up to 3 lever arch folders, or 6 ring binders and more.
+-Each box has a large labelling area for quick and easy identification of what’s inside.
+-The built-in carry handles allow for easy pick up and transportation.
+-These boxes come flat packed and fold together in seconds so you can easily store spare boxes until you need them.
+-There are lift-off lids included with each box to help you stack boxes and keep your items securely stored.
+-There are 3 boxes in this pack.";;
+;668;;Marbig Colour Standard ArchiveBox Black;"Marbig Archive Boxes are a great way of storing, organising and colour coding all your important documents such as contracts, financial records, reports and personnel data as well as general papers, folders, loose items and more. They each feature lift-off lids so you can secure items inside and are stackable allowing you to create your own organised, storage system.-Each box can hold up to a maximum load weight of 25 kg.
+'-You can stack the boxes up to 5 high.
+They each have double-end short walls, with a double base layer and a single long side construction.
+-When assembled with the lid on, each box measures 420 W x 315 D x 260 H mm.
+-Each box can hold foolscap suspension files or manila folders, up to 3 lever arch files or even 6 ring binders.
+-The built-in carry handles allow for easy pick up and transportation.
+-These boxes come flat packed and fold together in seconds so you can easily store spare boxes until you need them.
+-There are lift-off lids included with each box to help you stack boxes and keep your items securely stored.
+-It has a black design and a gloss finish.
+-This pack includes a single archive box.
+-A variety of colours are available to assist you with filing and organising your documents by colour.";;
+;606;;Keji Standard Archive Box 10 Pack;"These Keji Standard Archive Boxes are an economical solution for storing important documents such as contracts, financial records and personnel data as well as general papers, folders, small items and more. They each feature a lift-off lid so you can secure items inside and are stackable allowing you to create your own organised, storage system.-Each box can hold up to a maximum load weight of 25 kg.
+-You can stack the boxes up to 5 high.
+-They each have double-end short walls, with a double base layer and a single long side construction.
+-They’re made from 100% recycled materials making it a great option for those who are environmentally conscious.
+-The boxes are also 100% recyclable for easy disposal when you don’t need them anymore.
+-When assembled with the lid on, each box measures 310 W x 425 D x 265 H mm.
+-You can fit A4 or foolscap sized files in these boxes.
+-Each box has a large labelling area for quick and easy identification of what’s inside.
+-The built-in carry handles allow for easy pick up and transportation.
+-These boxes come flat packed and fold together in seconds so you can easily store spare boxes until you need them.
+-They have lift-off lids to secure your items inside and for easy access.
+-This pack includes 10 archive boxes.";;
+;607;;J.Burrows Foolscap PressbrdBoxFile Prple;"The J.Burrows Pressboard Foolscap Box File is ideal for keeping all your documents neat and tidy. With a lightweight construction, it has a strong metal clip to prevent your documents from falling out.-It is designed to hold 500 sheets of 80 gsm foolscap paper.
+-The pressboard construction is lightweight and durable.
+-It has a metal clip inside to secure your notes and sheets.
+-The purple design will look stylish in your workspace.
+-This product is FSC certified, so you can be sure your purchase supports healthy forests and protects wildlife.";;
+;608;;J.Burrows Foolscap Pressbrd BoxFile Blue;"The J.Burrows Pressboard Foolscap Box File is ideal for keeping all your documents neat and tidy. With a lightweight construction, it has a strong metal clip to prevent your documents from falling out.-t is designed to hold 500 sheets of 80 gsm foolscap paper.
+-The pressboard construction is lightweight and durable.
+-It has a metal clip inside to secure your notes and sheets.
+-The blue design will look stylish in your workspace.
+-This product is FSC certified, so you can be sure your purchase supports healthy forests and protects wildlife.";;
+;609;;Avery Quickvue Files 50 Pack;"The Avery Quickvue Files are a fantastic alternative to suspension files, and converting your draw could not be easier. You'll never have to worry that your files will fall off their rails, tear away from the metal or lose their file titles again. The tabs on these files sit on an angle so that the top of the files can be quickly and easily identified. One pack will convert a standard drawer.-These files are the same size as filing cabinet suspension files.
+-They're made from a crisp, white manilla cardboard.
+-They fit perfectly into any standard filing cabinet so you'll never have to worry about broken files again.
+-The angled tabs can be easily identified.
+-You'll never be frustrated with your filing again as there is no rail for these files to fall off.
+-There are 72 file titles in this pack.
+-There are 50 files included in this pack, which is enough to fill one cabinet drawer.
+-The rack is not included in this pack.
+-The forestry content of this product has been sourced from an FSC certified supplier, supporting healthy forests and protecting wildlife.";;
+;610;;Keji Flat File A4 Assorted Colours 6pck;"Keji A4 Flat Files are perfect for presenting your projects and important work. The clear cover ensures you can see your cover page while protecting the contents inside.-Each file can hold up to 50 sheets at a time.
+-Can hold up to 50 sheets at a time.
+-The insert spine means you can easily label your file.
+-Handy pack of 6 flat files in assorted colours.
+-This pack contains 6 flat files in assorted colours.
+-The easy to use prong fastening system means you simply punch your papers and insert them.";;
+;611;;Spirax No. 595 A4 Notebook 120 Page;"This Spirax No. 595 A4 Notebook is A4 size so you can easily carry it with you and store it amongst your other documents. It's spiral bound to prevent your pages from falling out and has a strong cardboard cover to keep them protected from damage.
+-There are 120 pages in this notebook.
+-It's A4 size which makes it convenient for everyday use.
+-Spiral binding provides extra strength and support.
+-The pages are lined every 7 mm to keep your writing neat and consistent.
+-The tough cardboard covers protect the pages against wear and tear.
+-This product is FSC certified, so you can be sure your purchase supports healthy forests and protects wildlife.";;
+;675;;Spirax A4 Notebook 120 Pages 5 Pack;"Spirax Notebooks are perfect for everyday notetaking at home, school or work. Each book has a secure spiral binding and a durable cardboard back to ensure they're durable and withstand frequent use.-Each notebook contains 120 pages of white paper.
+-They are A4 size, making them ideal for everyday use.
+-Tough cardboard covers will protect your notes from being damaged.
+-The durable spiral binding will hold all of your pages together.
+-Each page is printed with 7 mm lines to help you write neatly.
+-There are 5 notebooks included in the pack so you can stock up at once.
+-This product is FSC certified, so you can be sure your purchase supports healthy forests and protects wildlife.";;
+;613;;Oxford B5 Notebook 120 Pages Navy;"This Oxford Notebook has 120 pages contained within a laminated card cover and a sturdy, cardboard backing. The paper has a 90 gsm thickness, so you can confidently write on both sides without worrying about ink bleedthrough. This notebook is compatible with the Oxford Scribzee app that allows you to scan, save, and share your handwritten notes using your smartphone.-There are 120 pages in this notebook.
+-The paper is 90 gsm thick.
+-The notebook is a B5 size, so you can carry it around with ease.
+-It features Oxford's unique Optik paper for an extra-white page and a smooth writing experience.
+-This notebook comes with Oxford's Scribzee App that allows you to scan and share your written notes using your smartphone.
+-The cover is made from durable laminated card with a hard board backing.
+-The notebook has a navy cover.";;
+;671;;Oxford B5 Notebook 120 Pages Red;"This Oxford Notebook has 120 pages contained within a laminated card cover and a sturdy, cardboard backing. The paper has a 90 gsm thickness, so you can confidently write on both sides without worrying about ink bleedthrough. This notebook is compatible with the Oxford Scribzee app that allows you to scan, save, and share your handwritten notes using your smartphone.-There are 120 pages in this notebook.
+-The paper is 90 gsm thick.
+-The notebook is a B5 size, so you can carry it around with ease.
+-It features Oxford's unique Optik paper for an extra-white page and a smooth writing experience.
+-This notebook comes with Oxford's Scribzee App that allows you to scan and share your written notes using your smartphone.
+-The cover is made from durable laminated card with a hard board backing.
+-The notebook has a red cover.";;
+;670;;Otto B6 Travel Journal 192 Pages Salmon;"The Otto Travel Journal allows you to create a personalised memento of your travels, offering you a great place to record all your favourite memories and stories during your travels. It has 192 pages to support your stream of consciousness and a polyurethane cover to keep it safe as it accompanies you on your adventures.-This travel journal is equipped with 192 pages to write on.
+-This paper has a 70 gsm construction.
+-It's B6 size, which makes it easy to take with you on the go.
+-It has a polyurethane cover, adding an extra layer of protection for when you're travelling.
+-This journal comes in a sleek, salmon design.
+-This product is FSC certified, so you can be sure your purchase supports healthy forests and protects wildlife.";;
+;616;;Otto B6 Journal 384 Pages VintageBrown;"This Otto Journal is a great place to write down your thoughts, ideas, notes and more. It's B6 size for compact use and features a back pocket for storing loose sheets and receipts. Plus, the vintage leather cover design makes it an attractive addition to your workspace.-It contains 384 pages so you'll have plenty of space to write.
+-Each page has a 70 gsm construction.
+-It's B6 size which makes it compact for taking on the go.
+-You can store loose papers in the back pocket, keeping all your notes together.
+-Secure your pages inside thanks to the button closure.
+-The pages are feint ruled to keep your writing neat and consistent.
+-The durable polyurethane construction will help to keep your pages protected against wear and tear.
+-This product is FSC certified, so you can be sure your purchase supports healthy forests and protects wildlife.
+-It has a vintage brown leather design.";;
+;617;;J.Burrows A4 Undated WeeklyPlanner;"These J.Burrows A4 Weekly Undated Planners are a great way to keep track of important dates and events. Each day is split into 2 hour blocks from 8 am to 8 pm, so it is perfect to keep on your desk in your workspace.-This planner is set out in week to view and is undated.
+-It is the perfect size for most desk tops.
+-This planner has plenty of space to fill in events, holidays and features a space to take down notes.
+-There are 60 sheets in each pack including 20 blue sheets, 20 red sheets and 20 purple sheets.";;
+;618;;J.Burrows Large Tape Dispenser;"The J.Burrows Large Tape Dispenser has a 75 mm tape core for wider and longer adhesive tape rolls. It features durable cutters that will maintain sharpness year after year.-The 75 mm tape core holds larger sized sticky tape rolls.
+-The quality tape-dispensing cutter will maintain sharpness year after year.
+-The dispenser has a timeless black design.";;
+;619;;J.Burrows Clear Adhesive Tape 18x33 8pck;"This J.Burrows Clear Adhesive Tape is great for keeping handy in your workspace or home. It's ideal for general purpose uses such as gift wrapping, school projects, light duty sealing and craft.-The tape is easy to use as it always dispenses smoothly and efficiently from the roll.
+-It measures 18 mm x 33 m.
+-It suits small tape dispensers that are 25 mm at the core.
+-This tape is clear making it hard to see once applied.
+-There are 8 rolls of tape in this pack so you can stock up at once.";;
+;674;;Scotch GiftWrap Tape Dispenser 19x16.5;"This Scotch Gift Wrap Tape Dispenser has a unique satin finish and is almost invisible on gift wrap. This tape has a an adhesive backing that is smooth and unwinds easily off the roll. This tape is also ideal for cut and paste activities, craft projects and scrapbooking.-This tape is clear and has a satin finish.
+-The tape measures 19 mm x 16.5 m.
+-This tape can be used on its own or inserted back into the dispenser for faster application.
+-This tape comes packaged within a dispenser so you can start your taping applications straight away.
+-The tape is acid-free so it won't yellow or cause discolouration over time.";;
+;621;;Avery DoubleSide MultiPurposeCard 30pck;"These Avery Double-sided Multi-purpose Cards can be used for a variety of uses, including making table numbers, name tags, business cards and more. Each card is made using smooth, unperforated paper which provides a professional end result.-You can use these cards for almost any paper labelling tasks.
+-They are made using thick, 270 gsm card.
+-Each card measures 210 x 99 mm.
+-You can print directly onto the smooth surface for a stylish end result.
+-There are 10 sheets in the pack with 3 cards each, totalling to 30 labels per pack.
+-This product is FSC certified, so you can be sure your purchase supports healthy forests and protects wildlife.";;
+;663;;Avery Rectangle Labels Sky Blue 160pck;"These Avery Labels are rectangular in shape and can be used to name belongings, address mail, label food items and more. They're compatible for use in printers so you can use the software code on the Avery website and create your own personalised and professional labels.-Each one can be used for writing addresses, labelling your personal belongings, decorating and more.
+-Each label measures 63.5 x 24 mm.
+-They're compatible for use with both laser and inkjet printers for a neat finish.
+-You can use pre-designed templates on the Avery website using the software code, L7261.
+-The adhesive backing makes them easy to apply.
+-There are 10 sheets in this pack, each with 16 labels.
+-There are 160 labels in this pack.
+-Each label is sky blue coloured.
+-The forestry content of this product has been sourced from an FSC certified supplier, supporting healthy forests and protecting wildlife.";;
+;623;;J.Burrows Erasable Gel Pens 0.7mm 8pck;"These J.Burrows Erasable Gel Pens are perfect for anyone who often handwrites notes or completes journaling. These pens have a soft grip which ensures that you can write in comfort for longer. The ink can be erased using the rubber on the pen, and you can rewrite over the spot right away.-These pens have a 0.7 mm nib which creates thin lines perfect for a number of applications.
+-The ink can be easily erased with the rubber on top making it a great option for fixing mistakes on the go.
+-The ink is quick-drying and water-based.
+-They have a soft grip which allows you to write in comfort for longer.
+-These gel pens come in an assortment of colours.
+-There are 8 gel pens in this pack.";;
+;624;;Pilot Erasable GelPens 0.7mm Black 4pck;"The Pilot Frixion Ball Erasable Gel Pen is an innovative gel pen which allows you to erase and instantly rewrite over your mistakes. Simply rub the silver rubber tail over your mistakes and the friction generated turns the ink invisible. The Frixion is ideal for everyday use, whether it be at home, school or work.-They come with black gel ink which can be refilled using Frixion Ink Refills.
+-The Pilot Frixion would be ideal for home, school or office use.
+-The pen has a fine, 0.7 mm nib for controlled, detailed writing.
+-The silver rubber tail makes any mistake simply disappear.
+-The friction generated by the rubber turns the ink invisible instantly so you can write over it straight away.
+-The pack contains 4 black pens.
+-You can use any Pilot Frixion Erasable Gel Ink Refill with this pen.";;
+;625;;Pilot Erasable GelPens 0.7mm Red 2pck;"The Pilot Frixion Ball Erasable Gel Pen is an innovative gel pen which allows you to erase and instantly rewrite over your mistakes. Simply rub the silver rubber tail over your mistakes and the friction generated turns the ink invisible. The Frixion is perfect for everyday use, whether it be at home, school or work.-Each pen has a fine 0.7 mm nib.
+-The ink is designed to dry quickly preventing smudges and smears.
+-They each have a pocket clip making them ideal for taking on the go.
+-The rubber tail will help to make your mistakes disappear.
+-Each pen contains red ink.
+-There are 2 pens in this pack.";;
+;626;;J.Burrows FullStrip PlasticStapler Black;"This J.Burrows Full Strip Plastic Stapler has a sturdy plastic construction to withstand frequent use. It is ideal for use at home, work or school to secure papers and documents together.-This stapler can staple up to 20 sheets at a time.
+-It has a sturdy plastic construction with rubber feet to protect your desk surface.
+-It is suitable for use with a full strip of size 26/6 staples.";;
+;627;;J.Burrows Comfort Grip Scissors 9"/228mm;"J.Burrows Comfort Grip Scissors are ideal for general purpose cutting tasks including craft applications, cutting fabrics, light cards and light plastics. They have contoured comfort grip handles which make your cutting easier on your hands.-The contoured, comfort grip design is great for left or right handed users.
+-They're 9 inches or 228 mm in size so they're ideal for general purpose cutting around the home or office.
+-The blades are made using durable stainless steel materials with a riveted handle to eliminate cracking and blade separation.
+-They're suitable for cutting fabrics, light card and light plastics.";;
+;628;;Post-it Notes 76 x 76mm Jaipur 5 Pack;"Post-it Notes are great for taking down phone numbers, writing quick reminders and even leaving short notes around your workspace. These bright, vibrant notes have a long lasting self-adhesive backing which removes without leaving any sticky residue behind.-They can be used for reminders, memos, notes, messages, drawings and more.
+-The pack contains 5 pads, each with 100 sheets.
+-Each note measures 76 x 76 mm, which makes them ideal for short messages, to do lists, reminders and more.
+-The adhesive is designed to adhere to paper and planners without marking them or leaving behind residue.
+-The notes are an environmentally friendly choice thanks to their responsibly sourced paper construction and are recyclable.
+-The pack contains an assortment of colours from the Post-it Jaipur collection so you can easily colour code your reminders.
+-There are 5 pads in this pack.";;
+		
+;629;;Brother Wireless A3 Inkjet MFC Printer;"The Brother Inkjet MFC Printer has wireless capability so you can print, scan, copy and fax with ease. It offers 2 sided printing and can handle up to A3 paper size, making it an ideal addition to the workplace.-With this machine you can scan, fax, print and copy on paper up to A3 size.
+-Print your documents at a speed of 22 impressions per minute (ipm) in monochrome and 20 ipm in colour.
+-Enjoy high quality prints with a resolution of 1200 x 4800 dpi.
+-It has a 500 sheet capacity and dual paper trays so you always have paper ready to go.
+-You can save paper thanks to the 2 sided duplex printing option.
+-It has an automatic document feeder with a 50 sheet capacity.
+-The printer features USB 2.0, LAN and Wireless LAN connectivity with WiFi Direct for easy wireless setup.
+-You can print directly from your smartphone or tablet using AirPrint, Google Print and Brother apps.
+-This printer requires LC3317 and LC3319 refills.
+-The black design will look stylish in any work environment.
+-This printer comes with a standard ink pack to get your printer up and running.";;
+;630;;Brother Colour Printer HL-L3230CDW;"The Brother HL-L3230CDW Printer has a print speed of 24 pages per minute so you can efficiently print A4 sized documents. It supports various wireless connectivity options so you can print from your smart devices plus it allows for automatic duplexing so you can save on paper.-With this machine, you can print A4 sized documents.
+-It will print your documents at a speed of 24 pages per minute.
+-Your documents will look professional at a print resolution of 2400 x 600.
+-There will always be paper ready to use thanks to the 250 sheet document tray.
+-The automatic duplexing feature will help you to print double-sided documents and to save paper.
+-You can print from this machine wirelessly or simply connect via USB 2.0.
+-It supports AirPrint, Google Cloud Print, WiFi Direct, Mopria and Brother iPrint&Scan so you can print from your mobile devices.
+-You can use the following consumables with this machine: TN-253BK/C/M/Y, TN-257C/M/Y, DR-253, BU-223CL and WT-223CL.";;
+;631;;HP OfficeJet Pro 9018 AiO Printer White;"This HP OfficeJet Printer is ideal for your workspace in the office or at home, allowing you to print, copy, fax and scan documents. You can print wirelessly thanks to the built-in WiFi and you can even print from your smartphone or tablet using the HP Smart App. It has functions such as double-sided printing so that you can save paper.-This printer allows you to copy, fax, print and scan documents.
+-It prints at a speed of 22 ppm.
+-It prints on A4-sized sheets with a resolution of 4800 x 1200.
+-Prepare for printing at all times thanks to the printer's 250 sheet capacity.
+-Scan your documents automatically thanks to the 35 sheet automatic document feeder.
+-You can print using the USB connectivity, or wirelessly via the built-in WiFi capabilities.
+-You can print from your smartphone or tablet using the HP Smart App.
+-It comes in the colour white.";;
+;632;;HP LaserJet Pro Colour SFP M454nw;"The HP LaserJet Pro prints in both black and white and colour and can print wirelessly for your convenience. It features energy saving features that allow you to save power whilst still offering a quick start up when it turns back on.-It prints high quality documents and images in black and white as well as colour.
+-For black and white and colour printing, it has a maximum speed of 27 pages per minute (ppm).
+-It has a print resolution of 600 x 600.
+-You will have paper ready to go at all times with the 300 sheet tray capacity.
+-It is already preinstalled with 4 Introductory HP Black LaserJet Toner Cartridge in Black, Cyan, Magenta and Yellow.
+-With the HP ePrint App, you can print to any supported HP printer on he same wireless network as your mobile device.
+-With cloud technology, you can print from any device to any HP printer securely.
+-It is equipped with a power cord and a USB cable.
+-The default paper savings mode helps to save paper and reduce waste.
+-It helps to save energy with HP Auto-on/Auto-off technology.
+-It comes with a Getting Started Guide and an Install Poster.
+-It is only intended to be used with cartridges using an HP original chip as non-HP chips may not work now or in the future.
+-It is compatible with Apple AirPrint, Google Cloud Print, HP ePrint and HP Smart App.
+-It wakes up and prints efficiently so that you can grab pages and go.";;
+;633;;Epson Perfection Photo Scanner V370;"This Epson Perfection V370 Photo Scanner can be used to scan 35 mm film and slides, as well as printed photographs and documents. It has a high resolution of 4800 x 9600 dpi so you can enjoy clear, bright and highly detailed scans, with included software to enhance dusty or faded photos. You can even scan straight to the cloud or to PDF so that your photos are ready to share straight away.-This machine can scan documents of up to A4 size as well as 35 mm film and mounted slides.
+-It has a scanning resolution of 4800 x 9600 dpi.
+-This machine has a scanning speed of 16 seconds and requires no warm-up time.
+-You can upload your scanned images straight to the cloud.
+-It's compatible for use with both Windows and Mac operating systems.
+-To help you scan oversized prints, ArcSoft Scan-n-Stitch software is included.
+-It comes with a 1 year warranty for your peace of mind.
+-It features Optical Character Recognition, allowng you to convert scanned documents into text.
+-The scanner has Advanced Digital Dust Correction, giving you the ability to remove these imperfections from your scanned photos.";;
+;634;;Epson WorkForce Document Scanner DS-530;"This Epson WorkForce DS-530 Document Scanner can be used to scan documents, business cards and ID cards making it an ideal workspace solution. It features intuitive one touch scanning for easy use and speeds of up to 35 pages per minute, ideal for high volume scanning tasks and it supports automatic duplexing to help save paper.-This machine can scan documents of up to A4 size.
+-The scanning resolution of 600 dpi will ensure that your scans are clear.
+-It has a scanning speed of up to 35 pages per minute for high volume tasks.
+-Connect to your computer via USB.
+-This scanner will work with Windows and Mac operating systems.";;
+;635;;Brother Wireless Document Scanner;"The Brother ADS1700W Scanner can be used to scan and copy your documents, business cards and photos. It has a wireless design so you can connect without unnecessary cords and cables getting in the way or connect directly thanks to the wired functionality.-It will scan your documents at a resolution of 600 x 600 dpi.
+-It has a scan speed of up to 25 pages per minute.
+-You can connect to the scanner directly using a wired connection or wirelessly to reduce cable clutter.
+-It supports automatic duplexing to help you save on paper.
+-You can scan your documents efficiently thanks to the automatic document feeder.
+-It has a compact design making it a portable option.
+-It comes with a 12 month warranty for added peace of mind.";;
+;636;;Brother Document Scanner ADS-2800W;"This Brother Document Scanner has a compact design and is perfect for scanning documents in your workplace. It utilises Multifeed technology to prevent potential misfeeds and can be connected wirelessly to keep your workspace free of cords and cables. It has an intuitive 9.3 cm LCD touch screen for one touch operation making it a user friendly option.-This scanner can be used with documents measuring between 51 x 51 mm and 215.9 x 355.6 mm.
+-Enjoy clear and accurate scans thanks to the 1200 x 1200 resolution.
+-It has a scan speed of 30 ppm.
+-Simply connect your scanner using the high speed USB 2.0 interface
+-It's compatible for use with the iPrint&Scan app, Brother Scan Viewer for iOS/OS X and the Image Viewer for Android.
+-It supports duplex functionality for scanning on both sides of each page in bright colour.
+-You can scan your documents efficiently thanks to the 50 sheet Automatic Document Feeder.
+-The Secure Function Lock on the touchscreen will help to improve security by enabling user restrictions.
+-It comes with a 12 month warranty for added peace of mind.
+-You can connect an external flash drive up to 64 GB making your scanned documents portable.";;
+;637;;Brother TN 253 Toner Cartridge Black;"This Brother TN-253 Toner Cartridge will help to keep your printer producing sharp, crisp, professional documents. It's specially designed to work with Brother printers and is easy to install so you can do it yourself.-This cartridge can also be known by its model number TN-253BK ARL.
+-It has an estimated page yield of 2,500 so it's a great option for high volume printing.
+-This cartridge is compatible for use with your Brother HL-L3230CDW, L3270CDW, DCP-L3510CDW, MFC-L3745CDW, L3750CDW, or L3770CDW machine.
+-The pack includes a single black toner cartridge.
+-Drop off your used ink and toner cartridges at any Officeworks store for recycling through the Cartridges 4 Planet Ark program which guarantees zero waste to landfill.";;
+;638;;Brother TN 253 Toner Cartridge Yellow;"This Brother TN-253 Toner Cartridge will help to keep your printer producing sharp, crisp, professional documents. It's specially designed to work with Brother printers and is easy to install so you can do it yourself.-This cartridge can also be known by its model number TN-253BK ARL.
+-It has an estimated page yield of 1,300 so it's a great option for high volume printing.
+-This cartridge is compatible for use with your Brother HL-L3230CDW, L3270CDW, DCP-L3510CDW, MFC-L3745CDW, L3750CDW, or L3770CDW machine.
+-The pack includes a single yellow toner cartridge.
+-Drop off your used ink and toner cartridges at any Officeworks store for recycling through the Cartridges 4 Planet Ark program which guarantees zero waste to landfill.";;
+;639;;HP 202A Toner Cartridge Magenta;"This HP Toner Cartridge has been designed to help you produce clear, sharp and accurate printouts. It also has an approximate page yield of up to 1,300 pages making it ideal for at home printing.-This cartridge can be known by the manufacturer's code, CF503A.
+-It has an estimated page yield of 1,300 pages.
+-It's compatible for use with the following HP machines: M254nw, M254dw, M254dn, M280nw, M281fdn and M281fdw.
+-This pack contains a single magenta toner cartridge.
+-Drop off your used ink and toner cartridges at any Officeworks store for recycling through the Cartridges 4 Planet Ark program which guarantees zero waste to landfill.";;
+;640;;HP 206X LaserJet Toner Cartridge Cyan;"This HP Toner Cartridge is an essential item for your home or workspace. This cartridge aids you in printing all of your business and personal documents quickly and efficiently.-This cartridge model number is W2111X.
+-It has an estimated page yield of 2450 sheets.
+-It is compatible with the HP Colour LaserJet Pro M255 series and the HP Colour Laser Jet Pro MFP M282/M283 series.
+-There is 1 cyan cartridge.
+-Drop off your used ink and toner cartridges at any Officeworks store for recycling through the Cartridges 4 Planet Ark program which guarantees zero waste to landfill.";;
+;641;;HP 955XL Ink Cartridge Value Pack;"This HP 955XL Ink Cartridge Value Pack contains 4 cartridges of each different colour and black so you can replace all your cartridges at once or simply stock up. It has been designed to produce vivid, clear and defined documents and files.-This pack can be known by the manufacturer's code, OW955XL4PK.
+-They're compatible for use with the following HP machines: OfficeJet Pro 7740, 8210, 8216, 8710, 8720, 8730 and 8740.
+-This pack contains 1 cyan, 1 black , 1 magenta and 1 yellow ink cartridge.
+-Drop off your used ink and toner cartridges at any Officeworks store for recycling through the Cartridges 4 Planet Ark program which guarantees zero waste to landfill.";;
+;642;;J.Burrows Shredder S360A;"The J.Burrows S360A Shredder has a 7 sheet capacity and large 13 L bin to make shredding your sensitive or private documents a breeze. It has reverse, off and auto functionality so you can change the mode to suit your needs.-You can shred up to 7 sheets of 80 gsm A4 paper at a time.
+-The bin has a large 13 L capacity and a lift-off design for easy waste disposal.
+-It has a run time of 2 minutes and a rest time of 40 minutes.
+-It will shred your documents into cross-cut pieces measuring 4 x 40 mm.
+-It will shred your papers at a security level of P3 which is ideal for disposing of confidential documents.
+-It will also shred credit cards and staples.
+-It can shred up to 2 metres of paper in just 2 minutes.
+-It comes with a 3 year warranty for your peace of mind.
+-The slot is 220 mm wide.";;
+;643;;J.Burrows Cross Cut Shredder S273A;"The J.Burrows Cross Cut Shredder is ideal for destroying sensitive documents at home or in the workspace. It cuts paper, paper clips, CDs, staples and bank cards into 4 x 30 mm segments so you can dispose of them confidentially.-You can shred up to 10 sheets at once with this shredder.
+-The waste bin can hold 17 L, so you won't have to empty it as often.
+-This shredder has a 3 minute run time.
+-It uses a cross-cut pattern that shreds your documents into 4 x 30 mm pieces.
+-Its shredding capabilities are at a P2 level, making it suitable for destorying sensitive documents in the home or workspace.
+-This shredder can also cut through paper clips, staples, bank cards, and CDs.";;
+;644;;Fellowes Powershred Micro Cut Shredder;"This Fellowes Powershred Shredder utilises quiet operation technology so you can shred up to 8 sheets at a time without any noisy interruptions. It can shred non-stop for up to 5 minutes and also shreds stapes and credit cards. Plus, there's a safety lock to manually disable it in the event of accidental activation.-It can shred 8 sheets at a time.
+-The 14.4 L bin has a lift-off head for easy emptying.
+-It has a run time of 5 minutes and a rest time of 30 minutes.
+-It will shred your documents into micro-cut pieces measuring 3 x 10 mm.
+-It will shred your papers at a security level of P4 which is ideal for disposing of highly sensitive documents.
+-It will also shred credit cards and staples.
+-It comes with a 2 year warranty and 3 year warranty for added peace of mind.";;
+;645;;Rexel Stack/Shred Cross Cut Shredder;"The Rexel Stack & Shred Auto Feed Cross Cut Shredder allows you to spend less time shredding thanks to its 50 sheet automatic feed functionality. You dont have to worry about taking off paper clips, removing staples or inserting your documents individually, simply load the automatic feed with up to 50 sheets of paper and leave it to do the shredding for you. The 15 L bin will hold up to 100 sheets of shredded paper and is ideal for a single user with occasional shredding requirements.-This shredder can automatically shred up to 50 sheets of paper at once, or 5 sheets when shredding manually.
+-The 15 L pull-out bin can hold up to 100 sheets of shredded paper.
+-It has a run time of 6 minutes and a rest time of 40 minutes.
+-It will shred your documents into cross-cut pieces measuring 4 x 45 mm.
+-It will shred your papers at a security level of P3 which is ideal for disposing of confidential documents.
+-It will also shred staples, paper clips and credit cards.
+-The shredder will automatically shut off after 2 minutes of non-use to save power.
+-The LED indicator lets you know when the shredder has cooled down.
+-It has ultra quiet operation that will not bother anyone else in your workspace.
+-The machine has a 2 year manufacturers warranty, and the cutters have a 5 year manufacturers warranty.";;
+;665;;Fellowes Star+ Binding Machine;"This Fellowes Star+ Binding Machine has an adjustable edge guide to accurately align your sheets, creating professional looking bound documents. The vertical sheet loading functionality ensures consistent punch alignment while the angled comb rake helps you to load punched sheets. It has a chip tray with a burst out feature to eliminate jams and a storage tray with patented comb and document measuring guides for quick selection of the comb size you need.-This is a manual machine giving you control over the binding process.
+-This machine has a 150 sheet binding capacity, with a maximum comb size of 18 mm.
+-It has a punching capacity of up to 15 sheets of 80 gsm paper at a time.
+-It has a full width handle to help reduce punching effort.
+-It comes with a 2 year warranty for added peace of mind.";;
+;647;;GBC Creative A8 Binding Machine Black;"This GBC Creative A8 Binding Machine is a great way of presenting your documents professionally. It has a variable throat width and an adjustable paper stop so you can punch all of your sheets accurately.-The binding machine is manual so you can punch and bind yourself.
+-It has a binding capacity of 145 sheets.
+-You can punch up to 8 sheets at a time.
+-The machine is suitable for use with plastic combs.
+-It can punch up to 21 holes on one sheet.
+-The convenient carry handle makes it easy to move your machine.";;
+;666;;GBC Comb A20 Binding Machine Black;"This GBC Comb A20 Binding Machine can be used to bind your own personally configured documents. This machine uses spines to quickly punch and bind pages for a professional finish. It has suction cups attached to the bottom to keep it sturdy and stable while in use.-This machine is manual so you can control the handle with low force and ease.
+-It can bind up to 245 sheets of 80 gsm paper at a time.
+-It can hole punch up to 21 holes in 15 sheets of paper at a time.
+-The combs are made from durable plastic that makes for easier comb insertion.
+-It has a top load punch and binding feature for optimal binding.
+-The handle is soft to the touch and can be used with 2 hands for comfort and stability.
+-It comes with a starter kit that includes instructions and 5 clear covers, 5 frosted covers, 5 black and 5 blue leathergrain covers, 5 black 8 mm and 5 black 10 mm combs.";;
+;649;;Fellowes BindingCombs 10mm Black 25pck;"These Fellowes Binding Combs will help you to finish your multi-page documents and reports in a professional manner. Each loop has a durable plastic construction and a flexible design making them a versatile option when collating your A4 papers and files. This 10 mm comb size is ideal for securely holding up to 55 pages.-They have a plastic Polyvinyl Chloride construction to be durable and long lasting.
+-Each comb has a spine length of 300 mm and a spine size of 10 mm.
+-The 21 loop size is perfect for binding A4 sized reports or similar documents.
+-They're compatible for use with most 21 loop plastic comb binding machines.
+-They can be used to bind 41 - 55 page documents and reports.
+-There are 25 black combs in this pack.";;
+;650;;GBC BindingComb 12mm Black 100pck;"These GBC Plastic Binding Combs are strong and durable and are ideal for use on a range of documents including presentations, reports and projects at school or in the workspace. The 12 mm GBC Plastic Binding Combs have 21 loops that securely hold up to 90 sheets of A4 paper.-These binding combs are made from strong, durable plastic that won't break, snag or scratch under normal use.
+-Each comb holds up to 90 sheets of 80 gsm paper enabling you to bind small or larger documents.
+-The standard 21 plastic loops are great for binding A4 size reports or similar documents.
+-They are versatile for use on all plastic binding machines.
+-The tight-closing ring holes hold documents firmly in place.
+-This pack contains 100 black 12 mm combs.";;
+;651;;J.Burrows A3 Home Laminator;"This J.Burrows A3 Home Laminator is perfect for laminating your documents to keep them protected. Once laminated, your photos, posters, children's artwork or other important documents will be protected against moisture, dirt and tearing.-The laminator is suitable for documents up to A3 size.
+-You can use laminating pouches up to 125 microns thick.
+-It laminates at speeds of up to 30 cm per minute to help you get your laminating done quickly.
+-It heats up in 3 to 4 minutes so you can start laminating right away.";;
+;652;;Fellowes Spectra A4 Home Laminator;"This Fellowes Spectra Home Laminator is ideal for keeping your documents protected. It comes with a Jam Release mechanism to prevent paper jams if documents are fed incorrectly plus an auto shut off feature to help save power.-This laminator is suitable for use with documents up to A4 size.
+-It is compatible for use with pouches up to 125 micron.
+-The machine laminates at a speed of up to 30 cm per minute.
+-It only takes 4 minutes to heat up so you can start laminating right away.
+-The machine will automatically shut off after 30 minutes.";;
+;653;;GBC Creative Splash Laminator A4 Blue;"The GBC Creative Splash Laminator has a modern, colourful design so you can add a bright and practical laminating tool to your workspace. It's ideal for use around your home or small office to laminate important documents, projects and presentations.-The machine is suitable for use laminating documents up to A4 size.
+-It is compatible with laminating pouches under 125 microns.
+-The manual jam release function and overheating protection helps to ensure your documents come out looking great.
+-It warms up in approximately 3-5 minutes and can laminate at a speed of up to 250 mm per minute.
+-It has a stylish, slimline design and modern shape.";;
+;654;;Leitz iLam Laminator A4 Blue;"The Leitz iLam A4 2 Roll Laminator has a stylish, compact design that's perfect for the home office. With a 3 minute warm up time and 60 second lamination speed for 80 micron A4 pouches, it'll have your documents laminated in no time.-This machine laminates A4 sheets.
+-It accepts up to 125 micron pouches.
+-It offers a 60 second lamination speed for A4 80 micron pouches.
+-The LED ready lights and audio alert will come in handy.
+-The machine comes with 2 rollers so there is no carrier film required.
+-It comes with a 2 year manufacturer warranty.
+-Enjoy the low energy consumption auto shut off when not in use for 30 minutes.";;
+		
+;655;;Eveready SuperHeavyDuty AA Battery 20pck;"Eveready Super Heavy Duty AA Batteries are perfect for powering all of your favourite household devices. The batteries are quality sealed to prevent harmful leakages and have no traces of mercury and cadmium.-These are 1.5 V, AAA batteries.
+-They contain no mercury or cadmium for safe use.
+-They're great for remotes, label makers, PC mice, clocks, calculators and motor driven toys.
+-Each battery can hold power for up to 3 years when not in use.
+-The quality seal prevents unwanted leakage.
+-This handy pack contains 20 batteries.";;
+;656;;Eveready SuperHeavyDuty AAA Batery 20pck;"Eveready Super Heavy Duty AAA Batteries are perfect for powering all of your favourite household devices. The batteries are quality sealed to prevent harmful leakages and have no traces of mercury and cadmium.-These are 1.5 V, AAA batteries.
+-They contain no mercury or cadmium for safe use.
+-They're great for remotes, label makers, PC mice, clocks, calculators and motor driven toys.
+-Each battery can hold power for up to 3 years when not in use.
+-The quality seal prevents unwanted leakage.
+-This handy pack contains 20 batteries.";;
+;664;;Energizer AA Max Batteries 30 Pack;"These Energizer Batteries can be used to power remotes, toys, digital cameras, clocks, flashlights and other household items. They come with MAX improvements to ensure they're longer lasting and are designed to protect against damaging leaks for up to 2 years after they've been fully used.-These are 1.5 V, AA batteries.
+-They're suitable for powering up toys, clocks, digital cameras, remotes and other everyday items.
+-These batteries can hold power for up to 10 years in storage.
+-They're made using Energizer Power Seal Technology to prevent the leakage of fully used batteries for up to 2 years.
+-There are 30 batteries in this pack for stocking up at once.";;
+;658;;Energizer Max AAA Batteries 24 Pack;"Energizer Max AAA Batteries are dependable, long-lasting alkaline batteries ideal for small electronic devices such as remote controls, MP3 players, digital cameras and wireless computer devices. Stock up with this 24 pack to make sure you always have them on hand when you need them.-These are 1.5 V, AAA batteries.
+-They can be used in toys, torches, wireless computer mice, remote controls and other devices.
+-The PowerSeal technology will protect your devices against leaks and from the leakage of fully used batteries for up to 2 years.
+-There are 24 batteries in this pack.";;
+;659;;Belkin 4 Outlet Powerbrd 2 USB Port 2.4A;"This Belkin 4 Outlet Powerboard with 2 USB Ports allows you to instantly add 4 AC outlets and USB charging capability to your wall socket. It provides 4 AC outlets with surge protection while also providing 2 USB ports for charging your smartphones, tablets, GPS and other USB devices.-It provides 4 AC outlets with surge protection to prevent damage to your devices and appliances in case of power spikes and surges.
+-The dual USB ports provide a 2.4 amp output so you can easily charge your USB devices.
+-The outlet has a 2m cord for connecting to your wall socket while remaining accessible.
+-It provides 525 joule surge protection.
+-It comes with a 2 year warranty for your peace of mind.";;
+;660;;Belkin 8 Outlet Powerbrd 2 USB Port 2.4A;"This Belkin 8 Outlet Powerboard with 2 USB Ports allows you to instantly add 8 AC outlets and USB charging capability to your wall socket. It provides 8 AC outlets with surge protection while also providing 2 USB ports for charging your smartphones, tablets, GPS and other USB devices.-It provides 8 AC outlets with surge protection to prevent damage to your devices and appliances in case of power spikes and surges.
+-The dual USB ports provide a 2.4 amp output so you can easily charge your USB devices.
+-The outlet has a 2m cord for connecting to your wall socket while remaining accessible.
+-It provides 900 joule surge protection.
+-It comes with a 2 year warranty for your peace of mind.";;
+;661;;Jackson SurgeProtected 6 Outlet Powerbrd;"This Jackson Surge Protected 6 Outlet Powerboard is perfect for any workspace that needs to power extra devices. This board is surge and overload protected and features 2 extra wide spaced sockets.-This powerboard has 6 outlets.
+-There are 2 outlets which have extra wide spacing so you can use it with bulky devices.
+-The powerboard is both surge and overload protected.
+-It has a 1 m long lead.";;
+;662;;Jackson SurgeProtected 6 Outlet Powerbrd;"This Jackson 6 Outlet Powerboard is perfect for use in your home or workspace to instantly expand your power capacity. Each outlet is individually switched so you can enjoy greater control over your appliances.-The powerboard contains 6 outlets.
+-It comes with surge protection to protect your devices against inconsistent power.
+-Each socket is individually switched, allowing you to turn power on and off to specific appliances.
+-The cable is 1 m long, allowing you to connect devices from different areas.
+-It has a stylish matte black design.";;

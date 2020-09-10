@@ -1,0 +1,85 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# ImpEx for Importing Categories into OfficeA Store 
+
+##Update##
+# Macros / Replacement Parameter definitions
+$productCatalog=officeaProductCatalog
+$productCatalogName=EY OfficeA Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+
+$lang=en
+
+##Update##
+#Product Categories
+UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang];description[lang=$lang]
+ ;L00000;;View all;View all;
+ ;L10001;;Office Furnitures;Office Furnitures;
+ ;L20001;;Furnitures;Furnitures;
+ ;L31001;;Desks & Drawers;Desks & Drawers;
+ ;L31002;;Chairs;Chairs;
+ ;L31003;;Storage;Storage;
+ ;L20002;;Whiteboards & Boards;Whiteboards & Boards;
+ ;L32001;;Chalkboards;Chalkboards;
+ ;L32002;;Combination Boards;Combination Boards;
+ ;L32003;;Notice Boards;Notice Boards;
+ ;L32004;;Whiteboards;Whiteboards;
+ ;L32005;;Magnets, Markers, Cleaners & Pins;Magnets, Markers, Cleaners & Pins;
+ ;L10002;;Office Essentials;Office Essentials;
+ ;L20003;;Boxes, Storages & Fillings;Boxes, Storages & Fillings;
+ ;L20004;;Notebooks & Planners;Notebooks & Planners;
+ ;L20005;;Labels & Tapes;Labels & Tapes;
+ ;L20006;;Stationery;Stationery;
+ ;L10003;;Office Machines;Office Machines;
+ ;L20007;;Printers & Scanners;Printers & Scanners;
+ ;L37001;;Printers;Printers;
+ ;L37002;;Scanners;Scanners;
+ ;L37003;;Toner & Ink Cartridges;Toner & Ink Cartridges;
+ ;L20008;;Shredders;Shredders;
+ ;L20009;;Binding & Laminating;Binding & Laminating;
+ ;L39001;;Binding Machine;Binding Machine;
+ ;L39002;;Laminating Machine;Laminating Machine;
+ ;L10004;;Power and Electrical;Power and Electrical;
+ ;L20010;;Batteries;Batteries;
+ ;L20011;;Power Boards;Power Boards;
+
+##Update##
+# Macros / Replacement Parameter definitions
+$productCatalog=officeaProductCatalog
+$productCatalogName=EY OfficeA Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]
+$lang=en
+
+##Update##
+#Product Categories  
+UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang];description[lang=$lang]    
+ ;L00000;;View all;View all;
+ ;L10001;;Office Furnitures;Office Furnitures;
+ ;L20001;;Furnitures;Furnitures;
+ ;L31001;;Desks & Drawers;Desks & Drawers;
+ ;L31002;;Chairs;Chairs;
+ ;L31003;;Storage;Storage;
+ ;L20002;;Whiteboards & Boards;Whiteboards & Boards;
+ ;L32001;;Chalkboards;Chalkboards;
+ ;L32002;;Combination Boards;Combination Boards;
+ ;L32003;;Notice Boards;Notice Boards;
+ ;L32004;;Whiteboards;Whiteboards;
+ ;L32005;;Magnets, Markers, Cleaners & Pins;Magnets, Markers, Cleaners & Pins;
+ ;L10002;;Office Essentials;Office Essentials;
+ ;L20003;;Boxes, Storages & Fillings;Boxes, Storages & Fillings;
+ ;L20004;;Notebooks & Planners;Notebooks & Planners;
+ ;L20005;;Labels & Tapes;Labels & Tapes;
+ ;L20006;;Stationery;Stationery;
+ ;L10003;;Office Machines;Office Machines;
+ ;L20007;;Printers & Scanners;Printers & Scanners;
+ ;L37001;;Printers;Printers;
+ ;L37002;;Scanners;Scanners;
+ ;L37003;;Toner & Ink Cartridges;Toner & Ink Cartridges;
+ ;L20008;;Shredders;Shredders;
+ ;L20009;;Binding & Laminating;Binding & Laminating;
+ ;L39001;;Binding Machine;Binding Machine;
+ ;L39002;;Laminating Machine;Laminating Machine;
+ ;L10004;;Power and Electrical;Power and Electrical;
+ ;L20010;;Batteries;Batteries;
+ ;L20011;;Power Boards;Power Boards;

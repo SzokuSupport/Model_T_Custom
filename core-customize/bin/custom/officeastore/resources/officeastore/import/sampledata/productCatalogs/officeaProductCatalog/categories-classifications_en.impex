@@ -1,0 +1,32 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# ImpEx for Importing Category Classifications into OfficeA Store (English)
+
+
+##Update##
+# Macros / Replacement Parameter definitions
+$productCatalog=officeaProductCatalog
+$productCatalogName=EY OfficeA Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$classCatalogVersion=catalogversion(catalog(id[default='OfficeAClassification']),version[default='1.0'])[unique=true,default='OfficeAClassification:1.0']
+$classSystemVersion=systemVersion(catalog(id[default='OfficeAClassification']),version[default='1.0'])[unique=true]
+$class=classificationClass(ClassificationClass.code,$classCatalogVersion)[unique=true]
+
+$lang=en
+
+##Update##
+# Insert Classifications
+UPDATE ClassificationClass;$classCatalogVersion;code[unique=true];name[lang=$lang]
+;;IP01;Features;
+;;IP02;Dimensions;
+;;IP03;Warranty;
+
+##Update##
+# Insert Classification Attributes
+UPDATE ClassificationAttribute;$classSystemVersion;code[unique=true];name[lang=$lang]
+;;Brand, IP0101;Brand;
+;;Colour, IP0102;Colour;
+;;Size, IP0103;Size;
+;;Weight, IP0104;Weight;
+;;Warranty, IP0105;Warranty;

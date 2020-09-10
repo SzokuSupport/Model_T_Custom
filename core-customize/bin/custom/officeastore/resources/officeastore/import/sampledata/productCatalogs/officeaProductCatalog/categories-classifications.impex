@@ -1,0 +1,132 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# ImpEx for Importing Category Classifications into OfficeA Store
+
+##Update##
+# Macros / Replacement Parameter definitions
+$productCatalog=officeaProductCatalog
+$productCatalogName=EY OfficeA Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$classCatalogVersion=catalogversion(catalog(id[default='OfficeAClassification']),version[default='1.0'])[unique=true,default='OfficeAClassification:1.0']
+$classSystemVersion=systemVersion(catalog(id[default='OfficeAClassification']),version[default='1.0'])[unique=true]
+$class=classificationClass(ClassificationClass.code,$classCatalogVersion)[unique=true]
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+$attribute=classificationAttribute(code,$classSystemVersion)[unique=true]
+$unit=unit(code,$classSystemVersion)
+
+##Update##
+# Insert Classifications
+INSERT_UPDATE ClassificationClass;$classCatalogVersion;code[unique=true];allowedPrincipals(uid)[default='customergroup'];;;;;
+;;IP01;;;;;;
+;;IP02;;;;;;
+;;IP03;;;;;;
+
+##Update##
+# Insert Classification Attributes
+INSERT_UPDATE ClassificationAttribute;$classSystemVersion;code[unique=true]
+;;Brand, IP0101
+;;Colour, IP0102
+;;Size, IP0103
+;;Weight, IP0104
+;;Warranty, IP0105
+
+
+##Update##
+# Links ClassificationClasses to Categories
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;L10001;IP01
+;L10001;IP02
+;L10001;IP03
+;L20001;IP01
+;L20001;IP02
+;L20001;IP03
+;L31001;IP01
+;L31001;IP02
+;L31001;IP03
+;L31002;IP01
+;L31002;IP02
+;L31002;IP03
+;L31003;IP01
+;L31003;IP02
+;L31003;IP03
+;L20002;IP01
+;L20002;IP02
+;L20002;IP03
+;L32001;IP01
+;L32001;IP02
+;L32001;IP03
+;L32002;IP01
+;L32002;IP02
+;L32002;IP03
+;L32003;IP01
+;L32003;IP02
+;L32003;IP03
+;L32004;IP01
+;L32004;IP02
+;L32004;IP03
+;L32005;IP01
+;L32005;IP02
+;L32005;IP03
+;L10002;IP01
+;L10002;IP02
+;L10002;IP03
+;L20003;IP01
+;L20003;IP02
+;L20003;IP03
+;L20004;IP01
+;L20004;IP02
+;L20004;IP03
+;L20005;IP01
+;L20005;IP02
+;L20005;IP03
+;L20006;IP01
+;L20006;IP02
+;L20006;IP03
+;L10003;IP01
+;L10003;IP02
+;L10003;IP03
+;L20007;IP01
+;L20007;IP02
+;L20007;IP03
+;L37001;IP01
+;L37001;IP02
+;L37001;IP03
+;L37002;IP01
+;L37002;IP02
+;L37002;IP03
+;L37003;IP01
+;L37003;IP02
+;L37003;IP03
+;L20008;IP01
+;L20008;IP02
+;L20008;IP03
+;L20009;IP01
+;L20009;IP02
+;L20009;IP03
+;L39001;IP01
+;L39001;IP02
+;L39001;IP03
+;L39002;IP01
+;L39002;IP02
+;L39002;IP03
+;L10004;IP01
+;L10004;IP02
+;L10004;IP03
+;L20010;IP01
+;L20010;IP02
+;L20010;IP03
+;L20011;IP01
+;L20011;IP02
+;L20011;IP03
+
+##Update##
+#Links Classification to Classification Attributes and in order/sequence
+INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attributeType(code[default=string]);multiValued[default=false];range[default=false];localized[default=true]
+;IP01;Brand, IP0101;1;;;;;
+;IP01;Colour, IP0102;2;;;;;
+;IP02;Size, IP0103;1;;;;;
+;IP02;Weight, IP0104;2;;;;;
+;IP03;Warranty, IP0105;1;;;;;
+ 

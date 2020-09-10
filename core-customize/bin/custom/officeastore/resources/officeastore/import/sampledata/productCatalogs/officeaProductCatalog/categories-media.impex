@@ -1,0 +1,82 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# ImpEx for Importing Category Media into OfficeA Store
+
+##Update##
+# Macros / Replacement Parameter definitions
+$productCatalog=officeAProductCatalog
+$productCatalogName=EY OfficeA Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$thumbnail=thumbnail(code, $catalogVersion)
+$picture=picture(code, $catalogVersion)
+$siteResource=jar:de.hybris.platform.officeastore.constants.OfficeAStoreConstants&/officeastore/import/sampledata/productCatalogs/$productCatalog
+
+
+##Update##
+# Import Category Media
+INSERT_UPDATE Media;code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];$catalogVersion
+#;/thumbs/CAT953.jpg;CAT953.jpg;$siteResource/images/thumbs/CAT953.jpg;
+;/thumbs/L10001_TN.jpg;L10001_TN.jpg;$siteResource/images/thumbs/L10001_TN.jpg;
+;/thumbs/L20001_TN.jpg;L20001_TN.jpg;$siteResource/images/thumbs/L20001_TN.jpg;
+;/thumbs/L31001_TN.jpg;L31001_TN.jpg;$siteResource/images/thumbs/L31001_TN.jpg;
+;/thumbs/L31002_TN.jpg;L31002_TN.jpg;$siteResource/images/thumbs/L31002_TN.jpg;
+;/thumbs/L31003_TN.jpg;L31003_TN.jpg;$siteResource/images/thumbs/L31003_TN.jpg;
+;/thumbs/L20002_TN.jpg;L20002_TN.jpg;$siteResource/images/thumbs/L20002_TN.jpg;
+;/thumbs/L32001_TN.jpg;L32001_TN.jpg;$siteResource/images/thumbs/L32001_TN.jpg;
+;/thumbs/L32002_TN.jpg;L32002_TN.jpg;$siteResource/images/thumbs/L32002_TN.jpg;
+;/thumbs/L32003_TN.jpg;L32003_TN.jpg;$siteResource/images/thumbs/L32003_TN.jpg;
+;/thumbs/L32004_TN.jpg;L32004_TN.jpg;$siteResource/images/thumbs/L32004_TN.jpg;
+;/thumbs/L32005_TN.jpg;L32005_TN.jpg;$siteResource/images/thumbs/L32005_TN.jpg;
+;/thumbs/L10002_TN.jpg;L10002_TN.jpg;$siteResource/images/thumbs/L10002_TN.jpg;
+;/thumbs/L20003_TN.jpg;L20003_TN.jpg;$siteResource/images/thumbs/L20003_TN.jpg;
+;/thumbs/L20004_TN.jpg;L20004_TN.jpg;$siteResource/images/thumbs/L20004_TN.jpg;
+;/thumbs/L20005_TN.jpg;L20005_TN.jpg;$siteResource/images/thumbs/L20005_TN.jpg;
+;/thumbs/L20006_TN.jpg;L20006_TN.jpg;$siteResource/images/thumbs/L20006_TN.jpg;
+;/thumbs/L10003_TN.jpg;L10003_TN.jpg;$siteResource/images/thumbs/L10003_TN.jpg;
+;/thumbs/L20007_TN.jpg;L20007_TN.jpg;$siteResource/images/thumbs/L20007_TN.jpg;
+;/thumbs/L37001_TN.jpg;L37001_TN.jpg;$siteResource/images/thumbs/L37001_TN.jpg;
+;/thumbs/L37002_TN.jpg;L37002_TN.jpg;$siteResource/images/thumbs/L37002_TN.jpg;
+;/thumbs/L37003_TN.jpg;L37003_TN.jpg;$siteResource/images/thumbs/L37003_TN.jpg;
+;/thumbs/L20008_TN.jpg;L20008_TN.jpg;$siteResource/images/thumbs/L20008_TN.jpg;
+;/thumbs/L20009_TN.jpg;L20009_TN.jpg;$siteResource/images/thumbs/L20009_TN.jpg;
+;/thumbs/L39001_TN.jpg;L39001_TN.jpg;$siteResource/images/thumbs/L39001_TN.jpg;
+;/thumbs/L39002_TN.jpg;L39002_TN.jpg;$siteResource/images/thumbs/L39002_TN.jpg;
+;/thumbs/L10004_TN.jpg;L10004_TN.jpg;$siteResource/images/thumbs/L10004_TN.jpg;
+;/thumbs/L20010_TN.jpg;L20010_TN.jpg;$siteResource/images/thumbs/L20010_TN.jpg;
+;/thumbs/L20011_TN.jpg;L20011_TN.jpg;$siteResource/images/thumbs/L20011_TN.jpg;
+
+
+##Update##
+#Link Category with Category Media
+UPDATE Category;code[unique=true];$thumbnail;allowedPrincipals(uid)[default='customergroup'];$catalogVersion
+#;953;/thumbs/CAT953.jpg
+;L10001;/thumbs/L10001_TN.jpg
+;L20001;/thumbs/L20001_TN.jpg
+;L31001;/thumbs/L31001_TN.jpg
+;L31002;/thumbs/L31002_TN.jpg
+;L31003;/thumbs/L31003_TN.jpg
+;L20002;/thumbs/L20002_TN.jpg
+;L32001;/thumbs/L32001_TN.jpg
+;L32002;/thumbs/L32002_TN.jpg
+;L32003;/thumbs/L32003_TN.jpg
+;L32004;/thumbs/L32004_TN.jpg
+;L32005;/thumbs/L32005_TN.jpg
+;L10002;/thumbs/L10002_TN.jpg
+;L20003;/thumbs/L20003_TN.jpg
+;L20004;/thumbs/L20004_TN.jpg
+;L20005;/thumbs/L20005_TN.jpg
+;L20006;/thumbs/L20006_TN.jpg
+;L10003;/thumbs/L10003_TN.jpg
+;L20007;/thumbs/L20007_TN.jpg
+;L37001;/thumbs/L37001_TN.jpg
+;L37002;/thumbs/L37002_TN.jpg
+;L37003;/thumbs/L37003_TN.jpg
+;L20008;/thumbs/L20008_TN.jpg
+;L20009;/thumbs/L20009_TN.jpg
+;L39001;/thumbs/L39001_TN.jpg
+;L39002;/thumbs/L39002_TN.jpg
+;L10004;/thumbs/L10004_TN.jpg
+;L20010;/thumbs/L20010_TN.jpg
+;L20011;/thumbs/L20011_TN.jpg
+

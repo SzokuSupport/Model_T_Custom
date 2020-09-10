@@ -1,0 +1,126 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# ImpEx for Importing Products into OfficeA Store
+
+##UPDATE##
+# Macros / Replacement Parameter definitions
+$productCatalog=officeaProductCatalog
+$productCatalogName=EY OfficeA Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$supercategories=supercategories(code, $catalogVersion)
+$baseProduct=baseProduct(code,$catalogVersion)
+$approved=approvalstatus(code)[default='approved']
+
+# Language
+$lang=en
+
+# Insert Products
+INSERT_UPDATE Product;code[unique=true];$supercategories;manufacturerName;manufacturerAID;ean;variantType(code);unit(code)[default=EA];$catalogVersion;$approved
+;141;L31001;;;;;;;
+;451;L31001;;;;;;;
+;559;L31001;;;;;;;
+;562;L31001;;;;;;;
+;563;L31001;;;;;;;
+;564;L31001;;;;;;;
+;565;L31002;;;;;;;
+;566;L31002;;;;;;;
+;567;L31002;;;;;;;
+;568;L31002;;;;;;;
+;569;L31003;;;;;;;
+;570;L31003;;;;;;;
+;669;L31003;;;;;;;
+;572;L31003;;;;;;;
+;573;L32001;;;;;;;
+;574;L32001;;;;;;;
+;575;L32001;;;;;;;
+;576;L32001;;;;;;;
+;577;L32002;;;;;;;
+;578;L32002;;;;;;;
+;673;L32002;;;;;;;
+;580;L32002;;;;;;;
+;581;L32002;;;;;;;
+;667;L32003;;;;;;;
+;584;L32003;;;;;;;
+;585;L32003;;;;;;;
+;586;L32003;;;;;;;
+;587;L32003;;;;;;;
+;678;L32004;;;;;;;
+;589;L32004;;;;;;;
+;591;L32004;;;;;;;
+;672;L32004;;;;;;;
+;593;L32004;;;;;;;
+;676;L32005;;;;;;;
+;595;L32005;;;;;;;
+;677;L32005;;;;;;;
+;597;L32005;;;;;;;
+;598;L32005;;;;;;;
+;599;L32005;;;;;;;
+;600;L32005;;;;;;;
+;601;L32005;;;;;;;
+;602;L32005;;;;;;;
+;603;L32005;;;;;;;
+;604;L20003;;;;;;;
+;668;L20003;;;;;;;
+;606;L20003;;;;;;;
+;607;L20003;;;;;;;
+;608;L20003;;;;;;;
+;609;L20003;;;;;;;
+;610;L20003;;;;;;;
+;611;L20004;;;;;;;
+;675;L20004;;;;;;;
+;613;L20004;;;;;;;
+;671;L20004;;;;;;;
+;670;L20004;;;;;;;
+;616;L20004;;;;;;;
+;617;L20004;;;;;;;
+;618;L20005;;;;;;;
+;619;L20005;;;;;;;
+;674;L20005;;;;;;;
+;621;L20005;;;;;;;
+;663;L20005;;;;;;;
+;623;L20006;;;;;;;
+;624;L20006;;;;;;;
+;625;L20006;;;;;;;
+;626;L20006;;;;;;;
+;627;L20006;;;;;;;
+;628;L20006;;;;;;;
+;629;L37001;;;;;;;
+;630;L37001;;;;;;;
+;631;L37001;;;;;;;
+;632;L37001;;;;;;;
+;633;L37002;;;;;;;
+;634;L37002;;;;;;;
+;635;L37002;;;;;;;
+;636;L37002;;;;;;;
+;637;L37003;;;;;;;
+;638;L37003;;;;;;;
+;639;L37003;;;;;;;
+;640;L37003;;;;;;;
+;641;L37003;;;;;;;
+;642;L20008;;;;;;;
+;643;L20008;;;;;;;
+;644;L20008;;;;;;;
+;645;L20008;;;;;;;
+;665;L39001;;;;;;;
+;647;L39001;;;;;;;
+;666;L39001;;;;;;;
+;649;L39001;;;;;;;
+;650;L39001;;;;;;;
+;651;L39002;;;;;;;
+;652;L39002;;;;;;;
+;653;L39002;;;;;;;
+;654;L39002;;;;;;;
+;655;L20010;;;;;;;
+;656;L20010;;;;;;;
+;664;L20010;;;;;;;
+;658;L20010;;;;;;;
+;659;L20011;;;;;;;
+;660;L20011;;;;;;;
+;661;L20011;;;;;;;
+;662;L20011;;;;;;;
+
+
+##UPDATE in products_en.impex##
+# UPDATE Product;code[unique=true];name[lang=$lang];description[lang=$lang];summary[lang=$lang];$catalogVersion
+# ;637227;Plier Set (3 Pack);Having the proper tool for the job is as important to the do-it-yourself electronic enthusiast as it is to the professional. Belkin's wide selection of multi-purpose computer tools handles upgrades, repairs, cleaning, routine maintenance and adjustments with ease.;Plier Set (3 Pack)
