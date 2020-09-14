@@ -1,25 +1,12 @@
 {
 	"commerceSuiteVersion": "1905",
 	"extensions": [
-		"cloudmediaconversion",  
-		"mediaconversionbackoffice",
 		"modeltacceleratorservices",
 		"electronicsstore",
 		"yacceleratorstorefront",
-		"backoffice",
-		"addonsupport",
-		"configurablebundleservices",
-		"configurablebundlefacades",
-		"acceleratorstorefrontcommons",
-		"configurablebundleaddon"
+		"backoffice"
 	],
-	"storefrontAddons":[
-		{
-			"addon":"configurablebundleaddon",
-			"storefront":"yacceleratorstorefront",
-		  	"template":"yacceleratorstorefront"
-		}
-	],
+
 	"aspects": [{
 			"name": "backoffice",
 			"webapps": [{

@@ -10,7 +10,7 @@
 
 		<bool name="genericCoreNodeNames">${genericCoreNodeNames:true}</bool>
 
-		<int name="zkClientTimeout">${zkClientTimeout:120000}</int>
+		<int name="zkClientTimeout">${zkClientTimeout:30000}</int>
 		<int name="distribUpdateSoTimeout">${distribUpdateSoTimeout:600000}</int>
 		<int name="distribUpdateConnTimeout">${distribUpdateConnTimeout:60000}</int>
 		<str name="zkCredentialsProvider">${zkCredentialsProvider:org.apache.solr.common.cloud.DefaultZkCredentialsProvider}</str>
