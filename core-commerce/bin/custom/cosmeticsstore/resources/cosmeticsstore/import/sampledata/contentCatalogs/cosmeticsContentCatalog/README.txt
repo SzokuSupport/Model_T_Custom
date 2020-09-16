@@ -1,1 +1,0 @@
-Responsive Impex are set as TEXT to trigger the initialization to pickup the cms-content.impex instead of the cms-responsive-content.impex.TXT
