@@ -1,0 +1,285 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# ImpEx for Cosmetics Store
+#% impex.setLocale( Locale.GERMAN ); 
+
+
+##Update below##
+# -----------------------------------------------------------------------
+$storeUid=cosmetics
+$productCatalog=cosmeticsProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$storeImage=storeImage(qualifier, $catalogVersion)
+$standardHours=cosmetics-japan-standard-hours
+$weekendHours=cosmetics-japan-weekend-hours
+# -----------------------------------------------------------------------
+
+
+INSERT_UPDATE OpeningSchedule;code[unique=true];
+;$standardHours;
+;$weekendHours;
+
+INSERT_UPDATE WeekdayOpeningDay;openingSchedule(code)[unique=true];dayOfWeek(code)[unique=true];openingTime[dateformat=hh:mm];closingTime[dateformat=hh:mm];
+;$standardHours;MONDAY   ; 09:00; 20:00
+;$standardHours;TUESDAY  ; 09:00; 20:00
+;$standardHours;WEDNESDAY; 09:00; 20:00
+;$standardHours;THURSDAY ; 09:00; 20:00
+;$standardHours;FRIDAY   ; 09:00; 20:00
+;$standardHours;SATURDAY ; 10:00; 20:00
+
+;$weekendHours;MONDAY   ; 09:00; 20:00
+;$weekendHours;TUESDAY  ; 09:00; 20:00
+;$weekendHours;WEDNESDAY; 09:00; 20:00
+;$weekendHours;THURSDAY ; 09:00; 20:00
+;$weekendHours;FRIDAY   ; 09:00; 20:00
+;$weekendHours;SATURDAY ; 10:00; 20:00
+;$weekendHours;SUNDAY   ; 10:00; 16:00
+
+
+INSERT_UPDATE SpecialOpeningDay;openingSchedule(code)[unique=true];date[unique=true,dateformat=dd.MM.yyyy];closed;openingTime[dateformat=hh:mm];closingTime[dateformat=hh:mm]
+;$standardHours; 01.01.2014 ;true
+;$standardHours; 14.01.2014 ;true
+;$standardHours; 11.02.2014 ;true
+;$standardHours; 20.03.2014 ;true
+;$standardHours; 29.04.2014 ;true
+;$standardHours; 03.05.2014 ;true
+;$standardHours; 04.05.2014 ;true
+;$standardHours; 05.05.2014 ;true
+;$standardHours; 15.07.2014 ;true
+;$standardHours; 16.09.2014 ;true
+;$standardHours; 23.09.2014 ;true
+;$standardHours; 14.10.2014 ;true
+;$standardHours; 03.11.2014 ;true
+;$standardHours; 23.11.2014 ;true
+;$standardHours; 23.12.2014 ;true
+
+;$weekendHours; 01.01.2014 ;true
+;$weekendHours; 14.01.2014 ;true
+;$weekendHours; 11.02.2014 ;true
+;$weekendHours; 20.03.2014 ;true
+;$weekendHours; 29.04.2014 ;true
+;$weekendHours; 03.05.2014 ;true
+;$weekendHours; 04.05.2014 ;true
+;$weekendHours; 05.05.2014 ;true
+;$weekendHours; 15.07.2014 ;true
+;$weekendHours; 16.09.2014 ;true
+;$weekendHours; 23.09.2014 ;true
+;$weekendHours; 14.10.2014 ;true
+;$weekendHours; 03.11.2014 ;true
+;$weekendHours; 23.11.2014 ;true
+;$weekendHours; 23.12.2014 ;true
+
+
+INSERT_UPDATE PointOfService;name[unique=true];type(code);address(&addrID);latitude;longitude;geocodeTimestamp[dateformat=dd-MM-yyyy];$storeImage;openingSchedule(code);basestore(uid)[default=$storeUid];features(code)
+;Nakano Cosmetics;STORE;addr1;35,7091;139,6732;29-04-2025;cosmetics_store_01;$standardHours
+;Shinbashi Cosmetics;STORE;addr2;35,6673;139,75429;29-04-2025;cosmetics_store_02;$standardHours
+;Koto Cosmetics;STORE;addr3;35,6923;139,8201;29-04-2025;cosmetics_store_03;$standardHours
+;Misato Cosmetics;STORE;addr4;35,8269;139,8701;29-04-2025;cosmetics_store_01;$weekendHours
+;Matsudo Cosmetics;STORE;addr5;35,7982;139,93037;29-04-2025;cosmetics_store_02;$standardHours
+;Ichikawa Cosmetics;STORE;addr6;35,7915;139,93351;29-04-2025;cosmetics_store_03;$weekendHours
+;Choshi Cosmetics;STORE;addr7;35,7409;140,8064;29-04-2025;cosmetics_store_01;$standardHours
+;Chiba Cosmetics;STORE;addr8;35,617;140,1023;29-04-2025;cosmetics_store_02;$weekendHours
+;Yokosuka Cosmetics;STORE;addr9;35,2853;139,664;29-04-2025;cosmetics_store_03;$standardHours
+;Tokio Cerulean Tower Tokyu Hotel Cosmetics;STORE;addr200;35,656347;139,69956;29-04-2025;cosmetics_store_01;$standardHours
+;Tokio Flexstay Nippori Inn Cosmetics;STORE;addr201;35,731772;139,779495;29-04-2025;cosmetics_store_02;$standardHours
+;Tokio Hotel Metropolitan Tokyo Cosmetics;STORE;addr202;35,689488;139,691706;29-04-2025;cosmetics_store_03;$standardHours
+;Tokio Dormy Inn Tokyo Hatchobori Cosmetics;STORE;addr203;35,677017;139,782602;29-04-2025;cosmetics_store_01;$weekendHours
+;Tokio Park Hotel Tokyo Cosmetics;STORE;addr204;35,663232;139,759646;29-04-2025;cosmetics_store_02;$standardHours
+;Yokohama Sakuragicho Washington Hotel Cosmetics;STORE;addr205;35,443708;139,638026;29-04-2025;cosmetics_store_03;$weekendHours
+;Yokohama Shin Yokohama Prince Hotel Cosmetics;STORE;addr206;35,509817;139,61962;29-04-2025;cosmetics_store_01;$standardHours
+;Yokohama Comfort Hotel Yokohama Kannai Cosmetics;STORE;addr207;35,445721;139,638153;29-04-2025;cosmetics_store_02;$weekendHours
+;Yokohama Hotel New Grand Cosmetics;STORE;addr208;35,444763;139,649675;29-04-2025;cosmetics_store_03;$standardHours
+;Yokohama Hotel JAL City Kannai Yokohama Cosmetics;STORE;addr209;35,442422;139,646289;29-04-2025;cosmetics_store_01;$standardHours
+;Osaka Hilton Osaka Hotel Cosmetics;STORE;addr210;34,698823;135,498235;29-04-2025;cosmetics_store_02;$standardHours
+;Osaka Crowne Plaza Hotel Ana Osaka Cosmetics;STORE;addr211;34,695732;135,499946;29-04-2025;cosmetics_store_03;$standardHours
+;Osaka Ramada Osaka Cosmetics;STORE;addr212;34,710991;135,503345;29-04-2025;cosmetics_store_01;$weekendHours
+;Osaka Cross Hotel Osaka Cosmetics;STORE;addr213;34,672004;135,501627;29-04-2025;cosmetics_store_02;$standardHours
+;Osaka Best Western Hotel Fino Osaka Shinsaibashi Cosmetics;STORE;addr214;34,672287;135,50341;29-04-2025;cosmetics_store_03;$weekendHours
+;Nagoya Hilton Nagoya Hotel Cosmetics;STORE;addr215;35,167306;136,896583;29-04-2025;cosmetics_store_01;$standardHours
+;Nagoya Marriott Nagoya Cosmetics;STORE;addr216;35,1713;136,88265;29-04-2025;cosmetics_store_02;$weekendHours
+;Nagoya Crowne Plaza Ana Grand Court Nagoya Cosmetics;STORE;addr217;35,142854;136,899955;29-04-2025;cosmetics_store_03;$standardHours
+;Nagoya The Westin Nagoya Castle Cosmetics;STORE;addr218;35,185612;136,895657;29-04-2025;cosmetics_store_01;$standardHours
+;Nagoya Royal Park Inn Nagoya Cosmetics;STORE;addr219;35,169759;136,888639;29-04-2025;cosmetics_store_02;$standardHours
+;Sapporo Ana Hotel Sapporo Cosmetics;STORE;addr220;43,06356;141,340771;29-04-2025;cosmetics_store_03;$standardHours
+;Sapporo Best Western Hotel Sapporo Nakajima Koen Cosmetics;STORE;addr221;43,049611;141,345825;29-04-2025;cosmetics_store_01;$weekendHours
+;Sapporo Sheraton Sapporo Hotel Cosmetics;STORE;addr222;43,035766;141,463343;29-04-2025;cosmetics_store_02;$standardHours
+;Sapporo Hotel Resol Trinity Sapporo Cosmetics;STORE;addr223;43,062096;141,354376;29-04-2025;cosmetics_store_03;$weekendHours
+;Sapporo Hotel Sunroute Sapporo Cosmetics;STORE;addr224;43,069336;141,34641;29-04-2025;cosmetics_store_01;$standardHours
+;Kobe Hotel Monterey Amalie Cosmetics;STORE;addr225;34,694741;135,186095;29-04-2025;cosmetics_store_02;$weekendHours
+;Kobe Hotel Monterey Kobe Cosmetics;STORE;addr226;34,688103;135,1954;29-04-2025;cosmetics_store_03;$standardHours
+;Kobe Sannomiya Terminal Hotel Cosmetics;STORE;addr227;34,69536;135,197905;29-04-2025;cosmetics_store_01;$standardHours
+;Kobe Bay Sheraton Hotel and Towers Cosmetics;STORE;addr228;34,691381;135,274205;29-04-2025;cosmetics_store_02;$standardHours
+;Kobe the b Cosmetics;STORE;addr229;34,685467;135,177774;29-04-2025;cosmetics_store_03;$standardHours
+;Fukuoka Hotel Monterey La Soeur Fukuoka Cosmetics;STORE;addr230;33,590355;130,401716;29-04-2025;cosmetics_store_01;$weekendHours
+;Fukuoka Hilton Fukuoka Sea Hawk Cosmetics;STORE;addr231;33,594801;130,359171;29-04-2025;cosmetics_store_02;$standardHours
+;Fukuoka Best Western Fukuoka Nakasu Inn Cosmetics;STORE;addr232;33,591846;130,408701;29-04-2025;cosmetics_store_03;$weekendHours
+;Fukuoka Canal City Fukuoka Washington Hotel Cosmetics;STORE;addr233;33,582978;130,41422;29-04-2025;cosmetics_store_01;$standardHours
+;Fukuoka Hotel Nikko Fukuoka Cosmetics;STORE;addr234;33,594882;130,418692;29-04-2025;cosmetics_store_02;$weekendHours
+;Kawasaki Mets Kawasaki Hotel Cosmetics;STORE;addr235;35,531106;139,696071;29-04-2025;cosmetics_store_03;$standardHours
+;Kawasaki Mets Mizonokuchi Hotel Cosmetics;STORE;addr236;35,599404;139,610382;29-04-2025;cosmetics_store_01;$standardHours
+;Kawasaki Hotel Sunroute Kawasaki Cosmetics;STORE;addr237;35,528984;139,700168;29-04-2025;cosmetics_store_02;$standardHours
+;Kawasaki Pearl Hotel Kawasaki Cosmetics;STORE;addr238;35,528165;139,698782;29-04-2025;cosmetics_store_03;$standardHours
+;Kawasaki Grand Hotel Cosmetics;STORE;addr239;35,530589;139,70279;29-04-2025;cosmetics_store_01;$weekendHours
+
+INSERT_UPDATE Address;&addrID;streetname;streetnumber;postalcode[unique=true];town[unique=true];country(isocode);region(isocode);phone1;owner(PointOfService.name)[unique=true]
+;addr1;Waseda Dori;13;;Tokio;JP;;+81 1988 3600;Nakano Cosmetics
+;addr2;Hibiya Dori;20;;Tokio;JP;;+81 4649 8891;Shinbashi Cosmetics
+;addr3;Shin-Ohashi Dori;10;;Tokio;JP;;+81 6176 3426;Koto Cosmetics
+;addr4;Tokyo-Gaikan Expy;;;Tokio;JP;;+81 4376 5760;Misato Cosmetics
+;addr5;Chiba-ken Matsudo-shi;;;Tokio;JP;;+81 3519 4163;Matsudo Cosmetics
+;addr6;Chiba-ken Ichikawa-shi;;;Tokio;JP;;+81 666 563;Ichikawa Cosmetics
+;addr7;Chiba-ken Choshi-shi;;;Choshi;JP;;+81 501 6516;Choshi Cosmetics
+;addr8;Chiba-ken Chiba-shi Mihama-ku;;;Chiba;JP;;+81 8916 4281;Chiba Cosmetics
+;addr9;Kanagawa-ken Yokosuka-shi;;;Yokosuka;JP;;+81 9583 8863;Yokosuka Cosmetics
+;addr200;Sakuragaokacho Shibuya;26-01;150-8512;Tokio;JP;;+81 5141 3298;Tokio Cerulean Tower Tokyu Hotel Cosmetics
+;addr201;Higashi-Nippori Arakawa;5-43-7;116-0014;Tokio;JP;;+81 3550 9246;Tokio Flexstay Nippori Inn Cosmetics
+;addr202;Shinkawa Chuo;2-20-4;104-0033;Tokio;JP;;+81 7684 8185;Tokio Hotel Metropolitan Tokyo Cosmetics
+;addr203;Shinkawa Chuo;2-20-4;104-0033;Tokio;JP;;+81 6180 548;Tokio Dormy Inn Tokyo Hatchobori Cosmetics
+;addr204;Higashi Shimbashi;01.07.2001;105-7227;Tokio;JP;;+81 7093 958;Tokio Park Hotel Tokyo Cosmetics
+;addr205;Sakuragicho;1-101-1;231-0062;Yokohama;JP;;+81 1114 9907;Yokohama Sakuragicho Washington Hotel Cosmetics
+;addr206;Shin Yokohama;03-04;222-8533;Yokohama;JP;;+81 1006 1478;Yokohama Shin Yokohama Prince Hotel Cosmetics
+;addr207;Sumiyoshi-Cho;03 33;231-0013;Yokohama;JP;;+81 4220 68;Yokohama Comfort Hotel Yokohama Kannai Cosmetics
+;addr208;Yamashita-cho;10;231-8520;Yokohama;JP;;+81 6734 1664;Yokohama Hotel New Grand Cosmetics
+;addr209;Yamashita-cho;72;231-0023;Yokohama;JP;;+81 441 7148;Yokohama Hotel JAL City Kannai Yokohama Cosmetics
+;addr210;Umeda 1-chome;08-10;530-0001;Osaka;JP;;+81 6733 7883;Osaka Hilton Osaka Hotel Cosmetics
+;addr211;Dojimahama;01.03.2001;530-0004;Osaka;JP;;+81 8490 5589;Osaka Crowne Plaza Hotel Ana Osaka Cosmetics
+;addr212;Toyosaki ;3-16-19;531-0072;Osaka;JP;;+81 9068 703;Osaka Ramada Osaka Cosmetics
+;addr213;Shinsaibashisuji;02.05.2015;542-0085;Osaka;JP;;+81 2874 4274;Osaka Cross Hotel Osaka Cosmetics
+;addr214;Shinsaibashi;01.02.2019;542-0083;Osaka;JP;;+81 4535 1332;Osaka Best Western Hotel Fino Osaka Shinsaibashi Cosmetics
+;addr215;Sakae 1-chome;03-03;460-0008;Nagoya;JP;;+81 358 3977;Nagoya Hilton Nagoya Hotel Cosmetics
+;addr216;Meieki Nakamura-ku;01.01.2004;450-6002 ;Nagoya;JP;;+81 9550 891;Nagoya Marriott Nagoya Cosmetics
+;addr217;Kanayama;01.01.2001;460-0023;Nagoya;JP;;+81 9352 7328;Nagoya Crowne Plaza Ana Grand Court Nagoya Cosmetics
+;addr218;Hinokuchi-cho;03 19;451-8551;Nagoya;JP;;+81 6350 3904;Nagoya The Westin Nagoya Castle Cosmetics
+;addr219;Meieki Nakamura-Ku;3-27-5;450-0002;Nagoya;JP;;+81 1049 1568;Nagoya Royal Park Inn Nagoya Cosmetics
+;addr220;Kita Sanjo Nishi;01.02.2009;060-0003;Sapporo;JP;;+81 3243 3466;Sapporo Ana Hotel Sapporo Cosmetics
+;addr221;Nishi Minamihachijo Chuo-Ku;03-10-10;064-0808;Sapporo;JP;;+81 2392 7603;Sapporo Best Western Hotel Sapporo Nakajima Koen Cosmetics
+;addr222;Atsubetsuchuo 2J0;05-05-25;004-0052;Sapporo;JP;;+81 3026 7012;Sapporo Sheraton Sapporo Hotel Cosmetics
+;addr223;Odori Nishi;05-05;060-0042;Sapporo;JP;;+81 2230 9821;Sapporo Hotel Resol Trinity Sapporo Cosmetics
+;addr224;Nishi 1-chome;01-22;060-0807;Sapporo;JP;;+81 7872 9225;Sapporo Hotel Sunroute Sapporo Cosmetics
+;addr225;Nakayamate Dori;02.02.2028;650-0004;Kobe;JP;;+81 3181 7211;Kobe Hotel Monterey Amalie Cosmetics
+;addr226;Shimoyamate-Dori;02.11.2013;650-0031;Kobe;JP;;+81 6895 897;Kobe Hotel Monterey Kobe Cosmetics
+;addr227;Kumoidori;01-02-08;651-0096;Kobe;JP;;+81 7363 4347;Kobe Sannomiya Terminal Hotel Cosmetics
+;addr228;Koyocho-Naka;02-13;658-0032 ;Kobe;JP;;+81 4032 2345;Kobe Bay Sheraton Hotel and Towers Cosmetics
+;addr229;Shimoyamatedori Chuo;02.11.2005;650-0011;Kobe;JP;;+81 861 8092;Kobe the b Cosmetics
+;addr230;Daimyo;02.08.2027;810-0041;Fukuoka;JP;;+81 3425 1442;Fukuoka Hotel Monterey La Soeur Fukuoka Cosmetics
+;addr231;Jigyohama;02.02.2003;810-8650 ;Fukuoka;JP;;+81 9203 5762;Fukuoka Hilton Fukuoka Sea Hawk Cosmetics
+;addr232;Nakasu;05.01.2012;810-0801;Fukuoka;JP;;+81 8425 6756;Fukuoka Best Western Fukuoka Nakasu Inn Cosmetics
+;addr233;Sumiyoshi;01.02.2020;812-0018;Fukuoka;JP;;+81 4011 7870;Fukuoka Canal City Fukuoka Washington Hotel Cosmetics
+;addr234;Hakata Eki-Mae;2-18-25;812-0011;Fukuoka;JP;;+81 8770 6945;Fukuoka Hotel Nikko Fukuoka Cosmetics
+;addr235;Horikawa-Cho;26330;212-0013;Kawasaki;JP;;+81 2783 5395;Kawasaki Mets Kawasaki Hotel Cosmetics
+;addr236;Takatsu-Ku;01.01.2005;213-0001 ;Kawasaki;JP;;+81 4968 211;Kawasaki Mets Mizonokuchi Hotel Cosmetics
+;addr237;Isago;02.11.2017;210-0006;Kawasaki;JP;;+81 4489 6433;Kawasaki Hotel Sunroute Kawasaki Cosmetics
+;addr238;Ogawa cho;16-02;210-0023;Kawasaki;JP;;+81 2046 7181;Kawasaki Pearl Hotel Kawasaki Cosmetics
+;addr239;Miyamoto-cho;06-02;210-0004;Kawasaki;JP;;+81 6801 8294;Kawasaki Grand Hotel Cosmetics
+
+
+INSERT_UPDATE StoreLocatorFeature;code[unique=true]
+;wheelchair
+;creche
+;sundayWorkshops
+;buyOnlinePickupInStore
+
+UPDATE PointOfService;name[unique=true];features(code);
+;Nakano Cosmetics;wheelchair,creche,buyOnlinePickupInStore;
+;Shinbashi Cosmetics;wheelchair,creche,buyOnlinePickupInStore;
+;Koto Cosmetics;wheelchair,creche,buyOnlinePickupInStore;
+;Misato Cosmetics;wheelchair,buyOnlinePickupInStore;
+;Matsudo Cosmetics;creche,sundayWorkshops,buyOnlinePickupInStore;
+;Ichikawa Cosmetics;wheelchair,buyOnlinePickupInStore;
+;Choshi Cosmetics;creche,sundayWorkshops,buyOnlinePickupInStore;
+;Chiba Cosmetics;wheelchair,buyOnlinePickupInStore;
+;Yokosuka Cosmetics;creche,sundayWorkshops,buyOnlinePickupInStore;
+;Tokio Cerulean Tower Tokyu Hotel Cosmetics;wheelchair,creche,buyOnlinePickupInStore;
+;Tokio Flexstay Nippori Inn Cosmetics;wheelchair,creche,buyOnlinePickupInStore;
+;Tokio Hotel Metropolitan Tokyo Cosmetics;wheelchair,creche,buyOnlinePickupInStore;
+;Tokio Dormy Inn Tokyo Hatchobori Cosmetics;wheelchair,buyOnlinePickupInStore;
+;Tokio Park Hotel Tokyo Cosmetics;creche,sundayWorkshops,buyOnlinePickupInStore;
+;Yokohama Sakuragicho Washington Hotel Cosmetics;wheelchair,buyOnlinePickupInStore;
+;Yokohama Shin Yokohama Prince Hotel Cosmetics;creche,sundayWorkshops,buyOnlinePickupInStore;
+;Yokohama Comfort Hotel Yokohama Kannai Cosmetics;wheelchair,buyOnlinePickupInStore;
+;Yokohama Hotel New Grand Cosmetics;creche,sundayWorkshops,buyOnlinePickupInStore;
+;Yokohama Hotel JAL City Kannai Yokohama Cosmetics;wheelchair,creche,buyOnlinePickupInStore;
+;Osaka Hilton Osaka Hotel Cosmetics;wheelchair,creche,buyOnlinePickupInStore;
+;Osaka Crowne Plaza Hotel Ana Osaka Cosmetics;wheelchair,creche,buyOnlinePickupInStore;
+;Osaka Ramada Osaka Cosmetics;wheelchair,buyOnlinePickupInStore;
+;Osaka Cross Hotel Osaka Cosmetics;creche,sundayWorkshops,buyOnlinePickupInStore;
+;Osaka Best Western Hotel Fino Osaka Shinsaibashi Cosmetics;wheelchair,buyOnlinePickupInStore;
+;Nagoya Hilton Nagoya Hotel Cosmetics;creche,sundayWorkshops,buyOnlinePickupInStore;
+;Nagoya Marriott Nagoya Cosmetics;wheelchair,buyOnlinePickupInStore;
+;Nagoya Crowne Plaza Ana Grand Court Nagoya Cosmetics;creche,sundayWorkshops,buyOnlinePickupInStore;
+;Nagoya The Westin Nagoya Castle Cosmetics;wheelchair,creche,buyOnlinePickupInStore;
+;Nagoya Royal Park Inn Nagoya Cosmetics;wheelchair,creche,buyOnlinePickupInStore;
+;Sapporo Ana Hotel Sapporo Cosmetics;wheelchair,creche,buyOnlinePickupInStore;
+;Sapporo Best Western Hotel Sapporo Nakajima Koen Cosmetics;wheelchair,buyOnlinePickupInStore;
+;Sapporo Sheraton Sapporo Hotel Cosmetics;creche,sundayWorkshops,buyOnlinePickupInStore;
+;Sapporo Hotel Resol Trinity Sapporo Cosmetics;wheelchair,buyOnlinePickupInStore;
+;Sapporo Hotel Sunroute Sapporo Cosmetics;creche,sundayWorkshops,buyOnlinePickupInStore;
+;Kobe Hotel Monterey Amalie Cosmetics;wheelchair,buyOnlinePickupInStore;
+;Kobe Hotel Monterey Kobe Cosmetics;creche,sundayWorkshops,buyOnlinePickupInStore;
+;Kobe Sannomiya Terminal Hotel Cosmetics;wheelchair,creche,buyOnlinePickupInStore;
+;Kobe Bay Sheraton Hotel and Towers Cosmetics;wheelchair,creche,buyOnlinePickupInStore;
+;Kobe the b Cosmetics;wheelchair,creche,buyOnlinePickupInStore;
+;Fukuoka Hotel Monterey La Soeur Fukuoka Cosmetics;wheelchair,buyOnlinePickupInStore;
+;Fukuoka Hilton Fukuoka Sea Hawk Cosmetics;creche,sundayWorkshops,buyOnlinePickupInStore;
+;Fukuoka Best Western Fukuoka Nakasu Inn Cosmetics;wheelchair,buyOnlinePickupInStore;
+;Fukuoka Canal City Fukuoka Washington Hotel Cosmetics;creche,sundayWorkshops,buyOnlinePickupInStore;
+;Fukuoka Hotel Nikko Fukuoka Cosmetics;wheelchair,buyOnlinePickupInStore;
+;Kawasaki Mets Kawasaki Hotel Cosmetics;creche,sundayWorkshops,buyOnlinePickupInStore;
+;Kawasaki Mets Mizonokuchi Hotel Cosmetics;wheelchair,creche,buyOnlinePickupInStore;
+;Kawasaki Hotel Sunroute Kawasaki Cosmetics;wheelchair,creche,buyOnlinePickupInStore;
+;Kawasaki Pearl Hotel Kawasaki Cosmetics;wheelchair,creche,buyOnlinePickupInStore;
+;Kawasaki Grand Hotel Cosmetics;wheelchair,buyOnlinePickupInStore;
+
+INSERT_UPDATE PoS2WarehouseRel;source(name)[unique=true];target(code)[unique=true]
+;Nakano Cosmetics;1710
+;Shinbashi Cosmetics;1710
+;Koto Cosmetics;1710
+;Misato Cosmetics;1710
+;Matsudo Cosmetics;1710
+;Ichikawa Cosmetics;1710
+;Choshi Cosmetics;1710
+;Chiba Cosmetics;1710
+;Yokosuka Cosmetics;1710
+;Tokio Cerulean Tower Tokyu Hotel Cosmetics;1710
+;Tokio Flexstay Nippori Inn Cosmetics;1710
+;Tokio Hotel Metropolitan Tokyo Cosmetics;1710
+;Tokio Dormy Inn Tokyo Hatchobori Cosmetics;1710
+;Tokio Park Hotel Tokyo Cosmetics;1710
+;Yokohama Sakuragicho Washington Hotel Cosmetics;1710
+;Yokohama Shin Yokohama Prince Hotel Cosmetics;1710
+;Yokohama Comfort Hotel Yokohama Kannai Cosmetics;1710
+;Yokohama Hotel New Grand Cosmetics;1710
+;Yokohama Hotel JAL City Kannai Yokohama Cosmetics;1710
+;Osaka Hilton Osaka Hotel Cosmetics;1710
+;Osaka Crowne Plaza Hotel Ana Osaka Cosmetics;1710
+;Osaka Ramada Osaka Cosmetics;1710
+;Osaka Cross Hotel Osaka Cosmetics;1710
+;Osaka Best Western Hotel Fino Osaka Shinsaibashi Cosmetics;1710
+;Nagoya Hilton Nagoya Hotel Cosmetics;1710
+;Nagoya Marriott Nagoya Cosmetics;1710
+;Nagoya Crowne Plaza Ana Grand Court Nagoya Cosmetics;1710
+;Nagoya The Westin Nagoya Castle Cosmetics;1710
+;Nagoya Royal Park Inn Nagoya Cosmetics;1710
+;Sapporo Ana Hotel Sapporo Cosmetics;1710
+;Sapporo Best Western Hotel Sapporo Nakajima Koen Cosmetics;1710
+;Sapporo Sheraton Sapporo Hotel Cosmetics;1710
+;Sapporo Hotel Resol Trinity Sapporo Cosmetics;1710
+;Sapporo Hotel Sunroute Sapporo Cosmetics;1710
+;Kobe Hotel Monterey Amalie Cosmetics;1710
+;Kobe Hotel Monterey Kobe Cosmetics;1710
+;Kobe Sannomiya Terminal Hotel Cosmetics;1710
+;Kobe Bay Sheraton Hotel and Towers Cosmetics;1710
+;Kobe the b Cosmetics;1710
+;Fukuoka Hotel Monterey La Soeur Fukuoka Cosmetics;1710
+;Fukuoka Hilton Fukuoka Sea Hawk Cosmetics;1710
+;Fukuoka Best Western Fukuoka Nakasu Inn Cosmetics;1710
+;Fukuoka Canal City Fukuoka Washington Hotel Cosmetics;1710
+;Fukuoka Hotel Nikko Fukuoka Cosmetics;1710
+;Kawasaki Mets Kawasaki Hotel Cosmetics;1710
+;Kawasaki Mets Mizonokuchi Hotel Cosmetics;1710
+;Kawasaki Hotel Sunroute Kawasaki Cosmetics;1710
+;Kawasaki Pearl Hotel Kawasaki Cosmetics;1710
+;Kawasaki Grand Hotel Cosmetics;1710
+
+

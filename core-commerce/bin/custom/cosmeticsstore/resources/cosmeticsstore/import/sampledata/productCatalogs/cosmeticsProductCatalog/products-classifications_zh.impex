@@ -1,0 +1,24 @@
+## -----------------------------------------------------------------------
+## Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+## -----------------------------------------------------------------------
+## ImpEx for Importing Product Classifications into  Store
+#
+##% impex.setLocale(Locale.ENGLISH);
+#
+## Macros / Replacement Parameter definitions
+#
+#$productCatalog=cosmeticsProductCatalog
+#$productCatalogName=EY Cosmetic Product Catalog
+#$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+#$clAttrModifiers=system='CosmeticsClassification',version='1.0',translator=de.hybris.platform.catalog.jalo.classification.impex.ClassificationAttributeTranslator,lang=zh
+#
+#
+#$feature1_1=@Tripod legs, 1868[$clAttrModifiers];  # Tripod legs
+#$feature2_1=@Mounting, 1867[$clAttrModifiers];  # Mounting
+#$feature3_1=@Colour of product, 1766[$clAttrModifiers];  # Colour of product
+#$feature4_1=@Tripod head, 1869[$clAttrModifiers];  # Tripod head
+#$feature6_1=@Special features, 86[$clAttrModifiers];  # Special features
+#$feature7_1=@Material, 898[$clAttrModifiers];  # Material
+#$feature8_1=@Source data-sheet, 6617[$clAttrModifiers];  # Source data-sheet
+#UPDATE Product;code[unique=true];$feature1_1;$feature2_1;$feature3_1;$feature4_1;$feature6_1;$feature7_1;$feature8_1;$catalogVersion;
+#

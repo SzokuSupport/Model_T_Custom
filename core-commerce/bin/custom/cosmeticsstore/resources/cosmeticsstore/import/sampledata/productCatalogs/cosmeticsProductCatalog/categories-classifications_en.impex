@@ -1,0 +1,128 @@
+# -----------------------------------------------------------------------
+# -----------------------------------------------------------------------
+# COSMETIC STORE
+# ImpEx for Updating Classification Categories into Cosmetic Store 
+# -----------------------------------------------------------------------
+# Macros / Replacement Parameter definitions
+
+
+##Update below##
+# -----------------------------------------------------------------------
+$productCatalog=cosmeticsProductCatalog
+$productCatalogName=EY Cosmetics Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$classCatalogVersion=catalogversion(catalog(id[default='cosmeticsClassification']),version[default='1.0'])[unique=true,default='cosmeticsClassification:1.0']
+$classSystemVersion=systemVersion(catalog(id[default='cosmeticsClassification']),version[default='1.0'])[unique=true]
+# Language
+$lang=en
+
+#Classification Systems
+# Create Classifying Categories
+# Create Categories
+UPDATE ClassificationClass;code[unique=true];$classCatalogVersion;name[lang=$lang]
+##;42;;Memory;
+##;39;;Lens system;
+##Technical details [635]
+ ;IP01;;Product Type;
+ ;IP02;;Brand;
+ ;IP03;;Form;
+ ;IP04;;Gender;
+ ;IP05;;Product Type;
+ ;IP06;;Skin Type;
+ ;IP07;;Form;
+ ;IP08;;Concern;
+ ;IP09;;Use;
+ ;IP10;;Fragrance;
+ ;IP11;;Hair Type;
+ ;IP12;;Special Features;
+
+ 
+# Create Features List (Categories)
+# Create Categories
+UPDATE ClassificationAttribute;code[unique=true];$classSystemVersion;name[lang=$lang]
+##;;Source data-sheet, 6617 
+##;Lens system, 576;;Lens system;
+ ;Perfume, IP0101;;Perfume;
+ ;Body Sprais, IP0102;;Body Sprais;
+ ;Cologne, IP0103;;Cologne;
+ ;Burberry, IP0104;;Burberry;
+ ;Calvin Klien, IP0105;;Calvin Klien;
+ ;Christian Dior, IP0106;;Christian Dior;
+ ;Clinique, IP0107;;Clinique;
+ ;Dior, IP0108;;Dior;
+ ;Emporio Armani, IP0109;;Emporio Armani;
+ ;Estee Lauder, IP0110;;Estee Lauder;
+ ;Givenchy, IP0111;;Givenchy;
+ ;La Prairie, IP0112;;La Prairie;
+ ;Lancome, IP0113;;Lancome;
+ ;Yves Saint Laurent, IP0114;;Yves Saint Laurent;
+ ;Liquid, IP0115;;Liquid;
+ ;Spray, IP0116;;Spray;
+ ;Men, IP0117;;Men;
+ ;Women, IP0118;;Women;
+ ;Unisex, IP0119;;Unisex;
+ ;Face Wash, IP0120;;face Wash;
+ ;Face Wipes, IP0121;;Face Wipes;
+ ;Makeup Remover, IP0122;;Makeup Remover;
+ ;Dry, IP0124;;Dry;
+ ;Normal, IP0125;;Normal;
+ ;Oily, IP0126;;Oily;
+ ;Sensitive, IP0127;;Sensitive;
+ ;Cream, IP0128;;Cream;
+ ;Foam, IP0129;;Foam;
+ ;Gel, IP0130;;Gel;
+ ;Liquid, IP0131;;Liquid;
+ ;Lotion, IP0132;;Lotion;
+ ;Loreal Skin Care, IP0133;;L'oreal Skin Care;
+ ;Neutrogena, IP0134;;Neutrogena;
+ ;Botanics, IP0135;;Botanics;
+ ;Acne, IP0136;;Acne;
+ ;Clogged Pores, IP0137;;Clogged Pores;
+ ;Dull, IP0138;;Dull;
+ ;Oilness, IP0139;;Oilness;
+ ;Itchy Skin, IP0140;;Itchy Skin;
+ ;Face Line & Wrinkles, IP0141;;Face Line & Wrinkles;
+ ;Face, IP0142;;Face;
+ ;Lipstick, IP0143;;Lipstick;
+ ;Lipgloss, IP0144;;Lipgloss;
+ ;Lip Liner, IP0145;;Lip Liner;
+ ;Lip Balm, IP0146;;Lip Balm;
+ ;Lip Plumpers, IP0147;;Lip Plumpers;
+ ;Cold Sore Relief, IP0148;;Cold Sore Relief;
+ ;Lip Treatments, IP0149;;Lip Treatments;
+ ;Maybelline, IP0150;;Maybelline;
+ ;Chapped Lips, IP0151;;Chapped Lips;
+ ;Itchy Skin, IP0152;;Itchy Skin;
+ ;Razor Burn, IP0153;;Razor Burn;
+ ;Sun Protection, IP0154;;Sun Protection;
+ ;Balm, IP0155;;Balm;
+ ;Stick, IP0157;;Stick;
+ ;Pencil, IP0158;;Pencil;
+ ;Fragrance Free, IP0159;;Fragrance;
+ ;Scented, IP0160;;Secented;
+ ;Eye Shadow, IP0161;;Eye Shadow;
+ ;Eye Liner, IP0162;;Eye Liner;
+ ;Eye Cream, IP0163;;Eye Cream;
+ ;Eye Treatment, IP0164;;Eye Treatment;
+ ;Watery Eyes, IP0165;;Watery Eyes;
+ ;Allergic, IP0166;;Allergic;
+ ;Dry Eyes, IP0167;;Dry Eyes;
+ ;Gel, IP0168;;Gel;
+ ;Aveeno, IP0169;;Aveeno;
+ ;Sunscreen, IP0170;;Sunscreen;
+ ;Body Lotions, IP0171;;Body Lotions;
+ ;Body Sprays, IP0172;;Body Sprays;
+ ;Loreal Professional, IP0173;;Loreal Professional;
+ ;Schwarzkpof, IP0174;;Schwarzkpof;
+ ;Conditioner, IP0176;;Conditioner;
+ ;Shampoo & Conditioner, IP0186;;Shampoo & Conditioner;
+ ;Dry Shampoo, IP0177;;Dry Shampoo;
+ ;Dry Scalp Treatment, IP0178;;Dry Scalp Treatment;
+ ;Chemically Treated, IP0179;;Chemically Treated;
+ ;Damaged, IP0180;;Damaged;
+ ;Frizzy, IP0181;;Frizzy;
+ ;Dermatologist Recommended, IP0182;;Dermatoligist Recommended;
+ ;Made without Parabens, IP0183;;Made without Parabens;
+ ;PH Balance, IP0184;;PH Balance;
+ ;Sulphate Free, IP0185;;Sulphate Free;
+

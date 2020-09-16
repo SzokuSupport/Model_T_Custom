@@ -1,0 +1,25 @@
+## -----------------------------------------------------------------------
+## COSMETIC STORE
+## ImpEx for Importing Product Classifications into Store
+## -----------------------------------------------------------------------
+#
+##% impex.setLocale(Locale.ENGLISH);
+#
+##% impex.setLocale(Locale.ENGLISH);
+#
+#
+## Macros / Replacement Parameter definitions
+#$productCatalog=cosmeticsProductCatalog
+#$productCatalogName=EY Cosmetic Product Catalog
+#$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+#$clAttrModifiers=system='cosmeticsClassification',version='1.0',translator=de.hybris.platform.catalog.jalo.classification.impex.ClassificationAttributeTranslator,lang=en
+#
+#
+#$feature1_92=@Image stabilizer, 1578[$clAttrModifiers];  # Image stabilizer
+#$feature2_92=@Megapixel, 63[$clAttrModifiers];  # Megapixel in megapixel (MP)
+#$feature3_92=@Data compression, 710[$clAttrModifiers];  # Data compression
+#$feature4_92=@Supported camera resoluti, 1748[$clAttrModifiers];  # Supported camera resolutions
+#$feature5_92=@Maximum resolution, 1659[$clAttrModifiers];  # Maximum resolution in pixels (pixels)
+#UPDATE Product;code[unique=true];$feature1_92;$feature2_92;$feature3_92;$feature4_92;$feature5_92;$catalogVersion;
+#
+#

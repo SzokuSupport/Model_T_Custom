@@ -1,0 +1,14 @@
+# -----------------------------------------------------------------------
+# Import the Product Catalog and Classification Catalog - Cosmetics
+# -----------------------------------------------------------------------
+# 
+
+# Language
+$lang=en
+
+##Update below##
+# -----------------------------------------------------------------------
+# Create Catalog
+UPDATE Catalog;id[unique=true];name[lang=$lang]
+ ;cosmeticsClassification;"EY Cosmetics Classification Catalog"
+ ;cosmeticsProductCatalog;"EY Cosmetics Product Catalog"

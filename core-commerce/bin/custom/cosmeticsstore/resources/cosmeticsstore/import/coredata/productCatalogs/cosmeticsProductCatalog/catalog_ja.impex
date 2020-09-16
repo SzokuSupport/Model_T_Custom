@@ -1,0 +1,14 @@
+# -----------------------------------------------------------------------
+# Import the Product Catalog and Classification Catalog - Cosmetics
+# -----------------------------------------------------------------------
+# Japanese
+#
+
+# Language
+$lang=ja
+
+##Update below##
+# -----------------------------------------------------------------------
+# Create Catalog
+UPDATE Catalog;id[unique=true];name[lang=$lang]
+ ;cosmeticsProductCatalog;"化粧品"

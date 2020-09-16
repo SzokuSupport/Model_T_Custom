@@ -1,0 +1,104 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# ImpEx for Importing Category Media into Store
+
+# Macros / Replacement Parameter definitions
+
+##Update below##
+# -----------------------------------------------------------------------
+$productCatalog=cosmeticsProductCatalog
+$productCatalogName=EY Cosmetics Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$thumbnail=thumbnail(code, $catalogVersion)
+$picture=picture(code, $catalogVersion)
+$siteResource=jar:de.hybris.platform.cosmeticsstore.constants.CosmeticsStoreConstants&/cosmeticsstore/import/sampledata/productCatalogs/$productCatalog
+
+
+# Import Category Media
+INSERT_UPDATE Media;code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];$catalogVersion
+;/img/low_pic/L10001.jpg;L10001.jpg;$siteResource/images/img/low_pic/L10001.jpg;
+;/thumbs/L10001_TN.jpg;L10001_TN.jpg;$siteResource/images/thumbs/L10001_TN.jpg;
+;/img/low_pic/L20001.jpg;L20001.jpg;$siteResource/images/img/low_pic/L20001.jpg;
+;/thumbs/L20001_TN.jpg;L20001_TN.jpg;$siteResource/images/thumbs/L20001_TN.jpg;
+;/img/low_pic/L20002.jpg;L20002.jpg;$siteResource/images/img/low_pic/L20002.jpg;
+;/thumbs/L20002_TN.jpg;L20002_TN.jpg;$siteResource/images/thumbs/L20002_TN.jpg;
+;/img/low_pic/L20003.jpg;L20003.jpg;$siteResource/images/img/low_pic/L20003.jpg;
+;/thumbs/L20003_TN.jpg;L20003_TN.jpg;$siteResource/images/thumbs/L20003_TN.jpg;
+;/img/low_pic/L20004.jpg;L20004.jpg;$siteResource/images/img/low_pic/L20004.jpg;
+;/thumbs/L20004_TN.jpg;L20004_TN.jpg;$siteResource/images/thumbs/L20004_TN.jpg;
+;/img/low_pic/L20006.jpg;L20006.jpg;$siteResource/images/img/low_pic/L20006.jpg;
+;/thumbs/L20006_TN.jpg;L20006_TN.jpg;$siteResource/images/thumbs/L20006_TN.jpg;
+;/img/low_pic/L20007.jpg;L20007.jpg;$siteResource/images/img/low_pic/L20007.jpg;
+;/thumbs/L20007_TN.jpg;L20007_TN.jpg;$siteResource/images/thumbs/L20007_TN.jpg;
+;/img/low_pic/L20008.jpg;L20008.jpg;$siteResource/images/img/low_pic/L20008.jpg;
+;/thumbs/L20008_TN.jpg;L20008_TN.jpg;$siteResource/images/thumbs/L20008_TN.jpg;
+;/img/low_pic/L20009.jpg;L20009.jpg;$siteResource/images/img/low_pic/L20009.jpg;
+;/thumbs/L20009_TN.jpg;L20009_TN.jpg;$siteResource/images/thumbs/L20009_TN.jpg;
+;/img/low_pic/L31001.jpg;L31001.jpg;$siteResource/images/img/low_pic/L31001.jpg;
+;/thumbs/L31001_TN.jpg;L31001_TN.jpg;$siteResource/images/thumbs/L31001_TN.jpg;
+;/img/low_pic/L31002.jpg;L31002.jpg;$siteResource/images/img/low_pic/L31002.jpg;
+;/thumbs/L31002_TN.jpg;L31002_TN.jpg;$siteResource/images/thumbs/L31002_TN.jpg;
+;/img/low_pic/L31003.jpg;L31003.jpg;$siteResource/images/img/low_pic/L31003.jpg;
+;/thumbs/L31003_TN.jpg;L31003_TN.jpg;$siteResource/images/thumbs/L31003_TN.jpg;
+;/img/low_pic/L32001.jpg;L32001.jpg;$siteResource/images/img/low_pic/L32001.jpg;
+;/thumbs/L32001_TN.jpg;L32001_TN.jpg;$siteResource/images/thumbs/L32001_TN.jpg;
+;/img/low_pic/L32002.jpg;L32002.jpg;$siteResource/images/img/low_pic/L32002.jpg;
+;/thumbs/L32002_TN.jpg;L32002_TN.jpg;$siteResource/images/thumbs/L32002_TN.jpg;
+;/img/low_pic/L32003.jpg;L32003.jpg;$siteResource/images/img/low_pic/L32003.jpg;
+;/thumbs/L32003.jpg;L32003_TN.jpg;$siteResource/images/thumbs/L32003_TN.jpg;
+;/img/low_pic/L32004.jpg;L32004.jpg;$siteResource/images/img/low_pic/L32004.jpg;
+;/thumbs/L32004.jpg;L32004_TN.jpg;$siteResource/images/thumbs/L32004_TN.jpg;
+;/img/low_pic/L32005.jpg;L32005.jpg;$siteResource/images/img/low_pic/L32005.jpg;
+;/thumbs/L32005.jpg;L32004_TN.jpg;$siteResource/images/thumbs/L32005_TN.jpg;
+;/img/low_pic/L37001.jpg;L37001.jpg;$siteResource/images/img/low_pic/L37001.jpg;
+;/thumbs/L37001.jpg;L37001_TN.jpg;$siteResource/images/thumbs/L37001_TN.jpg;
+;/img/low_pic/L37002.jpg;L37002.jpg;$siteResource/images/img/low_pic/L37002.jpg;
+;/thumbs/L37002.jpg;L37002_TN.jpg;$siteResource/images/thumbs/L37002_TN.jpg;
+;/img/low_pic/L37003.jpg;L37003.jpg;$siteResource/images/img/low_pic/L37003.jpg;
+;/thumbs/L37003.jpg;L37003_TN.jpg;$siteResource/images/thumbs/L37003_TN.jpg;
+;/img/low_pic/L37004.jpg;L37004.jpg;$siteResource/images/img/low_pic/L37004.jpg;
+;/thumbs/L37004.jpg;L37004_TN.jpg;$siteResource/images/thumbs/L37004_TN.jpg;
+
+UPDATE Category;code[unique=true];$thumbnail;$picture;allowedPrincipals(uid)[default='customergroup'];$catalogVersion
+ ;L10001;/thumbs/L10001.jpg;/img/low_pic/L10001_TN.jpg
+ ;L20001;/thumbs/L20001.jpg;/img/low_pic/L20001_TN.jpg
+ ;L20002;/thumbs/L20002.jpg;/img/low_pic/L20002_TN.jpg
+ ;L20003;/thumbs/L20003.jpg;/img/low_pic/L20003_TN.jpg
+ ;L20004;/thumbs/L20004.jpg;/img/low_pic/L20004_TN.jpg
+ ;L20006;/thumbs/L20006.jpg;/img/low_pic/L20006_TN.jpg
+ ;L20007;/thumbs/L20007.jpg;/img/low_pic/L20007_TN.jpg
+ ;L20008;/thumbs/L20008.jpg;/img/low_pic/L20008_TN.jpg
+ ;L20009;/thumbs/L20009.jpg;/img/low_pic/L20009_TN.jpg
+ ;L31001;/thumbs/L31001.jpg;/img/low_pic/L31003_TN.jpg
+ ;L31002;/thumbs/L31002.jpg;/img/low_pic/L31002_TN.jpg
+ ;L31003;/thumbs/L31003.jpg;/img/low_pic/L31003_TN.jpg
+ ;L32001;/thumbs/L32001.jpg;/img/low_pic/L32001_TN.jpg
+ ;L32002;/thumbs/L32002.jpg;/img/low_pic/L32002_TN.jpg
+ ;L32003;/thumbs/L32003.jpg;/img/low_pic/L32003_TN.jpg
+ ;L32004;/thumbs/L32004.jpg;/img/low_pic/L32004_TN.jpg
+ ;L32005;/thumbs/L32005.jpg;/img/low_pic/L32005_TN.jpg
+ ;L37001;/thumbs/L37001.jpg;/img/low_pic/L37001_TN.jpg
+ ;L37002;/thumbs/L37002.jpg;/img/low_pic/L37002_TN.jpg
+ ;L37003;/thumbs/L37003.jpg;/img/low_pic/L37003_TN.jpg
+ ;L37004;/thumbs/L37004.jpg;/img/low_pic/L37004_TN.jpg
+ ;L38001;/thumbs/L38001.jpg;/img/low_pic/L38001_TN.jpg
+ ;L38002;/thumbs/L38002.jpg;/img/low_pic/L38002_TN.jpg
+ ;L39001;/thumbs/L39001.jpg;/img/low_pic/L39001_TN.jpg
+ ;L39002;/thumbs/L39002.jpg;/img/low_pic/L39002_TN.jpg
+
+	  
+
+
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

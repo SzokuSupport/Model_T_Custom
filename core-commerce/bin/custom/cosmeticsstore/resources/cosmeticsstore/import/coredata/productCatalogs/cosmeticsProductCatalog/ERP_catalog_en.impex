@@ -1,0 +1,14 @@
+# -----------------------------------------------------------------------
+# Import the Product Catalog and Classification Catalog - Cosmetics
+# -----------------------------------------------------------------------
+#
+
+# Language
+$lang=en
+
+##Update below##
+# -----------------------------------------------------------------------
+# Create Catalog
+UPDATE Catalog;id[unique=true];name[lang=$lang]
+;Catalog_1710_10;"EY S4 HANA 200 Product Catalog Import"
+;ERP_CLASSIFICATION_001;"EY S4 HANA 200 Classification Catalog Import"

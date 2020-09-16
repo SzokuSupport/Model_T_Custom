@@ -1,0 +1,151 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# ImpEx for Importing Categories into Cosmetic Store
+
+# Macros / Replacement Parameter definitions
+
+
+##Update below##
+# -----------------------------------------------------------------------
+$productCatalog=cosmeticsProductCatalog
+$productCatalogName=EY Cosmetics Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$supercategories=source(code, $catalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+
+##Update below##
+# -----------------------------------------------------------------------
+# Insert Categories
+INSERT_UPDATE Category ; code[unique=true] ; allowedPrincipals(uid)[default='customergroup'] ; $catalogVersion
+;L00000;                                                 ;
+;L10001;                                                 ;
+;L10002;                                                 ;
+;L10003;                                                 ;
+;L20001;                                                 ;
+;L20002;                                                 ;
+;L20003;                                                 ;
+;L20004;                                                 ;
+;L20005;                                                 ;
+;L20006;                                                 ;
+;L20007;                                                 ;
+;L20008;                                                 ;
+;L20009;                                                 ;
+;L31001;                                                 ;
+;L31002;                                                 ;
+;L31003;                                                 ;
+;L32001;                                                 ;
+;L32002;                                                 ;
+;L32003;                                                 ;
+;L32004;                                                 ;
+;L32005;                                                 ;
+;L37001;                                                 ;
+;L37002;                                                 ;
+;L37002;                                                 ;
+;L37003;                                                 ;
+;L37004;                                                 ;
+;L38001;                                                 ;
+;L38002;                                                 ;
+;L39001;                                                 ;
+;L39002;                                                 ;
+
+
+# Insert Category Structure;;;
+INSERT_UPDATE CategoryCategoryRelation ; $categories ; $supercategories;
+;L20001;L10001;
+;L20002;L10001;
+;L20003;L10002;
+;L20004;L10002;
+;L20005;L10002;
+;L20006;L10002;
+;L20007;L10003;
+;L20008;L10003;
+;L20009;L10003;
+;L31001;L20001;
+;L31002;L20001;
+;L31003;L20001;
+;L32001;L20002;
+;L32002;L20002;
+;L32003;L20002;
+;L32004;L20002;
+;L32005;L20002;
+;L37001;L20007;
+;L37002;L20007;
+;L37003;L20007;
+;L37004;L20007;
+;L38001;L20008;
+;L38002;L20008;
+;L39001;L20009;
+;L39002;L20009;
+
+
+# -----------------------------------------------------------------------
+$productCatalog=cosmeticsProductCatalog
+$productCatalogName=EY Cosmetics Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]
+$supercategories=source(code, $catalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+
+##Update below##
+# -----------------------------------------------------------------------
+# Insert Categories
+INSERT_UPDATE Category ; code[unique=true] ; allowedPrincipals(uid)[default='customergroup'] ; $catalogVersion
+;L00000;                                                 ;
+;L10001;                                                 ;
+;L10002;                                                 ;
+;L10003;                                                 ;
+;L20001;                                                 ;
+;L20002;                                                 ;
+;L20003;                                                 ;
+;L20004;                                                 ;
+;L20005;                                                 ;
+;L20006;                                                 ;
+;L20007;                                                 ;
+;L20008;                                                 ;
+;L20009;                                                 ;
+;L31001;                                                 ;
+;L31002;                                                 ;
+;L31003;                                                 ;
+;L32001;                                                 ;
+;L32002;                                                 ;
+;L32003;                                                 ;
+;L32004;                                                 ;
+;L32005;                                                 ;
+;L37001;                                                 ;
+;L37002;                                                 ;
+;L37002;                                                 ;
+;L37003;                                                 ;
+;L37004;                                                 ;
+;L38001;                                                 ;
+;L38002;                                                 ;
+;L39001;                                                 ;
+;L39002;                                                 ;
+
+
+# Insert Category Structure;;;
+INSERT_UPDATE CategoryCategoryRelation ; $categories ; $supercategories;
+;L20001;L10001;
+;L20002;L10001;
+;L20003;L10002;
+;L20004;L10002;
+;L20005;L10002;
+;L20006;L10002;
+;L20007;L10003;
+;L20008;L10003;
+;L20009;L10003;
+;L31001;L20001;
+;L31002;L20001;
+;L31003;L20001;
+;L32001;L20002;
+;L32002;L20002;
+;L32003;L20002;
+;L32004;L20002;
+;L32005;L20002;
+;L37001;L20007;
+;L37002;L20007;
+;L37003;L20007;
+;L37004;L20007;
+;L38001;L20008;
+;L38002;L20008;
+;L39001;L20009;
+;L39002;L20009;

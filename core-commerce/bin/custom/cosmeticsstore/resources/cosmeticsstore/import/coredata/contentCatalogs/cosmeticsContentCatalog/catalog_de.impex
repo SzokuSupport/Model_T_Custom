@@ -1,0 +1,15 @@
+# -----------------------------------------------------------------------
+# Import new ***Cosmetics**** Content Catalog
+# -----------------------------------------------------------------------
+#-----------------------------------------------------------------------
+#
+#
+
+# Language
+$lang=de
+
+##Update below##
+# -----------------------------------------------------------------------
+# Create Content Catalog
+UPDATE ContentCatalog;id[unique=true];name[lang=$lang]
+ ;cosmeticsContentCatalog;"kosmetischkatalog"
