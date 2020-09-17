@@ -2,7 +2,6 @@
     "commerceSuiteVersion": "1905.18",
     "enableImageProcessingService": true,
     "extensions": [
-        "ecp5193workaround",
         "cloudmediaconversion",  
         "mediaconversionbackoffice"
 	],
