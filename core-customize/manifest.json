@@ -1,7 +1,8 @@
 {
-    "commerceSuiteVersion": "2005",
+    "commerceSuiteVersion": "1905.18",
     "enableImageProcessingService": true,
     "extensions": [
+        "ecp5193workaround",
         "cloudmediaconversion",  
         "mediaconversionbackoffice"
 	],
@@ -426,5 +427,18 @@
 			 }
 		  ]
 	   }
-	]
+	],
+	"tests": {
+        "extensions": [
+            "kiwi",
+            "tiger"
+        ],
+        "annotations": [
+            "UnitTests",
+            "IntegrationTests"
+        ],
+        "packages": [
+            "com.acme.*"
+        ]
+    }
  }
