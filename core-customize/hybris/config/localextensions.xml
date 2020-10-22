@@ -35,7 +35,6 @@
     <extension name='customersupportbackoffice' />
     <extension name='profiletagaddon' />
     <extension name='profileservices' />
-    <extension name='yaasconfigurationbackoffice' />
     <extension name='textfieldconfiguratortemplatebackoffice' />
     <extension name='textfieldconfiguratortemplateaddon' />
     <extension name='cmswebservices' />
