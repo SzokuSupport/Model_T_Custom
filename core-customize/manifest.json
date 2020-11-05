@@ -1,5 +1,8 @@
 {
     "commerceSuiteVersion": "1811.28",
+	"extensionPacks" : [
+		{ "name" : "hybris-cloud-extension-pack", "version" : "1811.05" }
+		],
     "disableImageReuse":true,
     "useCloudExtensionPack": true,
     "extensions": [
