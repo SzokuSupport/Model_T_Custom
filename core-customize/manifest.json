@@ -4,7 +4,6 @@
 		{ "name" : "hybris-cloud-extension-pack", "version" : "1811.05" }
 		],
     "disableImageReuse":true,
-    "useCloudExtensionPack": true,
     "extensions": [
          "adaptivesearchsolr", 
          "mcc",
