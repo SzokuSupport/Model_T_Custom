@@ -106,7 +106,7 @@
                 "persona": "development"
             },
             {
-                "location": "/hybris/config/environments/local-sit.properties",
+                "location": "/hybris/config/environments/local-stage.properties",
                 "persona": "staging"
             },
             {
