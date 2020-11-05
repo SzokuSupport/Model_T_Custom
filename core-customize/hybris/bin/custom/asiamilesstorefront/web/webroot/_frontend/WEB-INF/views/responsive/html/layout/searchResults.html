@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  @require('../../tags/css.tag')
+</head>
+<body>
+    @require('../../tags/header.tag')
+    
+    <div class="container container-fluid-mobile product-banner">
+        <!-- backend input -->
+        <input type="hidden" value="/initProductUrl" id="J-initProductUrl"/>
+        <input type="hidden" value="/filterProductUrl" id="J-filterProductUrl"/>
+        <input type="hidden" value="10" id="J-totalPage"/>
+        <input type="hidden" value="10" id="J-getCurrentPage"/>
+        <input type="hidden" value="9" id="J-getCurrentPageSize"/>
+        <input type="hidden" value="q=djfs:dhfeu:zonePrice:1000_40000:shenme:dd" id="J-q"/>
+        <input type="hidden" value="sort" id="J-sort"/>
+        <!--/ -->
+        <div class="row product-banner-simple">
+            <div class="product-banner-simple__title">
+                <h1 class="font-light">Search results</h1>
+            </div>
+        </div>        
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 search-results-num"><span class="font-bold">69 result(s)</span> for “Apple”</div>
+        </div>
+    </div>
+    @require('../../tags/modules/plp/product-content.tag')
+    @require('../../tags/footer.tag')
+    @require('../../tags/js.tag')
+    
+</body>
+</html>

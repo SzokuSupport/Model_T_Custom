@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+    <g fill="none" fill-rule="evenodd">
+        <mask id="b" fill="#fff">
+            <path id="a" d="M20 8v8.414H5V8z"/>
+        </mask>
+        <path fill="#272F38" d="M12.5 16.414a.908.908 0 0 1-.646-.268L5 9.292 6.292 8l6.208 6.208L18.707 8 20 9.292l-6.854 6.854a.91.91 0 0 1-.646.268" mask="url(#b)" transform="rotate(180 12.5 12.207)"/>
+    </g>
+</svg>

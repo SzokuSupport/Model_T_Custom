@@ -1,0 +1,33 @@
+@import "../function/px2rem";
+@import "../mixins/media";
+
+// @import "../components/common/category-navigation";
+
+@import "../components/checkOut/step-nav";
+@import "../components/checkOut/dorpdown";
+@import "../components/checkOut/step-one";
+@import "../components/checkOut/step-one-total";
+@import "../components/common/order-detail";
+
+.checkoutStep1Page-error-message {
+    .checkoutStep1Page-alert {
+        padding: .375rem 1.25rem;
+        margin-top: .625rem;
+        margin-bottom: .625rem;
+        background: #e9eaeb;
+        display: flex;
+        justify-content: flex-start;
+
+        .icon-triangle-important {
+            width: 1rem;
+            height: 1rem;
+            margin-right: .3125rem;
+        }
+
+        .error-text {
+            flex: 1;
+            font-size: 14px;
+            line-height: 1.125rem;
+        }
+    }
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+
+<widget-definition id="com.asiamiles.backoffice.widgets.cancelorder" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widget-definition.xsd">
+
+	<name>Cancel Order</name>
+	<description>Cancel order widget.</description>
+	<defaultTitle>Cancel an Order</defaultTitle>
+    <author>hybris</author>
+    <version>0.1</version>
+    <view src="cancelconsignment.zul"/>
+	<sockets>
+		<input type="de.hybris.platform.ordersplitting.model.ConsignmentModel" id="inputObject" />
+		<output type="java.lang.String" id="confirm" />
+	</sockets>
+
+	 <keywords>
+        <keyword>OMS</keyword>
+    </keywords>
+    
+    <controller class="com.asiamiles.backoffice.widgets.consignment.AMLCancelOrderController"/>
+    
+</widget-definition>

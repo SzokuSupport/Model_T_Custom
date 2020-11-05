@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action-definition id="com.asiamiles.backoffice.actions.consignment.reverseHomeDelivery"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/action-definition.xsd">
+    <name>Reverse Delivery - Home</name>
+    <description>Reverse Delivery - Home</description>
+    <author>hybris</author>
+    <version>0.1</version>
+    <iconUri>icons/reverse-default.png</iconUri>
+    <iconDisabledUri>icons/reverse-disabled.png</iconDisabledUri>
+    <iconHoverUri>icons/reverse-hover.png</iconHoverUri>
+
+    <actionClassName>com.asiamiles.backoffice.actions.consignment.ConsignmentReverseHomeDeliveryAction</actionClassName>
+</action-definition>

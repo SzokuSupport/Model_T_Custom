@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	
+    <bean id="asiamilesthirdpartySystemSetup" class="com.asiamiles.thirdparty.setup.AsiamilesthirdpartySystemSetup">
+        <!-- constructor arg injection example -->
+        <constructor-arg ref="asiamilesthirdpartyService"/>
+    </bean>
+
+    <bean id="asiamilesthirdpartyService" class="com.asiamiles.thirdparty.service.impl.DefaultAsiamilesthirdpartyService">
+        <!-- setter injection example -->
+        <property name="modelService" ref="modelService"/>
+        <property name="mediaService" ref="mediaService"/>
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+    </bean>
+    
+    <bean id="httpProtocolHandler" class="com.asiamiles.thirdparty.httpclient.impl.HttpProtocolHandlerImpl" >
+		<property name="defaultConnectionTimeout" value="${http.client.connection.timeout}"/>
+		<property name="defaultSoTimeout" value="${http.client.so.timeout}"/>
+		<property name="defaultIdleConnTimeout" value="${http.client.idle.conn.timeout}"/>
+		<property name="defaultMaxConnPerHost" value="${http.client.max.conn.per.host}"/>
+		<property name="defaultMaxTotalConn" value="${http.client.max.total.conn}"/>
+		<property name="defaultHttpConnectionManagerTimeout" value="${http.client.connection.manager.timeout}"/>
+		<property name="configurationService" ref="configurationService"></property>
+	</bean>
+	
+	<bean id="mlcv2Client" class="com.asiamiles.thirdparty.mlcv2.impl.Mlcv2ClientImpl">
+        <!-- setter injection example -->
+        <property name="httpHandler" ref="httpProtocolHandler"/>
+        <property name="configurationService" ref="configurationService"/>
+    </bean>
+    
+    <bean id="httpService" class="com.asiamiles.thirdparty.httpclient.service.impl.HttpServiceImpl">
+        <!-- setter injection example -->
+        <property name="httpHandler" ref="httpProtocolHandler"/>
+    </bean>
+    
+    <bean id="cppSignatureVerifyService" class="com.asiamiles.thirdparty.cpp.impl.CppSignatureVerifyServiceImpl">
+   </bean>
+    
+	<bean id="cppSignatureService" class="com.asiamiles.thirdparty.cpp.impl.CppSignatureServiceImpl">
+        <!-- setter injection example -->
+        <property name="configurationService" ref="configurationService"/>
+        <property name="cppSignatureVerifyService" ref="cppSignatureVerifyService"/>
+   </bean>
+    
+   <bean id="cppClient" class="com.asiamiles.thirdparty.cpp.impl.CppClientImpl">
+   		<property name="configurationService" ref="configurationService"/>
+   		<property name="httpHandler" ref="httpProtocolHandler"/>
+   		<property name="cppSignatureService" ref="cppSignatureService"/>
+   		<property name="httpService" ref="httpService"/>
+   </bean>
+    
+    <bean id="clsClient" class="com.asiamiles.thirdparty.cls.impl.ClsClientImpl">
+        <!-- setter injection example -->
+        <property name="httpHandler" ref="httpProtocolHandler"/>
+        <property name="configurationService" ref="configurationService"/>
+        <property name="idpClient" ref="idpClient"/>
+        <property name="mlcv2Client" ref="mlcv2Client"/>
+    </bean>
+
+    <bean id="idpClient" class="com.asiamiles.thirdparty.idp.impl.IdpClientImpl">
+        <property name="httpHandler" ref="httpProtocolHandler"/>
+        <property name="configurationService" ref="configurationService"/>
+    </bean>
+
+</beans>

@@ -1,0 +1,81 @@
+$currencies=MVR
+$language=en
+
+$client =asiamiles-p1
+$clientid=htp740963946.asiamiles-p1
+$clientsecret =h39y_Gf7M4p~.XsIE1uz11j65xt98_
+$region =us
+$projectid=htp740963946
+$profiletagconfigurl=https://tag.static.us.context.cloud.sap/config/27c37140-383a-11ea-800a-45c1079d09cc
+
+$baseURL=https://ird2-t0.ete.asiamiles.com
+
+$profiletagurl   =https://tag.static.us.context.cloud.sap/js/profile-tag.js
+$edgeservice     = https://$projectid.api.$region.context.cloud.sap/edge
+$oauthservice    = https://$projectid.api.$region.context.cloud.sap/uaa/oauth
+$consentservice  = https://$projectid.api.$region.context.cloud.sap/consent
+$identityservice = https://$projectid.api.$region.context.cloud.sap/identity
+$profileservice  = https://$projectid.api.$region.context.cloud.sap/profile
+$strategyservice = https://$projectid.api.$region.context.cloud.sap/strategy
+$catalogservice  = https://$projectid.api.$region.context.cloud.sap/catalog
+
+$basesite =asiamiles
+$solrIndexedType=$basesiteProductType
+$merchCatalogVersions=merchCatalogVersions(catalog(id),version);
+$productCatalog=asiamilesProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Online'])[default=$productCatalog:Online]
+
+$strategyservice = https://$projectid.api.$region.context.cloud.sap/strategy
+$catalogservice  = https://$projectid.api.$region.context.cloud.sap/catalog
+
+INSERT_UPDATE DestinationTarget;id[unique=true];destinationChannel(code)[default=CDS]
+                               ;$projectid;CDS
+INSERT_UPDATE ConsumedOAuthCredential;id[unique=true];clientId;clientSecret;oAuthUrl
+                                     ;$projectid.$client;$clientid;$clientsecret;$oauthservice
+
+INSERT_UPDATE Endpoint;id[unique=true];version[unique=true];specUrl;name
+                      ;ProfileClient;v1;"empty";"Profile Client v1"
+                      ;ConsentServiceClient;v1;"empty";"Consent Service Client v1"
+                      ;ProfileTagUrl;v1;"empty";"Profile Tag Url v1"
+                      ;ProfileTagConfigUrl;v1;"empty";"Profile Tag Config Url v1"
+                      ;CxIdentityServiceClient;v1;"empty";"Identity Service v1"
+                      ;CxProfileServiceClient;v1;"empty";"Profile Service v1"
+
+INSERT_UPDATE ConsumedDestination;id[unique=true];url;additionalProperties(key,value)[map-delimiter=|];endpoint(id);destinationTarget(id)[default=$projectid];credential(id)
+                                 ;ProfileClient$basesite;$edgeservice;baseSite->$basesite|clientClassName->ProfileClient;ProfileClient;$projectid;$projectid.$client
+                                 ;ConsentServiceClient$basesite;$consentservice;baseSite->$basesite|oauth.scope->cds.roles.customerec|clientClassName->ConsentServiceClient;ConsentServiceClient;$projectid;$projectid.$client
+                                 ;ProfileTagUrl$basesite;$profiletagurl;baseSite->$basesite|clientClassName->ProfileTagUrl;ProfileTagUrl;$projectid;$projectid.$client
+                                 ;ProfileTagConfigUrl$basesite;$profiletagconfigurl;baseSite->$basesite|clientClassName->ProfileTagConfigUrl;ProfileTagConfigUrl;$projectid;$projectid.$client
+                                 ;CxIdentityServiceClient$basesite;$identityservice;oauth.scope->cds.roles.customerec|baseSite->$basesite|clientClassName->CxIdentityServiceClient;CxIdentityServiceClient;$projectid;$projectid.$client
+                                 ;CxProfileServiceClient$basesite;$profileservice;oauth.scope->cds.roles.customerec|baseSite->$basesite|clientClassName->CxProfileServiceClient;CxProfileServiceClient;$projectid;$projectid.$client
+
+
+INSERT_UPDATE Endpoint;id[unique=true];version[unique=true];specUrl;name
+                      ;MerchStrategyServiceClient;v1;"empty";"MerchStrategyServiceClient"
+                      ;MerchCatalogServiceClient;v1;"empty";"MerchCatalogServiceClient"
+                      ;MerchCatalogServiceProductDirectoryClient;v1;"empty";"MerchCatalogServiceProductDirectoryClient"
+
+INSERT_UPDATE ConsumedDestination;id[unique=true];url;additionalProperties(key,value)[map-delimiter=|];endpoint(id);destinationTarget(id)[default=$projectid];credential(id)
+                                 ;StrategyClient$basesite;$strategyservice;baseSite->$basesite|clientClassName->MerchStrategyServiceClient|oauth.scope->cds.roles.customerec;MerchStrategyServiceClient;$projectid;$projectid.$client
+                                 ;CatalogClient$basesite;$catalogservice;baseSite->$basesite|clientClassName->MerchCatalogServiceClient|oauth.scope->cds.roles.customerec;MerchCatalogServiceClient;$projectid;$projectid.$client
+                                 ;CatalogProductDirectoryClient$basesite;$catalogservice;baseSite->$basesite|clientClassName->MerchCatalogServiceProductDirectoryClient|oauth.scope->cds.roles.customerec;MerchCatalogServiceProductDirectoryClient;$projectid;$projectid.$client
+
+INSERT_UPDATE MerchProductDirectoryConfig;indexedType(identifier)[unique=true];rollUpStrategy;rollUpStrategyField;baseSites(uid);displayName;enabled[default=false];defaultLanguage(isocode);currency(isocode);$merchCatalogVersions
+                                         ;$solrIndexedType                    ;"Rollup to Base Product";baseProductCode_string ;$basesite   ;Asiamiles Merch      ;          ;$language                      ;$currencies              ;$productCatalog:Online
+
+
+UPDATE MerchProductDirectoryConfig;indexedType(identifier)[unique=true];baseImageUrl;baseCatalogPageUrl
+                                  ;$solrIndexedType;$baseURL; $baseURL
+
+
+INSERT_UPDATE MerchProperty;merchProductDirectoryConfig(indexedType(identifier))[unique=true];indexedProperty(solrIndexedType(identifier),name)[unique=true];merchMappedName
+                           ;$solrIndexedType                                         ;$solrIndexedType:code                                         ;id
+                           ;$solrIndexedType                                         ;$solrIndexedType:name                                         ;name
+                           ;$solrIndexedType                                         ;$solrIndexedType:url                                          ;pageUrl
+                           ;$solrIndexedType                                         ;$solrIndexedType:baseProductCode                              ;baseProductCode
+                           ;$solrIndexedType                                         ;$solrIndexedType:priceValue                                   ;price
+                           ;$solrIndexedType                                         ;$solrIndexedType:summary                                      ;summary
+                           ;$solrIndexedType                                         ;$solrIndexedType:description                                  ;description
+                           ;$solrIndexedType                                         ;$solrIndexedType:allCategories                                ;categories
+                           ;$solrIndexedType                                         ;$solrIndexedType:img-294Wx195H1                                  ;thumbnailImage
+                           ;$solrIndexedType                                         ;$solrIndexedType:img-294Wx195H2                                ;mainImage

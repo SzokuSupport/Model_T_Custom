@@ -1,0 +1,9 @@
+#Ant properties
+#Mon Feb 18 16:13:29 CET 2019
+builddate=20190218 1613
+description=oidcsinglesignon
+name=oidcsinglesignon
+releasedate=20181129 1417
+vendor=hybris
+version=1811.2
+version.api=1811

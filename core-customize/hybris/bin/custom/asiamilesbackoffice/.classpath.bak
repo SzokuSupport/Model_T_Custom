@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry exported="true" kind="src" path="/asiamilescore"/>
+	<classpathentry kind="src" path="testsrc"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="resources"/>
+	<classpathentry exported="true" kind="src" path="/asiamilesfacades"/>
+	<classpathentry kind="src" path="backoffice/testsrc"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="src" path="/platform"/>
+	<classpathentry exported="true" kind="src" path="/backoffice"/>
+	<classpathentry kind="src" path="backoffice/resources"/>
+	<classpathentry kind="src" path="backoffice/src"/>
+	<classpathentry exported="true" kind="lib" path="resources/backoffice/asiamilesbackoffice_bof.jar"/>
+	<classpathentry kind="output" path="eclipsebin"/>
+</classpath>

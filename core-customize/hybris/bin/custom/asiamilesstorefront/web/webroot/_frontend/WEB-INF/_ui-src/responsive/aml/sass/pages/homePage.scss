@@ -1,0 +1,27 @@
+@import "../function/px2rem";
+@import "../mixins/media";
+@import "../plugins/slick";
+@import "../plugins/slick-theme";
+@import "../plugins/jquery.nstSlider";
+
+
+// @import "../components/common/category-navigation";
+@import "../components/slick/slick-default";
+@import "../components/common/popup-tooltip";
+
+@import "../components/homePage/slick-arrow";
+@import "../components/homePage/product-card";
+@import "../components/homePage/promotion-product";
+@import "../components/homePage/promotion-brands";
+@import "../components/homePage/promotion-fullwidth";
+@import "../components/homePage/promotion-banner";
+@import "../components/homePage/promotion-bannerTwo";
+@import "../components/common/gallery";
+@import "../components/common/single-video";
+@import "../components/common/duo";
+@import "../components/common/text-banner";
+@import "../components/common/trio";
+@import "../components/homePage/our-promise-component";
+@import "../components/common/faq";
+@import "../components/homePage/top-banner";
+@import "../components/homePage/select-miles";

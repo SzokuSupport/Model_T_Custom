@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="src" path="/asiamilesstorefrontcommons"/>
+	<classpathentry exported="true" kind="src" path="/asiamilesfacades"/>
+	<classpathentry kind="lib" path="web/webroot/WEB-INF/lib/json-taglib-0.4.1.jar"/>
+	<classpathentry kind="lib" path="web/webroot/WEB-INF/lib/jsoup-1.6.1.jar"/>
+	<classpathentry kind="lib" path="web/webroot/WEB-INF/lib/jstl-impl-1.2.jar"/>
+	<classpathentry kind="lib" path="web/webroot/WEB-INF/lib/owasp-java-html-sanitizer-20180219.1.jar"/>
+	<classpathentry kind="lib" path="web/webroot/WEB-INF/lib/wro4j-core-1.7.9.jar"/>
+	<classpathentry exported="true" kind="lib" path="resources"/>
+	<classpathentry kind="lib" path="web/webroot/WEB-INF/lib/zxing-3.1.0.jar"/>
+	<classpathentry kind="lib" path="web/webroot/WEB-INF/lib/zxing-javase-3.1.0.jar"/>
+	<classpathentry kind="src" output="eclipsebin/web/classes" path="web/src"/>
+	<classpathentry kind="src" path="/platform"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/commerceorgsamplesaddon"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/promotionenginesamplesaddon"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/marketplacepromotionenginesamplesaddon"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/smarteditaddon"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/textfieldconfiguratortemplateaddon"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/assistedservicestorefront"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/customerticketingaddon"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/orderselfserviceaddon"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/consignmenttrackingaddon"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/marketplaceaddon"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/marketplacebackofficesamplesaddon"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/notificationaddon"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/customerinterestsaddon"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/stocknotificationaddon"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/adaptivesearchsamplesaddon"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/personalizationsearchsamplesaddon"/>
+	<classpathentry kind="output" path="eclipsebin/notused"/>
+</classpath>

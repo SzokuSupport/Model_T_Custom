@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<widget xmlns="http://www.zkoss.org/2005/zul" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.hybris.com/schema/cockpitng/zul/zul.xsd" sclass="oms-widget-cancelorder-configuration"
+	id="rejectview" height="100%" width="100%">
+
+	<separator width="100%" height="10px" />
+
+	<hlayout sclass="oms-widget-cancelorder-reason-header" width="100%">
+		<hbox>
+			<label value="Remarks" />
+		</hbox>
+	</hlayout>
+
+	<separator width="100%" height="10px" />
+	<hlayout sclass="oms-widget-cancelorder-reason-body" width="560px">
+		<hbox>
+			<textbox rows="3" width="470px" id="remarks"> </textbox>
+		</hbox>
+	</hlayout>
+	<separator width="100%" height="40px" />
+
+	<hlayout>
+		<hbox>
+			<div width="560px"></div>
+			<div sclass="oms-widget-cancelorder-configuration-button-container">
+				<button label="Refresh" sclass="oms-widget-cancelorder-configuration-button oms-widget-cancelorder-configuration-revert-button" id="undo" width="100px"/>
+				<button label="Confirm" sclass="oms-widget-cancelorder-configuration-button oms-widget-cancelorder-configuration-save-button" id="confirm" width="100px"/>
+			</div>
+		</hbox>
+	</hlayout>
+
+	
+</widget>

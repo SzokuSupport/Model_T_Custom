@@ -1,0 +1,64 @@
+
+## Jumbo Local Crendential
+#$client=jumbolocal
+#$clientid=htp740963945.jumbolocal
+#$clientsecret=X25QK5yj.I2hQqJ785j1-Jp5Y4-3HF
+
+$currencies=MVR
+$language=en
+
+## Asiamiles t0
+$client=asiamiles-t0
+$clientid=htp740963945.asiamiles-t0
+$clientsecret=Dz2~mm1Q8bGW58ntX0b~~8Vw23Whxn
+
+#$client =asiamiles-p1
+#$clientid=htp740963946.asiamiles-p1
+#$clientsecret =h39y_Gf7M4p~.XsIE1uz11j65xt98_
+
+## Asiamiles D1
+#$client=asiamiles-d1
+#$clientsecret=359bU_c.8n_CimJgF322ebAqEb81eI
+
+#$client=asiamiles-d2
+#$clientid=htp740963945.asiamiles-d2
+#$clientsecret=4e15c0mGbG5S~12WEOG7Ou7_i9r-iG
+
+$region=us
+$projectid=htp740963945
+$profiletagconfigurl=https://tag.static.us.context.cloud.sap/config/583023c0-af5d-11e9-ac0e-3def3a399f28
+
+#$projectid=htp740963946
+#$profiletagconfigurl=https://tag.static.us.context.cloud.sap/config/27c37140-383a-11ea-800a-45c1079d09cc
+
+$basesite=asiamiles
+$contentCatalog=asiamilesContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$siteUid=asiamiles
+$productCatalog=asiamilesProductCatalog
+$solrIndexedType=$siteUidProductType
+$merchCatalogVersions=merchCatalogVersions(catalog(id),version);
+$productCatalogVersion=catalogVersion(catalog(id[default=$productCatalog]),version[default=Online])[default=$productCatalog:Online]
+
+
+# No changes necessary below this point
+$profiletagurl   = https://tag.static.$region.context.cloud.sap/js/profile-tag.js
+$edgeservice     = https://$projectid.api.$region.context.cloud.sap/edge
+$oauthservice    = https://$projectid.api.$region.context.cloud.sap/uaa/oauth
+$merchStrategyservice  = https://$projectid.api.$region.context.cloud.sap/strategy
+
+
+INSERT_UPDATE DestinationTarget;id[unique=true];destinationChannel(code)[default=KYMA]
+                                ;$projectid;CDS
+
+INSERT_UPDATE ConsumedOAuthCredential;id[unique=true];clientId;clientSecret;oAuthUrl
+                                ;$projectid.$client;$projectid.$client;$clientsecret;$oauthservice
+
+INSERT_UPDATE BasicCredential;id[unique=true];username;password
+                             ;basicCreds;"username";"pass"
+
+INSERT_UPDATE Endpoint;id[unique=true];version[unique=true];specUrl;name
+                      ;MerchStratServiceClient;v1;"empty";Merchandising Strategies Service Client v1
+
+INSERT_UPDATE ConsumedDestination;id[unique=true];url;additionalProperties(key,value)[map-delimiter=|];endpoint(id);destinationTarget(id)[default=$projectid];credential(id)
+                                 ;MerchStratServiceClient$basesite;$merchStrategyservice;baseSite->$basesite|clientClassName->AmlMerchandisingServiceDataClient;MerchStratServiceClient;$projectid;$projectid.$client                                 ;ProfileDataServiceClient;https://api.yaas.io/hybris/profile/v1;oauth.scope->hybris.profile_view|clientClassName->ProfileDataServiceClient;ProfileDataServiceClient;;testCredential

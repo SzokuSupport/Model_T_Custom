@@ -1,0 +1,98 @@
+.campaign-leah-serena{
+    @include  media-query-down(768px){
+        padding: 0 0;
+    }
+    .promotion-campaign-img{
+        img{
+            transition: transform 0.45s ease;
+        }
+    }
+
+}
+.promotion-campaign-leah-serena{
+    max-height: 400px;
+    height: auto;
+    overflow: hidden;
+    background-color: #f4f4f5;
+    display: flex;
+    align-items: center;
+
+    @include  media-query-down(768px){
+        display: inline-flex;
+    }
+
+    .leah-serena-left, .leah-serena-right{
+        width: 50%;
+        float: left;
+
+        @include  media-query-down(768px){
+            width: 100%;
+            float: none;
+            overflow: hidden;
+        }
+    }
+
+    .container-text{
+        .left-content-text{
+            width: px2rem(449px);
+            margin: 0 auto;
+
+            @include  media-query-down(1280px){
+              width: 73.8%;;
+            }
+            
+            @include  media-query-down(768px){
+                width: 100%;
+                padding: px2rem(42px) px2rem(25px) px2rem(65px);
+            
+            }
+
+        }
+
+        span{
+            width: 100%;
+            display: block;
+            margin: 0 0 px2rem(10px);
+            font-size: 20px;
+            line-height: px2rem(30px);
+
+            @include  media-query-down(1280px){
+                font-size: 18px;
+            }
+        }
+
+        p{
+            width: 100%;
+            font-size: 14px;
+            line-height: px2rem(24px);
+
+            @include  media-query-down(1280px){
+                font-size: 12px;
+                line-height: px2rem(22px);
+            }
+
+            @include  media-query-down(768px){
+                font-size: 14px;
+                line-height: px2rem(24px);
+            }
+        }
+    }
+
+
+
+}
+
+.leah-serena-content{
+    @include  media-query-down(768px){
+        flex-direction: column-reverse;
+        max-height: 100%;
+    }
+}
+
+.serena-williams{
+    margin-top: px2rem(60px);
+    @include  media-query-down(768px){
+        display: block;
+        max-height: 100%;
+    }
+}

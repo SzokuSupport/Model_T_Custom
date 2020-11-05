@@ -1,0 +1,443 @@
+.order-summary-fail{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    color:#272f38;
+
+    @include media-query-down(768px){
+        height: auto;
+        margin-top: px2rem(50px);
+    }
+
+    &__header{
+        width: 100%;
+    }
+
+    &__content{
+        display: flex;
+        flex-direction: column;
+
+        @include media-query-up(768px){
+            flex: 1;
+        }
+
+        &--detail{
+            flex:   1;
+            width: 100%;
+
+            .background{
+                background: #FBD933;
+                width: 100%;
+                height: px2rem(330px);
+                padding: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                @include media-query-down(768px){
+                    // height: px2rem(155px);
+                    flex-wrap: wrap-reverse;
+                    padding-top: px2rem(40px);
+                }
+
+                .title{
+                    margin-right: px2rem(109px);
+                    font-size: 30px;
+
+                    @include media-query-between(768px,1279px){
+                        margin-right: px2rem(78px);
+                    }
+
+                    @include media-query-down(768px){
+                        margin: px2rem(21px) 0 0;
+                        font-size: 24px;
+                        width: 100%;
+                        text-align: center;
+                    }
+                }
+
+                .icon-order-fail{
+                    display: block;
+                    width: px2rem(210px);
+                    height: px2rem(215px);
+                    margin-left: px2rem(109px);
+
+                    @include media-query-between(768px,1279px){
+                        margin-left: px2rem(78px);
+                    }
+
+                    @include media-query-down(768px){
+                        width: px2rem(110px);
+                        height: px2rem(110px);
+                        margin: 0;
+                    }
+                }
+            }
+
+            .error{
+                max-width: px2rem(964px);
+                padding: px2rem(30px) 0 px2rem(90px);
+                margin: 0 auto;
+                text-align: center;
+
+                @include media-query-down(768px){
+                    padding: px2rem(20px) 0 0 0;
+                }
+
+                // .title{
+                //     font-size: 24px;
+                //     line-height: px2rem(30px);
+                //     padding-bottom: px2rem(20px);
+
+                //     @include media-query-down(768px){
+                //         text-align: center;
+                //     }
+                // }
+
+                &__message{
+                    font-size: 16px;
+                    line-height: px2rem(28px);
+                    // padding-bottom: 40px;
+                    // border-bottom: 1px solid #dadadc;
+
+                    a{
+                        text-decoration: underline;
+                    }
+
+                    @include media-query-down(768px){
+                        padding-bottom: px2rem(30px);
+                        margin: 0 px2rem(15px);
+                        text-align: left;
+                    }
+
+                }
+
+                &__message--two{
+                    font-size: 16px;
+                    line-height: px2rem(28px);
+                    padding-bottom: px2rem(20px);
+                    border-bottom: 1px solid #dadadc;
+
+                    @include media-query-down(768px){
+                        padding: 0 px2rem(15px) px2rem(14px);
+                        text-align: center;
+                    }
+                }
+
+                &__hide{
+                    font-size: 16px;
+                    line-height: px2rem(28px);
+                }
+
+                .enough{
+                    display: flex;
+                    flex-wrap: wrap;
+                    padding: px2rem(28px) px2rem(26px);
+                    box-sizing: border-box;
+                    background: #f4f4f5;
+
+                    @include media-query-down(1200px){
+                        padding: px2rem(10px) px2rem(15px);
+                    }
+
+                    &__number{
+                        width: 20%;
+
+                        @include media-query-down(1200px){
+                            width: 100%;
+                            padding-bottom: px2rem(11px);
+                        }
+
+                        p{
+                            font-size: 14px;
+                            line-height: px2rem(17px);
+
+                            @include media-query-down(1200px){
+                                float: left;
+                                line-height: px2rem(46px);
+                            }
+                        }
+
+                        .minus{
+                            float: right;
+                            width: px2rem(12px);
+                            height: px2rem(2px);
+                            background: #909499;
+                            margin-right: px2rem(15px);
+                            margin-top: px2rem(22px);
+                            display: none;
+
+                            @include media-query-down(1200px){
+                                display: block;
+                            }
+                        }
+
+                        &--icon{
+                            margin-top: px2rem(6px);
+
+                            @include media-query-down(1200px){
+                                float: right;
+                                margin-top: 0;
+                            }
+
+                            .icon-money{
+                                width: px2rem(19px);
+                                height: px2rem(22px);
+                            }
+
+                            span{
+                                font-size: 26px;
+                                line-height: px2rem(46px);
+                            }
+                        }
+                    }
+
+                    &__required{
+
+                        @include media-query-down(1200px){
+                            width: 100%;
+                            padding-bottom: px2rem(11px);
+                        }
+
+                        p{
+                            font-size: 14px;
+                            line-height: px2rem(17px);
+
+                            @include media-query-down(1200px){
+                                float: left;
+                                line-height: px2rem(46px);
+                            }
+                        }
+
+                        .minus{
+                            float: right;
+                            width: px2rem(12px);
+                            height: px2rem(2px);
+                            background: #909499;
+                            margin-right: px2rem(15px);
+                            margin-top: px2rem(22px);
+                            display: none;
+
+                            @include media-query-down(1200px){
+                                display: block;
+                            }
+                        }
+
+                        .enough__number--icon{
+                            margin-top: px2rem(6px);
+
+                            @include media-query-down(1200px){
+                                float: right;
+                                margin-top: 0;
+                            }
+
+                            .icon-money{
+                                width: px2rem(19px);
+                                height: px2rem(22px);
+                            }
+
+                            span{
+                                font-size: 26px;
+                                line-height: px2rem(46px);
+                            }
+                        }
+                    }
+
+                    &__balance{
+
+                        @include media-query-down(1200px){
+                            width: 100%;
+                            padding-bottom: px2rem(11px);
+                        }
+
+                        p{
+                            font-size: 14px;
+                            line-height: px2rem(17px);
+
+                            @include media-query-down(1200px){
+                                float: left;
+                                line-height: px2rem(46px);
+                            }
+                        }
+
+                        .minus{
+                            float: right;
+                            width: px2rem(12px);
+                            height: px2rem(2px);
+                            background: #909499;
+                            margin-right: px2rem(15px);
+                            margin-top: px2rem(22px);
+                            display: none;
+
+                            @include media-query-down(1200px){
+                                display: block;
+                            }
+                        }
+
+                        .enough__number--icon{
+                            margin-top: px2rem(6px);
+
+                            @include media-query-down(1200px){
+                                float: right;
+                                margin-top: 0;
+                            }
+
+                            .icon-money{
+                                width: px2rem(19px);
+                                height: px2rem(22px);
+                            }
+
+                            span{
+                                font-size: 26px;
+                                line-height: px2rem(46px);
+                            }
+                        }
+                    }
+
+                    &__still{
+
+                        @include media-query-down(1200px){
+                            width: 100%;
+                            padding-bottom: px2rem(11px);
+                        }
+
+                        p{
+                            font-size: 14px;
+                            line-height: px2rem(17px);
+
+                            @include media-query-down(1200px){
+                                float: left;
+                                line-height: px2rem(46px);
+                            }
+                        }
+
+                        .minus{
+                            float: right;
+                            width: px2rem(12px);
+                            height: px2rem(2px);
+                            background: #909499;
+                            margin-right: px2rem(15px);
+                            margin-top: px2rem(22px);
+                            display: none;
+
+                            @include media-query-down(1200px){
+                                display: block;
+                            }
+                        }
+
+                        .enough__number--icon{
+                            margin-top: px2rem(6px);
+
+                            @include media-query-down(1200px){
+                                float: right;
+                                margin-top: 0;
+                            }
+
+                            .icon-money{
+                                width: px2rem(19px);
+                                height: px2rem(22px);
+                            }
+
+                            span{
+                                font-size: 26px;
+                                line-height: px2rem(46px);
+                            }
+                        }
+                    }
+
+                    .bottom{
+
+                        @include media-query-down(1200px){
+                            padding-bottom: px2rem(22px);
+                            border-bottom: 1px solid #909499;
+                            margin-bottom: px2rem(11px);
+                        }
+                    }
+
+                    &__operation{
+                        flex: 1;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: column;
+                        font-size: 30px;
+
+                        span{
+                            width: px2rem(20px);
+                            height: px2rem(2px);
+                            background: #909499;
+                            margin-bottom: px2rem(11px);
+                        }
+
+                        @include media-query-down(1200px){
+                            display: none;
+                        }
+                    }
+
+                    &__operation--equal{
+                        flex: 1;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: column;
+                        font-size: 30px;
+
+                        span{
+                            width: px2rem(30px);
+                            height: px2rem(2px);
+                            background: #909499;
+                            margin-bottom: px2rem(11px);
+                        }
+
+                        @include media-query-down(1200px){
+                            display: none;
+                        }
+                    }
+                }
+
+                .line-btn{
+                    margin:px2rem(30px) auto;
+                    width: px2rem(300px);
+                    height: px2rem(54px);
+                    font-size: 16px;
+                    line-height:px2rem(50px);
+                    border: solid 2px #bec0c3;
+                    text-align:center;
+                    cursor: pointer;
+
+                    &:hover{
+                        background: #f4f4f5;
+                    }
+                    @include media-query-down(768px){
+                        width:auto;
+                        margin:px2rem(20px) px2rem(15px);
+                    }
+                }
+
+                .line-btn__two{
+                    margin: px2rem(20px) auto px2rem(10px);
+                    width: px2rem(300px);
+                    height: px2rem(54px);
+                    font-size: 16px;
+                    line-height:px2rem(50px);
+                    border: solid 2px #bec0c3;
+                    text-align:center;
+                    cursor: pointer;
+
+                    &:hover{
+                        background: #f4f4f5;
+                    }
+
+                    @include media-query-down(768px){
+                        width:auto;
+                        margin:px2rem(30px) px2rem(15px);
+                    }
+                }
+            }
+        }
+
+        &--footer{
+            height: px2rem(100px);
+            z-index: 5;
+        }
+    }
+}

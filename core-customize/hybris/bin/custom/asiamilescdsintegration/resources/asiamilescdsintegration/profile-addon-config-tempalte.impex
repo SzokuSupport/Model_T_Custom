@@ -1,0 +1,49 @@
+$contentCatalog=asiamilesContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$siteUid=asiamiles
+$productCatalog=asiamilesProductCatalog
+
+$solrIndexedType=$siteUidProductType
+$merchCatalogVersions=merchCatalogVersions(catalog(id),version);
+
+$productCatalogVersion=catalogVersion(catalog(id[default=$productCatalog]),version[default=Online])[default=$productCatalog:Online]
+
+$lang=en
+
+
+##### Personalisation Recalculation Configuration ######
+INSERT_UPDATE CxConfig; code[unique = true]; minAffinity; actionResultMaxRepeat; userChangedActions; ignoreRecalcForAnonymous[default = false]; anonymousUserDefaultActions; anonymousUserActions; anonymousUserMinRequestNumber; anonymousUserMinTime; anonymousUserIgnoreOtherActions
+                      ; $siteUid ; 0.5 ; 1 ; RECALCULATE,ASYNC_PROCESS ; ; RECALCULATE ; ; 10 ; 60000 ; false
+
+#default ConfigurableUrlVoter configuration
+INSERT_UPDATE CxUrlVoterConfig; cxConfig(code)[unique = true]; code[unique = true]; urlRegexp; actions; userType(code)
+                              ; $siteUid ; default ; .* ; LOAD,ASYNC_PROCESS  ; ALL
+
+INSERT_UPDATE BaseSite; uid[unique = true]; cxConfig(code);
+                      ; $siteUid ; $siteUid ;
+
+
+##### Profile Tag Configuraton ######
+INSERT_UPDATE ConsentTemplate;id[unique=true];name[lang=$lang];description[lang=$lang];version[unique=true];baseSite(uid)[unique=true,default=$siteUid];exposed
+                             ;PROFILE;"Allow SAP Commerce Cloud, Context-Driven Services tracking";"We would like to store your browsing behaviour so that our website can dynamically present you with a personalised browsing experience and our customer support agents can provide you with contextual customer support.";1;;true
+
+UPDATE CxConfig;code[unique=true];consentTemplates(id);baseSites(uid)
+               ;$siteUid;PROFILE;$siteUid
+
+
+INSERT_UPDATE ProfileTagScriptComponent;$contentCV[unique=true];uid[unique=true];name;
+                                       ;;ProfileTagScriptComponent;Profile Tag;ProfileTagScriptTagScript;;
+
+
+INSERT_UPDATE PersonalizationScriptComponent;$contentCV[unique = true];uid[unique = true];name;
+                                            ;;PersonalizationScriptComponent;PersonalizationScript;PersonalizationScript;;
+
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique = true];uid[unique = true];active;cmsComponents(uid, $contentCV)[mode = replace]
+                         ;;PlaceholderContentSlot;true;PersonalizationScriptComponent, ProfileTagScriptComponent
+
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];position[unique=true][default=PlaceholderContentSlot];uid[unique=true];page(uid,$contentCV)[unique=true];contentSlot(uid,$contentCV)[unique=true];;;
+                                ;;;PlaceholderContentSlot;HomePage;PlaceholderContentSlot;;;
+

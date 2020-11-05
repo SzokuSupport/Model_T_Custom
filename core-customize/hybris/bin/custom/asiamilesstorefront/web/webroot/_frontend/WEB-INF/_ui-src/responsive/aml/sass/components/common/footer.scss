@@ -1,0 +1,135 @@
+.footer-container {
+  width: 100%;
+  margin: 0 auto;
+  color: #fff;
+  background-color: #272f38;
+  border-top: 4px solid #facf00;
+
+  .footer-inner {
+    padding: px2rem(30px) px2rem(55px) px2rem(18px);
+
+    @include media-query-up(1440px){
+        max-width: px2rem(1440px);
+        padding: px2rem(30px) px2rem(50px) px2rem(18px);
+        margin: 0 auto;
+    }
+
+    @include media-query-down(1280px){
+      padding: px2rem(25px) px2rem(20px) px2rem(18px);
+      text-align: center;
+    }
+
+    @include media-query-down(728px){
+      padding: px2rem(25px) px2rem(15px) px2rem(34px);
+      text-align: center;
+    }
+
+    a {
+      color: #fff;
+      display: inline-block;
+    }
+  }
+
+  .footer-share {
+    float: right;
+    width: px2rem(250px);
+
+    @include media-query-down(1280px){
+      width: 100%;
+    }
+
+    a {
+      float: left;
+      margin-bottom: px2rem(20px);
+      padding: 0 px2rem(15px);
+
+      @include media-query-down(1280px){
+        float: none;
+        margin-bottom: px2rem(22px);
+      }
+
+      @include media-query-down(728px){
+        margin-bottom: px2rem(30px);
+      }
+    }
+
+    &__img {
+      width: auto;
+      height: px2rem(18px);
+    }
+  }
+
+  .footer-menu {
+    float: left;
+    width: calc(100% - 255px);
+    margin-bottom: px2rem(20px);
+
+    @include media-query-down(1280px){
+      width: 100%;
+    }
+
+    &-items {
+      margin-bottom: px2rem(20px);
+
+      @include media-query-between(768,1280px){
+        margin-bottom: px2rem(12px);
+      }
+
+      li {
+        display: inline-block;
+        font-size: 14px;
+        line-height: px2rem(17px);
+
+        @include media-query-down(1280px){
+          line-height: px2rem(20px);
+        }
+
+        @include media-query-down(728px){
+          line-height: px2rem(24px);
+        }
+
+        &:first-child {
+
+          .vertical-bar {
+            display: none;
+          }
+        }
+
+        a{
+          &:hover{
+            text-decoration: underline;
+          }
+        }
+      }
+
+      .vertical-bar {
+        padding: 0 px2rem(4px);
+      }
+    }
+  }
+
+  .footer-copyright {
+    font-size: 12px;
+    line-height: px2rem(17px);
+
+    .text {
+      @include media-query-down(1280px){
+        display: block;
+        margin-bottom: px2rem(12px);
+      }
+
+      @include media-query-down(728px){
+        margin-bottom: px2rem(14px);
+      }
+    }
+
+    a {
+      padding: 0 px2rem(10px);
+    }
+
+    &__img {
+      width: auto;
+      height: px2rem(21px);
+    }
+  }
+}

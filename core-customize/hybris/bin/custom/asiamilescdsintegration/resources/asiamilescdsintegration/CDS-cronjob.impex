@@ -1,0 +1,6 @@
+INSERT_UPDATE CxResultsCleaningCronJob; code[unique = true]     ; job(code)                      ; singleExecutable; sessionLanguage(isocode); anonymous; maxResultsAge;
+                                      ; cleanupCxResultsCronJobFixed ; cleanupCxResultsJobPerformable ; false           ; de                      ; true     ; 172800       ;
+
+INSERT_UPDATE Trigger; cronJob(code)[unique = true]             ; second; minute; hour; day; month; year; relative; active; maxAcceptableDelay
+                     ; cleanupCxResultsCronJobFixed                  ; 0     ; 5     ; 4   ; -1 ; -1   ; -1  ; false   ; true  ; -1
+

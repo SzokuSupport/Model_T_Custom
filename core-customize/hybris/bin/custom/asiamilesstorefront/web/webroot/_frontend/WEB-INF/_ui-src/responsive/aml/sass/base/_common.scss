@@ -1,0 +1,128 @@
+.tr {
+  text-align: right;
+}
+
+.tc {
+  text-align: center;
+}
+
+.only-mobile {
+  display: none;
+
+  @include media-query-down(768px) {
+    display: block;
+  }
+}
+
+.only-desktop {
+  display: block;
+
+  @include media-query-down(768px) {
+    display: none;
+  }
+}
+
+.disappear {
+  display: none;
+}
+
+// remove input arrow
+input {
+  caret-color: #272f38;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+// when pop up message, prevent background scroll
+.ovfHiden {
+  overflow: hidden;
+  // height: 100%;
+}
+
+//IE  img
+.whiteBg {
+  background: #ffffff;
+}
+
+.ImgToBg {
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.NHCM {
+  display: block;
+}
+
+.HCM {
+  display: none;
+}
+
+//HCM
+@media screen and (-ms-high-contrast: active) {
+  svg {
+    fill: green;
+    stroke: green;
+  }
+
+  .nstSlider {
+    background: #efc603;
+  }
+
+  .nstSlider .bar {
+    background: green;
+  }
+
+  .NHCM {
+    display: none;
+  }
+
+  .HCM {
+    display: block;
+  }
+}
+
+@media screen and (-ms-high-contrast: black-on-white) {
+  svg {
+    fill: #333333;
+    stroke: #333333;
+  }
+
+  .nstSlider .bar {
+    background: #333333;
+  }
+
+  .NHCM {
+    display: block;
+  }
+
+  .HCM {
+    display: none;
+  }
+}
+
+@media screen and (-ms-high-contrast: white-on-black) {
+  svg {
+    fill: #ffffff;
+    stroke: #ffffff;
+  }
+
+  .nstSlider .bar {
+    background: #ffffff;
+  }
+
+  .NHCM {
+    display: none;
+  }
+
+  .HCM {
+    display: block;
+  }
+}

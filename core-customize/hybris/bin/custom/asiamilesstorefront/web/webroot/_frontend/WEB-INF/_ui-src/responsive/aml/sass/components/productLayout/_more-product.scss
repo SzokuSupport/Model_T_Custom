@@ -1,0 +1,41 @@
+.more-product {
+  max-width: 700px;
+  margin: 0 auto px2rem(200px);
+
+  &-box {
+    display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+  }
+
+  &-item {
+    width: px2rem(294px);
+    height: px2rem(54px);
+    line-height: px2rem(54px);
+    border: 2px solid #bec0c3;
+    text-align: center;
+    margin-right: px2rem(30px);
+    margin-bottom: px2rem(20px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    @include media-query-down(768px){
+      width: 100%;
+      margin-right: 0;
+
+      &:last-of-type{
+        margin-bottom: 0;
+      }
+    }
+
+    &:last-of-type{
+      margin-right: 0;
+    }
+    
+    &:hover{
+      background: #f4f4f5;
+    }
+  }
+}

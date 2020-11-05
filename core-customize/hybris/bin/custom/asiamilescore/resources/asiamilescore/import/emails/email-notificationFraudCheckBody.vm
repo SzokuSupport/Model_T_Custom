@@ -1,0 +1,16 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+</head>
+<body style="margin: 0 0;">
+<br/>
+The below consignment is on hold for fraud check.<br/>
+<br/>
+Order ID: ${ctx.data.orderId}<br/>
+Fraud check reason: ${ctx.data.fraudCheckReason}<br/>
+Consignment ID: ${ctx.data.consignmentId}<br/>
+<br/>
+</body>
+</html>

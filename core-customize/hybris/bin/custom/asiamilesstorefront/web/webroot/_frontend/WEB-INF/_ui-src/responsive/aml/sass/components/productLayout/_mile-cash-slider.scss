@@ -1,0 +1,15 @@
+.mile-cash-slider {
+  margin: px2rem(27px) 0 px2rem(20px) 0;
+
+  .nstSlider {
+    background: #3c434b;
+    height: 3px;
+  }
+
+  &-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #272f38;
+  }
+}

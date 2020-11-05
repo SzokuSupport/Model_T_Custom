@@ -1,0 +1,9 @@
+#Ant properties
+#Fri May 31 15:50:56 CEST 2019
+builddate=20190531 1549
+description=asiamilesmerchandisingaddon
+name=asiamilesmerchandisingaddon
+releasedate=20181129 1417
+vendor=hybris
+version=1811.7
+version.api=1811

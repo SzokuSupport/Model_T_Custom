@@ -1,0 +1,172 @@
+.promotion-fullwidth {
+    padding: 0 px2rem(90px);
+    margin-bottom: px2rem(50px);
+
+    @include  media-query-down(1280px){
+        padding: 0 px2rem(65px);
+    }
+
+    @include  media-query-down(768px){
+        padding: 0;
+        margin: 0 0 px2rem(50px);
+    }
+
+    .item-list {
+        position: relative;
+
+        &.font-black {
+            &:before {
+                background-image: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
+            }
+            @include  media-query-up(768px){
+                .description {
+                    color: #fff;
+                }
+            }
+        }
+
+        &:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            width: 60%;
+            height: 100%;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(216, 216, 216, 0));
+    
+            @include  media-query-down(768px){
+                display: none;
+            }
+        }
+
+        &:hover {
+            img {
+                transform:scale(1.05);
+            }
+        }
+
+        .img {
+            overflow: hidden;
+            
+            img {
+                overflow: hidden;
+                transition:transform .45s ease;
+            }
+
+            .lazy {
+                padding-top: 38%;
+                height: 1px;
+    
+                &.loaded {
+                    padding-top: 0;
+                    height: auto;
+                }
+            }
+            
+        }
+
+        .description {
+            position: absolute;
+            top: 50%;
+            left: px2rem(60px);
+            z-index: 2;
+            width: px2rem(340px);
+    
+            -webkit-transform: translate(0, -50%);
+            -ms-transform: translate(0, -50%);
+            transform: translate(0, -50%);
+    
+            @include  media-query-down(1280px){
+                left: px2rem(20px);
+                width: px2rem(200px);
+            }
+    
+            @include  media-query-down(768px){
+                position: relative;
+                top: auto;
+                left: auto;
+                width: 100%;
+                text-align: center;
+                padding: px2rem(20px) px2rem(15px) px2rem(32px);
+    
+                -webkit-transform: none;
+                -ms-transform: none;
+                transform: none;
+            }
+            
+        }
+
+        .headline {
+            font-size: 24px;
+            line-height: px2rem(35px);
+            margin-bottom: px2rem(12px);
+            height: px2rem(70px);
+            overflow: hidden;
+            display: flex;
+            justify-content: flex-start;
+            // align-items: center;
+    
+            @include  media-query-down(1280px){
+                font-size: 18px;
+                line-height: px2rem(24px);
+                margin-bottom: px2rem(10px);
+                height: px2rem(48px);
+            }
+    
+            @include  media-query-down(768px){
+                font-size: 24px;
+                line-height: px2rem(30px);            
+                margin-bottom: px2rem(15px);
+                height: px2rem(60px);
+                justify-content: center;
+            }
+        }
+
+        .info {
+            line-height: px2rem(30px);
+            margin-bottom: px2rem(20px);
+            height: px2rem(60px);
+            overflow : hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+    
+            @include  media-query-down(1280px){
+                font-size: 12px;
+                line-height: px2rem(16px);
+                margin-bottom: px2rem(15px);
+                height: px2rem(32px);
+            }
+    
+            @include  media-query-down(768px){
+                font-size: 16px;
+                line-height: px2rem(25px);            
+                margin-bottom: px2rem(25px);
+                height: px2rem(50px);
+            }
+        }
+
+        .button-yellow {
+            width: px2rem(200px);
+            height: px2rem(50px);
+            line-height: px2rem(50px);
+    
+            @include  media-query-down(1280px){
+                width: px2rem(150px);
+                height: px2rem(37px);
+                line-height: px2rem(37px);
+            }
+    
+            @include  media-query-down(768px){
+                width: 100%;
+                height: px2rem(60px);
+                line-height: px2rem(60px);
+            }
+        }
+
+    }
+
+    
+}

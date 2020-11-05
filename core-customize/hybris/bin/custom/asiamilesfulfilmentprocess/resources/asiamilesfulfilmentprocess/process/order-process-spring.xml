@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+           
+    <context:annotation-config/>
+
+	<!-- Order Process Actions -->
+
+	<bean id="abstractOrderAction" class="com.asiamiles.fulfilmentprocess.actions.order.AbstractOrderAction"  abstract="true" parent="abstractAction">
+		<property name="timeService" ref="timeService"/>
+	</bean>
+
+	<bean id="checkOrderAction" class="com.asiamiles.fulfilmentprocess.actions.order.CheckOrderAction"  parent="abstractAction">
+		<property name="checkOrderService" ref="checkOrderService"/>
+	</bean>
+	
+	<bean id="checkAuthorizeOrderPaymentAction" class="com.asiamiles.fulfilmentprocess.actions.order.CheckAuthorizeOrderPaymentAction"  parent="abstractAction">
+		<property name="cppOrderService" ref="cppOrderService"/>
+		<property name="stockService" ref="stockService"/>
+		<property name="warehouseService" ref="warehouseService"/>
+		<property name="orderService" ref="orderService"/>
+	</bean>
+	
+	<bean id="sendOrderPlacedNotificationAction" class="com.asiamiles.fulfilmentprocess.actions.order.SendOrderPlacedNotificationAction"  parent="abstractAction">
+		<property name="eventService" ref="eventService"/>
+	</bean>
+	
+	<bean id="takePaymentAction" class="com.asiamiles.fulfilmentprocess.actions.order.TakePaymentAction"  parent="abstractAction"/> 
+   
+   <bean id="fraudCheckOrderAction" class="com.asiamiles.fulfilmentprocess.actions.order.FraudCheckOrderAction"  parent="abstractOrderAction">
+		<property name="fraudService" ref="fraudService"/>
+		<property name="providerName" value="Mockup_3rdPartyProvider"/>
+	</bean>
+	
+	<bean id="splitOrderAction" class="com.asiamiles.fulfilmentprocess.actions.order.SplitOrderAction"  parent="abstractAction">
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	
+	<bean id="subprocessesCompletedAction" class="com.asiamiles.fulfilmentprocess.actions.order.SubprocessesCompletedAction"  parent="abstractAction"/>
+
+<!-- 	<bean id="cancelWholeOrderAuthorizationAction" class="com.asiamiles.fulfilmentprocess.actions.order.CancelWholeOrderAuthorizationAction" -->
+<!--             parent="abstractAction"> -->
+<!-- 		<property name="paymentService" ref="paymentService"/> -->
+<!--     </bean> -->
+
+<!-- 	<bean id="sendPaymentFailedNotificationAction" class="com.asiamiles.fulfilmentprocess.actions.order.SendPaymentFailedNotificationAction"  parent="abstractAction"> -->
+<!-- 		<property name="eventService" ref="eventService"/> -->
+<!-- 	</bean> -->
+
+<!-- 	<bean id="checkTransactionReviewStatusAction" class="com.asiamiles.fulfilmentprocess.actions.order.CheckTransactionReviewStatusAction"  parent="abstractAction"> -->
+<!-- 		<property name="ticketBusinessService" ref="ticketBusinessService"/> -->
+<!-- 	</bean> -->
+
+<!-- 	<bean id="prepareOrderForManualCheckAction" class="com.asiamiles.fulfilmentprocess.actions.order.PrepareOrderForManualCheckAction"  parent="abstractAction"> -->
+<!-- 		<property name="eventService" ref="eventService"/> -->
+<!-- 	</bean> -->
+
+<!-- 	<bean id="sendFraudErrorNotificationAction" class="com.asiamiles.fulfilmentprocess.actions.order.SendFraudErrorNotificationAction"  parent="abstractAction"> -->
+<!-- 		<property name="eventService" ref="eventService"/> -->
+<!-- 	</bean> -->
+
+<!-- 	<bean id="sendAuthorizationFailedNotificationAction" class="com.asiamiles.fulfilmentprocess.actions.order.SendAuthorizationFailedNotificationAction"  parent="abstractAction"> -->
+<!-- 		<property name="eventService" ref="eventService"/> -->
+<!-- 	</bean> -->
+
+<!-- 	<bean id="reserveOrderAmountAction" class="com.asiamiles.fulfilmentprocess.actions.order.ReserveOrderAmountAction"  parent="abstractAction"> -->
+<!-- 		<property name="stockService" ref="stockService"/> -->
+<!-- 	</bean> -->
+
+<!-- 	<bean id="fraudCheckOrderInternalAction" class="com.asiamiles.fulfilmentprocess.actions.order.FraudCheckOrderInternalAction"  parent="abstractOrderAction"> -->
+<!-- 		<property name="fraudService" ref="fraudService"/> -->
+<!-- 		<property name="providerName" value="hybris"/> -->
+<!-- 	</bean> -->
+
+<!-- 	<bean id="orderManualCheckedAction" class="com.asiamiles.fulfilmentprocess.actions.order.OrderManualCheckedAction"  parent="abstractOrderAction"/> -->
+
+
+<!-- 	<bean id="setOrderExpirationTimeAction" class="com.asiamiles.fulfilmentprocess.actions.order.SetOrderExpirationTimeAction"  parent="abstractAction"> -->
+<!-- 		<property name="timeService" ref="timeService"/> -->
+<!-- 	</bean> -->
+	
+<!-- 	<bean id="sendOrderCompletedNotificationAction" class="com.asiamiles.fulfilmentprocess.actions.order.SendOrderCompletedNotificationAction"  parent="abstractAction"> -->
+<!-- 		<property name="eventService" ref="eventService"/> -->
+<!-- 	</bean> -->
+
+<!-- 	<bean id="scheduleForCleanUpAction" class="com.asiamiles.fulfilmentprocess.actions.order.ScheduleForCleanUpAction"  parent="abstractAction"> -->
+<!-- 		<property name="timeService" ref="timeService"/> -->
+<!-- 	</bean> -->
+
+<!-- 	<bean id="notifyCustomerAboutFraudAction" class="com.asiamiles.fulfilmentprocess.actions.order.NotifyCustomerAboutFraudAction"  parent="abstractAction"> -->
+<!-- 		<property name="eventService" ref="eventService"/> -->
+<!-- 	</bean> -->
+
+
+</beans>

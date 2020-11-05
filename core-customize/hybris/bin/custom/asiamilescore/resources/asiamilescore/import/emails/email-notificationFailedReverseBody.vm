@@ -1,0 +1,27 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+</head>
+<body style="margin: 0 0;">
+<br/>
+The below claim(s) has been failed to cancel in CLS for 5 times:<br/>
+<br/>
+Order details
+<br/>
+<br/>
+Member ID: ${ctx.data.memberId}<br/>
+Order ID: ${ctx.data.orderId}<br/>
+Consignment ID: ${ctx.data.consignmentId}<br/>
+<br/>
+<br/>
+CLS Redemption Cancellation<br/>
+<br/>
+Redemption Claim No: $!{ctx.data.claimNo}<br/>
+Merchandise Claim No: $!{ctx.data.merchClaimNo}<br/>
+Error Code: $!{ctx.data.errorCode}<br/>
+Error Message: $!{ctx.data.errorMessage}<br/>
+
+</body>
+</html>

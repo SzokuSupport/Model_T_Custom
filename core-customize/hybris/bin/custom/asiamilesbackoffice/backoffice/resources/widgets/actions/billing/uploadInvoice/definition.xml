@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action-definition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   id="com.asiamiles.backoffice.actions.billing.uploadCost"
+                   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/action-definition.xsd">
+
+    <name>Upload Actual Cost</name>
+    <description>Upload Actual Cost</description>
+    <author>hybris</author>
+    <version>0.1</version>
+    <sockets>
+        <output id="bindedTarget" type="java.util.Map"/>
+    </sockets>
+    
+    <iconUri>icons/sign-off-default.png</iconUri>
+    <iconHoverUri>icons/sign-off-hover.png</iconHoverUri>
+    <iconDisabledUri>icons/sign-off-disabled.png</iconDisabledUri>
+    
+    <actionClassName>com.asiamiles.backoffice.actions.uploadfile.PartnerConfirmUploadCostDataActionWithCsv</actionClassName>
+</action-definition>

@@ -1,0 +1,9 @@
+#Ant properties
+#Mon Feb 18 16:16:57 CET 2019
+builddate=20190218 1613
+description=smarteditsso
+name=smarteditsso
+releasedate=20181129 1417
+vendor=hybris
+version=1811.2
+version.api=1811

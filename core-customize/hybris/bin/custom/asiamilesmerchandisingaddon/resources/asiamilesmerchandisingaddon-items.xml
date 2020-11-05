@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<!--
+	ATTENTION: This is just an example file. You have to edit it according to your needs.
+-->
+
+<items 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			xsi:noNamespaceSchemaLocation="items.xsd">
+
+	<relations>
+		<relation code="ProductsForAmlMerchCarouselComponent" generate="true" localized="false" autocreate="true">
+			<deployment table="ProdsForAmlMerchCompRels" typecode="31246" />
+			<sourceElement qualifier="amlMerchandisingCarouselComponents" type="AmlMerchandisingCarouselComponent" cardinality="many">
+				<modifiers read="true" write="true" search="true" optional="true" />
+			</sourceElement>
+			<targetElement qualifier="products" type="Product" cardinality="many" collectiontype="list" ordered="true">
+				<modifiers read="true" write="true" search="true" optional="true" />
+			</targetElement>
+		</relation>
+	</relations>
+
+	<itemtypes>
+		<itemtype code="AmlMerchandisingCarouselComponent" extends="MerchandisingCarouselComponent" generate="true" autocreate="true">
+			<description>Extends Default MerchandisingCarouselComponent to allow server rendering </description>
+			<attributes>
+				<attribute qualifier="title" type="localized:java.lang.String" redeclare="true">
+					<description>Carousel title.</description>
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property" />
+				</attribute>
+			</attributes>
+		</itemtype>
+	</itemtypes>
+</items>

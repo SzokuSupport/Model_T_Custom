@@ -1,0 +1,107 @@
+### user managerment
+
+INSERT_UPDATE BackofficeRole;UID[unique=true];locname[lang=en];backOfficeLoginDisabled;groups(uid);authorities
+;partnerfrontstaffrole;Partner Front Staff Role ;FALSE;;partnerfrontstaffrole
+
+
+INSERT_UPDATE UserGroup;UID[unique=true];locname[lang=en];groups(uid)[mode=append]
+;iRedeem-Default-NonOtpUser			;Partner Front Staff  Group					;partnerfrontstaffrole
+
+
+$START_USERRIGHTS;;;;;;;;;
+Type;UID;MemberOfGroups;Password;Target;read;change;create;remove;changerights
+
+UserGroup;iRedeem-amlfinancemanagergroup;;;;;;;;
+;;;;AmlReport;+;+;;;
+;;;;EarnedMiles;+;+;;;
+;;;;ReportType;+;;;;
+
+UserGroup;iRedeem-amlfinanceadmingroup;;;;;;;;
+;;;;AmlReport;+;+;;;
+;;;;EarnedMiles;+;+;;;
+;;;;ReportType;+;;;;
+
+UserGroup;iRedeem-deliveryproductmanagergroup;;;;;;;;
+;;;;VariantType;+;;;;
+UserGroup;iRedeem-handlingproductmanagergroup;;;;;;;;
+;;;;VariantType;+;;;;
+UserGroup;iRedeem-Default-NonOtpUser;;;;;;;;
+;;;;Item;+;;;;
+;;;;ActionRight.consignmentEvoucherDelivery;+;+;;;
+$END_USERRIGHTS
+
+INSERT_UPDATE UserGroup;UID[unique=true];writablecatalogversions(catalog(id),version);readablecatalogversions(catalog(id),version)
+;partnerfrontstaffrole							;																					;asiamilesProductCatalog:Online,Default:Staged,Default:Online
+
+UPDATE AttributeDescriptor;qualifier[unique=true];enclosingType(code)[unique=true];name[lang=en]
+;name;Product;Product Name
+;exclusiveCountries;DeliveryCost;Excluded Countries
+;vendor;BillingInvoice;Partner
+
+UPDATE AttributeDescriptor;qualifier[unique=true];enclosingType(code)[unique=true];search
+;originalCost;BillingCost;true
+
+$START_USERRIGHTS;;;;;;;;;
+Type;UID;MemberOfGroups;Password;Target;read;change;create;remove;changerights
+
+UserGroup;iRedeem-amlproducteditorgroup;;;;;;;;
+;;;;SpecialProductTypes;+;+;-;-;
+
+UserGroup;iRedeem-amlproductapprovergroup;;;;;;;;
+;;;;SpecialProductTypes;+;+;-;-;
+
+UserGroup;iRedeem-vendormanagergroup;;;;;;;;
+;;;;SpecialProductTypes;+;+;-;-;
+
+UserGroup;iRedeem-partneradmingroup;;;;;;;;
+;;;;SpecialProductTypes;+;+;-;-;
+
+UserGroup;iRedeem-partnerproductmanagergroup;;;;;;;;
+;;;;SpecialProductTypes;+;+;-;-;
+
+UserGroup;iRedeem-deliveryproductmanagergroup;;;;;;;;
+;;;;SpecialProductTypes;+;+;-;-;
+
+UserGroup;iRedeem-handlingproductmanagergroup;;;;;;;;
+;;;;SpecialProductTypes;+;+;-;-;
+
+UserGroup;iRedeem-partnerfulfillmentmanagergroup;;;;;;;;
+;;;;SpecialProductTypes;+;+;-;-;
+
+UserGroup;iRedeem-partnerfinancemanagergroup;;;;;;;;
+;;;;SpecialProductTypes;+;+;-;-;
+
+UserGroup;iRedeem-productpartnergroup;;;;;;;;
+;;;;SpecialProductTypes;+;+;-;-;
+
+UserGroup;iRedeem-deliverypartnergroup;;;;;;;;
+;;;;SpecialProductTypes;+;+;-;-;
+
+UserGroup;iRedeem-amlpartnermanagergroup;;;;;;;;
+;;;;SpecialProductTypes;+;+;-;-;
+
+UserGroup;iRedeem-amlpromotionapprovergroup;;;;;;;;;
+;;;;SpecialProductTypes;+;+;-;-;
+
+UserGroup;iRedeem-amlfulfillmentmanagergroup;;;;;;;;
+;;;;SpecialProductTypes;+;+;-;-;
+
+UserGroup;iRedeem-amlfulfillmentadmingroup;;;;;;;;
+;;;;SpecialProductTypes;+;+;-;-;
+
+UserGroup;iRedeem-amlfinancemanagergroup;;;;;;;;
+;;;;SpecialProductTypes;+;+;-;-;
+
+UserGroup;iRedeem-amlfinanceadmingroup;;;;;;;;
+;;;;SpecialProductTypes;+;+;-;-;
+
+UserGroup;iRedeem-amlfinanceapprovergroup1;;;;;;;;
+;;;;SpecialProductTypes;+;+;-;-;
+
+UserGroup;iRedeem-amlfinanceapprovergroup2;;;;;;;;
+;;;;SpecialProductTypes;+;+;-;-;
+
+UserGroup;iRedeem-amlbusinessadministratorgroup;;;;;;;;
+;;;;SpecialProductTypes;+;+;-;-;
+
+$END_USERRIGHTS

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- [y] hybris Platform Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved. This software is the confidential 
+	and proprietary information of SAP ("Confidential Information"). You shall not disclose such Confidential Information and shall use 
+	it only in accordance with the terms of the license agreement you entered into with SAP. -->
+<!-- ATTENTION: This is just an example file. You have to edit it according to your needs. -->
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
+
+	<bean class="de.hybris.platform.previewwebservices.dto.PreviewTicketWsDTO">
+		<property name="zone" type="java.lang.String">
+			<description>Content zone of the preview ticket</description>
+		</property>
+	</bean>
+
+	<bean class="com.asiamiles.previewwebservices.data.ContentZoneData">
+		<property name="isocode" type="String" />
+		<property name="name" type="String" />
+	</bean>
+
+	<bean class="com.asiamiles.previewwebservices.data.ContentZoneListData">
+		<description>List of content zones.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="zones" type="java.util.List&lt;com.asiamiles.previewwebservices.data.ContentZoneData>" />
+	</bean>
+	
+	<!-- <bean class="de.hybris.platform.cmswebservices.data.AbstractPageData">
+		<property name="zone" type="String" />
+	</bean>
+	<bean class="de.hybris.platform.cmsfacades.data.AbstractPageData">
+		<property name="zone" type="String" />
+	</bean> -->
+</beans>

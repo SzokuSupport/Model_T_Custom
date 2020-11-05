@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40" height="40" viewBox="0 0 40 40">
+    <defs>
+        <path id="a" d="M21 18h19v3H21v19h-3V21H0v-3h18V0h3v18z"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <path fill="#fff" d="M21 18h19v3H21v19h-3V21H0v-3h18V0h3v18z"/>
+        <path fill="#A9ACAF" d="M21 18h19v3H21v19h-3V21H0v-3h18V0h3v18z"/>
+    </g>
+</svg>

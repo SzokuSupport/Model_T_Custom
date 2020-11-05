@@ -1,0 +1,48 @@
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/util 
+		http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+	
+	<alias name="asiaMilesCmsContentZoneDataToAttributeContentConverter" alias="cmsContentZoneDataToAttributeContentConverter"/>
+	<bean id="asiaMilesCmsContentZoneDataToAttributeContentConverter" parent="cmsUniqueIdentifierDataToAttributeContentConverter">
+		<property name="modelClass" value="com.asiamiles.core.model.previewwebservice.ContentZoneModel" />
+	</bean>
+	
+	<bean class="com.asiamiles.preview.uniqueidentifier.functions.ContentZoneModelUniqueIdentifierConverter">
+		<property name="commerceCommonI18NService" ref="commerceCommonI18NService"/>
+		<property name="contentZoneService" ref="contentZoneService" />
+		<property name="itemDataDataFactory" ref="cmsItemDataDataFactory"/>
+	</bean>
+	
+	<bean id="cmsContentZoneTypeAttributePredicate" parent="abstractDefaultClassTypeAttributePredicate" p:typeClass="com.asiamiles.core.model.previewwebservice.ContentZoneModel"/>
+		
+	<alias name="asiaMilesContentZoneContentConverter" alias="cmsContentZoneContentConverter"/>
+	<bean name="asiaMilesContentZoneContentConverter" parent="cmsAbstractContentConverter" 
+		  p:modelToDataConverter-ref="cmsUniqueIdentifierAttributeToDataContentConverter"
+		  p:dataToModelConverter-ref="cmsContentZoneDataToAttributeContentConverter"
+		  p:constrainedBy-ref="cmsContentZoneTypeAttributePredicate">
+	</bean>
+	
+	<bean depends-on="cmsAttributeContentConverterList" parent="listMergeDirective">
+		<property name="add" ref="cmsContentZoneContentConverter"/>
+	</bean>
+
+</beans>

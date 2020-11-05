@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
+
+	<bean class="de.hybris.platform.commercefacades.product.data.ProductData">
+		<property name="genders" type="java.util.List&lt;com.asiamiles.facades.product.data.GenderData>"/>
+		<property name="productType" type="com.asiamiles.core.enums.ProductType"/>
+		<property name="handlingCost" type="java.lang.Double"/>
+		<property name="deliveryCost" type="java.lang.Double"/>
+		<property name="promotionPrice" type="PriceData"/>
+		<property name="suggestedRetailPrice" type="java.lang.Double"/>
+		<property name="howToRedeem" type="java.lang.String"/>
+		<property name="termsAndconditions" type="java.lang.String"/>
+		<property name="customerServiceInformation" type="java.lang.String"/>
+		<property name="externalRedirect" type="java.lang.String"/>
+		<property name="deliveryPeriod" type="java.lang.String"/>
+		<property name="awardConsumptionPeriod" type="java.lang.String"/>
+		<property name="vedioUrl" type="java.lang.String"/>
+		<property name="minimumMilesSpend" type="java.lang.Integer"/>
+		<property name="maxMilesSpend" type="java.lang.Integer"/>
+		<property name="paymentMethod" type="com.asiamiles.core.enums.PaymentMethod"/>
+		<property name="cashConversionValue" type="java.lang.String"/>
+		<property name="currency" type="java.lang.String"/>
+		<property name="awardConsumptionStartDate" type="java.util.Date"/>
+		<property name="awardConsumptionEndDate" type="java.util.Date"/>
+		<property name="FulfillmentMethod" type="java.lang.String"/>
+		<property name="productTageGroupA" type="java.lang.String"/>
+		<property name="productTagGroupB" type="com.asiamiles.facades.product.data.ProductTagGroupBData"/>
+		<property name="specialNotice" type="java.lang.String"/>
+		<property name="isGWP" type="java.lang.Boolean"/>
+		<property name="brandName" type="java.lang.String"/>
+		<property name="discountRows" type="java.util.List&lt;com.asiamiles.facades.product.data.DiscountRowData>"/>
+		<property name="validityPeriod" type="java.lang.String"/>
+		<property name="deliveryPartnerEmail" type="java.lang.String"/>
+		<property name="deliveryPartnerTelephone" type="java.lang.String"/>
+		<property name="productPartnerEmail" type="java.lang.String"/>
+		<property name="productPartnerTelephone" type="java.lang.String"/>
+		<property name="productPartnerRemark" type="java.lang.String"/>
+		<property name="productPartnerAddress" type="java.lang.String"/>
+		<property name="productPartnerCompanyName" type="java.lang.String"/>
+		<property name="deliveryPartnerRemark" type="java.lang.String"/>
+		<property name="deliveryPartnerAddress" type="java.lang.String"/>
+		<property name="deliveryPartnerCompanyName" type="java.lang.String"/>
+		<property name="switchOffGroupA" type="java.lang.Boolean"/>
+		<property name="collectionMethodTextForDisplay" type="java.lang.String"/>
+		<property name="vedioType" type="java.lang.String"/>
+		<property name="productTag" type="java.lang.String"/>
+		<property name="collectionMethod" type="java.lang.String"/>
+		<property name="redemptionStartDate" type="java.util.Date"/>
+		<property name="redemptionEndDate" type="java.util.Date"/>
+		<property name="img1ForPLP" type="java.lang.String"/>
+		<property name="img2ForPLP" type="java.lang.String"/>
+		<property name="variantPriceFromDisplay" type="java.lang.Boolean"/>
+		<property name="cashOnly" type="java.lang.Boolean"/>
+		<property name="discountText" type="java.lang.String"/>
+		<property name="originFullCashPrice" type="java.lang.String"/>
+		<property name="fullCashPrice" type="java.lang.String"/>
+		<property name="categoryCodes" type="java.util.ArrayList"/>
+		<property name="categoryNames" type="java.util.ArrayList"/>
+		<property name="brandCode" type="java.lang.String"/>
+		<property name="brandLogo" type="java.lang.String"/>
+		<property name="masterCategoryCode" type="java.lang.String"/>
+		<property name="masterCategoryName" type="java.lang.String"/>
+		<property name="dispalyHomePage" type="java.lang.Boolean"/>
+		<property name="specialProductType" type="java.lang.String"/>
+		<property name="shouldBeHidden" type="java.lang.Boolean"/>
+		<property name="earnMilesRate" type="java.lang.Double"/>
+		<property name="potentialBonusRules" type="java.util.List&lt;com.asiamiles.facades.product.data.BonusRuleData>"/>
+		<property name="havePublishedPotentialBonusRules" type="java.lang.Boolean"/>
+		<property name="baseMilesRate" type="com.asiamiles.facades.Data.BaseMilesRateData"/>
+	</bean>
+
+	<bean class="de.hybris.platform.marketplacefacades.vendor.data.VendorData">
+		<property name="remark" type="java.lang.String"/>
+		<property name="contactInfo" type="de.hybris.platform.commercefacades.user.data.CompanyData"/>
+	</bean>
+
+	<bean class="de.hybris.platform.commercefacades.user.data.CompanyData">
+		<property name="telephone" type="java.lang.String"/>
+		<property name="deliveryEmail" type="java.lang.String"/>
+		<property name="addresses" type="java.lang.String"/>
+	</bean>
+
+
+	<bean class="com.asiamiles.facades.product.data.ProductTagGroupBData">
+		<property name="code" type="java.lang.String"/>
+		<property name="name" type="java.lang.String"/>
+		<property name="colour" type="java.lang.String"/>
+	</bean>
+
+	<bean class="com.asiamiles.facades.product.data.GenderData">
+		<property name="code" type="String"/>
+		<property name="name" type="String"/>
+	</bean>
+	
+	<bean class="de.hybris.platform.commercefacades.user.data.AddressData">
+		<property name="phoneAreaCode" type="String"/>
+		<property name="localLine1" type="String"/>
+		<property name="needPhysicalDelivery" type="java.lang.Boolean"/>
+		<property name="needEmailDelivery" type="java.lang.Boolean"/>
+		<property name="needSmsDelivery" type="java.lang.Boolean"/>
+		<property name="line3" type="String"/>
+		<property name="countryName" type="String"/>
+		<property name="state" type="String"/>
+		<property name="city" type="String"/>
+		<property name="addressFlag" type="java.lang.Boolean"/>
+		<property name="localAddressFlag" type="java.lang.Boolean"/>
+		<property name="localLine2" type="String"/>
+		<property name="localLine3" type="String"/>
+		<property name="localCity" type="String"/>
+		<property name="localPostalCode" type="String"/>
+		<property name="localState" type="String"/>
+		<property name="localCompanyName" type="String"/>
+		<property name="localCountryName" type="String"/>
+	</bean>
+	
+	<bean class="de.hybris.platform.commercefacades.user.data.CustomerData">
+		<property name="defaultPaymentInfo" type="de.hybris.platform.commercefacades.order.data.CCPaymentInfoData"/>
+		<property name="accountBalance" type="java.lang.Double"/>
+	</bean>
+	
+	<bean class="de.hybris.platform.commercefacades.order.data.AddToCartParams">
+		<property name="miles" type="java.lang.Double"/>
+		<property name="cartSelection" type="boolean"/>
+	</bean>
+	
+	<bean class="de.hybris.platform.commerceservices.service.data.CommerceCartParameter">
+		<property name="miles" type="java.lang.Double"/>
+		<property name="cartSelection" type="boolean"/>
+		<property name="entriesToRemove" type="java.util.List&lt;de.hybris.platform.core.model.order.AbstractOrderEntryModel>" />
+	</bean>
+	
+	<bean class="de.hybris.platform.commercefacades.order.data.OrderHistoryData">
+		<property name="totalPriceCash" type="java.lang.Double"/>
+		<property name="currency" type="java.lang.String"/>
+		<property name="qty" type="java.lang.Integer"/>
+		<property name="totalMiles" type="java.lang.Double"/>
+		<property name="images" type="java.util.List&lt;de.hybris.platform.commercefacades.product.data.ImageData>"/>
+		<property name="restImageCount" type="java.lang.Integer"/>
+		<property name="totalEarnedMiles" type="java.lang.Double"/>
+	</bean>
+	
+	<bean class="de.hybris.platform.commercefacades.order.data.OrderData">
+		<property name="cashCurrencyIsocode" type="java.lang.String"/>
+		<property name="qty" type="java.lang.Integer"/>
+		<property name="totalMiles" type="java.lang.Double"/>
+		<property name="orderType" type="com.asiamiles.core.enums.OrderType" />
+	</bean>
+
+	<bean class="de.hybris.platform.commercefacades.search.data.AutocompleteSuggestionData">
+		<property name="redirectUrl" type="String"/>
+	</bean>
+
+	<bean class="de.hybris.platform.commercefacades.order.data.ConsignmentData">
+		<property name="membershipNo" type="String"/>
+		<property name="orderCode" type="String"/>
+		<property name="orderDate" type="java.util.Date"/>
+		<property name="collectionMethod" type="com.asiamiles.core.enums.ProductType"/>
+	</bean>
+	
+	<bean class="com.asiamiles.facades.product.data.DiscountRowData">
+		<property name="discountType" type="com.asiamiles.core.enums.MemberGroupType"/>
+		<property name="message" type="String"/>
+		<property name="descriptionAML" type="String"/>
+		<property name="description" type="String"/>
+		<property name="priority" type="Integer"/>
+		<property name="startTime" type="java.util.Date"/>
+		<property name="endTime" type="java.util.Date"/>
+		<property name="termsAndCondition" type="java.lang.String"/>
+	</bean>
+
+	<bean class="com.asiamiles.facades.product.data.BonusRuleData">
+		<property name="title" type="String"/>
+		<property name="description" type="String"/>
+		<property name="status" type="String"/>
+		<property name="startTime" type="java.util.Date"/>
+		<property name="endTime" type="java.util.Date"/>
+		<property name="termsAndCondition" type="java.lang.String"/>
+		<property name="summary" type="java.lang.String"/>
+		<property name="textBeforeIcon" type="java.lang.String"/>
+		<property name="textAfterIcon" type="java.lang.String"/>
+	</bean>
+
+	<bean class="de.hybris.platform.commercefacades.product.data.VariantOptionData">
+		<property name="hexCode" type="java.lang.String"/>
+		<property name="typeName" type="java.lang.String"/>
+		<property name="defualtIcon" type="java.lang.Boolean"/>
+		<property name="dateAndTime" type="java.util.Date"/>
+	</bean>
+	
+	<bean class="de.hybris.platform.commercefacades.order.data.OrderEntryData">
+		<property name="isOutOfStock" type="java.lang.Boolean"/>
+		<property name="cannotDelivery" type="java.lang.Boolean"/>
+		<property name="cannotRedeemed" type="java.lang.Boolean"/>
+		<property name="isMaxRedemptionTimes" type="java.lang.Boolean"/>
+		<property name="maxOrderQuantity" type="java.lang.Integer"/>
+		<property name="regularPrice" type="de.hybris.platform.commercefacades.product.data.PriceData"/>
+		<property name="isPurchasable" type="java.lang.Boolean"/>
+		<property name="isOverMinimumMiles" type="java.lang.Boolean"/>
+		<property name="availableForFullCash" type="boolean"/>
+		<property name="claim" type="java.lang.String"/>
+		<property name="productCode" type="java.lang.String"/>
+		<property name="productName" type="java.lang.String"/>
+		<property name="totalMiles" type="java.lang.Double"/>
+		<property name="productShouldBeHidden" type="java.lang.Boolean"/>
+		<property name="alertMessagesForExclusive" type="java.util.ArrayList"/>
+		<property name="alertMessagesForHiddenPageActive" type="java.util.ArrayList"/>
+		<property name="statutoryRemovalService" type="java.lang.String"/>
+		<property name="earnedMiles" type="java.lang.Double"/>
+	</bean>
+	
+	<bean class="de.hybris.platform.commercefacades.order.data.CartModificationData">
+		<property name="issueType" type="String"/>
+		<property name="entryNumber" type="java.lang.Integer"/>
+	</bean>
+	
+	<bean class="de.hybris.platform.commercefacades.order.data.AbstractOrderData">
+		<property name="totalEarnedMiles" type="java.lang.Double"/>
+		<property name="accrualMilesTitle" type="String"/>
+		<property name="appliedBonusPromotions" type="java.util.List&lt;de.hybris.platform.commercefacades.product.data.PromotionResultData>"/>
+		<property name="usedCouponFlag" type="java.lang.Boolean"/>
+	</bean>
+	
+	<bean class="de.hybris.platform.commercefacades.order.data.CartData">
+		<property name="totalBonusMiles" type="java.lang.Double"/>
+		<property name="errorMegFlag" type="java.lang.Boolean"/>	
+		<property name="termsAndconditions" type="java.lang.Boolean"/>
+		<property name="termsAndconditionsText" type="String"/>
+		<property name="minMiles" type="double"/>
+		<property name="maxMiles" type="double"/>
+		<property name="selectionMiles" type="double"/>
+		<property name="insufficientBalance" type="boolean"/>
+		<property name="allMilesOnly" type="boolean"/>
+		<property name="containMPC" type="boolean"/>
+		<property name="allNoSelected" type="boolean"/>
+		<property name="baseMilesRate" type="java.util.List&lt;com.asiamiles.facades.Data.BaseMilesRateData>"/>
+	</bean>
+	
+	<bean class="com.asiamiles.facades.Data.CountryData">
+		<property name="currencyIsoCode" type="String"/>
+		<property name="order" type="double"/>
+		<property name="name" type="String"/>
+		<property name="isocode" type="String"/>
+		<property name="phoneCode" type="String"/>
+		<property name="phoneCodeDescription" type="String"/>
+	</bean>
+	
+	<bean class="com.asiamiles.facades.Data.PaymentRequest">
+	  <property name="status" type="java.lang.String" />
+	  <property name="code" type="java.lang.String" />
+	  <property name="requestUrl" type="java.lang.String" />
+	  <property name="requestPostUrl" type="java.lang.String" />
+	  <property name="reSendCountDown" type="java.lang.Integer" />
+	  <property name="requestFields" type="java.util.Map&lt;String,String>" />
+	</bean>
+
+	<bean class="com.asiamiles.facades.Data.HotTagData">
+		<property name="tagName" type="java.util.List"/>
+	</bean>
+	
+	<bean class="com.asiamiles.facades.Data.EntryData">
+		<property name="product" type="de.hybris.platform.commercefacades.product.data.ProductData"/>
+		<property name="qty" type="java.lang.Integer"/>
+		<property name="referenceNumber" type="String"/>
+		<property name="options" type="java.util.Map&lt;String,String>" />
+		<property name="statutoryRemovalServiceName" type="java.lang.String"/>
+		<property name="statutoryRemovalService" type="java.lang.String"/>
+	</bean>
+	
+	<bean class="com.asiamiles.facades.Data.OrderConfirmationEmailData">
+		<property name="eDelivery" type="java.util.List&lt;com.asiamiles.facades.Data.EntryData>"/>
+		<property name="eQty" type="java.lang.Integer"/>
+		<property name="homeDelivery" type="java.util.List&lt;com.asiamiles.facades.Data.EntryData>"/>
+		<property name="homeQty" type="java.lang.Integer"/>
+		<property name="smsDelivery" type="java.util.List&lt;com.asiamiles.facades.Data.EntryData>"/>
+		<property name="smsQty" type="java.lang.Integer"/>
+		<property name="currency" type="java.lang.String"/>
+	</bean>
+
+	<bean class="de.hybris.platform.commercefacades.product.data.PromotionData">
+		<property name="termsAndConditions" type="java.lang.String"/>
+		<property name="textBeforeIcon" type="java.lang.String"/>
+		<property name="textAfterIcon" type="java.lang.String"/>
+	</bean>
+	
+	<bean class="com.asiamiles.facades.Data.EarnedMilesData">
+		<property name="earnedMiles" type="java.lang.Integer"/>
+		<property name="title" type="java.lang.String"/>
+		<property name="promotionCode" type="java.lang.String"/>
+	</bean>
+	
+	<bean class="com.asiamiles.facades.Data.OrderDetailConsignmentData">
+		<property name="code" type="java.lang.String"/>
+		<property name="consignmentStatus" type="de.hybris.platform.basecommerce.enums.ConsignmentStatus"/>
+		<property name="collectionMethod" type="com.asiamiles.core.enums.ProductType"/>
+		<property name="alertMsg" type="java.lang.String"/>
+		<property name="cancelAlertMsg" type="java.lang.String"/>
+		<property name="trackingID" type="java.lang.String"/>
+		<property name="trackingUrl" type="java.lang.String"/>
+		<property name="totalPriceCash" type="java.lang.Double"/>
+		<property name="totalMiles" type="java.lang.Double"/>
+		<property name="subCollectionMethod" type="com.asiamiles.core.enums.SubCollectionMethod"/>
+		<property name="consumptionDate" type="java.lang.Boolean"/>
+		<property name="resendVoucher" type="java.lang.Boolean"/>
+		<property name="expired" type="java.lang.Boolean"/>
+		<property name="statutoryRemovalService" type="java.lang.String"/>
+		<property name="earnedMiles" type="java.lang.Integer"/>
+		<property name="bonusMiles" type="java.util.List&lt;com.asiamiles.facades.Data.EarnedMilesData>"/>
+	</bean>
+	
+	<bean class="com.asiamiles.facades.Data.OrderDetailEntryData">
+		<property name="product" type="de.hybris.platform.commercefacades.product.data.ProductData"/>
+		<property name="productImage" type="de.hybris.platform.commercefacades.product.data.ImageData"/>
+		<property name="currency" type="java.lang.String"/>
+		<property name="totalPriceCash" type="java.lang.Double"/>
+		<property name="totalMiles" type="java.lang.Double"/>
+		<property name="qty" type="java.lang.Integer"/>
+		<property name="options" type="java.util.Map&lt;String,String>" />
+		<property name="option" type="java.lang.String"/>
+		<property name="consignments" type="java.util.List&lt;com.asiamiles.facades.Data.OrderDetailConsignmentData>"/>
+		<property name="collectionMethod" type="com.asiamiles.core.enums.ProductType"/>
+		<property name="statutoryRemovalService" type="java.lang.String"/>
+		<property name="earnedMiles" type="java.lang.Long"/>
+		<property name="earnedBaseMiles" type="com.asiamiles.facades.Data.EarnedMilesData"/>
+		<property name="earnedBonuseMiles" type="java.util.List&lt;com.asiamiles.facades.Data.EarnedMilesData>"/>
+	</bean>
+	
+	<bean class="com.asiamiles.facades.Data.OrderDetailData">
+		<property name="homeDelivery" type="java.util.List&lt;com.asiamiles.facades.Data.OrderDetailEntryData>"/>
+		<property name="eDelivery" type="java.util.List&lt;com.asiamiles.facades.Data.OrderDetailEntryData>"/>
+		<property name="homeQty" type="java.lang.Integer"/>
+		<property name="eQty" type="java.lang.Integer"/>
+	</bean>
+
+	<bean class="de.hybris.platform.commercefacades.product.data.BaseOptionData">
+		<property name="isTheOptionSecondLevel" type="java.lang.Boolean"/>
+	</bean>
+
+	<bean class="de.hybris.platform.cmsfacades.data.MediaData">
+		<property name="linkUrl" type="java.lang.String"/>
+	</bean>
+	
+	<bean class="com.asiamiles.facades.Data.BaseMilesRateData">
+		<property name="partnerCode" type="java.lang.String"/>
+		<property name="partnerEstablishmentCode" type="java.lang.String"/>
+		<property name="currency" type="java.lang.String"/>
+		<property name="rate" type="java.lang.Double"/>
+		<property name="title" type="java.lang.String"/>
+		<property name="description" type="java.lang.String"/>
+		<property name="termsAndCondition" type="java.lang.String"/>
+		<property name="segment" type="com.asiamiles.core.enums.MemberGroupType"/>
+		<property name="startDate" type="java.util.Date"/>
+		<property name="endDate" type="java.util.Date"/>
+		<property name="type" type="java.lang.String"/>
+		<property name="summary" type="java.lang.String"/>
+		<property name="textBeforeIcon" type="java.lang.String"/>
+		<property name="textAfterIcon" type="java.lang.String"/>
+	</bean>
+
+	<bean class="com.asiamiles.facades.Data.CrossSaleImagesData">
+		<property name="desktopImage" type="java.lang.String"/>
+		<property name="mobileImage" type="java.lang.String"/>
+		<property name="url" type="java.lang.String"/>
+	</bean>
+
+	<bean class="com.asiamiles.facades.Data.HeaderBannerMessageData">
+		<property name="messageTitle" type="java.lang.String"/>
+		<property name="messageDescription" type="java.lang.String"/>
+		<property name="url" type="java.lang.String"/>
+		<property name="icon" type="java.lang.String"/>
+		<property name="ifOpenANewTag" type="java.lang.Boolean"/>
+	</bean>
+
+</beans>

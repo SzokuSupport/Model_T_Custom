@@ -1,0 +1,29 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+#
+
+  
+  
+$contentCatalog = asiamilesContentCatalog
+$contentCV = catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]), CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+INSERT_UPDATE ContentSlot; $contentCV[unique = true]; uid[unique = true]      ; name                         ; active;
+;;SectionA3Slot-PDP ; SectionA3 Slot for PDP ; TRUE  ; 
+;;SectionA4Slot-PDP ; SectionA4 Slot for PDP ; TRUE  ; 
+
+INSERT_UPDATE ContentSlotForPage; $contentCV[unique = true]; uid[unique = true]  ; position[unique = true]; page(uid, $contentCV)[unique = true][default = 'productDetails'][template = 'ProductDetailsPageTemplate']; contentSlot(uid, $contentCV)[unique = true];
+;; SectionA3-PDP ; SectionA3 ;; SectionA3Slot-PDP;                 ;
+;; SectionA4-PDP ; SectionA4 ;; SectionA4Slot-PDP;                 ;
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SectionA3Slot;;;wide  
+;SectionA4Slot;;;wide
+;SectionA3;;;wide  
+;SectionA4;;;wide  

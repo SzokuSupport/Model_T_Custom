@@ -1,0 +1,121 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+#
+
+$baseStore=asiamiles
+
+INSERT_UPDATE ServicelayerJob;code[unique=true];springId[unique=true]
+;dailyEarnMilesCronJob;dailyEarnMilesCronJob
+ 
+INSERT_UPDATE EarnedMilesControl;&refId;collectionMethod(code)[unique=true];subCollectionMethod(code)[unique=true];consignmentStatus(code)[default=DELIVERING];delay[default=2]
+;ref1;HOME_DELIVERY;;;
+;ref2;EMAIL_DELIVERY;;;
+;ref3;REDEMPTION_LETTER;COMMITMENT;;
+;ref4;REDEMPTION_LETTER;MAPPING;;
+;ref5;EVOUCHER_QR;COMMITMENT;;
+;ref6;EVOUCHER_QR;MAPPING;;
+;ref7;EVOUCHER_QR_THIRDPARTY;COMMITMENT;;
+;ref8;EVOUCHER_QR_THIRDPARTY;MAPPING;;
+;ref9;EVOUCHER_AN;COMMITMENT;;
+;ref10;EVOUCHER_AN;MAPPING;;
+;ref11;EVOUCHER_BAR;COMMITMENT;;
+;ref12;EVOUCHER_BAR;MAPPING;;
+;ref13;EVOUCHER_URL;COMMITMENT;;
+;ref14;EVOUCHER_URL;MAPPING;;
+;ref15;EVOUCHER_SMS;COMMITMENT;;
+;ref16;EVOUCHER_SMS;MAPPING;;
+
+INSERT_UPDATE EarnMilesCronJob;code[unique=true];job(code);singleExecutable;sessionLanguage(isoCode)[default=en];controller(&refId)[mode=replace]
+;dailyEarnMilesCronJob;dailyEarnMilesCronJob;false;en;ref1,ref2,ref3,ref4,ref5,ref6,ref7,ref8,ref9,ref10,ref11,ref12,ref13,ref14,ref15,ref16
+ 
+
+INSERT_UPDATE Trigger;cronjob(code)[unique=true];cronExpression
+;dailyEarnMilesCronJob;0 30 1 * * ? 
+  
+
+$lang=en
+
+#promotion 
+INSERT_UPDATE RuleConditionDefinition;id[unique=true];name[lang=$lang];priority;breadcrumb[lang=$lang];allowsChildren;translatorId;translatorParameters;categories(id)
+;y_product_category_total_cash;Products OR Category Total Cash Threshold;950;Products in products list {products} or categories list {categories} and excluded product list {excluded_products} and excluded categories list{excluded_categories} and total cash {operator} {value};false;bonusRuleProductOrCategoryConditionTranslator;;cart 
+
+
+INSERT_UPDATE RuleConditionDefinitionParameter;definition(id)[unique=true];id[unique=true];priority;name[lang=$lang];description[lang=$lang];type;value;required[default=true];validators
+;y_product_category_total_cash;operator;1100;Operator;Operator to compare the product value;Enum(de.hybris.platform.ruledefinitions.AmountOperator);"""GREATER_THAN_OR_EQUAL""";;
+;y_product_category_total_cash;value;1000;Cash threshold;Map of currency and threshold value of the products to be used to qualify for this promotion;Map(ItemType(Currency),java.math.BigDecimal);;;
+
+
+INSERT_UPDATE RuleConditionDefinitionParameter;definition(id)[unique=true];id[unique=true];priority;type;value;required[default=true];validators;filters;defaultEditor
+;y_product_category_total_cash;products;1500;List(ItemType(Product));;false;;catalogVersion->catalog_version
+;y_product_category_total_cash;categories;1400;List(ItemType(Category));;false;;
+;y_product_category_total_cash;excluded_categories;1100;List(ItemType(Category));;false;;
+;y_product_category_total_cash;excluded_products;1200;List(ItemType(Product));;false;;
+
+
+UPDATE RuleConditionDefinitionParameter;definition(id)[unique=true];id[unique=true];name[lang=$lang];description[lang=$lang]
+;y_product_category_total_cash;products;Products;List of qualifying products
+;y_product_category_total_cash;categories;Categories;List of qualifying categories
+;y_product_category_total_cash;excluded_categories;Excluded categories;List of sub-categories to be excluded from qualifying categories
+;y_product_category_total_cash;excluded_products;Excluded products;List of products from qualifying categories to be excluded
+
+
+INSERT_UPDATE RuleActionDefinition;id[unique=true];priority;;translatorId;translatorParameters;categories(id)
+;y_category_fixed_bonus;1500;;ruleExecutableActionTranslator;actionId->ruleOrderFixedBonusAction;cart_discounts
+;y_category_percentage_bonus;1500;;ruleExecutableActionTranslator;actionId->ruleOrderPercentageBonusAction;cart_discounts
+
+UPDATE RuleActionDefinition;id[unique=true];name[lang=$lang];breadcrumb[lang=$lang];
+;y_category_fixed_bonus;Fixed bonus on cart;Apply target fixed bonus {value} to the cart;
+;y_category_percentage_bonus;Percentage bonus on cart;Apply target percentage bonus {value}% to the cart;
+
+INSERT_UPDATE RuleActionDefinitionParameter;definition(id)[unique=true];id[unique=true];priority;type;value;required[default=true];validators;filters
+;y_category_fixed_bonus;value;1000;Map(ItemType(Currency),java.math.BigDecimal);;;;
+;y_category_percentage_bonus;value;1000;java.math.BigDecimal;;;;
+
+UPDATE RuleActionDefinitionParameter;definition(id)[unique=true];id[unique=true];name[lang=$lang];description[lang=$lang]
+;y_category_fixed_bonus;value;Absolute bonus value;Map of currency and absolute bonus value that will be applied on the cart total
+;y_category_percentage_bonus;value;Absolute percentage bonus value;Target percentage bonus value that will be applied to cart
+
+############################# ACTION DEFINITION RULE TYPE MAPPINGS ##########################
+INSERT_UPDATE RuleActionDefinitionRuleTypeMapping;definition(id)[unique=true];ruleType(code)[default=PromotionSourceRule][unique=true]
+;y_category_fixed_bonus;
+;y_category_percentage_bonus;
+
+############################# CONDITON DEFINITION RULE TYPE MAPPINGS ##########################
+INSERT_UPDATE RuleConditionDefinitionRuleTypeMapping;definition(id)[unique=true];ruleType(code)[default=PromotionSourceRule][unique=true]
+;y_product_category_total_cash;
+
+
+INSERT_UPDATE PromotionGroup;Identifier[unique=true];
+;bonuspromotiongroup;
+
+##########################################
+#       Promotion Templates start        #
+##########################################
+INSERT_UPDATE PromotionSourceRuleTemplate;code[unique=true];name[lang=$lang];description[lang=$lang];messageFired[lang=$lang]
+;aml_category_threshold_fixed_bonus_miles;AML Fixed Bonus Miles;AML Category Threshold Fixed Bonus Miles;"You earned {8a2ef5e6-9c13-4f40-a06f-234b76d9b129} for spending over {a71eda78-152b-4c89-83e6-a2301ce22cd8}";
+;aml_category_threshold_percentage_bonus_miles;AML Percentage Bonus Miles;AML Category Threshold Percentage Bonus Miles;"spend {a71eda78-152b-4c89-83e6-a2301ce22cd9} get {085e342c-43c8-4598-97cc-bfea77ba27e2}% off ";
+
+
+INSERT_UPDATE PromotionSourceRuleTemplate;code[unique=true];maxAllowedRuns;ruleGroup(code);conditions;actions
+;aml_category_threshold_fixed_bonus_miles;1;orderPromotionRuleGroup;"[{""definitionId"":""y_product_category_total_cash"",""parameters"":{""excluded_categories"":{""uuid"":""3811da02-dffc-4b6f-ac4f-3d07b5127199"",""type"":""List(ItemType(Category))""},""categories"":{""uuid"":""fedc5c56-6058-4881-a6c3-ba39a7f5bb08"",""type"":""List(ItemType(Category))""},""excluded_products"":{""uuid"":""2ab2145c-1350-422b-8422-c9bc9f9e01f3"",""type"":""List(ItemType(Product))""},""value"":{""uuid"":""a71eda78-152b-4c89-83e6-a2301ce22cd8"",""type"":""Map(ItemType(Currency),java.math.BigDecimal)""},""operator"":{""uuid"":""0c79866b-8c6c-4610-b34d-7189ce4069f0"",""type"":""Enum(de.hybris.platform.ruledefinitions.AmountOperator)"",""value"":""GREATER_THAN_OR_EQUAL""},""products"":{""uuid"":""2b3d7578-167a-4722-ba1b-93baa3276a4f"",""type"":""List(ItemType(Product))""}},""children"":[]}]";"[{""definitionId"":""y_category_fixed_bonus"",""parameters"":{""value"":{""uuid"":""8a2ef5e6-9c13-4f40-a06f-234b76d9b129"",""type"":""Map(ItemType(Currency),java.math.BigDecimal)""}}}]"
+;aml_category_threshold_percentage_bonus_miles;1;orderPromotionRuleGroup;"[{""definitionId"":""y_product_category_total_cash"",""parameters"":{""excluded_categories"":{""uuid"":""3811da02-dffc-4b6f-ac4f-3d07b5127199"",""type"":""List(ItemType(Category))""},""categories"":{""uuid"":""fedc5c56-6058-4881-a6c3-ba39a7f5bb08"",""type"":""List(ItemType(Category))""},""excluded_products"":{""uuid"":""2ab2145c-1350-422b-8422-c9bc9f9e01f3"",""type"":""List(ItemType(Product))""},""value"":{""uuid"":""a71eda78-152b-4c89-83e6-a2301ce22cd9"",""type"":""Map(ItemType(Currency),java.math.BigDecimal)""},""operator"":{""uuid"":""0c79866b-8c6c-4610-b34d-7189ce4069f0"",""type"":""Enum(de.hybris.platform.ruledefinitions.AmountOperator)"",""value"":""GREATER_THAN_OR_EQUAL""},""products"":{""uuid"":""2b3d7578-167a-4722-ba1b-93baa3276a4f"",""type"":""List(ItemType(Product))""}},""children"":[]}]";"[{""definitionId"":""y_category_percentage_bonus"",""parameters"":{""value"":{""uuid"":""085e342c-43c8-4598-97cc-bfea77ba27e2"",""type"":""java.math.BigDecimal"",""value"":10}}}]"
+
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$emailResource=$config-emailResourceValue
+
+INSERT_UPDATE RendererTemplate;code[unique=true];rendererType(code)[default='velocity'];templateScript[lang=en,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;$baseStore_Email_Order_Confirmation_Body;;$config-emailResourceValue/email-orderConfirmationBody.vm
+
+INSERT_UPDATE RendererTemplate;code[unique=true];rendererType(code)[default='velocity'];templateScript[lang=zh,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;$baseStore_Email_Order_Confirmation_Body;;$config-emailResourceValue/email-orderConfirmationBody.vm
+
+INSERT_UPDATE RendererTemplate;code[unique=true];rendererType(code)[default='velocity'];templateScript[lang=zh_TW,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;$baseStore_Email_Order_Confirmation_Body;;$config-emailResourceValue/email-orderConfirmationBody.vm

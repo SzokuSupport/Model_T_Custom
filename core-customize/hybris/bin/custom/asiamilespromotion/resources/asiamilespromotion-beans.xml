@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- [y] hybris Platform Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved. This software is the confidential 
+	and proprietary information of SAP ("Confidential Information"). You shall not disclose such Confidential Information and shall use 
+	it only in accordance with the terms of the license agreement you entered into with SAP. -->
+<!-- ATTENTION: This is just an example file. You have to edit it according to your needs. -->
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
+	<bean class="de.hybris.platform.commercefacades.product.data.PromotionResultData">
+		<property name="appliedVouchers" type="java.util.List&lt;String>" />
+		<property name="bonusMiles" type="java.lang.Integer"/>
+	</bean>
+	<bean class="de.hybris.platform.commercefacades.order.data.PromotionOrderEntryConsumedData">
+		<property name="discountUnitPrice" type="Double" />
+	</bean>
+	<bean class="de.hybris.platform.commercefacades.product.data.PromotionData">
+		<property name="name" type="String"/>
+	</bean>
+	
+	<enum class="de.hybris.platform.ruleengineservices.compiler.RuleIrAttributeOperator">
+		<value>GIVE(":")</value>
+		<value>COLLECT("collect")</value>
+		<value>DISJOINT("disjoint")</value>
+	</enum>
+	
+	<enum class="com.asiamiles.promotion.ruledefinitions.CollectionOperator">
+		<value>CONTAINS_ANY</value>
+		<value>CONTAINS_ALL</value>
+		<value>CONTAINS_ASSEMBLE</value>
+		<value>NOT_CONTAINS</value>
+	</enum>
+	
+	<bean class="de.hybris.platform.ruleengineservices.compiler.AbstractRuleIrAttributeCondition">
+		<property name="reversal" type="Boolean" />
+	</bean>
+	
+	<bean class="com.asiamiles.promotion.compiler.RuleIrAbstractCollectionCondition" extends="de.hybris.platform.ruleengineservices.compiler.AbstractRuleIrAttributeCondition">
+		<property name="type" type="de.hybris.platform.ruleengineservices.compiler.RuleIrTypeCondition"/>
+		<property name="collects" type="java.util.Collection&lt;de.hybris.platform.ruleengineservices.compiler.RuleIrCondition>"/>
+		<property name="targetVariable" type="String" />
+		<property name="sourceVariable" type="java.util.Collection&lt;String>" />
+	</bean>
+	
+	<bean class="com.asiamiles.promotion.compiler.RuleIrCollectionCondition" extends="com.asiamiles.promotion.compiler.RuleIrAbstractCollectionCondition">
+	</bean>
+	
+	<bean class="com.asiamiles.promotion.compiler.RuleIrAttributeSumCondition" extends="com.asiamiles.promotion.compiler.RuleIrAbstractCollectionCondition">
+		<property name="value" type="Object" />
+	</bean>
+	
+	<bean class="com.asiamiles.promotion.compiler.RuleIrAttributeConsumedCondition" extends="de.hybris.platform.ruleengineservices.compiler.AbstractRuleIrAttributeCondition">
+		<property name="targetVariable" type="String" />
+	</bean>
+	
+	<bean class="de.hybris.platform.ruleengineservices.rao.DiscountRAO" >
+		<property name="totalDiscount" type="java.math.BigDecimal"/>
+	</bean>
+	
+	<bean class="de.hybris.platform.ruleengineservices.rao.OrderEntryRAO">
+		<property name="entryTypes" type="java.util.List&lt;String>" />
+		<property name="totalPriceCash" type="java.math.BigDecimal" />
+		<property name="cartTotalMilesPrice" type="java.lang.Double" />
+		<property name="earnedMiles" type="java.math.BigDecimal" />
+	</bean>
+	
+	<bean class="de.hybris.platform.ruleengineservices.rao.CartRAO">
+		<property name="cashCurrencyIsoCode" type="java.lang.String" />
+	</bean>
+</beans>

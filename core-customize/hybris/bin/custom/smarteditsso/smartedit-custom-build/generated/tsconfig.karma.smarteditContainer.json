@@ -1,0 +1,59 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "es2015",
+        "moduleResolution": "node",
+        "lib": [
+            "dom",
+            "es5",
+            "scripthost",
+            "es2015",
+            "es2015.iterable"
+        ],
+        "allowJs": false,
+        "checkJs": false,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": false,
+        "strictNullChecks": false,
+        "forceConsistentCasingInFileNames": true,
+        "noEmitOnError": true,
+        "baseUrl": "../../jsTarget/",
+        "typeRoots": [
+            "../../node_modules/@types",
+            "/opt/workspace/build/customer-project/custom/sap-cx/smarteditsso/smartedit-build/@types",
+            "!/opt/workspace/build/customer-project/custom/sap-cx/smarteditsso/smartedit-build/@types/smartedit",
+            "/opt/workspace/build/customer-project/custom/sap-cx/smarteditsso/smartedit-build/test/@types"
+        ],
+        "traceResolution": true,
+        "listEmittedFiles": true,
+        "skipLibCheck": true,
+        "pretty": true,
+        "declaration": false,
+        "experimentalDecorators": true,
+        "paths": {
+            "smarteditcommons": [
+                "/opt/workspace/build/customer-project/custom/sap-cx/smarteditsso/smartedit-build/@types/smarteditcommons"
+            ],
+            "smarteditcontainer": [
+                "/opt/workspace/build/customer-project/custom/sap-cx/smarteditsso/smartedit-build/@types/smarteditcontainer"
+            ],
+            "testhelpers": [
+                "/opt/workspace/build/customer-project/custom/sap-cx/smarteditsso/smartedit-build/test/unit"
+            ],
+            "testhelpers/*": [
+                "/opt/workspace/build/customer-project/custom/sap-cx/smarteditsso/smartedit-build/test/unit/*"
+            ],
+            "smarteditssocontainer/*": [
+                "web/features/smarteditssoContainer/*"
+            ],
+            "smarteditssocommons": [
+                "web/features/smarteditssocommons"
+            ],
+            "smarteditssocommons*": [
+                "web/features/smarteditssocommons*"
+            ]
+        }
+    }
+}

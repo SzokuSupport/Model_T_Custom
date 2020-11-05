@@ -1,0 +1,116 @@
+
+@font-face {
+    font-family: 'OpenSans-Bold';
+    src: url('/_ui/responsive/aml/fonts/OpenSans-Bold.eot');
+    src: url('/_ui/responsive/aml/fonts/OpenSans-Bold.eot?#iefix') format('embedded-opentype'),
+         url('/_ui/responsive/aml/fonts/OpenSans-Bold.woff') format('woff'),
+         url('/_ui/responsive/aml/fonts/OpenSans-Bold.ttf') format('truetype'),
+         url('/_ui/responsive/aml/fonts/OpenSans-Bold.svg#OpenSans-Bold') format('svg');
+}
+
+@font-face {
+    font-family: 'OpenSans-SemiBold';
+    src: url('/_ui/responsive/aml/fonts/OpenSans-Semibold.eot');
+    src: url('/_ui/responsive/aml/fonts/OpenSans-Semibold.eot?#iefix') format('embedded-opentype'),
+         url('/_ui/responsive/aml/fonts/OpenSans-Semibold.woff') format('woff'),
+         url('/_ui/responsive/aml/fonts/OpenSans-Semibold.ttf') format('truetype'),
+         url('/_ui/responsive/aml/fonts/OpenSans-Semibold.svg#OpenSans-SemiBold') format('svg');
+}
+
+@font-face {
+    font-family: 'OpenSans-Light';
+    src: url('/_ui/responsive/aml/fonts/OpenSans-Light.eot');
+    src: url('/_ui/responsive/aml/fonts/OpenSans-Light.eot?#iefix') format('embedded-opentype'),
+         url('/_ui/responsive/aml/fonts/OpenSans-Light.woff') format('woff'),
+         url('/_ui/responsive/aml/fonts/OpenSans-Light.ttf') format('truetype'),
+         url('/_ui/responsive/aml/fonts/OpenSans-Light.svg#OpenSans-Light') format('svg');
+}
+
+@font-face {
+    font-family: 'OpenSans-Regular';
+    src: url('/_ui/responsive/aml/fonts/OpenSans-Regular.eot');
+    src: url('/_ui/responsive/aml/fonts/OpenSans-Regular.eot?#iefix') format('embedded-opentype'),
+         url('/_ui/responsive/aml/fonts/OpenSans-Regular.woff') format('woff'),
+         url('/_ui/responsive/aml/fonts/OpenSans-Regular.ttf') format('truetype'),
+         url('/_ui/responsive/aml/fonts/OpenSans-Regular.svg#OpenSans-Regular') format('svg');
+}
+
+.font-light {
+    font-family: "OpenSans-Light","Arial",sans-serif;
+    font-weight: 300;
+}
+
+.fonts-loaded .font-light{
+    font-family: "OpenSans-Light","Arial",sans-serif;
+}
+
+.font-regular {
+    font-family: "OpenSans-Regular","Arial",sans-serif;
+    font-weight: normal;
+}
+
+.fonts-loaded .font-regular {
+    font-family: "OpenSans-Regular","Arial",sans-serif;
+    font-weight: normal;
+}
+
+.font-bold {
+    font-family: "OpenSans-Bold","Arial",sans-serif;
+    font-weight: bold;
+    @include media-query-down(768px) {
+        letter-spacing: normal;
+    }
+
+    @supports (-moz-appearance:none) {
+        font-weight: normal;
+    }
+}
+.font-letter-spacing {
+    letter-spacing: normal;
+}
+
+.fonts-loaded .font-bold {
+    font-family: "OpenSans-Bold","Arial",sans-serif;
+    font-weight: bold;
+
+    @include media-query-down(768px) {
+        letter-spacing: normal;
+    }
+}
+
+.font-SemiBold {
+    font-family: "OpenSans-SemiBold","Arial",sans-serif;
+    font-weight: 500;
+
+    @include media-query-down(768px) {
+        letter-spacing: normal;
+    }
+    
+}
+
+.fonts-loaded .font-SemiBold {
+    font-family: "OpenSans-SemiBold","Arial",sans-serif;
+    font-weight: 500;
+    
+    @include media-query-down(768px) {
+        letter-spacing: normal;
+    }
+}
+
+.font-light:lang(zh),
+.font-light:lang(zh_TW),
+.font-regular:lang(zh),
+.font-regular:lang(zh_TW),
+.font-bold:lang(zh),
+.font-bold:lang(zh_TW) {
+    font-family: "Microsoft JhengHei","PingFang SC","Heiti SC","Microsoft YaHei",sans-serif;
+}
+
+.font-bold:lang(zh),
+.font-bold:lang(zh_TW) {
+    @supports (-moz-appearance:none) {
+        font-weight: bold;
+    }
+}
+
+

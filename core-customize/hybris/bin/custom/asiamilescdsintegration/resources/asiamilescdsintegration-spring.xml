@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+	
+    <bean id="asiamilescdsintegrationSystemSetup" class="com.asiamiles.setup.AsiamilescdsintegrationSystemSetup">
+        <!-- constructor arg injection example -->
+        <constructor-arg ref="asiamilescdsintegrationService"/>
+    </bean>
+
+    <bean id="asiamilescdsintegrationService" class="com.asiamiles.service.impl.DefaultAsiamilescdsintegrationService">
+        <!-- setter injection example -->
+        <property name="modelService" ref="modelService"/>
+        <property name="mediaService" ref="mediaService"/>
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+    </bean>
+
+
+    <alias name="asiamilesProfileTransactionService" alias="profileTransactionService"/>
+    <bean id="asiamilesProfileTransactionService" parent="defaultProfileTransactionService"
+                            class="com.hybris.yprofile.services.impl.DefaultProfileTransactionService">
+        <property name="profileUserEventConverter" ref="asiamilesProfileUserEventConverter"/>
+        <property name="profileUIDConverter" ref="asiamilesProfileUIDConverter"/>
+    </bean>
+
+    <bean id="asiamilesProfileUserEventConverter" parent="abstractPopulatingConverter">
+        <property name="targetClass" value="com.hybris.yprofile.dto.User"/>
+        <property name="populators">
+            <list>
+                <ref bean="asiamilesProfileUserEventPopulator"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="asiamilesProfileIdentitiesConverter" parent="abstractPopulatingConverter">
+        <property name="targetClass" value="java.util.ArrayList"/>
+        <property name="populators">
+            <list>
+                <ref bean="asiamilesIdentitiesPopulator"/>
+            </list>
+        </property>
+    </bean>
+
+
+    <bean id="asiamilesProfileUIDConverter" parent="abstractPopulatingConverter">
+        <property name="targetClass" value="com.hybris.yprofile.dto.UID"/>
+        <property name="populators">
+            <list>
+                <ref bean="asiamileProfileUIDPopulator"/>
+            </list>
+        </property>
+    </bean>
+
+
+    <bean id="asiamilesProfileUserEventPopulator" class="com.asiamiles.populators.AsiamilesUserEventPopulator">
+        <property name="profileAddressConverter" ref="profileAddressConverter"/>
+        <property name="profileConsumerConverter" ref="asiamilesProfileIdentityConsumerConverter"/>
+        <property name="profileIdentitiesConverter" ref="asiamilesProfileIdentitiesConverter"/>
+        <property name="configurationService" ref="configurationService" />
+        <property name="amlSessionService"   ref="amlSessionService" />
+    </bean>
+
+    <bean id="asiamileProfileUIDPopulator" class="com.asiamiles.populators.AsismilesUIDPopulator"/>
+
+    <bean id="asiamilesIdentitiesPopulator" class="com.asiamiles.populators.AsiamilesIdentitiesPopulator">
+        <property name="memberIdHashingStrategy" ref="memberIdHashingStrategy" />
+        <property name="configurationService" ref="configurationService" />
+    </bean>
+
+    <bean id="asiamilesProfileIdentityConsumerConverter" parent="abstractPopulatingConverter">
+        <property name="targetClass" value="com.hybris.yprofile.dto.Consumer"/>
+        <property name="populators">
+            <list>
+                <ref bean="asiamilesIdentityConsumerPopulator"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="asiamilesConsumerPopulator" parent="profileConsumerPopulator"
+                    class="com.asiamiles.populators.AsiamilesConsumerPopulator">
+        <property name="memberIdHashingStrategy" ref="memberIdHashingStrategy" />
+    </bean>
+
+    <bean id="asiamilesIdentityConsumerPopulator" parent="profileConsumerPopulator"
+          class="com.asiamiles.populators.AsiamilesIdentityConsumerPopulator">
+        <property name="memberIdHashingStrategy" ref="memberIdHashingStrategy" />
+    </bean>
+			
+</beans>

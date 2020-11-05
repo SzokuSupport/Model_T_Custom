@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+           
+    <context:annotation-config/>
+
+	<!-- Consignment Process Actions -->
+
+	<bean id="sendConsignmentToWarehouseAction" class="com.asiamiles.fulfilmentprocess.actions.consignment.SendConsignmentToWarehouseAction"  parent="abstractAction"/>
+
+	<bean id="waitBeforeTransmissionAction" class="com.asiamiles.fulfilmentprocess.actions.consignment.WaitBeforeTransmissionAction"  parent="abstractAction">
+		<property name="mediaService" ref="mediaService"/>
+	</bean>
+	<bean id="receiveConsignmentStatusAction" class="com.asiamiles.fulfilmentprocess.actions.consignment.ReceiveConsignmentStatusAction"  parent="abstractAction"/>
+
+	<bean id="confirmConsignmentPickupAction" class="com.asiamiles.fulfilmentprocess.actions.consignment.ConfirmConsignmentPickupAction"  parent="abstractAction"/>
+
+	<bean id="sendDeliveryMessageAction" class="com.asiamiles.fulfilmentprocess.actions.consignment.SendDeliveryMessageAction"  parent="abstractAction">
+		<property name="eventService" ref="eventService"/>
+	</bean>
+	
+	
+	<bean id="vendorDeliveryNotificationAction" class="com.asiamiles.fulfilmentprocess.actions.consignment.VendorDeliveryNotificationAction"  parent="abstractAction">
+		<property name="eventService" ref="eventService"/>
+	</bean>
+	
+	<bean id="assignedEVoucherAction" class="com.asiamiles.fulfilmentprocess.actions.consignment.AssignedEVoucherAction"  parent="abstractAction">
+	   <property name="eVoucherService" ref="eVoucherService" />
+	</bean>
+
+	<bean id="sendReadyForPickupMessageAction" class="com.asiamiles.fulfilmentprocess.actions.consignment.SendReadyForPickupMessageAction"  parent="abstractAction">
+		<property name="eventService" ref="eventService"/>
+	</bean>
+	
+	<bean id="sendPickedUpMessageAction" class="com.asiamiles.fulfilmentprocess.actions.consignment.SendPickedUpMessageAction"  parent="abstractAction">
+		<property name="eventService" ref="eventService"/>
+	</bean>
+
+	<bean id="cancelConsignmentAction" class="com.asiamiles.fulfilmentprocess.actions.consignment.CancelConsignmentAction"  parent="abstractAction"/>
+
+	<bean id="sendCancelMessageAction" class="com.asiamiles.fulfilmentprocess.actions.consignment.SendCancelMessageAction"  parent="abstractAction"/>
+
+	<bean id="subprocessEndAction" class="com.asiamiles.fulfilmentprocess.actions.consignment.SubprocessEndAction"  parent="abstractAction">
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+
+	<bean id="allowShipmentAction" class="com.asiamiles.fulfilmentprocess.actions.consignment.AllowShipmentAction"  parent="abstractAction" />
+	
+	<bean id="changeStatusToDeliveryCompleted" class="com.asiamiles.fulfilmentprocess.actions.consignment.ChangeConsignmentStatusAction" parent="abstractAction">
+	  <property name="status" value="DELIVERY_COMPLETED" />
+	</bean>
+
+	 <bean id="changeStatusToDeliveryShipped" class="com.asiamiles.fulfilmentprocess.actions.consignment.ChangeConsignmentStatusAction" parent="abstractAction">
+	  <property name="status" value="IN_PROCESSING" />
+	</bean>
+	
+		<bean id="changeStatusToDelivery" class="com.asiamiles.fulfilmentprocess.actions.consignment.ChangeConsignmentStatusAction" parent="abstractAction">
+	  <property name="status" value="DELIVERED" />
+	</bean>
+	
+	<bean id="fraudCheckAction" class="com.asiamiles.fulfilmentprocess.actions.consignment.FraudCheckAction"  parent="abstractAction">
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+</beans>

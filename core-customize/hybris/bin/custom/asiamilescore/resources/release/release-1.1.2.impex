@@ -1,0 +1,285 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+#
+# Import the Solr configuration for the store
+#
+$productCatalog = asiamilesProductCatalog
+$categorySolrIndexedType = asiamilesCategoryType
+$catalogVersions = catalogVersions(catalog(id), version);
+$serverConfigName =
+$indexConfigName =
+$searchConfigName = Default
+$facetSearchConfigName = asiamilesIndex
+$facetSearchConfigDescription = Asiamiles Solr Index
+$searchIndexNamePrefix = asiamiles
+$solrIndexedType = asiamilesProductType
+$indexBaseSite = asiamiles
+$indexLanguages = en
+$indexCurrencies = MVR
+$searchIndexNamePrefixCategory = asiamilesCategory
+$languages = en, zh, zh_TW, ko, ja
+$defaultLang = en
+$language_tw = zh_TW
+$language_zh = zh
+$language_ja = ja
+$language_ko = ko
+
+
+# Import config properties into impex macros
+UPDATE GenericItem[processor = de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor]; pk[unique = true]
+
+# Create the solr server configuration
+INSERT_UPDATE SolrServerConfig; name[unique = true]; mode(code)
+
+# Create the solr indexer configuration
+INSERT_UPDATE SolrIndexConfig; name[unique = true]; batchSize; numberOfThreads; indexMode(code);
+
+# Create the faceted search configuration
+INSERT_UPDATE SolrSearchConfig; description[unique = true]; pageSize
+
+#
+# Remove price from backoffice solr index
+#
+REMOVE SolrIndexedProperty; name[unique = true]; solrIndexedType(identifier)[unique = true, default = 'BackofficeProduct'];
+                          ; price              ;                                                                          ;
+
+#
+# Setup the indexed types, their properties, and the update queries
+#
+# Declare the indexed type Product
+INSERT_UPDATE SolrIndexedType; identifier[unique = true]; type(code); variant; sorts(&sortRefID)                                                                                                ; group; groupFieldname  ; groupFacets
+                             ; $solrIndexedType         ; Product   ; false  ; sortRef1,sortRef2,sortRef3,sortRef4,sortRef5,sortRef6, sortRef7,sortRef8,sortRef9,sortRef10 ,sortRef11,sortRef12 ; true ; baseProductCode ; true
+
+
+INSERT_UPDATE SolrFacetSearchConfig; name[unique = true]    ; description                   ; indexNamePrefix        ; languages(isocode); currencies(isocode); solrServerConfig(name); solrSearchConfig(description); solrIndexConfig(name); solrIndexedTypes(identifier); enabledLanguageFallbackMechanism; $catalogVersions
+                                   ; $facetSearchConfigName ; $facetSearchConfigDescription ; $searchIndexNamePrefix ; $languages        ; $indexCurrencies   ; Default               ; Default                      ; Default              ; $solrIndexedType            ; true                            ; $productCatalog:Online
+
+UPDATE BaseSite; uid[unique = true]; solrFacetSearchConfiguration(name)
+               ; $indexBaseSite    ; $facetSearchConfigName
+
+# Define price range set
+INSERT_UPDATE SolrValueRangeSet; name[unique = true]; qualifier; type   ; solrValueRanges(&rangeValueRefID)
+                               ; asiamilesRange     ; MVR      ; double ; rangeRefMILES1,rangeRefMILES2,rangeRefMILES3,rangeRefMILES4,rangeRefMILES5
+
+# Buidl the index type Category
+INSERT_UPDATE SolrIndexedType; identifier[unique = true]; type(code); variant; sorts(&sortRefID); group; groupFieldname; groupFacets
+
+# Define price ranges
+INSERT_UPDATE SolrValueRange; &rangeValueRefID; solrValueRangeSet(name)[unique = true]; name[unique = true]   ; from   ; to
+                            ; rangeRefMILES1  ; asiamilesRange                        ; less than 50,000 pts  ; 0      ; 49999
+                            ; rangeRefMILES2  ; asiamilesRange                        ; 50,000 - 100,000 pts  ; 50000  ; 100000
+                            ; rangeRefMILES3  ; asiamilesRange                        ; 100,000 - 200,000 pts ; 100000 ; 200000
+                            ; rangeRefMILES4  ; asiamilesRange                        ; 200,000 - 30,000 pts  ; 200000 ; 300000
+                            ; rangeRefMILES5  ; asiamilesRange                        ; more than 300,000 pts ; 300000 ; 999999999
+
+
+# Non-facet properties
+INSERT_UPDATE SolrIndexedProperty; solrIndexedType(identifier)[unique = true]; name[unique = true]    ; type(code); sortableType(code); currency[default = false]; localized[default = false]; multiValue[default = false]; useForSpellchecking[default = false]; useForAutocomplete[default = false]; fieldValueProvider                       ; valueProviderParameter; ftsPhraseQuery[default = false]; ftsPhraseQueryBoost; ftsQuery[default = false]; ftsQueryBoost; ftsFuzzyQuery[default = false]; ftsFuzzyQueryBoost; ftsWildcardQuery[default = false]; ftsWildcardQueryType(code)[default = POSTFIX]; ftsWildcardQueryBoost; ftsWildcardQueryMinTermLength
+                                 ; $solrIndexedType                          ; itemtype               ; string    ;                   ;                          ;                           ;                            ;                                     ;                                    ;                                          ;                       ;                                ;                    ;                          ;              ;                               ;                   ;                                  ;                                              ;
+                                 ; $solrIndexedType                          ; code                   ; string    ;                   ;                          ;                           ;                            ; true                                ;                                    ; springELValueProvider                    ; code                  ;                                ;                    ; true                     ; 90           ;                               ;                   ; true                             ; POSTFIX                                      ; 45                   ; 3
+                                 ; $solrIndexedType                          ; name                   ; text      ; sortabletext      ;                          ; true                      ;                            ; true                                ;                                    ; springELValueProvider                    ; getName(#lang)        ; true                           ; 100                ; true                     ; 50           ; true                          ; 25                ;                                  ;                                              ;                      ;
+                                 ; $solrIndexedType                          ; description            ; text      ;                   ;                          ; true                      ;                            ;                                     ;                                    ;                                          ;                       ;                                ;                    ;                          ;              ;                               ;                   ;                                  ;                                              ;                      ;
+                                 ; $solrIndexedType                          ; summary                ; text      ;                   ;                          ; true                      ;                            ;                                     ;                                    ;                                          ;                       ;                                ;                    ;                          ;              ;                               ;                   ;                                  ;                                              ;                      ;
+                                 ; $solrIndexedType                          ; manufacturerName       ; text      ;                   ;                          ;                           ;                            ; true                                ;                                    ;                                          ;                       ; true                           ; 80                 ; true                     ; 40           ; true                          ; 20                ;                                  ;                                              ;                      ;
+                                 ; $solrIndexedType                          ; manufacturerAID        ; string    ;                   ;                          ;                           ;                            ;                                     ;                                    ;                                          ;                       ;                                ;                    ;                          ;              ;                               ;                   ;                                  ;                                              ;                      ;
+                                 ; $solrIndexedType                          ; ean                    ; string    ;                   ;                          ;                           ;                            ; true                                ;                                    ;                                          ;                       ;                                ;                    ; true                     ; 100          ;                               ;                   ; true                             ; POSTFIX                                      ; 50                   ; 3
+                                 ; $solrIndexedType                          ; priceValue             ; double    ;                   ; true                     ;                           ;                            ;                                     ;                                    ; productPriceValueProvider                ;                       ;                                ;                    ;                          ;              ;                               ;                   ;                                  ;                                              ;                      ;
+                                 ; $solrIndexedType                          ; keywords               ; text      ;                   ;                          ; true                      ;                            ; true                                ;                                    ; productKeywordsValueProvider             ;                       ; true                           ; 40                 ; true                     ; 20           ; true                          ; 10                ;                                  ;                                              ;                      ;
+                                 ; $solrIndexedType                          ; reviewAvgRating        ; double    ;                   ;                          ; true                      ;                            ;                                     ;                                    ; productReviewAverageRatingValueProvider  ;                       ;                                ;                    ;                          ;              ;                               ;                   ;                                  ;                                              ;                      ;
+                                 ; $solrIndexedType                          ; url                    ; string    ;                   ;                          ; true                      ;                            ;                                     ;                                    ; productUrlValueProvider                  ;                       ;                                ;                    ;                          ;              ;                               ;                   ;                                  ;                                              ;                      ;
+                                 ; $solrIndexedType                          ; primaryPromotionCode   ; string    ;                   ;                          ;                           ;                            ;                                     ;                                    ; promotionCodeValueProvider               ;                       ;                                ;                    ;                          ;              ;                               ;                   ;                                  ;                                              ;                      ;
+                                 ; $solrIndexedType                          ; primaryPromotionBanner ; string    ;                   ;                          ;                           ;                            ;                                     ;                                    ; promotionImageValueProvider              ;                       ;                                ;                    ;                          ;              ;                               ;                   ;                                  ;                                              ;                      ;
+                                 ; $solrIndexedType                          ; stockLevelStatus       ; string    ;                   ;                          ;                           ;                            ;                                     ;                                    ; productStockLevelStatusValueProvider     ;                       ;                                ;                    ;                          ;              ;                               ;                   ;                                  ;                                              ;                      ;
+                                 ; $solrIndexedType                          ; inStockFlag            ; boolean   ;                   ;                          ;                           ;                            ;                                     ;                                    ; productInStockFlagValueProvider          ;                       ;                                ;                    ;                          ;              ;                               ;                   ;                                  ;                                              ;                      ;
+                                 ; $solrIndexedType                          ; pickupAvailableFlag    ; boolean   ;                   ;                          ;                           ;                            ;                                     ;                                    ; productPickupAvailabilityValueProvider   ;                       ;                                ;                    ;                          ;              ;                               ;                   ;                                  ;                                              ;                      ;
+                                 ; $solrIndexedType                          ; configurable           ; boolean   ;                   ;                          ;                           ;                            ;                                     ;                                    ; productConfigurableProvider              ;                       ;                                ;                    ;                          ;              ;                               ;                   ;                                  ;                                              ;                      ;
+                                 ; $solrIndexedType                          ; multidimensional       ; boolean   ;                   ;                          ;                           ;                            ;                                     ;                                    ; multidimentionalProductFlagValueProvider ;                       ;                                ;                    ;                          ;              ;                               ;                   ;                                  ;                                              ;                      ;
+                                 ; $solrIndexedType                          ; baseProductCode        ; string    ;                   ;                          ;                           ;                            ;                                     ;                                    ; productBaseProductCodeProvider           ;
+                                 ; $solrIndexedType                          ; productType            ; string    ;                   ;                          ;                           ;                            ; true                                ;                                    ; productProductTypeProvider               ;                       ;                                ;                    ; true                     ; 90           ;                               ;                   ; true                             ; POSTFIX                                      ; 45                   ; 3
+
+
+# Category fields
+INSERT_UPDATE SolrIndexedProperty; solrIndexedType(identifier)[unique = true]; name[unique = true]; type(code); localized[default = false]; multiValue[default = true]; categoryField[default = true]; useForSpellchecking[default = false]; useForAutocomplete[default = false]; fieldValueProvider           ; ftsPhraseQuery[default = false]; ftsPhraseQueryBoost; ftsQuery[default = false]; ftsQueryBoost; ftsFuzzyQuery[default = false]; ftsFuzzyQueryBoost
+                                 ; $solrIndexedType                          ; categoryName       ; text      ; true                      ;                           ;                              ; true                                ; true                               ; amlCategoryNameValueProvider ; true                           ; 40                 ; true                     ; 20           ; true                          ; 10
+
+# Category facets
+#INSERT_UPDATE SolrIndexedProperty; solrIndexedType(identifier)[unique = true]; name[unique = true]; type(code); multiValue[default = true]; facet[default = true]; facetType(code); facetSort(code); priority; visible; categoryField[default = true]; fieldValueProvider           ; facetDisplayNameProvider         ; topValuesProvider
+#                                 ; $solrIndexedType                          ; categoryPath       ; string    ;                           ;                      ; Refine         ; Alpha          ; -9999   ; false  ; false                        ; categoryPathValueProvider    ;
+#                                 ; $solrIndexedType                          ; category           ; string    ;                           ;                      ; Refine         ; Alpha          ; 6000    ; true   ;                              ; amlCategoryCodeValueProvider ; categoryFacetDisplayNameProvider ; defaultTopValuesProvider
+
+# Other facet properties
+INSERT_UPDATE SolrIndexedProperty; solrIndexedType(identifier)[unique = true]; name[unique = true]; type(code); sortableType(code); currency[default = false]; localized[default = false]; multiValue[default = false]; facet[default = true]; facetType(code); facetSort(code); priority; visible; useForSpellchecking[default = false]; useForAutocomplete[default = false]; fieldValueProvider         ; facetDisplayNameProvider          ; customFacetSortProvider; topValuesProvider        ; rangeSets(name)
+                                 ; $solrIndexedType                          ; price              ; double    ;                   ; true                     ;                           ;                            ;                      ; MultiSelectOr  ; Alpha          ; 4000    ; true   ;                                     ;                                    ; productPriceValueProvider  ;                                   ;                        ; defaultTopValuesProvider ; asiamilesRange
+                                 ; $solrIndexedType                          ; allPromotions      ; string    ;                   ;                          ;                           ; true                       ;                      ; MultiSelectOr  ; Alpha          ; 0       ; false  ;                                     ;                                    ; promotionCodeValueProvider ; promotionFacetDisplayNameProvider ;                        ;
+#;$solrIndexedType; availableInStores;string	;	 ;     ;     ;true ;     ;MultiSelectOr ;Custom;10000;true;     ;     ;productStoreStockValueProvider;electronicsPointOfServiceFacetDisplayNameProvider;distanceAttributeSortProvider
+
+# Create the queries that will be used to extract data for Solr
+INSERT_UPDATE SolrIndexerQuery; solrIndexedType(identifier)[unique = true]; identifier[unique = true]          ; type(code); injectCurrentDate[default = true]; injectCurrentTime[default = true]; injectLastIndexTime[default = true]; query                                                                                                                                                                         ; user(uid)
+                              ; $solrIndexedType                          ; $searchIndexNamePrefix-fullQuery   ; full      ;                                  ;                                  ; false                              ; "SELECT {P.PK} FROM {Product AS P LEFT JOIN ArticleApprovalStatus AS AAS ON {AAS.PK}={P.approvalStatus}}  WHERE {P.varianttype}  is null AND {AAS.code}  NOT IN ('delisted')" ; anonymous
+
+                              ; $solrIndexedType                          ; $searchIndexNamePrefix-updateQuery ; update    ;                                  ;                                  ;                                    ; "SELECT {P.PK} FROM {Product AS P}  WHERE {P.varianttype}  is null AND  {P.modifiedtime} >= ?lastIndexTime" ; anonymous
+
+# Define the available sorts
+INSERT_UPDATE SolrSort; &sortRefID; indexedType(identifier)[unique = true]; code[unique = true]; name[lang = $defaultLang]; name[lang = $language_tw]; useBoost
+                      ; sortRef1  ; $solrIndexedType                      ; relevance          ; "Featured"               ; "熱賣"                     ; true
+                      ; sortRef2  ; $solrIndexedType                      ; topRated           ; ""                       ;                          ; false
+                      ; sortRef3  ; $solrIndexedType                      ; name-asc           ; "A - Z (product name)"   ; "A - Z（商品名稱）"            ; false
+                      ; sortRef4  ; $solrIndexedType                      ; name-desc          ; "Z - A (product name)"   ; "Z - A（商品名稱）"            ; false
+                      ; sortRef5  ; $solrIndexedType                      ; price-asc          ; ""                       ;                          ; false
+                      ; sortRef6  ; $solrIndexedType                      ; price-desc         ; ""                       ;                          ; false
+                      ; sortRef7  ; $solrIndexedType                      ; zonePrice-asc      ; "Price (low to high)"     ; "價格（低至高）"                ; false
+                      ; sortRef8  ; $solrIndexedType                      ; zonePrice-desc     ; "Price (high to low)"     ; "價格（高至低）"                ; false
+                      ; sortRef9  ; $solrIndexedType                      ; onlineDate-asc     ; "Date added (oldest)"    ; "上架日期（舊至新）"              ; false
+                      ; sortRef10 ; $solrIndexedType                      ; onlineDate-desc    ; "Date added (newest)"    ; "上架日期（新至舊）"              ; false
+                      ; sortRef11 ; $solrIndexedType                      ; milesRange-asc     ;                          ;                          ; false
+                      ; sortRef12 ; $solrIndexedType                      ; milesRange-desc    ;                          ;                          ; false
+
+
+UPDATE SolrSort; indexedType(identifier)[unique = true]; code[unique = true]; name[lang = $language_zh]; name[lang = $language_ja]; name[lang = $language_ko]
+               ; $solrIndexedType                      ; relevance          ; 特色好货                     ; 推奨順                      ; 추천
+               ; $solrIndexedType                      ; name-asc           ; A - Z （商品名称）             ; アルファベットA-Z（商品名）          ; A-Z (상품명)
+               ; $solrIndexedType                      ; name-desc          ; Z - A （商品名称）             ; アルファベットZ-A（商品名）          ; Z-A (상품명)
+               ; $solrIndexedType                      ; zonePrice-asc      ; 价格（低到高）                  ; 価格(安い順)                  ; 낮은 가격순
+               ; $solrIndexedType                      ; zonePrice-desc     ; 价格（高到低）                  ; 価格(高い順)                  ; 높은 가격순
+               ; $solrIndexedType                      ; onlineDate-asc     ; 上架日期（旧到新）                ; 掲載日（古い順）                 ; 등록일(오래된 순)
+               ; $solrIndexedType                      ; onlineDate-desc    ; 上架日期（新到旧）                ; 掲載日（新しい順）                ; 등록일(최근부터)
+
+
+# Define the sort fields
+INSERT_UPDATE SolrSortField; sort(indexedType(identifier), code)[unique = true]; fieldName[unique = true]; ascending[unique = true]
+                           ; $solrIndexedType:relevance                        ; inStockFlag             ; false
+                           ; $solrIndexedType:topRated                         ; inStockFlag             ; false
+                           ; $solrIndexedType:name-asc                         ; inStockFlag             ; false
+                           ; $solrIndexedType:name-desc                        ; inStockFlag             ; false
+                           ; $solrIndexedType:zonePrice-asc                    ; inStockFlag             ; false
+                           ; $solrIndexedType:zonePrice-desc                   ; inStockFlag             ; false
+                           ; $solrIndexedType:onlineDate-asc                   ; inStockFlag             ; false
+                           ; $solrIndexedType:onlineDate-desc                  ; inStockFlag             ; false
+
+
+# Define the sort fields
+INSERT_UPDATE SolrSortField; sort(indexedType(identifier), code)[unique = true]; fieldName[unique = true]; ascending[unique = true]
+                           ; $solrIndexedType:relevance                        ; score                   ; false
+                           ; $solrIndexedType:topRated                         ; reviewAvgRating         ; false
+                           ; $solrIndexedType:name-asc                         ; name                    ; true
+                           ; $solrIndexedType:name-desc                        ; name                    ; false
+                           ; $solrIndexedType:price-asc                        ; priceValue              ; true
+                           ; $solrIndexedType:price-desc                       ; priceValue              ; false
+                           ; $solrIndexedType:zonePrice-asc                    ; zonePrice               ; true
+                           ; $solrIndexedType:zonePrice-desc                   ; zonePrice               ; false
+                           ; $solrIndexedType:onlineDate-asc                   ; onlineDate              ; true
+                           ; $solrIndexedType:onlineDate-asc                   ; name                    ; true
+                           ; $solrIndexedType:onlineDate-desc                  ; onlineDate              ; false
+                           ; $solrIndexedType:onlineDate-desc                  ; name                    ; true
+                           ; $solrIndexedType:milesRange-asc                   ; zonePrice               ; true
+                           ; $solrIndexedType:milesRange-desc                  ; zonePrice               ; false
+
+# Search query template
+INSERT_UPDATE SolrSearchQueryTemplate; name[unique = true]; indexedType(identifier)[unique = true]; ftsQueryBuilder             ; enableHighlighting[default = true]; groupProperty(name); group;
+                                     ; DEFAULT            ; $solrIndexedType                      ; defaultFreeTextQueryBuilder ;                                   ; baseProductCode    ; true ;
+                                     ; SUGGESTIONS        ; $solrIndexedType                      ;                             ; false                             ;
+
+
+INSERT_UPDATE SolrSearchQueryProperty; indexedProperty(name, solrIndexedType(identifier))[unique = true]; searchQueryTemplate(name, indexedType(identifier))[unique = true][default = DEFAULT:$solrIndexedType]; facet; ftsPhraseQuery[default = false]; ftsPhraseQueryBoost; ftsQuery[default = false]; ftsQueryBoost; ftsFuzzyQuery[default = false]; ftsFuzzyQueryBoost; ftsWildcardQuery[default = false]; ftsWildcardQueryType(code)[default = POSTFIX]; ftsWildcardQueryBoost; ftsWildcardQueryMinTermLength; includeInResponse[default = true]; useForHighlighting[default = false]
+                                     ; name:$solrIndexedType                                            ; DEFAULT:$solrIndexedType                                                                             ;      ; TRUE                           ;                    ; TRUE                     ;              ;                               ;                   ; TRUE                             ; PREFIX_AND_POSTFIX                           ;                      ;                              ;                                  ; false
+                                     ; categoryName:$solrIndexedType                                    ; DEFAULT:$solrIndexedType                                                                             ;      ; TRUE                           ;                    ; TRUE                     ;              ;                               ;                   ; TRUE                             ; PREFIX_AND_POSTFIX                           ;                      ;                              ;                                  ; false
+                                     ; keywords:$solrIndexedType                                        ; DEFAULT:$solrIndexedType                                                                             ;      ; TRUE                           ;                    ; TRUE                     ;              ;                               ;                   ; TRUE                             ; PREFIX_AND_POSTFIX                           ;                      ;                              ;                                  ; false
+                                     ; brandNameText:$solrIndexedType                                   ; DEFAULT:$solrIndexedType                                                                             ;      ; TRUE                           ;                    ; TRUE                     ;              ;                               ;                   ; TRUE                             ; PREFIX_AND_POSTFIX                           ;                      ;                              ;                                  ; false
+
+# Non-facet search query properties
+INSERT_UPDATE SolrSearchQueryProperty; indexedProperty(name, solrIndexedType(identifier))[unique = true]; searchQueryTemplate(name, indexedType(identifier))[unique = true][default = DEFAULT:$solrIndexedType]; facet; ftsPhraseQuery[default = false]; ftsPhraseQueryBoost; ftsQuery[default = false]; ftsQueryBoost; ftsFuzzyQuery[default = false]; ftsFuzzyQueryBoost; ftsWildcardQuery[default = false]; ftsWildcardQueryType(code)[default = POSTFIX]; ftsWildcardQueryBoost; ftsWildcardQueryMinTermLength; includeInResponse[default = true]; useForHighlighting[default = false]
+                                     ; name:$solrIndexedType                                            ; SUGGESTIONS:$solrIndexedType                                                                         ;      ; TRUE                           ;                    ; TRUE                     ;              ;                               ;                   ; TRUE                             ; PREFIX_AND_POSTFIX                           ;                      ;                              ;                                  ; false
+                                     ; categoryName:$solrIndexedType                                    ; SUGGESTIONS:$solrIndexedType                                                                         ;      ; TRUE                           ;                    ; TRUE                     ;              ;                               ;                   ; TRUE                             ; PREFIX_AND_POSTFIX                           ;                      ;                              ;                                  ; false
+                                     ; keywords:$solrIndexedType                                        ; SUGGESTIONS:$solrIndexedType                                                                         ;      ; TRUE                           ;                    ; TRUE                     ;              ;                               ;                   ; TRUE                             ; PREFIX_AND_POSTFIX                           ;                      ;                              ;                                  ; false
+                                     ; brandNameText:$solrIndexedType                                   ; SUGGESTIONS:$solrIndexedType                                                                         ;      ; TRUE                           ;                    ; TRUE                     ;              ;                               ;                   ; TRUE                             ; PREFIX_AND_POSTFIX                           ;                      ;                              ;                                  ; false
+
+# Category search query fields
+INSERT_UPDATE SolrSearchQueryProperty; indexedProperty(name, solrIndexedType(identifier))[unique = true]; searchQueryTemplate(name, indexedType(identifier))[unique = true][default = DEFAULT:$solrIndexedType]; facet; ftsPhraseQuery[default = false]; ftsPhraseQueryBoost; ftsQuery[default = false]; ftsQueryBoost; ftsFuzzyQuery[default = false]; ftsFuzzyQueryBoost; includeInResponse[default = true]
+                                     ; categoryName:$solrIndexedType                                    ;                                                                                                      ;      ; true                           ; 40                 ; true                     ; 20           ; true                          ; 10                ;
+
+# Category search query facets
+#INSERT_UPDATE SolrSearchQueryProperty; indexedProperty(name, solrIndexedType(identifier))[unique = true]; searchQueryTemplate(name, indexedType(identifier))[unique = true][default = DEFAULT:$solrIndexedType]; facet[default = true]; facetType(code); includeInResponse[default = true]; facetDisplayNameProvider         ; facetSortProvider; facetTopValuesProvider
+#                                     ; categoryPath:$solrIndexedType                                    ;                                                                                                      ;                      ; Refine         ;                                  ;                                  ;
+#                                     ; category:$solrIndexedType                                        ;                                                                                                      ;                      ; Refine         ;                                  ; categoryFacetDisplayNameProvider ; defaultTopValuesProvider
+
+# Other search query facets
+#INSERT_UPDATE SolrSearchQueryProperty; indexedProperty(name, solrIndexedType(identifier))[unique = true]; facet[default = true]; facetType(code); priority; facetDisplayNameProvider          ; facetSortProvider; facetTopValuesProvider   ; includeInResponse[default = true]; searchQueryTemplate(name, indexedType(identifier))[unique = true][default = DEFAULT:$solrIndexedType]
+#                                     ; price:$solrIndexedType                                           ;                      ; MultiSelectOr  ; 4000    ;                                   ;                  ; defaultTopValuesProvider ;                                  ;
+#                                     ; allPromotions:$solrIndexedType                                   ;                      ; MultiSelectOr  ; 0       ; promotionFacetDisplayNameProvider ;                  ;                          ;                                  ;
+# Non-facet properties
+# Declare the indexed type Product
+INSERT_UPDATE SolrIndexedProperty; name[unique = true]            ; solrIndexedType(identifier)[unique = true]; type(code); displayName[lang = $defaultLang]; facet[default = true]; localized[default = false]; currency[default = false]; multiValue[default = false]; rangeSet(name); facetDisplayNameProvider                       ; fieldValueProvider                           ; includeInResponse[default = false]; rangeSets(name); facetType(code)[unique = true, default = 'MultiSelectOr']; topValuesProvider;
+                                 ; gift_with_product              ; $solrIndexedType                          ; boolean   ;                                 ; true                 ;                           ;                          ;                            ;               ;                                                ; amlGiftWithProductProvider                   ; true                              ;                ;                                                          ;
+                                 ; product_tag_group_a            ; $solrIndexedType                          ; string    ;                                 ; true                 ;                           ;                          ;                            ;               ; amlProductTagGroupANameProvider                ; amlProductTagGroupACodeProvider              ; true                              ;                ;                                                          ;
+                                 ; product_tag_group_b            ; $solrIndexedType                          ; string    ;                                 ; true                 ;                           ;                          ;                            ;               ; amlProductTagGroupBNameProvider                ; amlProductTagGroupBCodeProvider              ; true                              ;                ;                                                          ;
+                                 ; marco_polo_club_discount       ; $solrIndexedType                          ; boolean   ;                                 ; true                 ;                           ;                          ;                            ;               ;                                                ; amlMarcoPoloClubDiscountTypeProvider         ; true                              ;                ;                                                          ;
+                                 ; cobranded_credit_card_discount ; $solrIndexedType                          ; boolean   ;                                 ; true                 ;                           ;                          ;                            ;               ;                                                ; amlCobrandedCreditCardDiscountProvider       ; true                              ;                ;                                                          ;
+                                 ; brand                          ; $solrIndexedType                          ; string    ; Brands                          ; false                ;                           ;                          ;                            ;               ; categoryFacetDisplayNameProvider               ; amlBrandCategoryCodeValueProvider            ; true                              ;                ;                                                          ;
+                                 ; categoryLevel1                 ; $solrIndexedType                          ; string    ; Categories                      ; true                 ;                           ;                          ; true                       ;               ; amlCategoryFilterLevelOneDisplayNameProvider   ; amlCategoryFilterLevelOneCodeValueProvider   ; true                              ;                ;                                                          ; defaultTopValuesProvider
+                                 ; categoryLevel2                 ; $solrIndexedType                          ; string    ; Categories                      ; true                 ;                           ;                          ; true                       ;               ; amlCategoryFilterLevelTwoDisplayNameProvider   ; amlCategoryFilterLevelTwoCodeValueProvider   ; true                              ;                ;                                                          ; defaultTopValuesProvider
+                                 ; categoryLevel3                 ; $solrIndexedType                          ; string    ; Categories                      ; true                 ;                           ;                          ; true                       ;               ; amlCategoryFilterLevelThreeDisplayNameProvider ; amlCategoryFilterLevelThreeCodeValueProvider ; true                              ;                ;                                                          ; defaultTopValuesProvider
+                                 ; categoryLevel4                 ; $solrIndexedType                          ; string    ; Categories                      ; true                 ;                           ;                          ; true                       ;               ; amlCategoryFilterLevelFourDisplayNameProvider  ; amlCategoryFilterLevelFourCodeValueProvider  ; true                              ;                ;                                                          ; defaultTopValuesProvider
+                                 ; zone                           ; $solrIndexedType                          ; string    ;                                 ; true                 ;                           ;                          ; true                       ;               ;                                                ; productZonesValueProvider                    ; true                              ;                ;                                                          ;
+                                 ; country                        ; $solrIndexedType                          ; string    ;                                 ; true                 ;                           ;                          ; true                       ;               ;                                                ; productExcludeCountriesValueProvider         ; true                              ;                ;                                                          ;
+                                 ; zonePrice                      ; $solrIndexedType                          ; double    ;                                 ; true                 ;                           ;                          ;                            ;               ;                                                ; productZonePricesValueProvider               ; true                              ;                ;                                                          ;
+                                 ; colour                         ; $solrIndexedType                          ; string    ;                                 ; true                 ;                           ;                          ;                            ;               ;                                                ; amlProductTagGroupBColorCodeProvider         ; true                              ;                ;                                                          ;
+                                 ; img-294Wx195H1                 ; $solrIndexedType                          ; string    ;                                 ; true                 ;                           ;                          ;                            ;               ;                                                ; aml294FirstMediaCodeProvider                 ; true                              ;                ;                                                          ;
+                                 ; img-294Wx195H2                 ; $solrIndexedType                          ; string    ;                                 ; true                 ;                           ;                          ;                            ;               ;                                                ; aml294SecondMediaCodeProvider                ; true                              ;                ;                                                          ;
+                                 ; best_deal                      ; $solrIndexedType                          ; string    ; Best Deals                      ; true                 ;                           ;                          ; true                       ;               ; amlProductBestDealNameProvider                 ; amlProductBestDealValueProvider              ; true                              ;                ;                                                          ;
+                                 ; way_shop                       ; $solrIndexedType                          ; string    ; Popular filters                 ; true                 ;                           ;                          ; true                       ;               ; amlProductWays2ShopNameProvider                ; amlProductWays2ShopValueProvider             ; true                              ;                ;                                                          ;
+                                 ; allCategories                  ; $solrIndexedType                          ; string    ;                                 ; true                 ;                           ;                          ; true                       ;               ;                                                ; amlProductCategoryCodeValueProvider          ; true                              ;                ;                                                          ; defaultTopValuesProvider
+                                 ; onlineDate                     ; $solrIndexedType                          ; long      ;                                 ; false                ;                           ;                          ;                            ;               ;                                                ; amlProductOnlineDateValueProvider            ; true                              ;                ;                                                          ;
+                                 ; offlineDate                    ; $solrIndexedType                          ; long      ;                                 ; false                ;                           ;                          ;                            ;               ;                                                ; amlProductOfflineDateValueProvider           ; true                              ;                ;                                                          ;
+
+UPDATE SolrIndexedProperty; name[unique = true]; solrIndexedType(identifier)[unique = true]; displayName[lang = $language_tw]; displayName[lang = $language_zh]; displayName[lang = $language_ja]; displayName[lang = $language_ko]
+                          ; brandName          ; $solrIndexedType                          ; 品牌                              ; 品牌                              ; ブランド                            ; 브랜드
+                          ; categoryLevel1     ; $solrIndexedType                          ; 類別                              ; 种类                              ; カテゴリー                           ; 카테고리
+                          ; categoryLevel2     ; $solrIndexedType                          ; 類別                              ; 种类                              ; カテゴリー                           ; 카테고리
+                          ; categoryLevel3     ; $solrIndexedType                          ; 類別                              ; 种类                              ; カテゴリー                           ; 카테고리
+                          ; categoryLevel4     ; $solrIndexedType                          ; 類別                              ; 种类                              ; カテゴリー                           ; 카테고리
+                          ; best_deal          ; $solrIndexedType                          ; 精選禮遇                            ; 尊享礼遇                            ; お買い得商品                          ; 핫딜상품
+                          ; way_shop           ; $solrIndexedType                          ; 熱門篩選條件                          ; 热门筛选条件                          ; 人気の絞り込み条件                       ; 인기 검색 필터
+
+#Declare special namevalue for brand category
+INSERT_UPDATE SolrIndexedProperty; solrIndexedType(identifier)[unique = true]; name[unique = true]; type(code); sortableType(code); currency[default = false]; localized[default = false]; multiValue[default = false]; useForSpellchecking[default = false]; useForAutocomplete[default = false]; fieldValueProvider                ; valueProviderParameter; displayName; facet[default = true]
+                                 ; $solrIndexedType                          ; brandName          ; string    ;                   ;                          ; true                      ;                            ;                                     ; true                               ; amlBrandCategoryNameValueProvider ;                       ; Brands     ; true
+                                 ; $solrIndexedType                          ; brandNameText      ; text      ;                   ;                          ; true                      ;                            ;                                     ; true                               ; amlBrandCategoryNameValueProvider ;                       ;            ; false
+
+#enums
+INSERT_UPDATE SolrIndexedProperty; name[unique = true]    ; solrIndexedType(identifier)[unique = true]; type(code); fieldValueProvider    ; includeInResponse[default = false]; facetType(code)[default = 'MultiSelectOr'];
+                                 ; merchantApprovalStatus ; $solrIndexedType                          ; string    ; solrEnumValueResolver ;                                   ;                                           ;
+#Switch legacy mode to deactive
+INSERT_UPDATE SolrSearchConfig; description[unique = true]; pageSize; legacyMode; allFacetValuesInResponse
+                              ; $searchConfigName         ; 20      ; false     ; false
+
+
+# Create the search profile for index
+INSERT_UPDATE AsSearchProfileActivationSet; indexType(indetifier)[unique = true]; catalogVersion(catalog(id), version)[unique = true]
+                                          ; $solrIndexedType                    ; $productCatalog:Staged
+
+INSERT_UPDATE AsCategoryAwareSearchProfile; code[unique = true]           ; name[$defaultLang]     ; indexType[unique = true]; catalogVersion(catalog(id), version)[unique = true]; activationSet(catalogVersion(catalog(id), version), indexType); searchConfigurations(facets)
+                                          ; amlCategoryAwareSearchProfile ; Default Search Profile ; $solrIndexedType        ; $productCatalog:Staged                             ; $productCatalog:Staged:$solrIndexedType                       ;
+
+
+INSERT_UPDATE AsCategoryAwareSearchConfiguration; searchProfile(code, catalogVersion(catalog(id), version)); uniqueIdx[unique = true]; uid[unique = true]  ; catalogVersion(catalog(id), version)
+                                                ; amlCategoryAwareSearchProfile:$productCatalog:Staged     ; searchConfigurationIdx  ; searchConfiguration ; $productCatalog:Staged
+
+
+INSERT_UPDATE AsFacet; searchConfiguration(uid, catalogVersion(catalog(id), version))[unique = true]; uniqueIdx[unique = true]; uid[unique = true]; indexProperty  ; catalogVersion(catalog(id), version); facetType(code); valuesDisplayNameProvider
+                     ; searchConfiguration:$productCatalog:Staged                                   ; categoryLevel1          ; categoryLevel1    ; categoryLevel1 ; $productCatalog:Staged              ; MULTISELECT_OR ; amlCategoryFilterLevelOneDisplayNameProvider
+                     ; searchConfiguration:$productCatalog:Staged                                   ; categoryLevel2          ; categoryLevel2    ; categoryLevel2 ; $productCatalog:Staged              ; MULTISELECT_OR ; amlCategoryFilterLevelTwoDisplayNameProvider
+                     ; searchConfiguration:$productCatalog:Staged                                   ; categoryLevel3          ; categoryLevel3    ; categoryLevel3 ; $productCatalog:Staged              ; MULTISELECT_OR ; amlCategoryFilterLevelThreeDisplayNameProvider
+                     ; searchConfiguration:$productCatalog:Staged                                   ; categoryLevel4          ; categoryLevel4    ; categoryLevel4 ; $productCatalog:Staged              ; MULTISELECT_OR ; amlCategoryFilterLevelFourDisplayNameProvider
+                     ; searchConfiguration:$productCatalog:Staged                                   ; brandName               ; brandName         ; brandName      ; $productCatalog:Staged              ; MULTISELECT_OR ;
+                     ; searchConfiguration:$productCatalog:Staged                                   ; best_deal               ; best_deal         ; best_deal      ; $productCatalog:Staged              ; MULTISELECT_OR ; amlProductBestDealNameProvider
+                     ; searchConfiguration:$productCatalog:Staged                                   ; way_shop                ; way_shop          ; way_shop       ; $productCatalog:Staged              ; MULTISELECT_OR ; amlProductWays2ShopNameProvider
+                     ; searchConfiguration:$productCatalog:Staged                                   ; zone                    ; zone              ; zone           ; $productCatalog:Staged              ; MULTISELECT_OR ;
+

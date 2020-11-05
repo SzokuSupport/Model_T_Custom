@@ -1,0 +1,35 @@
+.order-detailInfo-container {
+
+    @include  media-query-between(1280px, 1340px){
+        margin: 0 0;
+    }
+    
+    .title{
+        position: relative;
+        font-size: 48px;
+        line-height: px2rem(52px);
+        text-align: center;
+        margin-top: px2rem(50px);
+    
+        @include  media-query-down(768px){
+            font-size: 36px;
+            line-height: px2rem(43px);
+            margin-top: px2rem(20px);
+        }
+
+        &:after{
+            content: "";
+            position: absolute; 
+            bottom: px2rem(-20px);
+            left: 50%;
+            height: 3px;
+            width: px2rem(94px);
+            transform: translate(-50%, 0);
+            -ms-transform: translate(-50%, 0);
+            -moz-transform: translate(-50%, 0);
+            -webkit-transform: translate(-50%, 0);
+            -o-transform: translate(-50%, 0);
+            background: #facf04;
+        }
+    }
+}

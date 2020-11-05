@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<config xmlns="http://www.hybris.com/cockpit/config"
+		xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+
+	<context merge-by="type" parent="GenericItem" type="Product" component="editor-area" module="pcmbackoffice">
+		<editorArea:editorArea name="" xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+			<editorArea:tab name="hmc.tab.product.multimedia" position="18">
+				<editorArea:section name="hmc.section.product.pictures">
+					<editorArea:attribute qualifier="picture"/>
+					<editorArea:attribute qualifier="thumbnail"/>
+				</editorArea:section>
+				<editorArea:section name="hmc.section.product.additionalmedias">
+<!--					<editorArea:attribute qualifier="data_sheet"/>-->
+<!--					<editorArea:attribute qualifier="detail"/>-->
+<!--					<editorArea:attribute qualifier="logo"/>-->
+<!--					<editorArea:attribute qualifier="normal"/>-->
+<!--					<editorArea:attribute qualifier="others"/>-->
+<!--					<editorArea:attribute qualifier="thumbnails"/>-->
+					<editorArea:attribute qualifier="galleryImages"/>
+				</editorArea:section>
+			</editorArea:tab>
+			<editorArea:tab name="hmc.tab.product.easymedia" position="19">
+				<editorArea:section name="hmc.tab.product.easymedia">
+					<editorArea:attribute qualifier="easyMediaGallery" />
+					<editorArea:attribute qualifier="needResizing" />
+				</editorArea:section>
+			</editorArea:tab>
+		</editorArea:editorArea>
+	</context>
+</config>

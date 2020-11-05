@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Homepage</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/_ui/responsive/assets/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="/_ui/responsive/assets/css/common.css">
+    <link rel="stylesheet" href="/_ui/responsive/assets/css/slick.css">
+    <link rel="stylesheet" href="/_ui/responsive/assets/css/slick-theme.css">
+  </head>
+  <body>
+    <header id="main-header" class="main-header">
+  <ul class="simplicity" id="simplicity-mobile">
+    <li class="yCmsComponent">
+      <a href="#">Promotion</a>
+    </li>
+    <li class="yCmsComponent">
+      <a class="active" href="#">Cataloge</a>
+    </li>
+    <li class="yCmsComponent">
+      <a href="#">Inspire Me</a> 
+    </li>
+  </ul>
+  <div class="nav-top container">
+    <div class="nav-top-wrapper">
+        <div class="site-logo">
+          <div class="uid-SiteLogoComponent image-component ">
+            <a href="/pages/homepage/index.html" title="" class="">
+              <picture>
+                <img src="/_ui/responsive/assets/img/header-logo.png" alt="iRedeem">
+              </picture>
+            </a>
+          </div>
+        </div>
+        <ul class="simplicity" id="simplicity">
+          <li class="yCmsComponent">
+            <a href="#" class="active">Cataloge</a>
+          </li>
+          <li class="yCmsComponent">
+            <a href="#">Promotion</a>
+          </li>
+          <li class="yCmsComponent">
+            <a href="#">Inspire Me</a>
+          </li>
+        </ul>
+        <div class="secondary-nav-container">
+          <div class="secondary-nav-item">
+            <img src="/_ui/responsive/assets/svg/search.svg">
+          </div>
+          <div class="secondary-nav-item">
+            <img src="/_ui/responsive/assets/svg/wishlist-off.svg">
+          </div>
+          <div class="secondary-nav-item" id="J-showMiniCartList">
+            <a href="/pages/cart/index.html">
+              <img src="/_ui/responsive/assets/svg/cart.svg">
+            </a>
+            <span class="cart-dot J-cartNumber">11</span>
+            <div class="minicart" id="J-miniCartAddProduct">
+  <div class="info">
+    1 item has been added
+  </div>
+  <div class="cart-items">
+    <img class="fl" src="/_ui/responsive/assets/img/pdp-product.png" alt="">
+    <p>Apple Pencil - 2nd Generation</p>
+  </div>
+
+  <div class="cart-link">
+    <a href="" class="view-cart fl">View Cart</a>
+    <a href="" class="proceed-to-redeem fr">Proceed to redeem</a>
+  </div>
+
+  <img class="close J-close" src="/_ui/responsive/assets/svg/cross.svg" alt="">
+</div>
+
+<div class="minicart-list" id="J-miniCartLists">
+  <div class="cart-items">
+    <img class="fl" src="/_ui/responsive/assets/img/pdp-product.png" alt="">
+    <p>Apple Pencil - 2nd Generation</p>
+  </div>
+
+  <div class="cart-link">
+    <a href="" class="view-cart fl">View Cart</a>
+    <a href="javascript:;" class="proceed-to-redeem fr J-close">Proceed to redeem</a>
+  </div>
+
+  <img class="close J-close" src="/_ui/responsive/assets/svg/cross.svg" alt="">
+</div>
+          </div>
+          <div class="secondary-nav-item" id="J-deliveryCountry">
+            <img src="/_ui/responsive/assets/svg/lang.svg">
+            <span class="trangle-arrow"></span> 
+          </div>
+          <div class="secondary-nav-item secondary-nav-login">
+            <input id="loggedIn" type="hidden" value="false">
+            <input id="preview" type="hidden" value="false">
+            <!-- account text -->
+            <div class="row" id="J-userInfoHeader" style="display:none">
+              <!-- <a href="/my-account" class="my-account-link js-my-account-link mr-5 nav-link" data-toggle="popover"> -->
+                Hi {{userName}}
+              <!-- </a> -->
+              <div>
+                <img src="/_ui/responsive/assets/svg/normal.svg">
+                <span class="login-number">80,000</span>
+                <i class="fa fa-chevron-down" style="font-size: 14px;padding-left: 6px;padding-top: 4px;"></i>
+              </div>
+            </div>
+            <!-- login text -->
+            <div class="click-popup J-showLogin"  style="width: 100%;height: 100%;display: flex;justify-content: center;align-items: center;cursor: pointer;">
+              <span data-toggle="login">Log in</span>
+              <i class="fa fa-chevron-down" style="font-size: 14px;padding-left: 6px;padding-top: 4px;"></i>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</header>
+
+<div class="account-nav" id="J-accountNav">
+    <div class="account-nav-wrapper">
+        <div class="member-info">
+            <div class="member-name">
+                Choi, Kam Hung
+            </div>
+            <div class="member-no">
+                Membership No.:
+                <span class="number">1923038390</span>
+            </div>
+        </div>
+        <div class="member-nav">
+            <ul class="member-nav-list">
+                <li class="member-nav-item">
+                    <a href="#">Overview</a>
+                </li>
+                <li class="member-nav-item">
+                    <a href="#">Your profile</a>
+                </li>
+                <li class="member-nav-item">
+                    <a href="#">Redemption history</a>
+                </li>
+                <li class="member-nav-item">
+                    <a href="#">Wishlist</a>
+                </li>
+            </ul>
+            <div class="logout">
+                <!-- go to order detail page -->
+                <a href="#">
+                    <span>Logout</span>
+                    <i class="far fa-circle yellow-circle">
+                        <i class="fa fa-chevron-right goto"></i>
+                    </i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main-header login-wrapper">
+    <div class="login-popup fade J-login">
+        <div class="popover-login" role="tooltip" id="popover693583">
+            <h1 class="tc">Frequent Flyer Login</h1>
+            <div class="ql-login-widget ql-login-grey-bg">
+                <div class="ql-login-parent-container">
+                <div class="ql-login-row">
+                    <div class="ql-login-column ql-login-12 ql-login-column-margin-top">
+                    <label class="ql-login-widget__label" for="form-member-id-undefined">Membership number</label>
+                    <input id="form-member-id-undefined" aria-label="Membership Number" autocomplete="off" class="ql-login-input null"
+                        maxlength="14" name="memberId" type="text" v-model="userName">
+                    </div>
+                </div>
+                <div class="ql-login-row">
+                    <div class="ql-login-column ql-login-12 ql-login-pin-row">
+                    <label class="ql-login-widget__label ql-login-pull-left" for="form-member-pin-undefined">PIN</label>
+                    <input id="form-member-pin-undefined" aria-label="PIN Number" autocomplete="off" class="ql-login-input null"
+                        maxlength="20" name="memberPin" type="password" v-model="password">
+                    </div>
+                </div>
+                <div class="ql-login-row mt-5">
+                    <div class="ql-login-column">
+                    <button :disabled="!userName || !password" class="ql-login-submit-button" v-on:click="login">LOG IN</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <img class="close J-close" src="/_ui/responsive/assets/svg/cross.svg" alt="">  
+        </div>
+        <div class="login-mask"></div>  
+    </div>
+</div>
+
+<div class="countries">
+    <div class="container">
+        <div class="slider-close-btn"><a href="javascript:void(0);"></a></div>
+        <div class="two-col">
+            <div class="bodytext2 page-title">Location</div>
+            <div>
+                <div class="region-group-left col-sm-4">
+                    <div class="region-group-title">China - Mainland, Hong Kong, Macao, Taiwan regions</div>
+                    <ul>
+                        <li><a href="#" data-locate="ap.hong-kong.hong-kong" data-langcode="en"><img src="/_ui/responsive/assets/img/languages-hk.png"
+                                    class="icons icon-small-size"><span>Hong Kong SAR</span></a></li>
+                        <li><a href="#" data-locate="ap.hong-kong.hong-kong" data-langcode="zh"><img src="/_ui/responsive/assets/img/languages-hk.png"
+                                    class="icons icon-small-size"><span>香港特別行政區</span></a></li>
+                        <li><a href="#" data-locate="ap.china" data-langcode="sc"><img src="/_ui/responsive/assets/img/languages-china.png"
+                                    class="icons icon-small-size"><span>中国内地</span></a></li>
+                        <li><a href="#" data-locate="ap.macau.macau" data-langcode="en"><img src="/_ui/responsive/assets/img/languages-macau.png"
+                                    class="icons icon-small-size"><span>Macao SAR</span></a></li>
+                        <li><a href="#" data-locate="ap.macau.macau" data-langcode="zh"><img src="/_ui/responsive/assets/img/languages-macau.png"
+                                    class="icons icon-small-size"><span>澳門特別行政區</span></a></li>
+                        <li><a href="#" data-locate="ap.taiwan" data-langcode="zh"><img src="/_ui/responsive/assets/img/languages-tw.png"
+                                    class="icons icon-small-size"><span>中國台灣</span></a></li>
+                    </ul>
+                </div>
+                <div class="region-group-right col-sm-8">
+                    <div class="region-group-title">Rest of the world</div>
+                    <ul>
+                        <li><a href="#" data-locate="am.canada" data-langcode="en"><img src="/_ui/responsive/assets/img/languages-ca.png"
+                                    class="icons icon-small-size"><span>Canada</span></a></li>
+                        <li><a href="#" data-locate="eu" data-langcode="en"><img src="/_ui/responsive/assets/img/languages-eu.png"
+                                    class="icons icon-small-size"><span>Europe</span></a></li>
+                        <li><a href="#" data-locate="ap.indonesia" data-langcode="id"><img src="/_ui/responsive/assets/img/languages-id.png"
+                                    class="icons icon-small-size"><span>Indonesia</span></a></li>
+                        <li><a href="#" data-locate="ap.japan" data-langcode="ja"><img src="/_ui/responsive/assets/img/languages-jp.png"
+                                    class="icons icon-small-size"><span>日本</span></a></li>
+                        <li><a href="#" data-locate="ap.korea" data-langcode="ko"><img src="/_ui/responsive/assets/img/languages-kr.png"
+                                    class="icons icon-small-size"><span>한국</span></a></li>
+                        <li><a href="#" data-locate="ap.philippines" data-langcode="en"><img src="/_ui/responsive/assets/img/languages-ph.png"
+                                    class="icons icon-small-size"><span>Philippines</span></a></li>
+                        <li><a href="#" data-locate="ap.thailand" data-langcode="th"><img src="/_ui/responsive/assets/img/languages-th.png"
+                                    class="icons icon-small-size"><span>ประเทศไทย</span></a></li>
+                        <li><a href="#" data-locate="am.united_states" data-langcode="en"><img src="/_ui/responsive/assets/img/languages-us.png"
+                                    class="icons icon-small-size"><span>United States</span></a></li>
+                        <li><a href="#" data-locate="ap.vietnam" data-langcode="vn"><img src="/_ui/responsive/assets/img/languages-vn.png"
+                                    class="icons icon-small-size"><span>Việt Nam</span></a></li>
+                        <li><a href="#" data-locate="ap" data-langcode="en"><img src="/_ui/responsive/assets/img/languages-ap.png"
+                                    class="icons icon-small-size"><span>Other Asia Pacific</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="order">
+    <div class="order-detail-title">
+        <div class="title-wrapper">
+            <div class="order-detail-back">
+                <div class="back-wrapper">
+                    <i class="fa fa-chevron-left" style="padding-left:35px;"></i>
+                    <p>Back to redemption history</p>
+                </div>
+            </div>
+            <h1>Order details</h1>
+            <hr>
+        </div>
+    </div>
+    <div class="order-detail-content">
+        <div class="content-title">
+            <h3>Order No.</h3>
+            <p>37826120</p>
+            <h3>Order date</h3>
+            <p>22 Nov 2018 19:25</p>
+            <h3>Status</h3>
+            <p>Delivering</p>
+        </div>
+        <div class="main-content">
+            <div class="confirm-info-content">
+                <div class="confirm-section">
+                    <p class="c-title">Delivery Option</p>
+                    <p class="c-information">Express Delivery<span>( Deliver in 4 working days )</span></span></p>
+                </div>
+                <div class="confirm-section">
+                    <p class="c-title">Delivery Address</p>
+                    <p class="c-information">Choi Kam Hung</p>
+                    <p class="c-information">
+                        41/F One Island East, Taikoo Place,<br>
+                        18 Westlands Rd,<br>
+                        Quarry Bay<br>
+                        Hong Kong SAR
+                    </p>
+                </div>
+                <div class="confirm-section">
+                    <p class="c-title">Delivery Contact</p>
+                    <p class="c-information">+852 92891234</p>
+                </div>
+            </div>
+        </div> 
+    </div>
+    <div class="order-detail-item">
+    <div style="overflow:hidden;">
+        <div class="package-info">
+            Package 1: 
+            <strong>3239202320</strong>
+        </div>
+        <div class="info-detail fr">
+            <div class="miles">
+                <img src="/_ui/responsive/assets/svg/logo.svg" alt="">
+                <span>20,660</span>
+            </div>
+            <div class="cash">
+                +
+                <span class="currency">HKD</span>
+                <span>13,500</span>
+            </div>
+            <p class="label">Home delivery</p>
+        </div>
+    </div> 
+    <div class="order-progress">
+        <div class="order-status">
+            <div class="order-status-line" style="width:33%"></div>
+            <div class="order-status-step">
+                <div class="step-item active">
+                    <span class="dot">1</span>
+                    <span>Confirmation</span>
+                </div>
+                <div class="step-item">
+                    <span class="dot">2</span>
+                    <span>Processing</span>
+                </div>
+                <div class="step-item">
+                    <span class="dot">3</span>
+                    <span>Delivering</span>
+                </div>
+                <div class="step-item">
+                    <span class="dot">4</span>
+                    <span>Delivered</span>
+                </div>
+            </div>
+        </div>
+        <div class="delivery-status">
+            <a href="javascript:;">
+                <img src="/_ui/responsive/assets/svg/delivery.svg" alt="">
+                <p>Delivery tracking</p>
+            </a>
+        </div>
+    </div>
+    <div class="order-progress self-order">
+        <div class="order-status">
+            <div class="order-status-line" style="width:50%"></div>
+            <div class="order-status-step">
+                <div class="step-item active">
+                    <span class="dot">1</span>
+                    <span>Confirmation</span>
+                </div>
+                <div class="step-item">
+                    <span class="dot">2</span>
+                    <span>Redemption letter</span>
+                </div>
+                <div class="step-item">
+                    <span class="dot">3</span>
+                    <span>Self-collection</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="items-list">
+    <div class="redeem-item">
+        <div class="item-pic">
+            <img src="/_ui/responsive/assets/img/featured-applepencil.jpg" alt="">
+        </div>
+        <div class="item-detail">
+            <div class="item-name">
+                <span>Apple Pencil - 2nd Generation</span>
+            </div>
+            <div class="item-type">
+                <div>
+                    <span>Colour: <b>Grey</b></span>
+                    <span>Modal: <b>Modal type 1</b></span>
+                </div>
+                <div>
+                    <span>Avaliable Country: <b>Hong Kong</b></span>
+                    <span>Delivery Country: <b>Hong Kong</b></span>
+                </div>
+            </div>
+        </div>
+        <div class="item-info">
+            <div class="black-bg">
+                <span class="delivery">Home delivery</span>
+            </div>
+            <div class="miles">
+                <img src="/_ui/responsive/assets/svg/logo.svg" alt="">
+                <span>10,500</span>
+            </div>
+            <div class="cash">
+                <i class="fa fa-plus"></i>
+                <span class="currency">HKD</span>
+                <span>12,300</span>
+            </div>
+        </div>
+    </div>
+    <div class="redeem-item">
+        <div class="item-pic">
+            <img src="/_ui/responsive/assets/img/featured-applepencil.jpg" alt="">
+        </div>
+        <div class="item-detail">
+            <div class="item-name">
+                <span>Antler Valencia Cabin Rollercase</span>
+            </div>
+            <div class="item-type">
+                <div>
+                    <span>Colour: <b>Black</b></span>
+                    <!-- <span>Modal: <b>Modal type 1</b></span> -->
+                </div>
+                <div>
+                    <span>Avaliable Country: <b>Hong Kong</b></span>
+                    <span>Delivery Country: <b>Hong Kong</b></span>
+                </div>
+            </div>
+        </div>
+        <div class="item-info">
+            <div class="black-bg">
+                <span class="delivery">Home delivery</span>
+            </div>
+            <div class="miles">
+                <img src="/_ui/responsive/assets/svg/logo.svg" alt="">
+                <span>10,160</span>
+            </div>
+            <div class="cash">
+                <i class="fa fa-plus"></i>
+                <span class="currency">HKD</span>
+                <span>11,200</span>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+    <div class="redeem-section">
+        <div class="redemption-total">
+            <div class="c-one">
+                <h3>Payment via</h3>
+                <img src="/_ui/responsive/assets/img/confirm-payment-method.png" style="width: 100px; margin: 15px 0;" alt="">
+            </div>
+            <div class="c-two">
+                <span>Redemption total</span>
+            </div>
+            <div class="c-three">
+                <div class="miles">
+                    <img src="/_ui/responsive/assets/svg/logo.svg" alt="">
+                    <span>20,660</span>
+                </div>
+                <div class="cash">
+                    <i class="fa fa-plus"></i>
+                    <span class="currency">HKD</span>
+                    <span>13,500</span>
+                </div>
+            </div>
+        </div>
+        <div class="checkout-check" style="margin-bottom: 0;">
+            <div class="confirm-contatiner">
+                <div class="check-btn">
+                    <button style="width:300px;margin-left:30px;">Back</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <footer class="global-footer">
+    <div class="sub-footer">
+        <div class="sub-footer-wrapper">
+            <div class="foot-container">
+                <div class="links-list">
+                    <ul class="portal-links">
+                        <li>
+                            <a href="https://www.asiamiles.com/en/about-asia-miles.html">
+                            About Asia Miles</a>
+                        </li>
+                        <li>
+                            <a href="https://www.asiamiles.com/en/partnership-enquiry.html">
+                            Partnership opportunities</a>
+                        </li>
+                        <li>
+                            <a href="https://www.asiamiles.com/en/career.html">
+                            Careers</a>
+                        </li>
+                        <li>
+                            <a href="https://www.asiamiles.com/en/media-centre.html">
+                            Media centre</a>
+                        </li>
+                        <li>
+                            <a href="https://www.asiamiles.com/en/terms-and-conditions.html">
+                            Terms and conditions</a>
+                        </li>
+                        <li>
+                            <a href="https://www.asiamiles.com/en/privacy-policy.html">
+                            Privacy policy</a>
+                        </li>
+                        <li>
+                            <a href="https://www.asiamiles.com/en/disclaimer.html">
+                            Disclaimer</a>
+                        </li>
+                    </ul>
+                    <ul class="no-space follow-links">
+                        <li>
+                            <a href="https://www.facebook.com/Qantas" aria-label="Link to facebook" title="Facebook" target="_blank">
+                                <img src="/_ui/responsive/assets/svg/footer-facebook.svg">
+                                <span class="aria-visible">Facebook</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://instagram.com/Qantas/" aria-label="Link to instagram" title="Instagram" target="_blank">
+                                <img src="/_ui/responsive/assets/svg/footer-instagram.svg">
+                                <span class="aria-visible">Instagram</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/Qantas" aria-label="Link to twitter" title="Twitter" target="_blank">
+                                <img src="/_ui/responsive/assets/svg/footer-twitter.svg">
+                                <span class="aria-visible">Twitter</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://weibo.com/asiamileslimited" aria-label="Link to weibo" title="Weibo" target="_blank">
+                                <img src="/_ui/responsive/assets/svg/footer-weibo.svg">
+                                <span class="aria-visible">Weibo</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.asiamiles.com/sc/support/help-centre/contact-us.html#/social-media" aria-label="Link to wechat" title="WeChat" target="_blank">
+                                <img src="/_ui/responsive/assets/svg/footer-wechat.svg">
+                                <span class="aria-visible">WeChat</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="copyright">
+                    <p>Copyright © Asia Miles is managed and operated by Asia Miles Limited.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/_ui/responsive/assets/js/jquery-ui.min.js"></script>
+    <script src="/_ui/responsive/assets/js/slick.min.js"></script>
+    <script src="/_ui/responsive/assets/js/common.js"></script>
+  </body>
+</html>

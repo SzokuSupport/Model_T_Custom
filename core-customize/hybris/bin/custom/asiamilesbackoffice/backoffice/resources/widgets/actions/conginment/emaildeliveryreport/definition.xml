@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<action-definition id="com.asiamiles.backoffice.actions.consignment.emaildeliveryactionreport"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/action-definition.xsd">
+    <name>DownLoad - Email delivery </name>
+    <description>Confirm Export</description>
+    <author>hybris</author>
+    <version>0.1</version>
+
+    <actionClassName>com.asiamiles.backoffice.actions.consignment.EmailDeliveryReportAction</actionClassName>
+    <inputType>de.hybris.platform.ordersplitting.model.ConsignmentModel</inputType>
+    <outputType>de.hybris.platform.ordersplitting.model.ConsignmentModel</outputType>
+     
+    <iconUri>icons/emailDelivery-default.png</iconUri>
+    <iconDisabledUri>icons/emailDelivery-disable.png</iconDisabledUri>
+    <iconHoverUri>icons/emailDelivery-hover.png</iconHoverUri>
+    <settings>
+        <setting key="viewMode" default-value="iconOnly"/>
+        <setting key="actionType" default-value="CONFIRM_EXPORT"/>
+   </settings>
+</action-definition>

@@ -1,0 +1,23 @@
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 400 300" style="enable-background:new 0 0 400 300;" xml:space="preserve">
+<style type="text/css">
+	.st0{
+        opacity:1;
+        fill:#E40000;
+        enable-background:new;
+    }
+	.st1{
+        fill:url(#SVGID_1_);
+    }
+    .st0 {
+        opacity: 1;
+        fill: rgb(255,215,0);
+    }
+</style>
+<path id="Combined-Shape" class="st0" d="M122.9,300H297c12.6-15,23.6-32.2,32.6-51.6l63.3-136.9c15-32.4,5.1-72.1-22-88.6L333.5,0  H122.9H0v300H122.9z"/>
+<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="370.4489" y1="-775.2091" x2="343.9464" y2="-729.3054" gradientTransform="matrix(1 0 0 1 0 760)">
+	<stop offset="0" style="stop-color:#8DE2E0"/>
+	<stop offset="0.5507" style="stop-color:#8DE2E0;stop-opacity:0.9565"/>
+	<stop offset="1" style="stop-color:#68C1BF;stop-opacity:0.6667"/>
+</linearGradient>
+<path class="st1" d="M325,0c0,0.5-0.1,1-0.1,1.5c0,19.3,15,34.9,33.5,34.9C377,36.3,392,20.7,392,1.5c0-0.5,0-1-0.1-1.5  C391.9,0,325,0,325,0z"/>
+</svg>

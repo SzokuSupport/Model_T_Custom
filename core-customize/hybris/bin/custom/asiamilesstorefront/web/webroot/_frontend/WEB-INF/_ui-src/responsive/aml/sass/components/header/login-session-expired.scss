@@ -1,0 +1,69 @@
+.login-session {
+  position: absolute;
+  top: px2rem(231px);
+  left: 50%;
+  z-index: 21;
+  width: px2rem(760px);
+  text-align: center;
+  background: #fff;
+  border-top: 3px solid #facf04;
+  padding: px2rem(23px) px2rem(60px) px2rem(48px) px2rem(60px);
+
+  -webkit-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+
+  @include  media-query-down(768px){
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: px2rem(44px) px2rem(15px) 0;
+      -webkit-transform: none;
+      -ms-transform: none;
+      transform: none;
+  }
+
+  .title {
+      font-size: 32px;
+      line-height: px2rem(52px);
+      padding-bottom: px2rem(17px);
+      text-align: center;
+
+      @include  media-query-down(768px){
+          font-size: 30px;
+          line-height: px2rem(40px);
+          padding:0 px2rem(75px) px2rem(20px);
+      }
+  }
+
+  .free-text {
+      margin-bottom: px2rem(40px);
+      line-height: px2rem(23px);
+
+      @include  media-query-down(768px){
+          font-size: 14px;
+          line-height: px2rem(24px);
+      }
+  }
+
+  .button-yellow {
+      display: inline-block;
+      width: px2rem(300px);
+
+      @include  media-query-down(768px){
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: calc(100% - 30px);
+          height: px2rem(60px);
+          line-height: px2rem(60px);
+          margin: 0 px2rem(15px) px2rem(30px);
+      }
+  }
+
+
+
+}

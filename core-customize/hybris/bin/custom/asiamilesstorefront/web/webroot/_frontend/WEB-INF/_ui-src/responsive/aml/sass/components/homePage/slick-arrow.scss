@@ -1,0 +1,82 @@
+.promotion-fullwidth,
+.promotion-product,
+.top-banner,
+.promotion-brands,
+.home-product-card {
+
+    .slick-prev,
+    .slick-next {
+        width: px2rem(40px);
+        height: px2rem(40px);
+        // background-image: url("/_ui/responsive/aml/img/icon-home-next.svg");
+        // background-position-x: 10px;
+
+        // .icon-back,
+        // .icon-next {
+        //     display: none;
+        // }
+
+        // @media screen and (-ms-high-contrast: active) {
+        //     background-image: url("/_ui/responsive/aml/img/icon-home-next-whitek.svg");
+        // }
+
+        // @media screen and (-ms-high-contrast: black-on-white) {
+        //     background-image: url("/_ui/responsive/aml/img/icon-home-next-white.svg");
+        // }
+
+        // @media screen and (-ms-high-contrast: white-on-black) {
+        //     background-image: url("/_ui/responsive/aml/img/icon-home-next-white.svg");
+        // }
+    }
+
+    .slick-prev {
+        left: 0;
+        // background-image: url("/_ui/responsive/aml/img/icon-home-back.svg");
+        // background-position-x: 0;
+
+        // @media screen and (-ms-high-contrast: active) {
+        //     background-image: url("/_ui/responsive/aml/img/icon-home-bac-whitek.svg");
+        // }
+
+        // @media screen and (-ms-high-contrast: black-on-white) {
+        //     background-image: url("/_ui/responsive/aml/img/icon-home-back-white.svg");
+        // }
+
+        // @media screen and (-ms-high-contrast: white-on-black) {
+        //     background-image: url("/_ui/responsive/aml/img/icon-home-back-white.svg");
+        // }
+    }
+
+    .slick-next {
+        right: 0;
+    }
+}
+
+.promotion-product {
+    .slick-prev,
+    .slick-next {
+        top: 28%;
+    }
+}
+.top-banner {
+    .slick-prev {
+        left: 109px;
+        @include  media-query-down(1280px){
+            left: 37px;
+        }
+    }
+    .slick-next {
+        right: 109px;
+        @include  media-query-down(1280px){
+            right: 37px;
+        }
+    }
+}
+.slick-dots li button:hover:before, 
+.slick-dots li button:focus:before {
+    opacity: 0.25;
+}
+.slick-dots .slick-active button:hover:before, 
+.slick-dots .slick-active button:focus:before {
+    opacity: 0.75;
+}

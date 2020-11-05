@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- [y] hybris Platform Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved. This software is the confidential 
+	and proprietary information of SAP ("Confidential Information"). You shall not disclose such Confidential Information and shall use 
+	it only in accordance with the terms of the license agreement you entered into with SAP. -->
+<process xmlns="http://www.hybris.de/xsd/processdefinition" start="checkOrder" name="order-process"
+	processClass="de.hybris.platform.orderprocessing.model.OrderProcessModel">
+
+	<action id="checkOrder" bean="checkOrderAction">
+		<transition name="OK" to="waitForDeducted" />
+		<transition name="NOK" to="error" />
+	</action>
+
+	<wait id="waitForDeducted" then="sendConfirmationEmail" prependProcessCode="false">
+		<event>${process.code}_WaitForDeducted</event>
+	</wait>
+	
+	<action id="sendConfirmationEmail" bean="sendOrderPlacedNotificationAction">
+		<transition name="OK" to="checkAuthorizeOrderPayment" />
+	</action>
+
+	<action id="checkAuthorizeOrderPayment" bean="checkAuthorizeOrderPaymentAction">
+		<transition name="OK" to="paymentCapture" />
+		<transition name="NOK" to="waitForPaymentCapture" />
+	</action>
+
+	<wait id="waitForPaymentCapture" then="paymentCapture" prependProcessCode="false">
+		<event>${process.code}_WaitForPaymentCapture</event>
+	</wait>
+
+	<action id="paymentCapture" bean="takePaymentAction">
+		<transition name="OK" to="fraudCheck" />
+		<transition name="NOK" to="error" />
+	</action>
+
+	<action id="fraudCheck" bean="fraudCheckOrderAction">
+		<transition name="OK" to="splitOrder" />
+		<transition name="FRAUD" to="error" />
+		<transition name="POTENTIAL" to="splitOrder" />
+	</action>
+
+	<action id="splitOrder" bean="splitOrderAction">
+		<transition name="OK" to="waitForWarehouseSubprocessEnd" />
+		<transition name="NOK" to="error" />
+	</action>
+
+	<wait id="waitForWarehouseSubprocessEnd" then="isProcessCompleted" prependProcessCode="false">
+		<event>${process.code}_ConsignmentSubprocessEnd</event>
+	</wait>
+
+	<action id="isProcessCompleted" bean="subprocessesCompletedAction">
+		<transition name="OK" to="success" />
+		<transition name="NOK" to="waitForWarehouseSubprocessEnd" />
+	</action>
+
+	<end id="error" state="ERROR">All went wrong.</end>
+	<end id="failed" state="FAILED">Order not placed.</end>
+	<end id="success" state="SUCCEEDED">Order placed.</end>
+
+</process>

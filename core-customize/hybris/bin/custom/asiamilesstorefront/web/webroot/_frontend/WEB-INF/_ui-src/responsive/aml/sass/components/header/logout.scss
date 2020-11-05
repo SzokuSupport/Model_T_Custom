@@ -1,0 +1,172 @@
+.header-logout-wrap {
+  display: none;
+  position: absolute;
+  top: px2rem(60px);
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border-bottom: solid 1px #bfc0c3;
+
+  @include media-query-down(768px){
+    display: none;
+  }
+
+  &.show {
+    display: block;
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: -5px;
+      left: 0;
+      width: 100%;
+      height: 10px;
+      background: transparent;
+    }
+    
+  }
+
+  .content-wrap {
+    max-width: px2rem(1440px);
+    margin: 0 auto;
+    padding: 0 px2rem(50px);
+  }
+
+  .logout-message {
+    position: relative;
+    padding: px2rem(17px) 0 px2rem(10px);
+    border-bottom: 1px solid #bfc0c3;
+
+    .name {
+      font-size: 20px;
+      line-height: px2rem(30px);      
+      margin-bottom: px2rem(3px);
+    }
+
+    .membership {
+      font-size: 14px;
+      line-height: px2rem(19px);      
+    }
+
+    .overview {
+      position: absolute;
+      top: px2rem(30px);
+      right: 0;
+      
+    }
+  }
+
+  .link {
+    display: flex;
+    font-size: 16px;
+    line-height: px2rem(24px);  
+  }
+
+  .your-orders {
+    float: right;
+    margin: px2rem(15px) 0;
+    padding-right: px2rem(40px);
+    border-right: 1px solid #bfc0c3;
+  }
+
+  .logout {
+    float: right;
+    margin: px2rem(15px) 0;
+    padding-left: px2rem(40px);
+  }
+
+  .icon-arrow-right {
+    width: px2rem(16px);
+    height: px2rem(16px);
+    margin: px2rem(5px) 0 0 px2rem(5px);
+  }
+
+}
+
+
+
+.header-logout--mobile {
+  display: none;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  padding: 0 px2rem(15px);
+  background: #272E38;
+  border-top: 4px solid #facf00;
+
+  p {
+    font-size: 20px;
+    line-height: px2rem(27px);
+    text-align: center
+  }
+
+  a {
+    color: #fff;
+  }
+
+  .item {
+    padding: px2rem(10px) 0;
+    margin-bottom: px2rem(30px);
+    border-top: 1px solid rgba(255,255,255,0.2);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+
+    .list {
+      width: 50%;
+      float: left;
+      padding: px2rem(5px) 0;
+
+      &:first-child {
+        border-right: 1px solid rgba(255,255,255,0.2);
+      }
+    }
+
+    .title {
+      font-size: 16px;
+      line-height: px2rem(20px);
+    }
+
+    .icon-yellow {
+      width: px2rem(13px);
+      height: px2rem(16px);
+      margin-right: px2rem(3px);
+    }
+  }
+
+  .headline {
+    font-size: 27px;
+    line-height: px2rem(37px);
+    margin: px2rem(64px) 0 px2rem(18px);
+  }
+
+  .wishlist {
+    margin-bottom: px2rem(14px);
+  }
+
+  .your-orders {
+    margin-bottom: px2rem(31px);
+  }
+
+  .account-management {
+    font-size: 12px;
+    line-height: px2rem(17px);
+    margin-bottom: px2rem(10px);
+  }
+
+  .account-Overview {
+    margin-bottom: px2rem(30px);
+  }
+
+  .Logout {
+    @include media-query-down(768px){
+      position: absolute;
+      bottom: px2rem(68px);
+      left: 50%;
+      -webkit-transform: translate(-50%, 0);
+      -ms-transform: translate(-50%, 0);
+      transform: translate(-50%, 0);
+    }
+  }
+
+}

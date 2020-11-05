@@ -1,0 +1,11 @@
+@import "../mixins/media.scss";
+@import "../function/_px2rem.scss";
+@import "../base/reset";
+@import "../base/font"; 
+@import "../base/common";
+@import "../grid/index";
+
+@import "../components/common/header";
+@import "../components/common/header-banner";
+@import "../components/common/footer";
+@import "../components/common/form";

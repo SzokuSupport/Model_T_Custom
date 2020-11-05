@@ -1,0 +1,68 @@
+###release 1.1.0
+
+INSERT_UPDATE ServicelayerJob; code[unique = true]                ; springId[unique = true]
+                             ; dailyRedemptionAccrualsReportJob   ; dailyRedemptionAccrualsReportJob
+                             ; monthlyRedemptionAccrualsReportJob ; monthlyRedemptionAccrualsReportJob
+                             ; pendingRedemptionAccrualsReportJob ; pendingRedemptionAccrualsReportJob
+
+REMOVE CronJob; code[unique = true]
+              ; monthlyRedemptionAccrualsReportJob
+
+INSERT_UPDATE AMLCronJob; code[unique = true]                ; job(code)                          ; sessionLanguage(isoCode)[default = en];
+                        ; monthlyRedemptionAccrualsReportJob ; monthlyRedemptionAccrualsReportJob ; en                                    ;
+                        ; dailyRedemptionAccrualsReportJob   ; dailyRedemptionAccrualsReportJob   ; en                                    ;
+
+INSERT_UPDATE CronJob; code[unique = true]                ; job(code)                          ; sessionLanguage(isoCode)[default = en];
+                     ; pendingRedemptionAccrualsReportJob ; pendingRedemptionAccrualsReportJob ; en                                    ;
+
+INSERT_UPDATE Trigger; cronjob(code)[unique = true]       ; cronExpression
+                     ; pendingRedemptionAccrualsReportJob ; 0 30 2 * * ?
+                     ; monthlyRedemptionAccrualsReportJob ; 0 0 2 1 * ?
+                     ; dailyRedemptionAccrualsReportJob   ; 0 30 1 * * ?
+
+
+$solrIndexedType = BackofficeProduct
+$amlSolrIndexedType = asiamilesProductType
+$defaultLang = en
+$language_tw = zh_TW
+$language_zh = zh
+$language_ja = ja
+$language_ko = ko
+INSERT_UPDATE SolrIndexedProperty; name[unique = true] ; solrIndexedType(identifier)[unique = true]; type(code); displayName[lang = $defaultLang]; facet[default = true]; localized[default = false]; currency[default = false]; multiValue[default = false]; rangeSet(name); facetDisplayNameProvider; fieldValueProvider              ; includeInResponse[default = false]; facetType(code)[unique = true, default = 'MultiSelectOr']
+                                 ; productPartnerCode  ; $solrIndexedType                          ; string    ;                                 ; true                 ;                           ;                          ;                            ;               ;                         ; amlProductPartnerCodeProvider   ; true                              ;
+                                 ; deliveryPartnerCode ; $solrIndexedType                          ; string    ;                                 ; true                 ;                           ;                          ;                            ;               ;                         ; amlDeliveryPartnerCodeProvider  ; true                              ;
+                                 ; handlingPartnerCode ; $solrIndexedType                          ; string    ;                                 ; true                 ;                           ;                          ;                            ;               ;                         ; amlHandlingPartnerCodeProvider  ; true                              ;
+                                 ; assignedPartner     ; $solrIndexedType                          ; string    ;                                 ; false                ;                           ;                          ;                            ;               ;                         ; assignedPartnerProvider         ; true                              ;
+
+
+INSERT_UPDATE SolrSearchQueryProperty; indexedProperty(name, solrIndexedType(identifier))[unique = true]; searchQueryTemplate(name, indexedType(identifier))[unique = true][default = DEFAULT:$amlSolrIndexedType]; facet; ftsPhraseQuery[default = false]; ftsPhraseQueryBoost; ftsQuery[default = false]; ftsQueryBoost; ftsFuzzyQuery[default = false]; ftsFuzzyQueryBoost; ftsWildcardQuery[default = false]; ftsWildcardQueryType(code)[default = POSTFIX]; ftsWildcardQueryBoost; ftsWildcardQueryMinTermLength; includeInResponse[default = true]; useForHighlighting[default = false]
+                                     ; name:$amlSolrIndexedType                                         ;                                                                                                         ;      ; TRUE                           ; 100                ; TRUE                     ; 50           ; TRUE                          ; 25                ; TRUE                             ; PREFIX_AND_POSTFIX                           ;                      ;                              ;                                  ; false
+
+
+
+INSERT_UPDATE SolrIndexedType; identifier[unique = true]; type(code); variant; sorts(&sortRefID)                                                                                                ; group; groupFieldname  ; groupFacets
+                             ; $amlSolrIndexedType      ; Product   ; false  ; sortRef1,sortRef2,sortRef3,sortRef4,sortRef5,sortRef6, sortRef7,sortRef8,sortRef9,sortRef10 ,sortRef11,sortRef12 ; true ; baseProductCode ; true
+# Define the available sorts
+INSERT_UPDATE SolrSort; &sortRefID; indexedType(identifier)[unique = true]; code[unique = true]; name[lang = $defaultLang]; name[lang = $language_tw]; useBoost
+                      ; sortRef1  ; $amlSolrIndexedType                      ; relevance          ; "Featured"               ; "熱賣"                     ; true
+                      ; sortRef2  ; $amlSolrIndexedType                      ; topRated           ; ""                       ;                          ; false
+                      ; sortRef3  ; $amlSolrIndexedType                      ; name-asc           ; "A - Z (product name)"   ; "A - Z（商品名稱）"            ; false
+                      ; sortRef4  ; $amlSolrIndexedType                      ; name-desc          ; "Z - A (product name)"   ; "Z - A（商品名稱）"            ; false
+                      ; sortRef5  ; $amlSolrIndexedType                      ; price-asc          ; ""                       ;                          ; false
+                      ; sortRef6  ; $amlSolrIndexedType                      ; price-desc         ; ""                       ;                          ; false
+                      ; sortRef7  ; $amlSolrIndexedType                      ; zonePrice-asc      ; "Price (low to high)"     ; "價格（低至高）"                ; false
+                      ; sortRef8  ; $amlSolrIndexedType                      ; zonePrice-desc     ; "Price (high to low)"     ; "價格（高至低）"                ; false
+                      ; sortRef9  ; $amlSolrIndexedType                      ; onlineDate-asc     ; "Date added (oldest)"    ; "上架日期（舊至新）"              ; false
+                      ; sortRef10 ; $amlSolrIndexedType                      ; onlineDate-desc    ; "Date added (newest)"    ; "上架日期（新至舊）"              ; false
+                      ; sortRef11 ; $amlSolrIndexedType                      ; milesRange-asc     ;                          ;                          ; false
+                      ; sortRef12 ; $amlSolrIndexedType                      ; milesRange-desc    ;                          ;                          ; false
+
+
+UPDATE SolrSort; indexedType(identifier)[unique = true]; code[unique = true]; name[lang = $language_zh]; name[lang = $language_ja]; name[lang = $language_ko]
+               ; $amlSolrIndexedType                      ; relevance          ; 特色好货                     ; 推奨順                      ; 추천
+               ; $amlSolrIndexedType                      ; name-asc           ; A - Z （商品名称）             ; アルファベットA-Z（商品名）          ; A-Z (상품명)
+               ; $amlSolrIndexedType                      ; name-desc          ; Z - A （商品名称）             ; アルファベットZ-A（商品名）          ; Z-A (상품명)
+               ; $amlSolrIndexedType                      ; zonePrice-asc      ; 价格（低到高）                  ; 価格(安い順)                  ; 낮은 가격순
+               ; $amlSolrIndexedType                      ; zonePrice-desc     ; 价格（高到低）                  ; 価格(高い順)                  ; 높은 가격순
+               ; $amlSolrIndexedType                      ; onlineDate-asc     ; 上架日期（旧到新）                ; 掲載日（古い順）                 ; 등록일(오래된 순)
+               ; $amlSolrIndexedType                      ; onlineDate-desc    ; 上架日期（新到旧）                ; 掲載日（新しい順）                ; 등록일(최근부터)

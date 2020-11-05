@@ -1,0 +1,241 @@
+
+.oms-widget-cancelorder-order-body {
+	padding-right: 20px;	
+}
+.oms-widget-cancelorder-configuration {
+	overflow: auto;
+	margin: 0 auto;
+	background-color: #ffffff;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.oms-widget-cancelorder-configuration-container {
+	float: right;
+	margin-right: 80px;
+	min-height: 200px;
+}
+
+.oms-widget-cancelorder-header-container {
+	background-color: #D3D9DF;
+	margin-bottom: 10px;
+	display: block;
+	height: 32px;
+	font-family: 'Roboto', Arial, sans-serif;
+}
+
+.oms-widget-cancelorder-reason-container {
+	background-color: #5c687f;
+	margin-bottom: 10px;
+	display: block;
+	height: 32px;
+	font-family: 'Roboto', Arial, sans-serif;
+}
+
+.oms-widget-cancelorder-configuration-button-container {
+	float: right;
+	display: block;
+	height: 32px;
+	margin-right: 10px;
+}
+
+.oms-widget-cancelorder-configuration-main-container .oms-widget-cancelorder-configuration-container
+	{
+	border: 1px solid #CACACA;
+	margin: 0 30px;
+	padding-top: 10px;
+}
+
+.oms-widget-cancelorder-configuration-button {
+	height: 32px !important;
+	width: 95px;
+	font-family: 'Roboto', Arial, sans-serif;
+}
+
+.oms-widget-cancelorder-configuration-save-button {
+	background-color: #085ABC !important;
+	font-family: 'Roboto', Arial, sans-serif !important;
+}
+
+div.oms-widget-cancelorder-configuration div.oms-widget-cancelorder-configuration-button-container button.oms-widget-cancelorder-configuration-save-button:hover
+	{
+	background-color: #6282B9 !important;
+}
+
+.oms-widget-cancelorder-configuration-save-button[disabled="disabled"] {
+	background: #6F7C91 !important;
+	color: #ffffff !important;
+	cursor: default;
+}
+
+.oms-widget-cancelorder-configuration-save-button[disabled="disabled"]:hover {
+	background-color: #6282B9 !important;
+	color: #ffffff !important;
+	cursor: default;
+}
+
+.oms-widget-cancelorder-configuration-revert-button {
+	background-color: #6F7C91 !important;
+	font-family: 'Roboto', Arial, sans-serif !important;
+}
+
+.oms-widget-cancelorder-configuration-revert-button:hover {
+	background-color: #6282B9 !important;
+}
+
+.oms-widget-cancelorder-configuration-revert-button[disabled="disabled"] {
+	background: #6F7C91 !important;
+	color: #ffffff !important;
+	cursor: default;
+}
+
+.oms-widget-cancelorder-configuration-revert-button[disabled="disabled"]:hover {
+	background-color: #6F7C91 !important;
+	color: #ffffff !important;
+	cursor: default;
+}
+
+.oms-widget-cancelorder-configuration-input-name {
+	display: block;
+	float: left;
+	margin-left: 20px;
+	margin-top: 5px;
+}
+
+.oms-widget-cancelorder-input-text-box {
+	width: 235px;
+	color: #303030;
+	padding-right: 0px;
+}
+
+.oms-widget-cancelorder-configuration-input-list-box {
+	display: block;
+	margin-left: 50px;
+}
+
+
+.oms-widget-cancelorder-configuration-error-box {
+	width: 300px;
+	text-align: center;
+	margin-left: 100px;
+	margin-bottom: 20px;
+}
+
+.oms-widget-cancelorder-configuration-error-message {
+	color: red;
+	padding-top: 10px;
+	font-size: 13px;
+	font-weight: bold;;
+}
+
+
+
+.oms-widget-cancelorder-operation-combo-box {
+	text-align: center;
+}
+
+.oms-widget-cancelorder-configuration-item-list {
+	margin-right: 20px;
+	margin-left: 20px;
+	width: 240px;
+	border: none !important;
+}
+
+.oms-widget-cancelorder-configuration-button-button {
+	width: 120px !important;
+	text-align: center;
+	float: right;
+	display: inline-block;
+	margin-right: 20px;
+	margin-top: 0;
+	border: 1px solid #e2f6ff !important;
+}
+
+.oms-widget-cancelorder-configuration-button-save {
+	width: 120px !important;
+	text-align: center;
+	float: right;
+	display: inline-block;
+	margin-right: 35px;
+	margin-top: 20px;
+	border: 1px solid #e2f6ff !important;
+}
+
+.oms-widget-cancelorder-configuration .z-listitem {
+	background: #ffffff;
+}
+
+.oms-widget-cancelorder-configuration-list-title-container {
+	margin-left: 10px;
+}
+
+.oms-widget-cancelorder-configuration-list-header-title {
+	color: #043263 !important;
+	font-family: 'Roboto', Arial, sans-serif;
+	font-size: 14px !important;
+	font-style: normal;
+	font-weight: 500 !important;
+}
+
+.oms-widget-cancelorder-configuration-list-header-description {
+	font-size: 14px;
+	font-family: 'Roboto', Arial, sans-serif;
+	color: #085ABC !important;
+	font-weight: 300;
+}
+
+.oms-widget-cancelorder-configuration input[type="checkbox"] {
+	width: 60px;
+	height: 20px;
+	margin: 0;
+}
+
+.oms-widget-cancelorder-configuration  .z-label {
+	display: inline-block;
+	width: 300px;
+	font-family: 'Roboto', Arial, sans-serif !important;
+	font-size: 14px;
+}
+
+.oms-widget-cancelorder-configuration div.z-listbox-body .z-listcell {
+	border: none;
+}
+
+.oms-widget-cancelorder-reason-container .z-label {
+	padding-left: 10px;
+	color: white;
+	font-family: 'Roboto', Arial, sans-serif !important;
+}
+
+.oms-widget-cancelorder-reason-header {
+	background-color: #5c687f;
+	padding: 6px;
+	color: white;
+	padding-left: 20px;
+}
+
+.oms-widget-cancelorder-reason-body {
+	padding-left: 20px;
+	padding-bottom: 4px;
+}
+
+.oms-widget-cancelorder-order-header {
+	padding-bottom: 10px;
+	padding-left: 20px;
+}
+
+.oms-widget-cancelorder-oreder-body {
+	padding-left: 20px;
+	padding-bottom: 10px;	
+}
+
+/* .z-caption {
+	font-size: 18px;
+	font-family: 'Roboto', Arial, sans-serif;
+} */
+
+.oms-widget-cancelorder-confirm-icon {
+  width: 60px;
+  height: 50px;
+  background-image:url(icons/icon_confirm_cancel_order.png);
+}

@@ -1,0 +1,105 @@
+.promotion-campaign-title{
+    text-align: center;
+
+    .campaign-headline{
+        padding: px2rem(25px) 0 px2rem(30px);
+        text-align: center;
+
+        @include  media-query-down(768px){
+            padding: px2rem(70px) 0 px2rem(30px);
+        }
+
+        .text {
+            position: relative;
+            display: inline-block;
+            font-size: 48px;
+            line-height: px2rem(48px);
+            padding-bottom: px2rem(25px);
+
+            @include  media-query-down(768px){
+                font-size: 36px;
+                line-height: px2rem(36px);
+            }
+
+            &:after {
+                content: '';
+                height: 3px;
+                width: px2rem(94px);
+    
+                position: absolute;
+                bottom: px2rem(-1px);
+                left: 50%;
+                -webkit-transform: translate(-50%, 0);
+                -ms-transform: translate(-50%, 0);
+                transform: translate(-50%, 0);
+    
+                background: #facf04;
+    
+                @include  media-query-down(768px){
+                    width: px2rem(48px);
+                }
+            }
+        }
+       
+    }
+
+}
+
+.promotion-campaign-banner{
+    text-align: center;
+    margin-bottom: px2rem(60px);
+    
+    @include  media-query-down(1280px){
+        margin-left: px2rem(12px);
+        margin-right: px2rem(12px);
+    }
+
+    @include  media-query-down(768px){
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: px2rem(50px);
+    }
+    .promotion-campaign-banner-content{
+
+        @include  media-query-up(1280px){
+            max-width: 1296px;
+            margin: 0 auto;
+        }
+
+        .image{
+            width: 100%;
+
+            @include  media-query-up(1280px){
+                padding-left: px2rem(15px);
+                padding-right: px2rem(15px);
+            }
+
+            @include  media-query-down(1280px){
+                padding-left: px2rem(8px);
+                padding-right: px2rem(8px);
+            }
+
+            @include  media-query-down(768px){
+                padding-left: 0;
+                padding-right: 0;
+            }
+        }
+
+        .banner-des{
+            width: 64%;
+            margin:  px2rem(30px) auto 0;
+            line-height: px2rem(24px);
+
+            @include  media-query-down(1280px){
+                width: 100%;
+                padding: 0 px2rem(20px);
+            }
+
+            @include  media-query-down(768px){
+                padding: 0 px2rem(15px);
+                font-size: 14px;
+                line-height: px2rem(24px);
+            }
+        }
+    }
+}

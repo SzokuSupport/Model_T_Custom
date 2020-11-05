@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- [y] hybris Platform Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved. This software is the confidential 
+	and proprietary information of SAP ("Confidential Information"). You shall not disclose such Confidential Information and shall use 
+	it only in accordance with the terms of the license agreement you entered into with SAP. -->
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<alias name="asiaMilesVersioningModeEditableAttributes" alias="cmsVersioningModeEditableAttributes" />
+	<util:set id="asiaMilesVersioningModeEditableAttributes">
+		<value type="java.lang.String">language</value>
+		<value type="java.lang.String">time</value>
+		<value type="java.lang.String">productCatalogVersions</value>
+		<value type="java.lang.String">zone</value>
+	</util:set>
+	<bean class="de.hybris.platform.cmsfacades.types.service.impl.DefaultComponentTypeAttributeStructure"
+		p:typecode="PreviewData" p:qualifier="zone">
+		<property name="populators">
+			<set>
+				<ref bean="basicComponentTypeAttributePopulator" />
+				<ref bean="previewCatalogI18nComponentTypeAttributePopulator" />
+				<ref bean="pageZonesComponentTypePopulator" />
+				<ref bean="pageZoneUriPopulator" />
+				<ref bean="pageZonesIdComponentTypeAttributePopulator" />
+				<ref bean="pageZonesLabelComponentTypeAttributePopulator" />
+			</set>
+		</property>
+	</bean>
+
+	<!-- <bean class="de.hybris.platform.cmsfacades.types.service.impl.DefaultComponentTypeAttributeStructure" p:typecode="ContentPage" p:qualifier="zone">
+		<property name="populators">
+			<set>
+				<ref bean="pageZonesComponentTypePopulator" />
+				<ref bean="pageZoneUriPopulator" />
+				<ref bean="pageZonesIdComponentTypeAttributePopulator" />
+				<ref bean="pageZonesLabelComponentTypeAttributePopulator" />
+			</set>
+		</property>
+	</bean> -->
+
+
+	<bean id="pageZonesComponentTypePopulator"
+		class="de.hybris.platform.cmsfacades.types.populator.CmsStructureTypeComponentTypeAttributePopulator">
+		<property name="cmsStructureType" value="EditableDropdown" />
+	</bean>
+
+	<bean id="pageZoneUriPopulator" class="de.hybris.platform.cmsfacades.types.populator.UriComponentTypeAttributePopulator">
+		<property name="uri" value="/asiamilespreviewwebservices/v1/sites/asiamiles/zones" />
+	</bean>
+
+	<bean id="pageZonesIdComponentTypeAttributePopulator"
+		class="de.hybris.platform.cmsfacades.types.populator.IdComponentTypeAttributePopulator">
+		<property name="idAttribute" value="isocode" />
+	</bean>
+	<bean id="pageZonesLabelComponentTypeAttributePopulator"
+		class="de.hybris.platform.cmsfacades.types.populator.LabelComponentTypeAttributePopulator">
+		<property name="labelAttributes">
+			<list>
+				<value>name</value>
+			</list>
+		</property>
+	</bean>
+</beans>

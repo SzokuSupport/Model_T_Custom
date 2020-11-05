@@ -1,0 +1,312 @@
+.select-miles {
+  padding: 0 px2rem(158px);
+  margin-bottom: px2rem(60px);
+  display: flex;
+  height: px2rem(92px);
+  font-size: 14px;
+  line-height: px2rem(16px);
+  color: #272f38;
+
+  @include media-query-down(1280px) {
+    padding: 0 px2rem(82px);
+    height: px2rem(84px);
+  }
+
+  @include media-query-down(768px) {
+    padding: px2rem(20px) px2rem(15px);
+    height: px2rem(225px);
+    background-color: #f4f4f5;
+  }
+
+  .select-miles-section {
+    display: flex;
+    width: 70.6%;
+    height: px2rem(92px);
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 1px 10px 3px rgba(0, 0, 0, 0.05);
+    background-color: #ffffff;
+
+    @include media-query-down(1280px) {
+      width: 100%;
+      height: px2rem(84px);
+    }
+
+    @include media-query-down(768px) {
+      width: 100%;
+      height: px2rem(185px);
+      padding: px2rem(20px);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .mile-slider {
+      padding: px2rem(24px) px2rem(30px) px2rem(21px);
+      width: 72%;
+
+      @include media-query-down(1280px) {
+        width: 72%;
+        padding: px2rem(23px) px2rem(35px) px2rem(16px) px2rem(20px);
+      }
+
+      @include media-query-down(768px) {
+        display: block;
+        width: 100%;
+        height: px2rem(95px);
+        padding: 0;
+      }
+
+      &-info {
+        padding-bottom: px2rem(16px);
+        display: flex;
+        align-items: center;
+        color: #272f38;
+
+        @include media-query-down(768px) {
+          justify-content: center;
+          display: block;
+          text-align: center;
+        }
+      }
+
+      &-title {
+        font-size: 14px;
+        line-height: px2rem(10px);
+        padding-right: px2rem(13px);
+
+        @include media-query-down(768px) {
+          padding: 0 0 px2rem(10px);
+        }
+      }
+
+      &-label {
+        font-size: 14px;
+        line-height: px2rem(16px);
+        display: flex;
+
+        @include media-query-down(768px) {
+          justify-content: center;
+        }
+      }
+    }
+
+    .cur-min {
+      padding-right: px2rem(5px);
+    }
+
+    .cur-max {
+      padding-left: px2rem(5px);
+    }
+
+    .explore-more {
+      width: calc(27.8% - 30px);
+      margin-right: px2rem(30px);
+
+      @include media-query-down(1280px) {
+        width: calc(29.8% - 25px);
+        margin-right: px2rem(25px);
+      }
+
+      @include media-query-down(768px) {
+        margin: 0;
+        width: 100%;
+      }
+
+      .btn-explore-more {
+        display: block;
+        width: 100%;
+        font-size: 14px;
+        line-height: px2rem(20px);
+        padding: px2rem(13px) 0 px2rem(11px);
+        border: solid 2px #bec0c3;
+        text-align: center;
+        cursor: pointer;
+
+        @include media-query-down(768px) {
+          height: px2rem(50px);
+          background-color: #facf04;
+          border: 0;
+          padding: px2rem(15px) 0;
+        }
+
+        &:focus {
+          outline-color: #272f38;
+          outline-width: 1px;
+          outline-style: inset;
+          border-color: transparent;
+          @include media-query-down(768px) {
+            background-color: #facf04;
+          }
+        }
+
+        &:hover {
+          background-color: rgba(39, 47, 56, 0.05);
+          @include media-query-down(768px) {
+            background-color: #facf04;
+          }
+        }
+      }
+    }
+  }
+
+  .range-slider {
+    display: flex;
+
+    @include media-query-down(768px) {
+      position: relative;
+    }
+
+    .range-min {
+      display: flex;
+      align-items: center;
+
+      @include media-query-down(768px) {
+        position: absolute;
+        top: px2rem(14px);
+        padding-bottom: px2rem(10px);
+      }
+    }
+
+    .range-max {
+      display: flex;
+      align-items: center;
+
+      @include media-query-down(768px) {
+        position: absolute;
+        top: px2rem(14px);
+        right: 0;
+        padding-bottom: px2rem(10px);
+      }
+    }
+
+    .icon-yellow-min,
+    .icon-yellow-max {
+      margin-right: px2rem(3px);
+    }
+
+    .nstSlider {
+      width: 100%;
+      margin: px2rem(6px) px2rem(10px) 0;
+
+      @include media-query-down(768px) {
+        width: 100%;
+        margin: 0;
+      }
+    }
+
+    .rightGrip,
+    .leftGrip {
+      border: 1.5px solid #272f38;
+      width: 20px;
+      height: 20px;
+      top: -8px;
+    }
+  }
+
+  .icon-yellow-min {
+    width: px2rem(8px);
+    height: px2rem(10px);
+  }
+
+  .icon-yellow-max {
+    width: px2rem(9px);
+    height: px2rem(11px);
+  }
+
+  .search-section {
+    display: flex;
+    position: relative;
+    width: 29.4%;
+    padding: px2rem(24px) px2rem(30px);
+    box-shadow: 0 1px 10px 3px rgba(0, 0, 0, 0.05);
+    background-color: #facf04;
+
+    .search-box {
+      width: 100%;
+      height: px2rem(44px);
+      border-radius: 22px;
+      background-color: #fff;
+      position: relative;
+
+      &--placeholder {
+        display: block;
+        width: 100%;
+        position: absolute;
+        top: px2rem(12px);
+        padding: 0 px2rem(49px);
+        font-size: 14px;
+        line-height: px2rem(20px);
+        color: #a5a8ac;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+
+
+    .icon-search-header {
+      width: px2rem(20px);
+      height: px2rem(20px);
+      left: px2rem(20px);
+      position: absolute;
+      top: px2rem(12px);
+    }
+
+    .search-input {
+      position: absolute;
+      width: 100%;
+      height: px2rem(44px);
+      padding: 0 px2rem(50px);
+      border-radius: px2rem(22px);
+      border: 0;
+      z-index: 1;
+      background: none;
+
+      &::-webkit-input-placeholder,
+      &:-moz-placeholder,
+      &::-moz-placeholder,
+      &:-ms-input-placeholder {
+        font-size: 14px;
+        line-height: px2rem(20px);
+        color: #272f38;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .search-cancel-btn {
+      width: px2rem(24px);
+      height: px2rem(24px);
+      display: none;
+      position: absolute;
+      top: px2rem(9px);
+      right: px2rem(12px);
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    @include media-query-down(1280px) {
+      display: none;
+    }
+  }
+
+  .header__search--options {
+    position: absolute;
+    top: 92px;
+    left: 0;
+    width: 100%;
+    padding: px2rem(20px) px2rem(20px) px2rem(20px) px2rem(5px);
+    z-index: 10;
+  }
+
+  .header__option-list {
+    position: absolute;
+    top: 92px;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+  }
+}

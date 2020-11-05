@@ -1,0 +1,96 @@
+$contentCatalog = asiamilesContentCatalog
+$contentCatalogName = iRedeem Content Catalog
+$contentCV = catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]), CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+INSERT_UPDATE ContentSlotName; name[unique = true] ; template(uid, $contentCV)[unique = true][default = 'LandingPage1Template']; validComponentTypes(code); compTypeGroup(code)
+                             ; HeaderBannerSection ;                                                                           ; CMSHeaderBannerComponent ; narrow
+
+INSERT_UPDATE ContentSlotName; name[unique = true] ; template(uid, $contentCV)[unique = true][default = 'ProductListPageTemplate']; validComponentTypes(code); compTypeGroup(code)
+                             ; HeaderBannerSection ;                                                                              ; CMSHeaderBannerComponent ; narrow
+
+INSERT_UPDATE ContentSlotName; name[unique = true] ; template(uid, $contentCV)[unique = true][default = 'ProductDetailsPageTemplate']; validComponentTypes(code); compTypeGroup(code)
+                             ; HeaderBannerSection ;                                                                                 ; CMSHeaderBannerComponent ; narrow
+
+INSERT_UPDATE ContentSlotName; name[unique = true] ; template(uid, $contentCV)[unique = true][default = 'SearchResultsListPageTemplate']; validComponentTypes(code); compTypeGroup(code)
+                             ; HeaderBannerSection ;                                                                                    ; CMSHeaderBannerComponent ; narrow
+
+INSERT_UPDATE ContentSlotName; name[unique = true] ; template(uid, $contentCV)[unique = true][default = 'CartPageTemplate']; validComponentTypes(code); compTypeGroup(code)
+                             ; HeaderBannerSection ;                                                                       ; CMSHeaderBannerComponent ; narrow
+
+INSERT_UPDATE ContentSlotName; name[unique = true] ; template(uid, $contentCV)[unique = true][default = 'MultiStepCheckoutSummaryPageTemplate']; validComponentTypes(code); compTypeGroup(code)
+                             ; HeaderBannerSection ;                                                                                           ; CMSHeaderBannerComponent ; narrow
+
+INSERT_UPDATE ContentSlotName; name[unique = true] ; template(uid, $contentCV)[unique = true][default = 'AccountOrderDetailTemplate']; validComponentTypes(code); compTypeGroup(code)
+                             ; HeaderBannerSection ;                                                                                 ; CMSHeaderBannerComponent ; narrow
+
+INSERT_UPDATE ContentSlotName; name[unique = true] ; template(uid, $contentCV)[unique = true][default = 'OrderConfirmationPageTemplate']; validComponentTypes(code); compTypeGroup(code)
+                             ; HeaderBannerSection ;                                                                                    ; CMSHeaderBannerComponent ; narrow
+
+INSERT_UPDATE ContentSlotName; name[unique = true] ; template(uid, $contentCV)[unique = true][default = 'CheckoutLoginPageTemplate']; validComponentTypes(code); compTypeGroup(code)
+                             ; HeaderBannerSection ;                                                                                ; CMSHeaderBannerComponent ; narrow
+
+#HomePage
+INSERT_UPDATE ContentSlot; $contentCV[unique = true]; uid[unique = true]                   ; name                                    ; active;
+                         ;                          ; HeaderBannerSectionSlot-LandingPage1 ; Header Banner Section Slot for HomePage ; TRUE  ;
+
+INSERT_UPDATE ContentSlotForTemplate; $contentCV[unique = true]; uid[unique = true]               ; position[unique = true]; pageTemplate(uid, $contentCV)[unique = true][default = 'LandingPage1Template']; contentSlot(uid, $contentCV)[unique = true]; allowOverwrite
+                                    ;                          ; HeaderBannerSection-LandingPage1 ; HeaderBannerSection    ; LandingPage1Template                                                          ; HeaderBannerSectionSlot-LandingPage1       ; true
+
+#PLP
+INSERT_UPDATE ContentSlot; $contentCV[unique = true]; uid[unique = true]                      ; name                               ; active;
+                         ;                          ; HeaderBannerSectionSlot-ProductListPage ; Header Banner Section Slot for PLP ; TRUE  ;
+
+INSERT_UPDATE ContentSlotForTemplate; $contentCV[unique = true]; uid[unique = true]                  ; position[unique = true]; pageTemplate(uid, $contentCV)[unique = true][default = 'ProductListPageTemplate']; contentSlot(uid, $contentCV)[unique = true]; allowOverwrite
+                                    ;                          ; HeaderBannerSection-ProductListPage ; HeaderBannerSection    ; ProductListPageTemplate                                                          ; HeaderBannerSectionSlot-ProductListPage    ; true
+
+#PDP
+
+INSERT_UPDATE ContentSlot; $contentCV[unique = true]; uid[unique = true]                         ; name                               ; active;
+                         ;                          ; HeaderBannerSectionSlot-ProductDetailsPage ; Header Banner Section Slot for PDP ; TRUE  ;
+
+INSERT_UPDATE ContentSlotForTemplate; $contentCV[unique = true]; uid[unique = true]                    ; position[unique = true]; pageTemplate(uid, $contentCV)[unique = true][default = 'ProductDetailsPageTemplate']; contentSlot(uid, $contentCV)[unique = true]; allowOverwrite
+                                    ;                          ; HeaderBannerSection-ProductDetailPage ; HeaderBannerSection    ; ProductDetailsPageTemplate                                                          ; HeaderBannerSectionSlot-ProductDetailsPage ; true
+#Search Result Page
+INSERT_UPDATE ContentSlot; $contentCV[unique = true]; uid[unique = true]                            ; name                                       ; active;
+                         ;                          ; HeaderBannerSectionSlot-SearchResultsListPage ; Header Banner Section Slot for Search Page ; TRUE  ;
+
+INSERT_UPDATE ContentSlotForTemplate; $contentCV[unique = true]; uid[unique = true]                        ; position[unique = true]; pageTemplate(uid, $contentCV)[unique = true][default = 'ProductDetailsPageTemplate']; contentSlot(uid, $contentCV)[unique = true]   ; allowOverwrite
+                                    ;                          ; HeaderBannerSection-SearchResultsListPage ; HeaderBannerSection    ; SearchResultsListPageTemplate                                                       ; HeaderBannerSectionSlot-SearchResultsListPage ; true
+
+#Cart Page
+INSERT_UPDATE ContentSlot; $contentCV[unique = true]; uid[unique = true]               ; name                                     ; active;
+                         ;                          ; HeaderBannerSectionSlot-CartPage ; Header Banner Section Slot for Cart Page ; TRUE  ;
+
+INSERT_UPDATE ContentSlotForTemplate; $contentCV[unique = true]; uid[unique = true]           ; position[unique = true]; pageTemplate(uid, $contentCV)[unique = true][default = 'CartPageTemplate']; contentSlot(uid, $contentCV)[unique = true]; allowOverwrite
+                                    ;                          ; HeaderBannerSection-CartPage ; HeaderBannerSection    ; CartPageTemplate                                                          ; HeaderBannerSectionSlot-CartPage           ; true
+
+#CheckOut
+INSERT_UPDATE ContentSlot; $contentCV[unique = true]; uid[unique = true]                                   ; name                                          ;
+                         ;                          ; HeaderBannerSectionSlot-MultiStepCheckoutSummaryPage ; Header Banner Section Slot for Check Out Page ; TRUE ;
+
+INSERT_UPDATE ContentSlotForTemplate; $contentCV[unique = true]; uid[unique = true]                               ; position[unique = true]; pageTemplate(uid, $contentCV)[unique = true][default = 'MultiStepCheckoutSummaryPageTemplate']; contentSlot(uid, $contentCV)[unique = true]          ; allowOverwrite
+                                    ;                          ; HeaderBannerSection-MultiStepCheckoutSummaryPage ; HeaderBannerSection    ; MultiStepCheckoutSummaryPageTemplate                                                          ; HeaderBannerSectionSlot-MultiStepCheckoutSummaryPage ; true
+
+#Order Detail
+INSERT_UPDATE ContentSlot; $contentCV[unique = true]; uid[unique = true]                             ; name                                             ; active;
+                         ;                          ; HeaderBannerSectionSlot-AccountOrderDetailPage ; Header Banner Section Slot for Order Detail Page ; TRUE  ;
+
+INSERT_UPDATE ContentSlotForTemplate; $contentCV[unique = true]; uid[unique = true]                         ; position[unique = true]; pageTemplate(uid, $contentCV)[unique = true][default = 'AccountOrderDetailTemplate']; contentSlot(uid, $contentCV)[unique = true]    ; allowOverwrite
+                                    ;                          ; HeaderBannerSection-AccountOrderDetailPage ; HeaderBannerSection    ; AccountOrderDetailTemplate                                                          ; HeaderBannerSectionSlot-AccountOrderDetailPage ; true
+
+#Order Confirmation
+INSERT_UPDATE ContentSlot; $contentCV[unique = true]; uid[unique = true]                            ; name                                                   ; active;
+                         ;                          ; HeaderBannerSectionSlot-OrderConfirmationPage ; Header Banner Section Slot for Order Confirmation Page ; TRUE  ;
+
+INSERT_UPDATE ContentSlotForTemplate; $contentCV[unique = true]; uid[unique = true]                        ; position[unique = true]; pageTemplate(uid, $contentCV)[unique = true][default = 'OrderConfirmationPage']; contentSlot(uid, $contentCV)[unique = true]   ; allowOverwrite
+                                    ;                          ; HeaderBannerSection-OrderConfirmationPage ; HeaderBannerSection    ; OrderConfirmationPageTemplate                                                  ; HeaderBannerSectionSlot-OrderConfirmationPage ; true
+
+#Check out login
+INSERT_UPDATE ContentSlot; $contentCV[unique = true]; uid[unique = true]                        ; name                                      ; active;
+                         ;                          ; HeaderBannerSectionSlot-CheckoutLoginPage ; Header Banner Section Checkout Login Page ; TRUE  ;
+
+INSERT_UPDATE ContentSlotForTemplate; $contentCV[unique = true]; uid[unique = true]                    ; position[unique = true]; pageTemplate(uid, $contentCV)[unique = true][default = 'CheckoutLoginPageTemplate']; contentSlot(uid, $contentCV)[unique = true]; allowOverwrite
+                                    ;                          ; HeaderBannerSection-CheckoutLoginPage ; HeaderBannerSection    ; CheckoutLoginPageTemplate                                                          ; HeaderBannerSectionSlot-CheckoutLoginPage  ; true
+
+UPDATE ContentSlotName[batchMode = true]; name[unique = true]    ; validComponentTypes(code); compTypeGroup(code)
+                                        ; PlaceholderContentSlot ;                          ; wide

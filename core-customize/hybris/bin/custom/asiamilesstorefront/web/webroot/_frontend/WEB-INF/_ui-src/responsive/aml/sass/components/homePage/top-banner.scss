@@ -1,0 +1,117 @@
+.top-banner {
+    margin: 0 0 px2rem(15px) 0;
+    @include  media-query-down(768px){
+        padding: 0;
+        margin-top:px2rem(50px);
+        &.top-banner-with-header-banner {
+            margin-top: 0;
+        }
+    }
+    .item-list {
+        float: left;
+        width: 100%;
+        position: relative;
+        padding: 0 px2rem(29px);
+
+        @include  media-query-down(1280px){
+            padding: 0 px2rem(25px);
+        }
+        @include  media-query-down(768px){
+            border: 0;
+            padding: 0;
+        }
+
+        .img {
+            float: right;
+            width: 100%;
+
+            @include  media-query-down(768px){
+                width: 100%;
+            }
+        }
+
+        .description {
+            position: absolute;
+            bottom: px2rem(34px);
+            left: px2rem(61px);
+            width: px2rem(402px);
+            padding: px2rem(30px) px2rem(27px);
+            text-align: left;
+            background-color:rgba(255, 255, 255, 0.82);
+            opacity: 0.41;
+    
+            @include  media-query-down(1280px){
+                width: px2rem(321px);
+                left: px2rem(48px);
+                bottom: px2rem(20px);
+                padding: px2rem(20px) px2rem(20px) px2rem(24px);
+            }
+    
+            @include  media-query-down(768px){
+                float: left;
+                position: relative;
+                top: px2rem(20px);
+                left: auto;
+                width: 100%;
+                text-align: center;
+                padding: 0 px2rem(27px) px2rem(52px);
+                
+                -webkit-transform: none;
+                -ms-transform: none;
+                transform: none;
+            }
+        }
+
+        .headline {
+            position: relative;
+            font-size: 24px;
+            line-height: px2rem(30px);
+            padding-bottom: px2rem(15px);
+            overflow: hidden;
+            color: #272f38;
+    
+            @include  media-query-down(1280px){
+                font-size: 20px;
+                line-height: px2rem(27px);
+                padding-bottom: px2rem(5px);
+            }
+    
+            @include  media-query-down(768px){
+                font-size: 24px;
+                line-height: px2rem(30px);            
+                padding-bottom: px2rem(10px);
+                height: auto;
+            }
+        }
+
+        .info {
+            font-size: 20px;
+            line-height: px2rem(24px);
+            overflow: hidden;
+            color: #272f38;
+            height: auto;
+            @include  media-query-down(1280px){
+                font-size: 18px;
+                line-height: px2rem(24px);
+            }
+    
+            @include  media-query-down(768px){
+                font-size: 18px;
+                line-height: px2rem(24px); 
+            }
+        }
+
+    }
+
+    .slick-active .description{
+        opacity: 1;
+    }
+    .slick-dots li button:before {
+        width: 8px;
+        height: 8px;
+    }
+    .slick-dots li.slick-active button:before {
+        width: 10px;
+        height: 10px;
+    }
+}

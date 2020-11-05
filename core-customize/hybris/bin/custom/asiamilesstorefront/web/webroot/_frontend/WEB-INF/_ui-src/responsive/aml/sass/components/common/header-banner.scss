@@ -1,0 +1,68 @@
+@import "../../plugins/slick";
+@import "../../plugins/slick-theme";
+
+.header-search-replacement-block {
+  display: none;
+  @include media-query-down(768px) {
+    display: block;
+    height: 50px;
+  }
+}
+
+.header-banner {
+  background: #e9eaeb;
+  margin-bottom: px2rem(15px);
+  padding: px2rem(15px) 0;
+  @include media-query-down(768px) {
+    padding: px2rem(17px) 0;
+    margin-bottom: 0;
+  }
+
+  .header-banner-content {
+    padding-left: px2rem(6px);
+
+    .header-banner-message {
+      display: flex;
+
+      span.header-banner-message-icon {
+        height: px2rem(23px);
+
+        &.header-banner-message-icon--promotion {
+          width: px2rem(22px);
+          min-width: px2rem(22px);
+          margin-right: px2rem(8px);
+        }
+        &.header-banner-message-icon--alert {
+          width: px2rem(28px);
+          min-width: px2rem(28px);
+          margin-right: px2rem(6px);
+        }
+      }
+
+      .message-title-wrapper {
+        border-right: solid 1px rgba(39,47,56,.2);
+        padding-right: 10px;
+        margin-right: 10px;
+        @include media-query-down(768px) {
+          display: none;
+        }
+      }
+
+      .message-details {
+        word-wrap: break-word;
+
+        @include media-query-down(768px) {
+          font-family: "OpenSans-Bold","Arial",sans-serif;
+          font-weight: bold;
+          @include media-query-down(768px) {
+              letter-spacing: normal;
+          }
+
+          @supports (-moz-appearance:none) {
+              font-weight: normal;
+          }
+        }
+      }
+    }
+  }
+}

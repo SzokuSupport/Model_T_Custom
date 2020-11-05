@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- [y] hybris Platform Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved. This software is the confidential 
+	and proprietary information of SAP ("Confidential Information"). You shall not disclose such Confidential Information and shall use 
+	it only in accordance with the terms of the license agreement you entered into with SAP. -->
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/security
+           http://www.springframework.org/schema/security/spring-security.xsd
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<http pattern="/500.jsp" security="none" />
+	<http pattern="/404.jsp" security="none" />
+	<http pattern="/static/**" security="none" />
+
+	<beans:bean class="org.springframework.security.oauth2.config.annotation.web.configuration.OAuth2ClientConfiguration" />
+	<http entry-point-ref="openidConnectEntryPoint" use-expressions="false">
+		<csrf disabled="true" />
+		<!-- intercept url pattern -->
+		<intercept-url pattern="/oidc/**" access="IS_AUTHENTICATED_FULLY" />
+		<!-- filter which is responsible for redirecting to IDP Login Page -->
+		<custom-filter ref="oauth2ClientContextFilter" before="PRE_AUTH_FILTER" />
+		<!-- filter which is responsible for obtaining IDP Token -->
+		<custom-filter ref="openidConnectFilter" after="BASIC_AUTH_FILTER" />
+
+	</http>
+
+	<beans:bean id="idpOpenidConnectResourceDetails"
+		class="org.springframework.security.oauth2.client.token.grant.code.AuthorizationCodeResourceDetails">
+		<!-- predefined client id of IDP Server -->
+		<beans:property name="clientId" value="${idp.smart.edit.token.client.id}" />
+		<!-- predefined client secret of IDP Server -->
+		<beans:property name="clientSecret" value="${idp.smart.edit.token.client.secret}" />
+		<!-- openId authorization url of IDP Server -->
+		<beans:property name="userAuthorizationUri" value="${idp.authorize.url}" />
+		<!-- openId token access url of IDP Server -->
+		<beans:property name="accessTokenUri" value="${idp.token.url}" />
+		<beans:property name="scope" value="${idp.token.scope}" />
+		<!-- redirect url which used by IDP Server -->
+		<beans:property name="preEstablishedRedirectUri" value="${idp.smart.edit.token.redirect.url}" />
+		<beans:property name="useCurrentUri" value="false" />
+	</beans:bean>
+
+	<beans:bean id="idpSsoAuthCodeProvider" class="com.sap.oidcsso.provider.IdpSsoAuthCodeProvider" />
+
+	<beans:bean id="openidConnectRestTemplate" class="org.springframework.security.oauth2.client.OAuth2RestTemplate">
+		<beans:constructor-arg name="resource" ref="idpOpenidConnectResourceDetails" />
+		<beans:constructor-arg name="context" ref="oauth2ClientContext" />
+		<beans:property name="accessTokenProvider" ref="idpSsoAuthCodeProvider" />
+	</beans:bean>
+
+	<beans:bean id="successRedirectHandler" class="com.sap.oidcsso.handler.OpenidConnectAuthSuccessHandler">
+		<beans:property name="defaultTargetUrl" value="/openid/smartedit" />
+		<beans:property name="targetUrlParameter" value="target" />
+		<beans:property name="alwaysUseDefaultTargetUrl" value="true" />
+
+	</beans:bean>
+	<beans:bean id="failureRedirectHandler" class="com.sap.oidcsso.handler.AuthenticationFailureHandler">
+	</beans:bean>
+
+	<beans:bean id="openidConnectFilter" class="com.sap.oidcsso.filter.OpenidConnectFilter">
+		<beans:constructor-arg name="defaultFilterProcessesUrl" value="/oidc/smartedit" />
+		<beans:property name="restTemplate" ref="openidConnectRestTemplate" />
+		<beans:property name="authenticationSuccessHandler" ref="successRedirectHandler" />
+		<beans:property name="authenticationFailureHandler" ref="failureRedirectHandler" />
+		<beans:property name="idpClient" ref="idpClient" />
+	</beans:bean>
+
+	<beans:bean id="openidConnectEntryPoint"
+		class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+		<beans:constructor-arg name="loginFormUrl" value="/oidc/smartedit" />
+	</beans:bean>
+
+	<authentication-manager>
+		<authentication-provider ref="coreAuthenticationProvider" />
+	</authentication-manager>
+
+	<beans:bean id="coreAuthenticationProvider" class="de.hybris.platform.spring.security.CoreAuthenticationProvider">
+		<beans:property name="userDetailsService" ref="coreUserDetailsService" />
+	</beans:bean>
+
+	<beans:bean id="coreUserDetailsService" class="de.hybris.platform.spring.security.CoreUserDetailsService" />
+
+</beans:beans>

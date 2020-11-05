@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<process xmlns="http://www.hybris.de/xsd/processdefinition" start="fraudCheck" name="consignment-process" processClass="de.hybris.platform.ordersplitting.model.ConsignmentProcessModel">
+
+	<action id="fraudCheck" bean="fraudCheckAction">
+		<transition name="OK" to="waitBeforeTransmission"/>
+		<transition name="NOK" to="waitForApprove"/>
+	</action>
+	
+	<wait id="waitForApprove" then="waitBeforeTransmission" prependProcessCode="false">
+		<event>${process.code}_WaitForApprove</event>
+	</wait> 
+
+	<action id="waitBeforeTransmission" bean="waitBeforeTransmissionAction">
+		<transition name="NOK" to="error"/>
+		<transition name="HOME_DELIVERY" to="waitForCollect"/>
+		<transition name="EMAIL_DELIVERY" to="waitForCollect"/>
+		<transition name="EVOUCHER_QR" to="sendDeliveryMessage"/>
+		<transition name="EVOUCHER_QR_THIRDPARTY" to="sendDeliveryMessage"/>
+		<transition name="EVOUCHER_AN" to="sendDeliveryMessage"/>
+		<transition name="EVOUCHER_BAR" to="sendDeliveryMessage"/>
+		<transition name="EVOUCHER_URL" to="sendDeliveryMessage"/>
+		<transition name="EVOUCHER_SMS" to="waitForCollect"/>
+		<transition name="OFFLINE_REDEMPTION" to="waitForCollect"/>
+		<transition name="REDEMPTION_LETTER" to="waitForCollect"/>
+	</action>
+	
+	<action id="sendDeliveryMessage" bean="sendDeliveryMessageAction">
+	    <transition name="OK" to="waitForCollect"/>
+	</action>
+   <wait id="waitForCollect" then="subprocessEnd" prependProcessCode="false">
+		<event>${process.code}_ConsignmentCollect</event>
+	</wait> 
+   
+	<action id="subprocessEnd" bean="subprocessEndAction">
+		<transition name="OK" to="success"/>
+	</action>
+
+	<end id="error" state="ERROR">All went wrong.</end>
+	<end id="failed" state="FAILED">Order not placed.</end>
+	<end id="success" state="SUCCEEDED">Order placed.</end>
+</process>

@@ -1,0 +1,68 @@
+.promotion-campaign{
+    .electrionic-sports-title{
+        text-align: center;
+        width: 80%;
+        margin: 0 auto;
+
+        @include  media-query-down(1280px){
+            width: 83%;
+        }
+
+        @include  media-query-down(768px){
+            width: 100%;
+        }
+    }
+
+    .electrionic-sports{
+        width: px2rem(1050px);
+        margin: 0 auto;
+        line-height: 24px;
+        border-top: 1px solid #d4d5d7;
+        border-bottom: 1px solid #d4d5d7;
+        padding: px2rem(49px) 0;
+
+        ul,ol,li{
+            list-style:disc outside none;
+            margin-left: px2rem(8px);
+        }
+
+        @include  media-query-down(1280px){
+            width: 83%;
+        }
+
+        @include  media-query-down(768px){
+            width: 100%;
+            padding-top: px2rem(39px);
+        }
+
+        p{
+            @include  media-query-down(768px){
+                font-size: 14px;
+                line-height: px2rem(24px);
+            }
+        }
+
+
+        p:last-child{
+            margin-top: px2rem(30px);
+        }
+    }
+
+    .electrionic-sports:last-child{
+        margin-top: px2rem(60px);
+    }
+
+}
+
+.all-electrionic{
+    margin-top: 0;
+
+    
+    @include  media-query-down(768px){
+       padding: 0 px2rem(15px);
+    }
+
+    // .promotion-campaign-content{
+    //     margin-top: px2rem(60px);
+    // }
+}

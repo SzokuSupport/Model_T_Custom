@@ -1,0 +1,255 @@
+
+.confirm__email{
+  max-width: px2rem(1050px);
+  padding: px2rem(35px) 0 px2rem(36px);
+  border-bottom: 1px solid #bec1c3;
+  border-top: 1px solid #bec1c3;
+  margin: 0 auto;
+  font-size: 16px;
+  line-height: px2rem(39px);
+  color:#272f38;
+
+  @include media-query-down(768px){
+    font-size: 16px;
+    line-height: px2rem(26px);
+    padding: px2rem(30px) 0 px2rem(56px);
+    margin: 0 ;
+  }
+}
+
+.confirm__email--input{
+  max-width: px2rem(1050px);
+  padding: px2rem(35px) 0 px2rem(20px);
+  border-bottom: 1px solid #bec1c3;
+  border-top: 1px solid #bec1c3;
+  margin: 0 auto;
+  font-size: 16px;
+  line-height: px2rem(39px);
+  color:#272f38;
+
+  div{
+    width: 50%;
+    margin-top: px2rem(5px);
+
+    @include media-query-down(768px){
+      width:100%;
+    }
+  }
+
+  @include media-query-down(768px){
+    font-size: 16px;
+    line-height: px2rem(26px);
+    padding: px2rem(30px) 0 px2rem(10px);
+    margin: 0 ;
+  }
+}
+
+.total-mes{
+  max-width: px2rem(1050px);
+  padding: px2rem(39px) 0 px2rem(30px);
+  margin: 0 auto px2rem(126px);
+  color:#272f38;
+
+  &:after{
+    content: '';
+    display: block;
+    clear: both;
+  }
+
+  @include media-query-down(768px){
+    padding: px2rem(31px) 0 px2rem(30px);
+  }
+
+  &__price{
+    width:50%;
+    float: left;
+    // display: flex;
+    padding-bottom: px2rem(23px);
+    // border-bottom: 1px solid #bec1c3;
+
+    @include media-query-down(768px){
+      width: 100%;
+      padding: 0 0 px2rem(30px);
+      border-bottom: 0;
+    }
+
+    .total-mes__price-order-total {
+      width: 100%;
+      display: flex;
+    }
+
+    .total-mes__price-earn-miles {
+      width: 100%;
+      margin-top: px2rem(10px);
+
+      .earn-miles-content {
+        background: #e9eaeb;
+        padding: px2rem(20px) px2rem(16px);
+
+        .earn-miles-content-details-wrapper {
+          padding-top: px2rem(5px);
+          &.earn-miles-content-details-wrapper--hide {
+              display: none;
+          }
+          
+          .earn-miles-content__row {
+              .earn-miles-content__row-content-left {
+                  color: #107112;
+              }
+          }
+        }
+        
+        .earn-miles-content__row {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: nowrap;
+          align-items: stretch;
+          justify-content: space-between;
+          padding-top: px2rem(5px);
+          font-size: 14px;
+
+          &.earn-miles-content__title {
+            font-size: 16px;
+            padding-top: 0;
+
+            .earn-miles-content__row-content-right {
+              padding-top: px2rem(2px);
+            }
+          }
+  
+          .earn-miles-content__row-content-right {
+            display: flex;
+            @include media-query-down(768px) {
+                padding-top: px2rem(2px);
+            }
+
+            .icon-dropdown {
+                width: 14px;
+                height: 10px;
+                transform: scale(1.5);
+                cursor: pointer;
+                margin-left: px2rem(5px);
+
+                &.icon-dropdown--open {
+                    transform: scale(1.5) rotate(180deg);
+                }
+            }
+
+            .am-icon {
+              width: px2rem(14px);
+              height: px2rem(13px);
+            }
+            span {
+              display: inline-block;
+              font-size: 14px;
+              line-height: px2rem(14px);
+            }
+          }
+        }
+      }
+
+      .earn-miles-remark {
+        margin-top: px2rem(10px);
+      }
+    }
+
+    &--left{
+      // width: 100px;
+      font-size: 30px;
+      line-height: px2rem(30px);
+
+      @include media-query-down(768px){
+        font-size: 24px;
+        line-height: px2rem(24px);
+      }
+    }
+
+    &--right{
+      flex:1;
+
+      &__money{
+        text-align: right;
+        margin-bottom: px2rem(10px);
+        font-size: px2rem(24px);
+        font-family: "OpenSans-Bold","Arial",sans-serif;
+        font-weight: 700;
+
+        .icon-price__one{
+          width: px2rem(14px);
+          height: px2rem(17px);
+        }
+
+        span{
+          display: inline-block;
+          font-size: 24px;
+          line-height: px2rem(24px);
+        }
+      }
+
+      &__HKD{
+        font-size: 20px;
+        line-height: 20px;
+        text-align: right;
+        margin-bottom: px2rem(20px);
+      }
+
+      &__discount{
+        text-align: right;
+        font-size: 14px;
+        line-height: px2rem(20px);
+
+        .icon-price__two{
+          width: px2rem(9.6px);
+          height:px2rem(11px);
+          margin-left: px2rem(12px);
+        }
+      }
+
+    }
+    
+    &:after{
+      content: "";
+      clear: both;
+      display: block;
+    }
+
+  }
+
+  &__check{
+    width: 50%;
+    float: left;
+    padding-left: px2rem(108px);
+    box-sizing: border-box;
+
+    @include media-query-down(768px){
+      width: 100%;
+      padding-left: 0;
+    }
+
+    p{
+      padding-bottom: px2rem(20px);
+      font-size: 16px;
+      line-height:px2rem(24px);
+
+      @include media-query-down(768px){
+        font-size: 14px;
+        line-height:px2rem(20px);
+        padding-bottom: px2rem(30px);
+      }
+    }
+
+    &--btn{
+      width: px2rem(300px);
+      height: px2rem(54px);
+      background: #facf04;
+      border: 0px;
+      text-align: center;
+      line-height: px2rem(54px);
+      font-size: 16px;
+
+      @include media-query-down(1200px){
+        width: 100%;
+      }
+    }
+  }
+}

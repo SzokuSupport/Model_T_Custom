@@ -1,0 +1,123 @@
+.product-banner {
+  @include media-query-up(768px) {
+    padding: 0 px2rem(15px);
+    margin-top: px2rem(50px);
+  }
+
+  &-simple {
+    margin-top: px2rem(50px);
+    margin-bottom: px2rem(35px);
+
+    @include media-query-down(768px) {
+      margin-top: px2rem(34px);
+    }
+
+    &__title {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  &-withIntro {
+    margin-top: px2rem(50px);
+    margin-bottom: px2rem(40px);
+
+    @include media-query-down(768px) {
+      margin-top: px2rem(34px);
+    }
+
+    &__title,
+    &__intro {
+      width: 100%;
+      text-align: center;
+    }
+
+    &__intro {
+      padding: px2rem(20px) px2rem(15px);
+      margin-top: px2rem(20px);
+    }
+  }
+
+  &-withImg {
+    margin-top: px2rem(40px);
+    margin-bottom: px2rem(60px);
+    overflow: hidden;
+    border: 1px solid #d4d6d8;
+
+    &__title {
+      line-height: px2rem(40px);
+      width: 37%;
+
+      h1{
+        opacity: 0;
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    &__img {
+      width: 63%;
+    }
+
+    &__title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 px2rem(10px);
+    }
+
+    @include media-query-down(768px) {
+      border: none;
+
+      &__title {
+        width: 100%;
+        padding-bottom: px2rem(40px);
+      }
+
+      &__img {
+        width: 100%;
+      }
+    }
+  }
+
+  &-simple__title h1,
+  &-withIntro__title h1,
+  &-withImg__title h1 {
+    position: relative;
+    margin: 0;
+  }
+
+  &-simple__title h1:after,
+  &-withIntro__title h1:after,
+  &-withImg__title h1:after {
+    content: '';
+    height: 3px;
+    width: px2rem(48px);
+    position: absolute;
+    bottom: px2rem(-18px);
+    left: 50%;
+    margin-left: px2rem(-23px);
+    background: #facf04;
+
+    @media screen and (-ms-high-contrast: black-on-white) {
+      background: #facf04;
+    }
+
+    @media screen and (-ms-high-contrast: active) {
+      background: #facf04;
+    }
+
+    @media screen and (-ms-high-contrast: white-on-black) {
+      background: #facf04;
+    }
+  }
+}
+
+.search-results-num {
+  line-height: px2rem(21px);
+  margin-bottom: px2rem(60px);
+
+  @include media-query-down(768px) {
+    margin-bottom: px2rem(20px);
+  }
+}

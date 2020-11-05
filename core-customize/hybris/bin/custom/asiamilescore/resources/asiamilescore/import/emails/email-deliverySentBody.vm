@@ -1,0 +1,349 @@
+## messageSource=classpath:/asiamilescore/messages/email-deliverySent_$lang.properties
+#macro( genHtmlBoldFont $text )
+<font color="#414a4f" size="2" face="Arial, Helvetica, sans-serif"><b>$text</b></font>
+#end
+#macro(genHtmlLinkStartTag $url)
+<a href="$url"><font color="#666666">
+#end
+#macro(genHtmlLinkEndTag)
+</font></a>
+#end
+#macro(genHtmlLink $url $textColor $bodyContent)
+<a href="$url"><font color="$textColor">$bodyContent</font></a>
+#end
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+</head>
+  <style type="text/css">
+	.product_des{
+	font-size: 14px; 
+	font-family: 'Arial';
+	line-height: 20px; 
+	padding: 13px 20px 0;
+	}
+	.product_des_p p{
+		margin-top: 0;
+	}
+	.product_des ul{
+	margin: 0 0;
+	padding: 0 20px;
+	font-size: 13px;
+	line-height: 18px;
+	}
+	.product_des ol{
+	margin: 0 0;
+	padding: 0 20px;
+	}
+	.terms_conditions{
+	font-size: 12px; 
+	line-height: 14px; 
+	}
+</style>
+<body style="margin: 0 0;">
+   <table border="0" cellpadding="0" cellspacing="0" style="width: 100%; background-color: #eaeaeb;">
+    <tbody>
+        <tr>
+            <td>
+                <table border="0" cellpadding="0" cellspacing="0" style="width: 640px; margin: 0 auto;">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <table border="0" cellpadding="0" cellspacing="0" style="width: 100%; font-family: 'Arial'; color: #272f38">
+                                    <tbody>
+                                        <tr>
+                                            <td style="font-size: 12px; font-family: 'Arial'; line-height: 18px; padding: 9px 0;">
+                                                ${ctx.messages.bestUse}<br> 
+                                               
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align: center; background-color: #ffffff; padding: 18px 0 21px; border-bottom: 4px solid #facf00;">
+                                                <a href="${ctx.baseUrl}" target="_blank" style="width: 100%; text-decoration: none;"> 
+                                                    <img src="${ctx.baseUrl}/_ui/responsive/aml/img/email/${ctx.headerImage}" title="Asia Miles" alt="Asia Miles" style="width: 139px; height: 36px;" />
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-size: 18px; font-family: 'Arial'; font-weight: bold; line-height: 26px; text-align: center; padding-top: 27px; background-color: #ffffff;">
+                                                ${ctx.messages.yourEvoucherisHere}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-size: 12px; font-family: 'Arial'; line-height: 20px; text-align: right; background-color: #ffffff; padding: 18px 20px 0;">
+                                                ${ctx.emailDate} 
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-size: 14px; font-family: 'Arial'; line-height: 20px; text-align: left; background-color: #ffffff; padding: 10px 20px 0;">
+                                               ${ctx.messages.getMessage('salutation', ${ctx.title},${ctx.displayName})}
+                                                <br>
+                                                <br>
+                                                <span>${ctx.messages.eVoucherCharityMessageOne}<span style="text-decoration: underline">${ctx.messages.eVoucherCharityMessageTwo}</span></span>
+                                                <br>
+                                                <br>
+                                                <span>${ctx.messages.eVoucherMessage}</span>
+                                            </td>
+                                        </tr>
+                                        <!-- evoucher bar code-->
+                                        #if($ctx.collectionMethod == "EVOUCHER_BAR")
+                                        <tr style="background-color: #ffffff;">
+                                            <td style="padding: 40px 0 10px; margin: 0 auto; text-align: center; width: 600px; display: block;">
+                                                <img src="${ctx.mediaBaseUrl}${ctx.eVoucherCode}" /><br>
+                                                ${ctx.eVoucherValue}
+                                            </td>
+                                        </tr>
+                                        #end
+                                        <!-- end evoucher bar code-->
+
+
+                                        <!-- evoucher QR-->
+                                        #if($ctx.collectionMethod == "EVOUCHER_QR" || $ctx.collectionMethod == "EVOUCHER_QR_THIRDPARTY")
+                                        <tr style="background-color: #ffffff;">
+                                            <td style="padding: 40px 0 10px; margin: 0 auto; text-align: center; width: 600px; display: block;">
+                                                <img src="${ctx.mediaBaseUrl}${ctx.eVoucherCode}" />
+                                            </td>
+                                        </tr>
+                                        #end
+                                        <!-- end evoucher QR-->
+
+                                        <!-- evoucher URL-->
+                                        #if($ctx.collectionMethod == "EVOUCHER_URL")
+                                        <tr style="background-color: #ffffff;">
+                                            <td style="margin: 36px auto 0; text-align: center; width: 444px; display: block; background-color: #f4f4f5;">
+                                                <span style="display: block; margin: 0 16px; border-bottom: 1px solid #d4d5d7; padding: 18px 0 17px; font-size: 14px; font-weight: bold;">${ctx.messages.useThisToRedeem}</span>
+                                            </td>
+                                        </tr>
+                                        <tr style="background-color: #ffffff;">
+                                            <td style="padding: 17px 0 20px; margin: 0 auto 30px; text-align: center; width: 444px; display: block; background-color: #f4f4f5;">
+                                                <a style="color:#272f38; text-decoration: none;" href="${ctx.eVoucherCode}">${ctx.eVoucherCode}</a>
+                                            </td>
+                                        </tr>
+                                        #end
+                                        <!-- end evoucher URL-->
+
+                                        <!-- evoucher long code-->
+                                         #if($ctx.collectionMethod == "EVOUCHER_AN")
+                                        <tr style="background-color: #ffffff;">
+                                            <td style="margin: 36px auto 0; text-align: center; width: 444px; display: block; background-color: #f4f4f5;">
+                                                <span style="display: block; margin: 0 16px; border-bottom: 1px solid #d4d5d7; padding: 18px 0 17px; font-size: 14px; font-weight: bold;">${ctx.messages.useThisToRedeem}</span>
+                                            </td>
+                                        </tr>
+                                        <tr style="background-color: #ffffff;">
+                                            <td style="padding: 17px 0 20px; margin: 0 auto 30px; text-align: center; width: 444px; display: block; background-color: #f4f4f5;">
+                                                ${ctx.eVoucherCode}
+                                            </td>
+                                        </tr>
+                                        #end
+                                        <!-- end  evoucher long code-->
+
+                                        <tr style="background-color: #ffffff;">
+                                            <td style="margin: 20px auto 0; width: 600px; display: block; background-color: #f4f4f5; padding: 20px 0;">
+                                                <table style="margin:0 20px; color: #272f38">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td style="text-align: center; width: 143px; display: block; background-color: #fafafa;">
+                                                                <img width="100%" src="${ctx.mediaBaseUrl}${ctx.product.brandLogo}" />
+                                                            </td>
+                                                            <td style="padding-left: 20px;">
+                                                                <table style="color: #272f38">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td style="font-size: 14px; font-weight: bold; margin-top: -5px; display: block;">$!{ctx.product.brandName}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                        	<td style="font-size: 16px; line-height: 23px;">$!{ctx.product.name}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                         #foreach($option in $ctx.productOption.entrySet())
+                                                                         <td style="font-size: 14px; padding-top: 5px">
+                                                                                <span style="padding-right: 30px;">${option.key}: <span style="font-weight: bold; padding-left: 7px;">${option.value}</span></span>
+                                                                          </td>
+                                                                         #end
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="font-size:12px; padding-top: 13px">${ctx.messages.packageCode}: ${ctx.product.code}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="font-size:12px; padding-top: 5px">${ctx.messages.referenceNumber}: ${ctx.consignmentCode}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="font-size:12px; padding-top: 5px">${ctx.messages.getMessage('membershipNo', ${ctx.memberShipNo})}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="font-size:12px; padding-top: 5px">${ctx.messages.validityPeriod}: $!{ctx.product.validityPeriod}</td>
+                                                                        </tr>
+                                                                        
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                       
+                                        <tr style="background-color: #ffffff;">
+                                            <td style="margin: 30px auto 0; padding: 30px 20px 0; width: 600px; display: block; border-top:1px solid #e6e7e8; font-weight: bold;">${ctx.messages.details}</td>
+                                        </tr>
+                                        <tr style="background-color: #ffffff;">
+                                            <td class="product_des product_des_p">$!{ctx.productDescription}</td>
+                                        </tr>
+                                        
+
+                                        <tr style="background-color: #ffffff;">
+                                            <td style=" padding: 30px 20px 9px; font-size: 14px;font-family: 'Arial'; font-weight: bold;">${ctx.messages.inquiriesAboutProduct}</td>
+                                        </tr>
+                                        <tr style="background-color: #ffffff;">
+                                            <td style=" padding: 0 20px; font-size: 14px; font-family: 'Arial';">$!{ctx.product.productPartnerCompanyName}</td>
+                                        </tr>
+
+                                        <tr style=" font-size: 14px; font-family: 'Arial';line-height: 24px; background-color: #ffffff;">
+                                            <td style=" padding: 0 20px;">
+                                                <img style="display: block;padding-top: 12px;float: left;" width="18" height="18" src="${ctx.baseUrl}/_ui/responsive/aml/img/email/tel.png"  alt="tel" title="tel" />
+                                                <span style="padding-left: 10px; display: inline-block; padding-top:9px;">$!{ctx.product.productPartnerTelephone}</span>
+                                            </td>
+                                        </tr>
+                                        <tr style=" font-size: 14px; font-family: 'Arial';line-height: 24px; background-color: #ffffff;">
+                                            <td style=" padding: 0 20px;">
+                                                <img style="display: block;padding-top: 3px;float: left;" width="18" height="18" src="${ctx.baseUrl}/_ui/responsive/aml/img/email/email.png" alt="email" title="email" />
+                                                <a style="color: #272f38; padding-left: 10px;"  href="mailto:${ctx.product.productPartnerEmail}"> $!{ctx.product.productPartnerEmail}</a>
+                                            </td>
+                                        </tr>
+                                        <tr style="background-color: #ffffff;">
+                                            <td style=" padding: 30px 20px 0; font-size: 14px; font-family: 'Arial';font-weight: 600;">${ctx.messages.redemptionAndDeliveryInfo}</td>
+                                        </tr>
+                                        <tr style="background-color: #ffffff;">
+                                            <td class="product_des">
+                                               $!{ctx.howToRedeem}
+                                            </td>
+                                        </tr>
+
+													#if($ctx.email_language.isocode!="en")
+                                        <tr style="background-color: #ffffff;">
+                                            <td style=" padding: 30px 20px 0; font-size: 14px; font-family: 'Arial';font-weight: bold;">${ctx.messages.termsAndConditions}</td>
+                                        </tr>
+
+                                        <tr style="background-color: #ffffff;">
+                                            <td class="product_des terms_conditions">
+                                                $!{ctx.termsAndconditions}
+                                            </td>
+                                        </tr>
+                                        #end
+                                        <tr style="background-color: #ffffff;">
+                                            <td style=" padding: 30px 20px 0; font-size: 14px; font-family: 'Arial';font-weight: bold;">Terms and conditions</td>
+                                        </tr>
+
+                                        <tr style="background-color: #ffffff;">
+                                            <td class="product_des terms_conditions">
+                                                $!{ctx.termsAndconditionsEn}
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr style="background-color: #ffffff;">
+                                            <td style="padding: 30px 20px 0; font-size: 14px; line-height: 22px;">${ctx.messages.yoursSincerely} <br>${ctx.messages.asiaMilesTeam}</td>
+                                        </tr>
+                                        <tr style="background-color: #ffffff;">
+                                            <td style="padding: 30px 20px;"><a href="${ctx.crossSellingBannerLink}"  target="_blank"><img width="100%" src="${ctx.baseUrl}${ctx.crossSellingBannerURL}" alt="" title="" /></a></td>
+                                        </tr>
+                                        <tr style="background-color: #272f38;">
+                                            <td align="center" valign="top" border="0" cellpadding="0" cellspacing="0" style="padding-top:38px; padding-bottom:15px; border-top: 4px solid #facf00">
+                                                <table border="0" cellpadding="0" cellspacing="0">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td align="center">
+                                                                <table border="0" cellpadding="0" cellspacing="0">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td align="left" valign="middle">
+                                                                                <a href="${ctx.messages.Facebook_url}" target="_blank">
+                                                                                    <img src="${ctx.baseUrl}/_ui/responsive/aml/img/email/fb-aml.png" width="16" height="23" border="0" style="display: block;" alt="Facebook" title="Facebook">
+                                                                                </a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                            <td align="left" width="65"></td>
+                                                            <td align="center" width="22">
+                                                                <table border="0" cellpadding="0" cellspacing="0">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td align="left" valign="middle">
+                                                                                <a href="${ctx.messages.Instagram_url}" target="_blank">
+                                                                                    <img src="${ctx.baseUrl}/_ui/responsive/aml/img/email/instagram-aml.png" width="21" height="21" border="0" style="display: block;" alt="Instagram" title="Instagram">
+                                                                                </a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        
+                                                            <td align="left" width="61"></td>
+                                                            <td align="center" width="22">
+                                                                <table border="0" cellpadding="0" cellspacing="0">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td align="left" valign="middle">
+                                                                                <a href="${ctx.messages.Twitter_url}" target="_blank">
+                                                                                    <img src="${ctx.baseUrl}/_ui/responsive/aml/img/email/tw-aml.png" width="27" height="23" border="0" style="display: block;" alt="Twitter" title="Twitter">
+                                                                                </a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        
+                                                            <td align="left" width="61"></td>
+                                                            <td align="center" width="22">
+                                                                <table border="0" cellpadding="0" cellspacing="0">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td align="left" valign="middle">
+                                                                                <a href="${ctx.messages.Weibo_url}" target="_blank">
+                                                                                    <img src="${ctx.baseUrl}/_ui/responsive/aml/img/email/weibo-aml.png" width="29" height="23" border="0" style="display: block;" alt="Weibo" title="Weibo"> 
+                                                                                </a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr style="background-color: #272f38;">
+                                            <td border="0" cellpadding="0" cellspacing="0" align="center" valign="top" style=" font-family:Arial; font-size:12px; line-height:24px; color:#FACF00;">
+                                                <a  href="${ctx.messages.PrivacyPolicy_url}" title="${ctx.messages.privacyPolicy}" target="_blank" style="color:#FACF00; text-decoration:none;">${ctx.messages.privacyPolicy}</a>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="footer-spliter">|</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <a href="${ctx.messages.TermsAndCondition_url}" title="${ctx.messages.termsAndConditions}" target="_blank" style="color:#FACF00; text-decoration:none">${ctx.messages.termsAndConditions}</a>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="footer-spliter">|</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <a href="${ctx.messages.Disclaimer_url}" title="${ctx.messages.disclaimer}" target="_blank"  style="color:#FACF00; text-decoration:none">${ctx.messages.disclaimer}</a>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="footer-spliter">|</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <a href="${ctx.messages.ContactUs_url}" title="${ctx.messages.contactUs}" target="_blank"  style="color:#FACF00; text-decoration:none">${ctx.messages.contactUs}</a>
+                                            </td>
+                                        </tr>
+                                        <tr style="background-color: #272f38;">
+                                            <td border="0" cellpadding="0" cellspacing="0" align="center" valign="top" style="font-family: Arial; font-size:12px; line-height:16px; color:#ffffff; padding:10px 20px 0 20px;">${ctx.messages.notReceiveEmail1}
+                                                <a href="${ctx.messages.Unsubscribe_url}" target="_blank" style="color:#ffffff; text-decoration:underline" title="unsubscribe">${ctx.messages.notReceiveEmail2}</a>${ctx.messages.notReceiveEmail3}
+                                            </td>
+                                        </tr>
+                                        <tr style="background-color: #272f38;">
+                                            <td align="center" valign="top" style="font-family: Arial; font-size:12px; line-height:20px;  color:#ffffff;padding-bottom: 50px;">©${ctx.messages.limitedCompany}</td>
+                                        </tr>
+                                    </tbody>
+                                </table> 
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+   </table>
+</body>
+</html>

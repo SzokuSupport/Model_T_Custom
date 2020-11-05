@@ -1,0 +1,245 @@
+.popup{
+  width: px2rem(760px);
+  height: px2rem(400px);
+  position: relative;
+  background: #fff;
+  margin: px2rem(142px) auto;
+  border-top: 3px solid #facf04;
+
+  @include  media-query-down(768px){
+    position: absolute;
+    // top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    // display: none;
+  }
+
+  .icon-close {
+    width: px2rem(20px);
+    height: px2rem(20px);
+    position: absolute;
+    right: px2rem(20px);
+    top: px2rem(20px);
+    cursor: pointer;
+  }
+
+  .tooltip {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+
+    @include media-query-down(768px){
+      padding: px2rem(25px) px2rem(15px) px2rem(17px);
+    }
+  
+    .title {
+      padding-top: px2rem(30px);
+      text-align: center;
+      width: 100%;
+      position: absolute;
+  
+      @include  media-query-down(768px){
+        font-size: 32px;
+      }
+    }
+  
+    .main {
+      width: 100%;
+      height: px2rem(287px);
+      position: absolute;
+      bottom: px2rem(18px);
+      overflow: auto;
+  
+      @include  media-query-down(768px){
+        height: px2rem(550px);
+      }
+  
+      .section {
+        margin: px2rem(20px) px2rem(80px);
+        color: #272f38;
+        position: relative;
+
+        @include media-query-down(768px){
+          margin: px2rem(20px) 0;
+        }
+  
+        .name {
+          font-size: 14px;
+          line-height: 24px;
+          padding-left: px2rem(30px);
+        }
+  
+        .detail {
+          font-size: 12px;
+          line-height: 20px;
+          padding-left: px2rem(30px);
+
+          .icon-yellow{
+            width: px2rem(10px);
+            height: px2rem(10px);
+            margin-left: 2px;
+          }
+        }
+  
+        .time {
+          font-size: 12px;
+          line-height: 20px;
+          padding-top: px2rem(9px);
+          padding-left: px2rem(30px);
+        }
+  
+        .icon-tooltip {
+          width: px2rem(24px);
+          height: px2rem(24px);
+          position: absolute;
+          left: 0;
+          top: 0;
+        }
+  
+        .terms-conditions {
+          font-size: 12px;
+          color: #272f38;
+          text-decoration: underline;
+          padding-left: px2rem(30px);
+        }
+      }
+  
+    .main::-webkit-scrollbar {display:none}
+  
+    }
+  }
+  
+  .discount{
+    width: 100%;
+    height: 100%;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+
+    @include media-query-down(768px){
+      padding: px2rem(25px) px2rem(15px) px2rem(17px);
+    }
+  
+    .discount-title{
+      font-size: 32px;
+      line-height: px2rem(52px);
+      text-align: center;
+      margin-top: px2rem(16px);
+  
+      @include media-query-down(768px){
+        font-size: 36px;
+        line-height: px2rem(43px);
+        margin-top: px2rem(36px);
+      }
+    }
+  
+    .title-below{
+      font-size: 14px;
+      line-height: px2rem(10px);
+      margin-top: px2rem(7px);
+      margin-bottom: px2rem(20px);
+      text-align: center;
+  
+      @include media-query-down(768px){
+        margin-top: px2rem(10px);
+        margin-bottom: px2rem(30px);
+      }
+    }
+  
+    .discount-price{
+      padding: px2rem(15px) 0;
+      border-top: 1px solid #d8d8d8;
+      border-bottom: 1px solid #d8d8d8;
+  
+      @include media-query-down(768px){
+        padding: px2rem(25px) 0 px2rem(20px) 0;
+      }
+  
+      &__top{
+        font-size: 24px;
+        line-height: px2rem(10px);
+        margin-bottom: px2rem(15px);
+        text-align: center;
+  
+        .icon-yellow{
+          width: px2rem(14px);
+          height: px2rem(18px);
+        }
+      }
+  
+      &__bottom{
+        font-size: 14px;
+        line-height: px2rem(24px);
+        text-align: center;
+  
+        .icon-yellow{
+          width: px2rem(9px);
+          height: px2rem(11px);
+        }
+      }
+    }
+  
+    .main{
+      flex-grow: 1;
+      overflow-y: scroll;
+      width: 100%;
+      padding: px2rem(21px) px2rem(77px) px2rem(20px) px2rem(70px);
+  
+      @include  media-query-down(768px){
+        padding: px2rem(21px) px2rem(15px);
+      }
+  
+      .section {
+        margin:0 0 px2rem(30px);
+        color: #272f38;
+        position: relative;
+  
+        .name {
+          font-size: 14px;
+          line-height: 18px;
+          padding-left: px2rem(30px);
+        }
+  
+        .detail {
+          font-size: 12px;
+          line-height: 20px;
+          padding-left: px2rem(30px);
+
+          .icon-yellow{
+            width: px2rem(10px);
+            height: px2rem(10px);
+            margin-left: 2px;
+          }
+        }
+  
+        .time {
+          font-size: 12px;
+          line-height: 20px;
+          padding-top: px2rem(9px);
+          padding-left: px2rem(30px);
+        }
+  
+        .icon-tooltip {
+          width: px2rem(24px);
+          height: px2rem(24px);
+          position: absolute;
+          left: 0;
+          top: 0;
+        }
+  
+        .terms-conditions {
+          font-size: 12px;
+          color: #272f38;
+          text-decoration: underline;
+          padding-left: px2rem(30px);
+        }
+      }
+  
+    .main::-webkit-scrollbar {display:none}
+    }
+  }
+}

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+--><project name="smarteditsso_buildcallbacks">
+
+    <patternset id="extension.smarteditsso.binary.filter">
+        <patternset refid="extension.binary.filter"/>
+        <exclude name="build/"/>
+        <exclude name="smartedit-build/"/>
+        <exclude name="node_modules/"/>
+        <exclude name="jsTarget/"/>
+        <exclude name="package.json"/>
+    </patternset>
+
+    <patternset id="extension.smarteditsso.source.filter">
+        <patternset refid="extension.source.filter"/>
+        <exclude name="build/"/>
+        <exclude name="smartedit-build/"/>
+        <exclude name="node_modules/"/>
+        <exclude name="jsTarget/"/>
+        <exclude name="package.json"/>
+    </patternset>
+
+    <patternset id="extension.smarteditsso.production.filter">
+        <patternset refid="extension.production.filter"/>
+        <exclude name="build/"/>
+        <exclude name="smartedit-build/"/>
+        <exclude name="node_modules/"/>
+        <exclude name="jsTarget/"/>
+        <exclude name="package.json"/>
+    </patternset>
+
+    <macrodef name="smarteditsso_before_clean">
+        <sequential>
+            <if>
+				<available file="${ext.npmancillary.path}${file.separator}resources${file.separator}npm${file.separator}node_modules" type="dir"/>
+                <then>
+                    <delete dir="${ext.smarteditsso.path}${file.separator}temp"/>
+                    <delete dir="${ext.smarteditsso.path}${file.separator}jsTarget"/>
+                    <delete dir="${ext.smarteditsso.path}${file.separator}web${file.separator}webroot${file.separator}smarteditsso${file.separator}js"/>
+                    <unLinkSmarteditBundle target="${ext.smarteditsso.path}"/>
+                    <removeNodeModulesSymlink path="${ext.smarteditsso.path}"/>
+                </then>
+            </if>
+        </sequential>
+    </macrodef>
+
+    <!--- BEGIN : Customize to run npm on cloud -->
+    <macrodef name="detectOS">
+        <sequential>
+            <if>
+                <os family="windows"/>
+                <then>
+                    <property name="os.family" value="windows"/>
+                </then>
+
+                <elseif>
+                    <os family="mac"/>
+                    <then>
+                        <property name="os.family" value="darwin"/>
+                    </then>
+                </elseif>
+
+                <else>
+                    <property name="os.family" value="linux"/>
+                </else>
+            </if>
+        </sequential>
+    </macrodef>
+
+    <!-- copied from npmancillary/buildcallbacks.xml, target 'repairnpm' -->
+    <!-- you can't call an ant target from a macro, but you can call other macros :) -->
+    <macrodef name="repairnpmmacro">
+        <sequential>
+            <echo message="fixing node/npm symlinks and permissions"/>
+            <detectOS/>
+            <property file="${ext.npmancillary.path}${file.separator}resources${file.separator}ant${file.separator}${os.family}.properties" />
+            <if>
+                <not>
+                    <os family="windows"/>
+                </not>
+                <then>
+                    <!-- sometimes the npm link is converted to file -->
+                    <exec executable="${ext.npmancillary.path}/resources/npm/repairnpm.sh">
+                        <arg line="${os.family}"/>
+                    </exec>
+                </then>
+            </if>
+        </sequential>
+    </macrodef>
+
+    <!-- copied from npmancillary/buildcallbacks.xml, macrodef 'invokeNpm' -->
+    <!-- added the option to specifice the directory in which npm is invoked, workingDir -->
+    <macrodef name="invokeNpmCustomWorkingDir">
+        <attribute name="arguments" default=""/>
+        <attribute name="workingDir" default=""/>
+        <sequential>
+            <echo message="Running [npm @{arguments}] in directory @{workingDir}"/>
+            <property environment="env"/>
+            <detectOS/>
+            <property file="${ext.npmancillary.path}${file.separator}resources${file.separator}ant${file.separator}${os.family}.properties" />
+
+            <if>
+                <os family="windows" />
+                <then>
+                    <exec executable="cmd" dir="@{workingDir}" failonerror="true">
+                        <arg value="/c"/>
+                        <arg value="${loc.NODE_HOME}${file.separator}npm"/>
+                        <arg line="@{arguments}"/>
+                    </exec>
+                </then>
+                <else>
+                    <exec dir="@{workingDir}" executable="${loc.NODE_HOME}${file.separator}bin${file.separator}npm" failonerror="true" >
+                        <env key="PATH" value="${loc.EXTRA_PATH}${path.separator}${env.PATH}"/>
+                        <arg line="@{arguments}"/>
+                    </exec>
+                </else>
+            </if>
+        </sequential>
+    </macrodef>
+    <!--- END : Customize to run npm on cloud -->
+
+    <macrodef name="smarteditsso_before_build">
+        <sequential>
+            <echo message="smarteditsso_before_build" />
+        	<copy failonerror="false" file="${ext.smarteditsso.path}${file.separator}gitignore" overwrite="true" tofile="${ext.smarteditsso.path}${file.separator}.gitignore"/>
+
+            <echo message="smarteditsso_before_build start copy files" />
+            <!-- Copy the AsiamilesIdpTokenInterceptor class file to cmswebservice extension -->
+            <if>
+                <available file="${ext.smarteditsso.path}${file.separator}build-customize${file.separator}httpAuthInterceptor.js" type="file" />
+                <then>
+                    <copy file="${ext.smarteditsso.path}${file.separator}build-customize${file.separator}httpAuthInterceptor.js"
+                          tofile="${ext.smartedit.path}${file.separator}web${file.separator}app${file.separator}common${file.separator}services${file.separator}interceptors${file.separator}httpAuthInterceptor.js" overwrite="true"/>
+                </then>
+            </if>
+            <if>
+                <available file="${ext.smarteditsso.path}${file.separator}build-customize${file.separator}unauthorizedErrorInterceptor.js" type="file" />
+                <then>
+                    <copy file="${ext.smarteditsso.path}${file.separator}build-customize${file.separator}unauthorizedErrorInterceptor.js"
+                    tofile="${ext.smartedit.path}${file.separator}web${file.separator}app${file.separator}common${file.separator}services${file.separator}interceptors${file.separator}default${file.separator}unauthorizedErrorInterceptor.js" overwrite="true"/>
+                </then>
+            </if>
+            <if>
+				<available file="${ext.npmancillary.path}${file.separator}resources${file.separator}npm${file.separator}node_modules" type="dir"/>
+                <then>
+                    <linkSmarteditBundle target="${ext.smarteditsso.path}"/>
+                    <gruntBuild path="${ext.smarteditsso.path}" phase="packageSkipTests"/>
+                </then>
+            </if>
+            <echo message=" smarteditsso_before_build to smartedit completed " />
+        </sequential>
+    </macrodef>
+
+    <macrodef name="smarteditsso_before_yunit">
+        <sequential>
+            <if>
+				<available file="${ext.npmancillary.path}${file.separator}resources${file.separator}npm${file.separator}node_modules" type="dir"/>
+                <then>
+                    <gruntBuild path="${ext.smarteditsso.path}" phase="test_only"/>
+                </then>
+            </if>
+        </sequential>
+    </macrodef>
+
+    
+
+</project>

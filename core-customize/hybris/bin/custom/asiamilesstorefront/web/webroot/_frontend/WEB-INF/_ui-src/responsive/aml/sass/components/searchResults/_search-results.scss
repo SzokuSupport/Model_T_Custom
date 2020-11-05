@@ -1,0 +1,26 @@
+.search-results-content {
+    padding: 0 px2rem(203px);
+
+    .search-results_title{
+        padding: px2rem(40px) 0 px2rem(30px);
+        width: 100%;
+        text-align: center;
+
+        h1{
+            position: relative;
+            margin: 0;
+            line-height: px2rem(57px);
+            
+            &:after{
+                content: "";
+                height: 3px;
+                width: 5.875rem;
+                position: absolute;
+                bottom: -1.125rem;
+                left: 50%;
+                margin-left: -2.9375rem;
+                background: #facf04;
+            }
+        }
+    }
+}

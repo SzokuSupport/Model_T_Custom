@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd
+           http://www.springframework.org/schema/util
+           http://www.springframework.org/schema/util/spring-util.xsd">
+           
+   <alias name="asiaMilesCartRaoPopulator" alias="cartRaoPopulator" />
+	<bean id="asiaMilesCartRaoPopulator" class="com.asiamiles.promotion.converters.populator.AsiaMilesCartRaoPopulator">
+		<property name="discountConverter" ref="discountValueRaoConverter" />
+		<property name="entryConverter" ref="orderEntryRaoConverter" />
+		<property name="userConverter" ref="userRaoConverter" />
+		<property name="paymentModeConverter" ref="paymentModeRaoConverter"/>
+	</bean>	
+	
+	<bean id="asiaMilesCouponMethodHook" class="com.asiamiles.promotion.service.order.hook.AsiaMilesCouponMethodHook">
+		<property name="modelService" ref="modelService" />
+	</bean>
+	
+	<bean id="asiaMilesCouponMethodHookMergeDirective" depends-on="commerceCartCalculationMethodHooks" parent="listMergeDirective">
+		<property name="add" ref="asiaMilesCouponMethodHook" />
+	</bean>
+	
+	<bean id="asiaMilesPromotionResultPopulator"
+			class="com.asiamiles.promotion.converters.populator.AsiaMilesPromotionResultPopulator">
+	</bean>	
+	<bean parent="modifyPopulatorList">
+		<property name="list" ref="promotionResultConverter"/>
+		<property name="add" ref="asiaMilesPromotionResultPopulator"/>
+	</bean>
+	
+	<bean id="asiaMilesPromotionOrderEntryConsumedPopulator"
+			class="com.asiamiles.promotion.converters.populator.AsiaMilesPromotionOrderEntryConsumedPopulator">
+	</bean>
+
+	<bean parent="modifyPopulatorList">
+		<property name="list" ref="promotionOrderEntryConsumedConverter"/>
+		<property name="add" ref="asiaMilesPromotionOrderEntryConsumedPopulator"/>
+	</bean>
+
+	<bean id="asiaMilesPromotionsPopulator"
+		  class="com.asiamiles.promotion.converters.populator.AsiaMilesPromotionsPopulator">
+		<property name="i18NService"  ref="i18NService"/>
+		<property name="configurationService" ref="configurationService"/>
+	</bean>
+
+	<bean parent="modifyPopulatorList">
+		<property name="list" ref="promotionsConverter"/>
+		<property name="add" ref="asiaMilesPromotionsPopulator"/>
+	</bean>
+
+	<alias name="asiaMilesPromotionRulePrepareInterceptor" alias="promotionRulePrepareInterceptor"/>
+	<bean id="asiaMilesPromotionRulePrepareInterceptor"
+		  class="com.asiamiles.promotion.interceptors.AsiaMilesPromotionRulePrepareInterceptor" >
+		<property name="modelService" ref="modelService"/>
+		<property name="commonI18NService" ref="commonI18NService" />
+		<property name="ruleCompilerContextFactory" ref="ruleCompilerContextFactory" />
+		<property name="ruleDao" ref="ruleDao"/>
+	</bean>
+
+	<alias name="asiaMilesCouponService" alias="couponService" />
+	<bean id="asiaMilesCouponService" class="com.asiamiles.promotion.service.impl.AsiaMilesCouponService" parent="defaultCouponService">
+		<property name="commerceCartCalculationStrategy" ref="commerceCartCalculationStrategy"/>
+	</bean>
+	
+	<alias name="asiaMilesOrderEntryRaoPopulator" alias="orderEntryRaoPopulator" />
+	<bean id="asiaMilesOrderEntryRaoPopulator" class="com.asiamiles.promotion.converters.populator.AsiaMilesOrderEntryRaoPopulator" parent="defaultOrderEntryRaoPopulator"/>
+
+	<alias alias="bonusRuleProductOrCategoryConditionTranslator" name="amlBonusRuleProductOrCategoryConditionTranslator" />
+	<bean id="amlBonusRuleProductOrCategoryConditionTranslator" class="com.asiamiles.promotion.ruledefinitions.conditions.AMLBonusRuleProductOrCategoryConditionTranslator" parent="abstractRuleConditionTranslator" />
+		
+	<alias name="amlDroolsRuleConditionsGenerator" alias="droolsRuleConditionsGenerator" />
+	<bean id="amlDroolsRuleConditionsGenerator" class="com.asiamiles.promotion.compiler.impl.AMLDroolsRuleConditionsGenerator" parent="defaultDroolsRuleConditionsGenerator">
+		<property name="droolsRuleValueFormatter" ref="droolsRuleValueFormatter" />
+	</bean>
+
+	<alias name="amlRuleEngineCalculationServiceImpl" alias="ruleEngineCalculationService" />
+	<bean id="amlRuleEngineCalculationServiceImpl" class="com.asiamiles.promotion.service.impl.AMLRuleEngineCalculationServiceImpl" parent="defaultRuleEngineCalculationService" />
+	
+	<alias name="amlRuleOrderFixedBonusRAOAction" alias="ruleOrderFixedBonusRAOAction" />
+	<bean id="amlRuleOrderFixedBonusRAOAction" parent="abstractRuleExecutableSupport" class="com.asiamiles.promotion.ruleevaluation.actions.AMLRuleOrderFixedBonusRAOAction">
+		<property name="ruleEngineCalculationService" ref="ruleEngineCalculationService" />
+	</bean>
+	
+	<alias name="amlRuleOrderPercentageBonusRAOAction" alias="ruleOrderPercentageBonusRAOAction" />
+	<bean id="amlRuleOrderPercentageBonusRAOAction" parent="abstractRuleExecutableSupport" class="com.asiamiles.promotion.ruleevaluation.actions.AMLRuleOrderPercentageBonusRAOAction">
+		<property name="ruleEngineCalculationService" ref="ruleEngineCalculationService" />
+	</bean>
+	
+	<alias name="amlRuleOrderFixedBonusAction" alias="ruleOrderFixedBonusAction" />
+	<bean id="amlRuleOrderFixedBonusAction" class="de.hybris.platform.ruledefinitions.actions.DefaultRuleExecutableAction">
+		<property name="raoAction" ref="ruleOrderFixedBonusRAOAction"/>
+	</bean>
+	
+	<alias name="amlRuleOrderPercentageBonusAction" alias="ruleOrderPercentageBonusAction" />
+	<bean id="amlRuleOrderPercentageBonusAction" class="de.hybris.platform.ruledefinitions.actions.DefaultRuleExecutableAction">
+		<property name="raoAction" ref="ruleOrderPercentageBonusRAOAction"/>
+	</bean>
+	
+	<alias name="amlOrderAdjustBonusActionStrategy" alias="orderAdjustBonusActionStrategy"/>
+	<bean id="amlOrderAdjustBonusActionStrategy" parent="abstractRuleActionStrategy" class="com.asiamiles.promotion.service.impl.AMLOrderAdjustBonusActionStrategy" >
+		<property name="promotionAction" value="com.asiamiles.core.model.RuleBonusOrderAdjustTotalActionModel"></property>
+	</bean>
+	
+	<alias name="amlOrderEntryAdjustBonusActionStrategy" alias="orderEntryAdjustBonusActionStrategy"/>
+	<bean id="amlOrderEntryAdjustBonusActionStrategy" parent="abstractRuleActionStrategy" class="com.asiamiles.promotion.service.impl.AMLOrderEntryAdjustBonusActionStrategy" >
+		<property name="promotionAction" value="com.asiamiles.core.model.RuleBonusOrderEntryAdjustActionModel"></property>
+	</bean>
+	
+	<bean id="amlRuleOrderFixedBonusRAOActionStrategiesMappingMergeDirective" depends-on="promotionActionStrategiesMapping" parent="mapMergeDirective" >
+		<property name="key" value="amlRuleOrderFixedBonusRAOAction"/>
+		<property name="value" ref="orderEntryAdjustBonusActionStrategy"/>
+	</bean>
+	<bean id="amlRuleOrderPercentageBonusRAOActionStrategiesMappingMergeDirective" depends-on="promotionActionStrategiesMapping" parent="mapMergeDirective" >
+		<property name="key" value="amlRuleOrderPercentageBonusRAOAction"/>
+		<property name="value" ref="orderEntryAdjustBonusActionStrategy"/>
+	</bean>
+	
+	<bean id="orderAdjustBonusActionStrategiesMergeDirective" depends-on="actionStrategies" parent="listMergeDirective" >
+       <property name="add" ref="orderAdjustBonusActionStrategy" />
+    </bean>
+	<bean id="orderEntryAdjustBonusActionStrategiesMergeDirective" depends-on="actionStrategies" parent="listMergeDirective" >
+       <property name="add" ref="orderEntryAdjustBonusActionStrategy" />
+    </bean>
+	
+	<alias name="amlpromotionEngineService" alias="promotionEngineService"/>
+	<bean id="amlpromotionEngineService" class="com.asiamiles.promotion.service.impl.AMLPromotionEngineServiceImpl" parent="defaultPromotionEngineService"/>
+	
+	<bean id="amlRuleActionCouponMetadataHandler" class="com.asiamiles.promotion.service.impl.AMLRuleActionCouponMetadataHandler" parent="ruleActionCouponMetadataHandler"/>
+	
+	<bean id="amlCouponRuleActionMetadataHandlersMergeDirective" depends-on="ruleActionMetadataHandlers" parent="mapMergeDirective" >
+		<property name="key" value="bonusCouponIds"/>
+		<property name="value" ref="amlRuleActionCouponMetadataHandlerList"/>
+	</bean>
+	
+	<util:list id="amlRuleActionCouponMetadataHandlerList">
+		<ref bean="amlRuleActionCouponMetadataHandler"/>
+	</util:list>
+
+</beans>

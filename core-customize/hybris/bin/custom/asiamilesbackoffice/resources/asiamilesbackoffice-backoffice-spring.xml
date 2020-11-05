@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="asiamilesbackofficeService" class="com.asiamiles.backoffice.services.AsiamilesbackofficeService"/>
+
+    <bean id="asiamilesbackofficeLabelLocator" class="com.hybris.cockpitng.util.labels.ResourcesLabelLocator"
+          scope="singleton" init-method="init" lazy-init="false">
+        <property name="location" value="/asiamilesbackoffice-backoffice-labels/"/>
+        <property name="name" value="labels"/>
+    </bean>
+
+    <alias name="amlSummaryViewApprovalStatusRenderer" alias="summaryViewApprovalStatusRenderer"/>
+    <bean id="amlSummaryViewApprovalStatusRenderer"
+          parent="defaultSummaryViewApprovalStatusRenderer"
+          class="com.asiamiles.backoffice.renders.AmlSummaryViewApprovalStatusRenderer">
+        <property name="userService" ref="userService"/>
+    </bean>
+
+    <alias name="amlProductApprovalStatusRenderer" alias="productApprovalStatusRenderer"/>
+    <bean id="amlProductApprovalStatusRenderer"
+          class="com.asiamiles.backoffice.renders.AmlProductApprovalStatusRenderer"
+          parent="defaultProductApprovalStatusRenderer">
+        <property name="userService" ref="userService"/>
+    </bean>
+
+    <!-- Variant proudct code generator added by Michael end-->
+
+    <!-- Ethan added start -->
+    <alias name="asiaMilesCreateVendorProductWizardHandler" alias="createVendorProductWizardHandler"/>
+    <bean id="asiaMilesCreateVendorProductWizardHandler"
+          class="com.asiamiles.backoffice.widgets.AsiaMilesCreateVendorProductWizardHandler">
+        <property name="cockpitEventQueue" ref="cockpitEventQueue"/>
+        <property name="sessionService" ref="sessionService"/>
+        <property name="modelService" ref="modelService"/>
+        <property name="asiaMilesProductService" ref="asiaMilesProductService"/>
+        <property name="unitService" ref="unitService"/>
+    </bean>
+    <!-- Ethan added end -->
+
+    <!-- Michael added start -->
+    <alias name="asiaMilesCreateVendorVariantProductWizardHandler" alias="createVendorVariantProductWizardHandler"/>
+    <bean id="asiaMilesCreateVendorVariantProductWizardHandler"
+          class="com.asiamiles.backoffice.widgets.AsiaMilesCreateVendorVariantProductWizardHandler">
+        <property name="cockpitEventQueue" ref="cockpitEventQueue"/>
+        <property name="sessionService" ref="sessionService"/>
+        <property name="modelService" ref="modelService"/>
+        <property name="asiaMilesProductService" ref="asiaMilesProductService"/>
+        <property name="notificationService" ref="notificationService"/>
+    </bean>
+
+
+    <bean class="com.hybris.cockpitng.dataaccess.util.DataAccessStrategyExtender"
+          lazy-init="false"
+          init-method="addAll"
+          destroy-method="removeAll">
+        <property name="objectFacadeStrategies">
+            <list merge="true">
+                <ref bean="amlProductBeforeSaveStrategy"/>
+            </list>
+        </property>
+        <property name="objectFacadeStrategyRegistry" ref="objectFacadeStrategyRegistry"/>
+    </bean>
+
+    <bean id="amlProductBeforeSaveStrategy"
+          class="com.asiamiles.backoffice.dataaccess.facades.strategies.impl.AMLProductBeforeSaveStrategy"
+          parent="platformObjectFacadeStrategy">
+        <property name="userService" ref="userService"/>
+        <property name="asiaMilesProductService" ref="asiaMilesProductService"/>
+    </bean>
+
+    <bean id="abstractExcelImportHandler" abstract="true">
+        <property name="excelCronJobService" ref="excelCronJobService"/>
+        <property name="cronJobService" ref="cronJobService"/>
+        <property name="cockpitEventQueue" ref="cockpitEventQueue"/>
+        <property name="notificationService" ref="notificationService"/>
+    </bean>
+
+    <bean name="baseImportHandler" class="com.asiamiles.backoffice.csvhandler.BaseImportHandler">
+        <property name="configurationService" ref="configurationService"></property>
+    </bean>
+
+    <bean name="discountCreateHandler" class="com.asiamiles.backoffice.widgets.discountRow.DiscountCreateHandler">
+        <property name="modelService" ref="modelService"/>
+    </bean>
+    <bean name="productDiscountCreateHandler" class="com.asiamiles.backoffice.widgets.discountRow.ProductDiscountCreateHandler">
+        <property name="modelService" ref="modelService"/>
+    </bean>
+
+    <alias name="defaultEvoucherImportHandler" alias="evoucherImportHandler"/>
+    <bean name="defaultEvoucherImportHandler" class="com.asiamiles.backoffice.csvhandler.EvoucherImportHandler">
+        <property name="modelService" ref="modelService"/>
+        <property name="eVoucherService" ref="eVoucherService"/>
+        <property name="enumerationService" ref="enumerationService"/>
+    </bean>
+
+    <bean id="asiaMilesUserGroupService" class="com.asiamiles.core.service.impl.AsiaMilesUserGroupServiceImpl">
+        <property name="asiaMilesUserGroupDao" ref="asiaMilesUserGroupDao"/>
+    </bean>
+
+    <alias name="defaultDiscountRowImportHandler" alias="discountRowImportHandler"/>
+    <bean name="defaultDiscountRowImportHandler" class="com.asiamiles.backoffice.csvhandler.DiscountRowImportHandler"
+          parent="baseImportHandler">
+        <property name="modelService" ref="modelService"/>
+        <property name="discountService" ref="discountService"/>
+        <property name="productService" ref="productService"/>
+        <property name="asiaMilesProductService" ref="asiaMilesProductService"/>
+        <property name="asiaMilesUserGroupService" ref="asiaMilesUserGroupService"/>
+        <property name="asiaMilesCurrencyService" ref="asiaMilesCurrencyService"/>
+        <property name="enumerationService" ref="enumerationService"/>
+    </bean>
+
+    <!--    add by Ethan.Chow PSALA-51-->
+    <bean name="bulkSegmentIDImportWithItsCorrespondingAMLMemberIDHandler"
+          class="com.asiamiles.backoffice.csvhandler.BulkSegmentIDImportWithItsCorrespondingAMLMemberIDHandler"
+          parent="baseImportHandler">
+        <property name="modelService" ref="modelService"/>
+        <property name="userService" ref="userService"/>
+    </bean>
+    <!--    add by Ethan end-->
+
+    <alias name="defaultConSignMentImportHandler" alias="conSignMentImportHandler"/>
+    <bean name="defaultConSignMentImportHandler" class="com.asiamiles.backoffice.csvhandler.ConSignMentImportHandler">
+    </bean>
+
+    <bean name="costVarianceApproveHandler" class="com.asiamiles.backoffice.widgets.billing.CostVarianceApproveHandler">
+    </bean>
+    <bean name="invoiceConfirmHandler" class="com.asiamiles.backoffice.widgets.billing.InvoiceConfirmHandler">
+    </bean>
+    
+    <bean name="fraudCheckConfirmHandler" class="com.asiamiles.backoffice.widgets.billing.FraudCheckConfirmHandler">
+    </bean>
+
+    <bean id="asiaMilesSyncService"
+          class="com.asiamiles.backoffice.services.impl.AsiaMilesSyncServiceImpl">
+        <property name="synchronizationFacade" ref="synchronizationFacade"/>
+    </bean>
+
+
+    <alias name="amlSolrFieldSearchFacadeStrategy" alias="solrFieldSearchFacadeStrategy"/>
+    <bean id="amlSolrFieldSearchFacadeStrategy" class="com.asiamiles.backoffice.dataaccess.facades.AMLSolrFieldSearchFacadeStrategy"
+          parent="defaultSolrFieldSearchFacadeStrategy">
+        <property name="userService" ref="userService"/>
+        <property name="authorityGroupService" ref="authorityGroupService"/>
+    </bean>
+
+    <bean id="consignmentEmailSendDateValidation" class="com.asiamiles.backoffice.validation.ConsignmentValidation">
+        <property name="objectFacade" ref="objectFacade"/>
+        <property name="validationHandler" ref="validationHandler"/>
+    </bean>
+    
+    <bean id="cronjobPeriodDateValidation" class="com.asiamiles.backoffice.validation.AMLCronjobValidation">
+        <property name="objectFacade" ref="objectFacade"/>
+        <property name="validationHandler" ref="validationHandler"/>
+    </bean>
+
+    <bean id="categoryValidation" class="com.asiamiles.backoffice.validation.AMLCategoryValidation">
+        <property name="objectFacade" ref="objectFacade"/>
+        <property name="validationHandler" ref="validationHandler"/>
+    </bean>
+
+    <bean id="seasonalBusinessPointValidation"
+          class="com.asiamiles.backoffice.validation.AsiaMilesSeasonalBusinessPointValidation">
+        <property name="objectFacade" ref="objectFacade"/>
+        <property name="validationHandler" ref="validationHandler"/>
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+    </bean>
+
+    <bean id="redemptionRestrictionValidation" class="com.asiamiles.backoffice.validation.AMLRedemptionRestrictionValidation">
+        <property name="objectFacade" ref="objectFacade"/>
+        <property name="validationHandler" ref="validationHandler"/>
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+    </bean>
+    
+    <alias name="ExcelImportWizardForm" alias="excelImportWizardForm"/>
+    <bean id="ExcelImportWizardForm" class="com.asiamiles.backoffice.excel.ExcelImportWizardForm" scope="prototype"/>
+
+    <alias name="CsvImportWizardForm" alias="csvImportWizardForm"/>
+    <bean id="CsvImportWizardForm" class="com.asiamiles.backoffice.excel.CsvImportWizardForm" scope="prototype"/>
+
+    <bean id="confirmWithRemarkForm" class="com.asiamiles.backoffice.form.ConfirmWithRemarkForm" scope="prototype"/>
+
+
+    <bean id="amlNestedAttributePanelRenderer" class="com.asiamiles.backoffice.renders.AMLNestedAttributePanelRenderer"
+          parent="marketplaceNestedAttributePanelRenderer"/>
+
+    <bean id="amlcancleOrderRenderer" class="com.asiamiles.backoffice.renders.AMLCancleOrderRenderer">
+          <property name="permissionCRUDService" ref="permissionCRUDService"/>
+    </bean>
+    
+    <bean id="amlOrderRestrictionTimesRenderer" class="com.asiamiles.backoffice.renders.AMLOrderRestrictionTimesRenderer"/>
+    <bean id="amlBaseMilesListCellRenderer" class="com.asiamiles.backoffice.renders.AMLBaseMilesListCellRenderer"/>
+
+    <bean id="amlApproveFlagRenderer" class="com.asiamiles.backoffice.renders.AmlApproveFlagRenderer"/>
+
+    <bean id="amlDownLoadInvoiceOriginInfoRenderer"
+          class="com.asiamiles.backoffice.renders.AmlDownLoadInvoiceOriginInfoRenderer"/>
+
+    <alias name="defaultAMLProductImportHandler" alias="amlproductImportHandler"/>
+    <bean name="defaultAMLProductImportHandler" class="com.asiamiles.backoffice.csvhandler.AMLProductImportHandler"
+          parent="abstractExcelImportHandler">
+    </bean>
+    
+    <bean name="amlProductImportPopulator" class="com.asiamiles.backoffice.csvhandler.AMLProductImportPopulator">
+    </bean>
+
+    <bean id="billingCostValidation" class="com.asiamiles.backoffice.validation.BillingCostValidation">
+        <property name="objectFacade" ref="objectFacade"/>
+        <property name="validationHandler" ref="validationHandler"/>
+    </bean>
+
+    <!-- Bookmark Handler for handling Bookmark -->
+    <bean id="asiamilesVendorBookmarkHandler" class="com.asiamiles.backoffice.services.AsiamilesVendorBookmarkHandler" parent="bookmarkHandler">
+        <property name="userService" ref="userService"/>
+        <property name="typeService" ref="typeService"/>
+        <property name="authorityGroupService" ref="authorityGroupService"/>
+    </bean>
+
+
+    <bean name="costItemImportHandler" class="com.asiamiles.backoffice.csvhandler.CostItemImportHandler"/>
+    <bean name="currencyImportHandler" class="com.asiamiles.backoffice.csvhandler.CurrencyImportHandler"/>
+
+    <alias name="amlBackofficeRememberMeService" alias="backofficeRememberMeService"/>
+    <bean id="amlBackofficeRememberMeService"
+          class="com.asiamiles.backoffice.spring.security.AMLBackofficeRememberMeService"
+          parent="defaultBackofficeRememberMeService">
+        <property name="key" value="backoffice"/>
+        <property name="cookieName" value="LoginToken"/>
+        <property name="commonI18NService" ref="commonI18NService"/>
+        <!-- avoiding hard reference to tenant-scoped 'coreUserDetailsService' -->
+        <lookup-method name="lookupUserDetailsService" bean="backofficeUserDetailsService"/>
+    </bean>
+
+    <alias name="amlDefaultExcelExportService" alias="amlExcelExportService"/>
+	 <bean id="amlDefaultExcelExportService" class="com.asiamiles.backoffice.services.impl.DefaultAMLExcelExportService"
+	 		parent="defaultExcelExportService">
+			<property name="templatePath" value="/excel/product_excel_template-v3.xlsx"/>
+	 </bean>
+	 
+	 <alias name="amlCatalogTreeModelPopulator" alias="catalogTreeModelPopulator"/>
+    <bean id="amlCatalogTreeModelPopulator" class="com.asiamiles.backoffice.services.AMLCatalogTreeModelPopulator" 
+    		parent="defaultCatalogTreeModelPopulator">
+    		<property name="authorityGroupService" ref="authorityGroupService"/>
+    </bean>
+    
+    <bean id="amlStockLevelTabEditorAreaRenderer" class="com.asiamiles.backoffice.widgets.editor.StockLevelsTabEditorAreaRenderer"
+		 	parent="abstractEditorAreaComponentRenderer">
+    		<property name="stockService" ref="stockService"/>
+	 </bean>
+	 
+	 <alias name="amlVariantAttributesSectionRenderer" alias="variantAttributesSectionRenderer"/>
+    <bean id="amlVariantAttributesSectionRenderer" class="com.asiamiles.backoffice.renders.AMLVariantAttributesSectionRenderer"
+		 	parent="defaultVariantAttributesSectionRenderer">
+    		<property name="userService" ref="userService"/>
+    		<property name="authorityGroupService" ref="authorityGroupService"/>
+	 </bean>
+	 <alias name="amlDateLabelProvider" alias="dateLabelProvider"/>
+	 <bean id="amlDateLabelProvider" class="com.asiamiles.backoffice.widgets.editor.AMLDateLabelProvider"/>
+	 
+	 <alias name="amlReferenceEditorSearchConditionHandler" alias="referenceEditorSearchConditionHandler"/>
+	 <bean id="amlReferenceEditorSearchConditionHandler" class="com.asiamiles.backoffice.widgets.editor.AMLReferenceEditorSearchConditionHandler"
+		 	parent="defaultReferenceEditorSearchConditionHandler">
+			<property name="userService" ref="userService"/>
+			<property name="catalogVersionService" ref="catalogVersionService"/>
+			<property name="catalogService" ref="catalogService"/>
+	 </bean>
+	 
+    <bean id="amlMediaContentUpdateHandler" class="com.asiamiles.backoffice.widgets.AMLMediaContentUpdateHandler" parent="defaultMediaContentUpdateHandler">
+			<property name="catalogVersionService" ref="catalogVersionService"/>
+    </bean>
+    
+    <bean id="amlProductLinksFacetChartRenderer" class="com.asiamiles.backoffice.renders.AMLProductLinksFacetChartRenderer" parent="defaultProductLinksFacetChartRenderer"></bean>
+	 
+	 <alias name="amlMediaItemUploadPanelRenderer" alias="mediaItemUploadRenderer"/>
+	<bean id="amlMediaItemUploadPanelRenderer" class="com.asiamiles.backoffice.renders.AMLMediaItemUploadPanelRenderer"
+	      scope="prototype" parent="genericMediaItemUploadPanelRenderer">
+	      <property name="userService" ref="userService"/>
+	</bean>
+
+    <bean name="amlBillingInvoiceBulkApproveOrRejectedHandler"
+          class="com.asiamiles.backoffice.csvhandler.AMLBillingInvoiceBulkApproveOrRejectedHandler">
+        <property name="modelService" ref="modelService"/>
+        <property name="userService" ref="userService"/>
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+        <property name="asiaMilesBaseStoreService" ref="asiaMilesBaseStoreService"/>
+        <property name="utilService" ref="utilService"/>
+    </bean>
+    
+     <bean id="createRedemptionRestrictionWizardHandler"
+          class="com.asiamiles.backoffice.widgets.AMLCreateRedemptionRestrictionWizardHandler">
+        <property name="modelService" ref="modelService"/>
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+    </bean>
+
+    <bean id="createSeasonalBusinessRateHandler"
+          class="com.asiamiles.backoffice.widgets.AsiaMilesCreateSeasonalBusinessRateHandler">
+        <property name="asiaMilesProductService" ref="asiaMilesProductService"/>
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+    </bean>
+
+    <alias name="defaultVersionedRuleEditorAreaLogicHandler" alias="versionedRuleEditorAreaLogicHandler"/>
+    <bean id="defaultVersionedRuleEditorAreaLogicHandler" class=" com.asiamiles.backoffice.widgets.editor.AMLVersionRuleEditorAreaLogicHandler"
+          parent="defaultEditorAreaLogicHandler">
+        <property name="eventQueue" ref="cockpitEventQueue"/>
+        <property name="ruleService" ref="ruleService"/>
+        <property name="modelService" ref="modelService"/>
+    </bean>
+    
+    <bean id="baseMilesEditorAreaValidation" class="com.asiamiles.backoffice.validation.AMLBaseMilesEditorAreaLogicHandler"
+          parent="defaultEditorAreaLogicHandler">
+          <property name="baseMilesService" ref="baseMilesService"/>
+    </bean>
+    
+    <bean id="baseMilesCreateWizardHandler" class="com.asiamiles.backoffice.widgets.AMLCreateBaseMilesWizardHandler">
+        <property name="baseMilesService" ref="baseMilesService"/>
+        <property name="cockpitEventQueue" ref="cockpitEventQueue"/>
+        <property name="modelService" ref="modelService"/>
+    </bean>
+    
+    <bean name="amlBaseMilesImportHandler" class="com.asiamiles.backoffice.csvhandler.AMLBaseMilesImportHandler">
+        <property name="baseMilesService" ref="baseMilesService"/>
+        <property name="baseStoreService" ref="baseStoreService"/>
+        <property name="modelService" ref="modelService"/>
+        <property name="categoryService" ref="categoryService"/>
+        <property name="productService" ref="productService"/>
+        <property name="catalogVersionService" ref="catalogVersionService"/>
+        <property name="userService" ref="userService"/>
+        <property name="asiaMilesCurrencyService" ref="asiaMilesCurrencyService"/>
+        <property name="typeService" ref="typeService"/>
+    </bean>
+</beans>

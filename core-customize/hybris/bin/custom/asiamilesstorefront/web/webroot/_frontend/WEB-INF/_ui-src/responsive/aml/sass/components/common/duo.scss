@@ -1,0 +1,133 @@
+.promotion-product.duo {
+  padding-bottom: px2rem(64px);
+
+  @include  media-query-between(768px,1280px){
+    padding-bottom: px2rem(50px);
+  }
+
+  @include  media-query-down(768px){
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  .promotion-product-content {
+    padding: 0;
+
+    @include media-query-down(768px){
+      width: 100%;
+      padding: 0;
+      display: flex;
+      -webkit-flex-flow: row nowrap;
+      flex-flow: row nowrap;
+      overflow-x: auto;
+      overflow-y: hidden;
+      list-style: none;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .slick-slide {
+      &:first-child {
+        .item-list {
+          @include media-query-up(768px) {
+            padding-left: 0;
+          }
+        }
+      }
+      &:last-child {
+        .item-list {
+          @include media-query-up(768px) {
+            padding-right: 0;
+          }
+        }
+      }
+    }
+
+    .item-list {
+      padding: 0 px2rem(15px);
+      @include media-query-down(1280px) {
+        padding: 0 px2rem(8px);
+      }
+      @include media-query-down(768px) {
+        padding: 0 px2rem(10px);
+        
+        &:first-child {
+          padding-left: px2rem(15px);
+        }
+
+        &:last-child {
+          padding-right: px2rem(15px);
+        }
+      }
+
+      .duo-content-wrapper {
+        @include media-query-down(768px) {
+          min-width: px2rem(294px);
+          width: px2rem(294px);
+        }
+
+        .promotion-product-img {
+          overflow: hidden;
+
+          img {
+            overflow: hidden;
+            transition:transform .45s ease;
+          }
+
+          &:hover {
+            img {
+              transform:scale(1.05);
+            }
+          }
+    
+          .lazy {
+            padding-top: 66%;
+            height: 1px;
+  
+            &.loaded {
+              padding-top: 0;
+              height: auto;
+            }
+          }
+        }
+
+        .promotion-product-card {
+          display: block;
+          width: 100%;
+          overflow: hidden;
+    
+          @include media-query-down(768px) {
+            min-width: px2rem(294px);
+            width: px2rem(294px);
+          }
+        }
+
+        .description {
+          text-align: center;
+          margin-top: px2rem(20px);
+
+          @include media-query-between(768px,1280px) {
+            margin-top: px2rem(15px);
+          }
+
+          .duo-title {
+            margin: 0 px2rem(15px) px2rem(15px) px2rem(15px);
+            font-size: 20px;
+            line-height: px2rem(30px);
+            @include media-query-between(768px,1280px) {
+              margin-bottom: px2rem(10px);
+            }
+            @include media-query-down(768px) {
+              margin-bottom: px2rem(5px);
+            }
+          }
+
+          .duo-details {
+            margin: 0 px2rem(15px);
+            font-size: 16px;
+            line-height: px2rem(25px);
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,164 @@
+.promotion-bannerTwo {
+    padding: 0 px2rem(90px);
+    margin-bottom: px2rem(60px);
+
+    @include  media-query-down(1280px){
+        padding: 0 px2rem(65px);
+        margin-bottom: px2rem(50px);
+    }
+
+    @include  media-query-down(768px){
+        padding: 0;
+        margin: 0 px2rem(15px);;
+    }
+
+    .item-list {
+        float: left;
+        width: calc(50% - 15px);
+        margin-right: px2rem(15px);
+        position: relative;
+
+        @include  media-query-down(1280px){
+            margin-right: px2rem(7.5px);
+            width: calc(50% - 7.5px);
+        }
+
+        @include  media-query-down(768px){
+            width: 100%;
+            margin: 0;
+            padding: 0 0 px2rem(50px);
+            
+        }
+
+        &:last-child {
+            margin-right: 0;
+            margin-left: px2rem(15px);
+
+            @include  media-query-down(1280px){
+                margin-left: px2rem(7.5px);
+            }
+
+            @include  media-query-down(768px){
+                margin: 0;
+            }
+        }
+
+        &.font-black {
+            &:before {
+                background-image: linear-gradient(to bottom, rgba(39, 47, 56, 0.5), rgba(255, 255, 255, 0));
+            }
+
+            .description {
+                color: #fff;
+            }
+ 
+        }
+
+        &:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            width: 100%;
+            height: 80%;
+            background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+        }
+
+        &:hover {
+            img {
+                transform:scale(1.05);
+            }
+        }
+
+        .img {
+            overflow: hidden;            
+            
+            img {
+                overflow: hidden;
+                transition:transform .45s ease;
+            }
+            
+        }
+
+        .description {
+            position: absolute;
+            top: px2rem(40px);
+            left: px2rem(40px);
+            z-index: 2;
+            width: px2rem(340px);
+    
+    
+            @include  media-query-down(1280px){
+                top: px2rem(30px);
+                left: px2rem(30px);
+                width: 60%;
+            }
+    
+            @include  media-query-down(768px){
+                top: px2rem(25px);
+                left: px2rem(25px);                
+            }
+
+            .button-yellow {
+                display: block;
+
+                @include  media-query-down(768px){
+                    display: none;
+                }
+            }
+            
+        }
+
+        .headline {
+            font-size: 24px;
+            line-height: px2rem(28px);
+            margin-bottom: px2rem(15px);
+    
+            @include  media-query-down(1280px){
+                font-size: 18px;
+                line-height: px2rem(24px);
+                margin-bottom: px2rem(10px);
+                height: px2rem(48px);
+                overflow: hidden;
+            }
+        }
+
+        .info {
+            font-size: 14px;
+            line-height: px2rem(25px);
+            margin-bottom: px2rem(20px);
+    
+            @include  media-query-down(1280px){
+                font-size: 12px;
+                line-height: px2rem(18px);
+                margin-bottom: px2rem(15px);
+                height: px2rem(36px);
+                overflow: hidden;
+            }
+        }
+
+        .button-yellow {
+            display: none;
+            width: px2rem(200px);
+            height: px2rem(50px);
+            line-height: px2rem(50px);
+    
+            @include  media-query-down(1280px){
+                width: px2rem(150px);
+                height: px2rem(37px);
+                line-height: px2rem(37px);
+            }
+    
+            @include  media-query-down(768px){
+                display: block;
+                width: 100%;
+                height: px2rem(60px);
+                line-height: px2rem(60px);
+            }
+        }
+
+    }
+
+    
+}

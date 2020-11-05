@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widgets.xsd">
+
+	<widget-extension widgetId="systemBar">
+        <remove widgetId="synchronizationPopup"/>
+        <widget id="amlsynchronizationPopup" widgetDefinitionId="com.hybris.backoffice.widgets.amlsyncpopup"
+                slotId="cockpitWidgetChildrenInvisible" template="true">
+    		 <instance-settings socketEventRoutingMode="LAST_USED">
+                <create onInit="false" reuseExisting="true">
+                    <all-incoming-events/>
+                </create>
+                <close>
+                    <outgoing-events>
+                        <socket-event id="cancel"/>
+                        <socket-event id="syncJob"/>
+                    </outgoing-events>
+                    <all-outgoing-events/>
+                </close>
+                <select onInit="false">
+                    <all-incoming-events/>
+                </select>
+            </instance-settings>
+            <setting key="widgetStyleClass" type="String"></setting>
+            <setting key="widgetStyleAttribute" type="String"></setting>
+            <setting key="searchVisibilityThreshold" type="Integer">4</setting>
+            <setting key="_width" type="String">500px</setting>
+            <setting key="_height" type="String">auto</setting>
+            <setting key="listitemRenderer" type="String"></setting>
+            <virtual-sockets/>
+            <widget id="syncPopupNotificationarea" widgetDefinitionId="com.hybris.backoffice.notificationarea" slotId="syncPopupNotificationarea" template="false">
+                <setting key="notificationId" type="String">syncPopup</setting>
+                <setting key="widgetStyleAttribute" type="String"></setting>
+                <setting key="debugLog" type="Boolean">false</setting>
+                <setting key="widgetStyleClass" type="String"></setting>
+                <setting key="stackSize" type="Integer">3</setting>
+                <setting key="useDynamicNotificationId" type="Boolean">true</setting>
+                <virtual-sockets/>
+            </widget>
+        </widget>
+		</widget-extension>
+
+    <widget-extension widgetId="mainSlot">
+        <widget id="XLSXImportFlowContextCreator" widgetDefinitionId="com.hybris.cockpitng.widgets.common.propextractor"
+                slotId="cockpitWidgetChildrenInvisible" template="false">
+            <setting key="expression" type="String">
+            	{
+	                TYPE_CODE:#root.typeCode,
+	                target:#root.target,
+	                configurableFlowConfigCtx:'xlsx-import-wizard'
+                }
+            </setting>
+            <setting key="socketDataType_$T" type="String">java.util.Map</setting>
+            <virtual-sockets/>
+        </widget>
+        
+        <widget id="XLSXProductImportFlowContextCreator" widgetDefinitionId="com.hybris.cockpitng.widgets.common.propextractor"
+                slotId="cockpitWidgetChildrenInvisible" template="false">
+            <setting key="expression" type="String">{
+                TYPE_CODE:#root.typeCode
+                ,target:#root.target
+                , configurableFlowConfigCtx:'product-xlsx-import-wizard'
+                }
+            </setting>
+            <setting key="socketDataType_$T" type="String">java.util.Map</setting>
+            <virtual-sockets/>
+        </widget>
+    </widget-extension>
+    
+    <widget-extension widgetId="mpvuExplorerTree">
+    	 <widget id="amlVendorConditionEvaluator" widgetDefinitionId="com.hybris.cockpitng.conditionevaluator" slotId="cockpitWidgetChildrenInvisible" template="false">
+            <widget id="amlVendorFilter" widgetDefinitionId="com.dfs.backoffice.widgets.widgets.vendor.filter" slotId="cockpitWidgetChildrenInvisible" template="false">
+                <setting key="widgetStyleAttribute" type="String"></setting>
+                <setting key="widgetStyleClass" type="String"></setting>
+                <virtual-sockets/>
+            </widget>
+            <setting key="expression" type="String" value="#root.id matches 'com.asiamiles.backoffice.widgets.widgets.vendor.filter'"></setting>
+            <setting key="socketDataType_$T" type="String">com.hybris.backoffice.navigation.NavigationNode</setting>
+            <virtual-sockets/>
+        </widget>
+    </widget-extension>
+    
+    <widget-extension widgetId="mpw-leftSlotContainer">
+  		<widget id="mpw-savedQueries"
+              widgetDefinitionId="de.hybris.platform.platformbackoffice.widgets.savedQueriesWidget"
+              slotId="bottomSlot" template="false">
+          <setting key="widgetStyleClass" type="String"></setting>
+          <setting key="__externalLocationPath" type="String">extension://marketplacebackoffice</setting>
+          <setting key="widgetStyleAttribute" type="String"></setting>
+          <virtual-sockets/>
+      </widget>
+        <setting key="southDisabled" type="Boolean">false</setting>
+	     <setting key="southHeight" type="String">200px</setting>
+	     <setting key="southClosed" type="Boolean">false</setting>
+	     <setting key="southCollapsible" type="Boolean">true</setting>
+    </widget-extension>
+
+    <widget-extension widgetId="mpwExplorerTree">
+    	  <remove widgetId="mpwTreeSelectionConditionEvaluator"/>
+        <widget id="amlConsignmentsConditionEvaluator" widgetDefinitionId="com.hybris.cockpitng.conditionevaluator"
+                slotId="cockpitWidgetChildrenInvisible" template="false">
+            <widget id="amlConsignmentFilter" widgetDefinitionId="com.dfs.backoffice.widgets.widgets.consignment.filter"
+                    slotId="cockpitWidgetChildrenInvisible" template="false">
+                <setting key="widgetStyleAttribute" type="String"></setting>
+                <setting key="widgetStyleClass" type="String"></setting>
+                <virtual-sockets/>
+            </widget>
+            <setting key="expression" type="String"
+                     value="#root.id matches 'marketplacebackoffice.typenode.order.all'"></setting>
+            <setting key="socketDataType_$T" type="String" value="com.hybris.backoffice.navigation.NavigationNode"/>
+            <virtual-sockets/>
+        </widget>
+        <widget id="amlBillingCostConditionEvaluator" widgetDefinitionId="com.hybris.cockpitng.conditionevaluator"
+                slotId="cockpitWidgetChildrenInvisible" template="false">
+            <widget id="amlBillingCostFilter" widgetDefinitionId="com.asiamiles.backoffice.widgets.widgets.billingCost.filter"
+                    slotId="cockpitWidgetChildrenInvisible" template="false">
+                <setting key="widgetStyleAttribute" type="String"></setting>
+                <setting key="widgetStyleClass" type="String"></setting>
+                <virtual-sockets/>
+            </widget>
+            <setting key="expression" type="String"
+                     value="#root.id matches 'marketplacebackoffice.typenode.billingCost.all'"></setting>
+            <setting key="socketDataType_$T" type="String" value="com.hybris.backoffice.navigation.NavigationNode"></setting>
+            <virtual-sockets/>
+        </widget>
+        
+        <widget id="amlReportConditionEvaluator" widgetDefinitionId="com.hybris.cockpitng.conditionevaluator"
+                slotId="cockpitWidgetChildrenInvisible" template="false">
+            <widget id="amlReportFilter" widgetDefinitionId="de.hybris.asiamilesbackoffice.widgets.amlReportfilter"
+                    slotId="cockpitWidgetChildrenInvisible" template="false">
+                <setting key="widgetStyleAttribute" type="String"></setting>
+                <setting key="widgetStyleClass" type="String"></setting>
+                <virtual-sockets/>
+            </widget>
+            <setting key="expression" type="String" value="#root.id matches 'marketplacebackoffice\.typenode\.report.*'"></setting>
+            <setting key="socketDataType_$T" type="String" value="com.hybris.backoffice.navigation.NavigationNode"/>
+            <virtual-sockets/>
+        </widget>
+
+
+        <widget id="amlBillingInvoiceConditionEvaluator" widgetDefinitionId="com.hybris.cockpitng.conditionevaluator"
+                slotId="cockpitWidgetChildrenInvisible" template="false">
+            <widget id="amlBillingInvoiceFilter" widgetDefinitionId="com.asiamiles.backoffice.widgets.widgets.billingInvoice.filter"
+                    slotId="cockpitWidgetChildrenInvisible"
+                    template="false">
+                <setting key="widgetStyleAttribute" type="String"></setting>
+                <setting key="widgetStyleClass" type="String"></setting>
+                <virtual-sockets/>
+            </widget>
+            <setting key="expression" type="String"
+                     value="#root.id matches 'marketplacebackoffice.typenode.billingInvoice.all'"/>
+            <setting key="socketDataType_$T" type="String" value="com.hybris.backoffice.navigation.NavigationNode"/>
+            <virtual-sockets/>
+        </widget>
+
+        <widget id="amlEarnedMilesConditionEvaluator" widgetDefinitionId="com.hybris.cockpitng.conditionevaluator"
+                slotId="cockpitWidgetChildrenInvisible" template="false">
+            <widget id="amlEarnedMilesFilter" widgetDefinitionId="com.asiamiles.backoffice.widgets.widgets.earnedMiles.filter"
+                    slotId="cockpitWidgetChildrenInvisible"
+                    template="false">
+                <setting key="widgetStyleAttribute" type="String"></setting>
+                <setting key="widgetStyleClass" type="String"></setting>
+                <virtual-sockets/>
+            </widget>
+            <setting key="expression" type="String"
+                     value="#root.id matches 'marketplacebackoffice.typenode.earnedMiles.all'"/>
+            <setting key="socketDataType_$T" type="String" value="com.hybris.backoffice.navigation.NavigationNode"/>
+            <virtual-sockets/>
+        </widget>
+    </widget-extension>
+
+    <widget-extension widgetId="mainSlot">
+        <widget id="CSVImportFlowContextCreator"
+                widgetDefinitionId="com.hybris.cockpitng.widgets.common.propextractor"
+                slotId="cockpitWidgetChildrenInvisible" template="false">
+            <setting key="expression" type="String">{
+                TYPE_CODE:#root.typeCode
+                ,target:#root.target
+                ,subType:#root.subType
+                , configurableFlowConfigCtx:'csv-import-wizard'
+                }
+            </setting>
+            <setting key="socketDataType_$T" type="String">java.util.Map</setting>
+            <virtual-sockets/>
+        </widget>
+
+
+        <widget id="PopupCreator"
+                widgetDefinitionId="com.hybris.cockpitng.widgets.common.propextractor"
+                slotId="cockpitWidgetChildrenInvisible" template="false">
+            <setting key="expression" type="String">{
+                TYPE_CODE:#root.typeCode
+                ,target:#root.target
+                ,flag:#root.flag
+                , configurableFlowConfigCtx:'Popup-confirm-wizard'
+                }
+            </setting>
+            <setting key="socketDataType_$T" type="String">java.util.Map</setting>
+            <virtual-sockets/>
+        </widget>
+    </widget-extension>
+
+    <widget-extension widgetId="mpwAdvancedSearch">
+        <remove widgetId="mpwAdvancedSearchEngine"/>
+        <remove widgetId="mpwCollectionBrowser"/>
+        <widget id="mpwAdvancedSearchEngine" widgetDefinitionId="com.hybris.cockpitng.widgets.common.amladvancedsearchengine" slotId="cockpitWidgetChildrenInvisible" template="false">
+            <setting key="widgetStyleClass" type="String"></setting>
+            <setting key="defaultPageSize" type="Integer">100</setting>
+            <setting key="widgetStyleAttribute" type="String"></setting>
+        </widget>
+        <widget id="mpwCollectionBrowser" widgetDefinitionId="com.hybris.cockpitng.collectionBrowser" slotId="nestedWidget"  title="mpwCollectionBrowser" template="false">
+            <setting key="itemRenderer" type="String">listViewRenderer</setting>
+            <setting key="sortableListHeader" type="Boolean">true</setting>
+            <setting key="asyncLoading" type="Boolean">true</setting>
+            <setting key="pageSize" type="Integer">50</setting>
+            <setting key="maxCharsInCell" type="Integer">70</setting>
+            <setting key="listTitle" type="String"></setting>
+            <setting key="widgetStyleClass" type="String"></setting>
+            <setting key="actionSlotComponentId" type="String">mpwlistviewactions</setting>
+            <setting key="widgetStyleAttribute" type="String"></setting>
+            <setting key="colConfigCtxCode" type="String">mpw-listview</setting>
+            <setting key="listSubtitle" type="String">emptylist</setting>
+            <setting key="multiSelect" type="Boolean">true</setting>
+            <setting key="refreshAfterObjectCreation" type="Boolean">true</setting>
+            <setting key="socketDataType_$T" type="String">java.lang.Object</setting>
+            <virtual-sockets/>
+        </widget>
+    </widget-extension>
+    <widget-extension widgetId="configurableFlow">
+        <virtual-sockets>
+            <output id="cancelOrderReset" type="de.hybris.platform.core.model.order.OrderModel"/>
+        </virtual-sockets>
+    </widget-extension>
+    <widget-extension widgetId="csEditorArea">
+           <virtual-sockets>
+              <output id="cancelOrderContext" type="de.hybris.platform.ordersplitting.model.ConsignmentModel" />
+              <output id="fraudCheckContext" type="java.util.Map" />
+        </virtual-sockets>
+    </widget-extension>
+    
+    <widget-extension widgetId="CustomerSupport-Perspective">
+      <widget id="amlCancelOrderPopup" widgetDefinitionId="com.asiamiles.backoffice.widgets.cancelorder" slotId="cockpitWidgetChildrenInvisible"
+          title="Cancel Order" template="true">
+          <instance-settings socketEventRoutingMode="LAST_USED">
+              <create onInit="false" reuseExisting="true">
+                  <all-incoming-events />
+              </create>
+              <close>
+                  <all-outgoing-events />
+              </close>
+              <select onInit="false">
+                  <all-incoming-events />
+              </select>
+          </instance-settings>
+
+          <setting key="widgetStyleClass" type="String"></setting>
+          <setting key="__externalLocationPath" type="String" value="extension://customersupportbackoffice"></setting>
+          <setting key="widgetStyleAttribute" type="String"></setting>
+          <setting key="_width" type="String" value="830px"></setting>
+          <setting key="_height" type="String" value="345px"></setting>
+          <virtual-sockets>
+          	 <output id="cancelOrderReset" type="de.hybris.platform.core.model.order.OrderModel" />
+          </virtual-sockets>
+      </widget>
+    </widget-extension>
+    
+    <widget-extension widgetId="pcmbackoffice-dashboard-view">
+   	<remove widgetId="pcmbackoffice-dashboard-view-product-stats-chart"/>
+   	<widget id="pcmbackoffice-dashboard-view-product-stats-chart" widgetDefinitionId="com.hybris.pcmbackoffice.charts.facetchart" slotId="dashboardWidgets" template="false">
+			<widget id="pcmbackoffice-dashboard-view-product-stats-advancedsearchengine" widgetDefinitionId="com.hybris.cockpitng.widgets.common.advancedsearchengine"
+					slotId="cockpitWidgetChildrenInvisible" template="false">
+				<virtual-sockets/>
+			</widget>
+			<setting key="facetsNames" type="String">approvalStatus</setting>
+			<setting key="chartDecorator" type="String">productStatisticChartComposer</setting>
+			<setting key="filterPanelRendererNames" type="String">catalogVersionFilterRenderer,categoryFilterRenderer</setting>
+			<setting key="rightPanelRenderer" type="String">amlProductLinksFacetChartRenderer</setting>
+			<setting key="chartTitleKey" type="String">solrchart.productstats.chart_title</setting>
+			<virtual-sockets>
+				<output id="goToAllProducts" type="java.lang.Object" />
+			</virtual-sockets>
+		</widget>
+    </widget-extension>
+
+
+    <!-- Bookmark Handler: Overridden -->
+    <widget-extension widgetId="standardBookmarkHandler">
+        <setting key="handlerBean" value="asiamilesVendorBookmarkHandler"/>
+    </widget-extension>
+
+
+    <!-- Stream Start -->
+    <widget-connection sourceWidgetId="STUB_com.hybris.backoffice.widgets.actions.sync" outputId="currentObjects" targetWidgetId="amlsynchronizationPopup" inputId="inputObjects"/>
+    <widget-connection sourceWidgetId="STUB_com.asiamiles.backoffice.actions.sync" outputId="currentObjects" targetWidgetId="amlsynchronizationPopup" inputId="inputObjects"/>
+    <widget-connection sourceWidgetId="amlsynchronizationPopup" outputId="startedSyncCronJob" targetWidgetId="processes" inputId="updateCronJob"/>
+    <widget-connection sourceWidgetId="amlsynchronizationPopup" outputId="syncTaskExecutionInfo" targetWidgetId="synchronizationTracker" inputId="syncTaskExecutionInfo"/>
+    
+    
+    <widget-connection sourceWidgetId="STUB_com.asiamiles.backoffice.actions.uploadExcelFile" outputId="bindedTarget" targetWidgetId="XLSXImportFlowContextCreator" inputId="genericInput"/>
+    <widget-connection sourceWidgetId="XLSXImportFlowContextCreator" outputId="genericOutput" targetWidgetId="configurableFlow" inputId="context"/>
+    <widget-connection sourceWidgetId="STUB_com.asiamiles.backoffice.actions.ConsignmentConfirmEmailDeliveryActionWithCsv" outputId="bindedTarget" targetWidgetId="CSVImportFlowContextCreator" inputId="genericInput"/>
+    <widget-connection sourceWidgetId="STUB_com.asiamiles.backoffice.actions.ConsignmentConfirmHomeDeliveryActionWithCsv" outputId="bindedTarget" targetWidgetId="CSVImportFlowContextCreator" inputId="genericInput"/>
+    <widget-connection sourceWidgetId="STUB_com.asiamiles.backoffice.actions.ConsignmentConfirmEVoucherDeliveryActionWithCsv" outputId="bindedTarget" targetWidgetId="CSVImportFlowContextCreator" inputId="genericInput"/>
+    <widget-connection sourceWidgetId="STUB_com.asiamiles.backoffice.actions.ConsignmentRedemptionletterConfirmActionWithCsv" outputId="bindedTarget" targetWidgetId="CSVImportFlowContextCreator" inputId="genericInput"/>
+    <widget-connection sourceWidgetId="STUB_com.asiamiles.backoffice.actions.ConsignmentRedemptionletterDeliveryActionWithCsv" outputId="bindedTarget" targetWidgetId="CSVImportFlowContextCreator" inputId="genericInput"/>
+    <widget-connection sourceWidgetId="STUB_com.asiamiles.backoffice.actions.UploadCurrencyActionWithCsv" outputId="bindedTarget" targetWidgetId="CSVImportFlowContextCreator" inputId="genericInput"/>
+
+    <widget-connection sourceWidgetId="CSVImportFlowContextCreator" outputId="genericOutput" targetWidgetId="configurableFlow" inputId="context"/>
+
+    <widget-connection sourceWidgetId="STUB_com.asiamiles.backoffice.actions.billing.approveCostVariance" outputId="bindedTarget" targetWidgetId="PopupCreator" inputId="genericInput"/>
+    <widget-connection sourceWidgetId="STUB_com.asiamiles.backoffice.actions.billing.approveInvoice" outputId="bindedTarget" targetWidgetId="PopupCreator" inputId="genericInput"/>
+    <widget-connection sourceWidgetId="STUB_com.asiamiles.backoffice.actions.billing.rejectInvoice" outputId="bindedTarget" targetWidgetId="PopupCreator" inputId="genericInput"/>
+    <widget-connection sourceWidgetId="PopupCreator" outputId="genericOutput" targetWidgetId="configurableFlow" inputId="context"/>
+	
+    <widget-connection sourceWidgetId="STUB_com.asiamiles.backoffice.actions.billing.uploadCost" outputId="bindedTarget" targetWidgetId="CSVImportFlowContextCreator" inputId="genericInput"/>
+    <widget-connection sourceWidgetId="STUB_com.asiamiles.backoffice.actions.invoice.bulk.upload" outputId="bindedTarget" targetWidgetId="CSVImportFlowContextCreator" inputId="genericInput"/>
+
+    <!-- product CSV upload by Michael start-->
+    <widget-connection sourceWidgetId="STUB_com.asiamiles.backoffice.actions.uploadExcelFile.productimport" outputId="bindedTarget" targetWidgetId="XLSXProductImportFlowContextCreator" inputId="genericInput"/>
+    <widget-connection sourceWidgetId="XLSXProductImportFlowContextCreator" outputId="genericOutput" targetWidgetId="configurableFlow" inputId="context"/>
+    <!-- product CSV upload by Michael end-->
+    <widget-connection sourceWidgetId="mpwExplorerTree" outputId="nodeSelected" targetWidgetId="amlConsignmentsConditionEvaluator" inputId="input" />
+    <widget-connection sourceWidgetId="amlConsignmentsConditionEvaluator" outputId="true" targetWidgetId="mpwCollapsibleContainer" inputId="selectDefaultContainer" />
+    <widget-connection sourceWidgetId="amlConsignmentsConditionEvaluator" outputId="true" targetWidgetId="amlConsignmentFilter" inputId="nodeSelected"/>
+    <widget-connection sourceWidgetId="amlConsignmentFilter" outputId="outContext" targetWidgetId="mpwAdvancedSearch" inputId="initContext"/>
+    
+    <widget-connection sourceWidgetId="csEditorArea" outputId="cancelOrderContext" targetWidgetId="amlCancelOrderPopup" inputId="inputObject"/>
+    <widget-connection sourceWidgetId="amlCancelOrderPopup" outputId="cancelOrderReset" targetWidgetId="csEditorArea" inputId="inputObject"/>
+    <widget-connection sourceWidgetId="configurableFlow" outputId="cancelOrderReset" targetWidgetId="csEditorArea" inputId="inputObject"/>
+    <widget-connection sourceWidgetId="csEditorArea" outputId="fraudCheckContext" targetWidgetId="PopupCreator" inputId="genericInput"/>
+
+    <widget-connection sourceWidgetId="mpwExplorerTree" outputId="nodeSelected" targetWidgetId="amlBillingCostConditionEvaluator" inputId="input"/>
+    <widget-connection sourceWidgetId="amlBillingCostConditionEvaluator" outputId="true" targetWidgetId="mpwCollapsibleContainer" inputId="selectDefaultContainer"/>
+    <widget-connection sourceWidgetId="amlBillingCostConditionEvaluator" outputId="true" targetWidgetId="amlBillingCostFilter" inputId="nodeSelected"/>
+    <widget-connection sourceWidgetId="amlBillingCostFilter" outputId="outContext" targetWidgetId="mpwAdvancedSearch" inputId="initContext"/>
+    
+    <widget-connection sourceWidgetId="mpwExplorerTree" outputId="nodeSelected" targetWidgetId="amlReportConditionEvaluator" inputId="input"/>
+    <widget-connection sourceWidgetId="amlReportConditionEvaluator" outputId="true" targetWidgetId="mpwCollapsibleContainer" inputId="selectDefaultContainer"/>
+    <widget-connection sourceWidgetId="amlReportConditionEvaluator" outputId="true" targetWidgetId="amlReportFilter" inputId="nodeSelected"/>
+    <widget-connection sourceWidgetId="amlReportFilter" outputId="outContext" targetWidgetId="mpwAdvancedSearch" inputId="initContext"/>
+
+    <widget-connection sourceWidgetId="mpwExplorerTree" outputId="nodeSelected" targetWidgetId="amlBillingInvoiceConditionEvaluator" inputId="input"/>
+    <widget-connection sourceWidgetId="amlBillingInvoiceConditionEvaluator" outputId="true" targetWidgetId="mpwCollapsibleContainer" inputId="selectDefaultContainer"/>
+    <widget-connection sourceWidgetId="amlBillingInvoiceConditionEvaluator" outputId="true" targetWidgetId="amlBillingInvoiceFilter" inputId="nodeSelected"/>
+    <widget-connection sourceWidgetId="amlBillingInvoiceFilter" outputId="outContext" targetWidgetId="mpwAdvancedSearch" inputId="initContext"/>
+
+    <widget-connection sourceWidgetId="mpvuExplorerTree" outputId="nodeSelected" targetWidgetId="amlVendorConditionEvaluator" inputId="input"/>
+    <widget-connection sourceWidgetId="amlVendorConditionEvaluator" outputId="true" targetWidgetId="mpvuCollapsibleContainer" inputId="selectDefaultContainer" />
+    <widget-connection sourceWidgetId="amlVendorConditionEvaluator" outputId="true" targetWidgetId="amlVendorFilter" inputId="nodeSelected"/>
+    <widget-connection sourceWidgetId="amlVendorFilter" outputId="outContext" targetWidgetId="mpvuAdvancedSearch" inputId="initContext"/>
+
+    <widget-connection sourceWidgetId="mpwExplorerTree" outputId="nodeSelected" targetWidgetId="amlEarnedMilesConditionEvaluator" inputId="input"/>
+    <widget-connection sourceWidgetId="amlEarnedMilesConditionEvaluator" outputId="true" targetWidgetId="mpvCollapsibleContainer" inputId="selectDefaultContainer" />
+    <widget-connection sourceWidgetId="amlEarnedMilesConditionEvaluator" outputId="true" targetWidgetId="amlEarnedMilesFilter" inputId="nodeSelected"/>
+    <widget-connection sourceWidgetId="amlEarnedMilesFilter" outputId="outContext" targetWidgetId="mpwAdvancedSearch" inputId="initContext"/>
+
+    <widget-connection sourceWidgetId="mpwCollectionBrowser" outputId="focusedItem" targetWidgetId="mpwBackofficeSpaceManagement" inputId="listSelectedObject"/>
+    <widget-connection sourceWidgetId="mpwCollectionBrowser" outputId="focusedItem" targetWidgetId="mpwEditorArea" inputId="inputObject"/>
+
+	 <widget-connection sourceWidgetId="mpw-savedQueries" outputId="advancedSearchInitContext" targetWidgetId="mpwAdvancedSearch" inputId="initContext"/>
+</widgets>

@@ -1,0 +1,181 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+# Import essential data for the Accelerator
+#
+# Includes:
+# * Languages
+# * Currencies
+# * Titles
+# * Vendors
+# * Warehouses
+# * Supported Credit/Debit cards
+# * User Groups
+# * DistanceUnits for Storelocator
+# * MediaFolders
+# * MediaFormats
+# * Tax & Tax Groups
+# * Jobs
+
+$productCatalog = asiamilesProductCatalog
+$catalogVersion = catalogversion(catalog(id[default=$productCatalog]), version[default='Staged'])[unique=true, default=$productCatalog:Staged]
+$defaultPassword = 1234
+# Languages
+$storeUid = asiamiles
+$contentCV = catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]), CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$lang = en
+$contentCatalog = asiamilesContentCatalog
+
+$lang_TW = zh_TW
+$lang_zh = zh
+$lang_ja = ja
+$lang_ko = ko
+
+INSERT_UPDATE Language; isocode[unique = true]; fallbackLanguages(isocode); active[default = true]; basestores(uid)[default = $storeUid];
+                      ; en                    ;                           ;                       ;                                     ;
+                      ; ja                    ; en                        ;                       ;                                     ;
+                      ; zh                    ; en                        ;                       ;                                     ;
+                      ; zh_TW                 ; en                        ;                       ;                                     ;
+                      ; ko                    ; en                        ;                       ;                                     ;
+
+# Titles
+INSERT_UPDATE Title; code[unique = true]
+                   ; mr
+                   ; mrs
+                   ; miss
+                   ; ms
+                   ; dr
+                   ; prof
+                   ; master
+
+UPDATE DroolsKIEModule; name[unique = true]       ; active;
+                      ; promotions-preview-module ; false ;
+
+INSERT_UPDATE SearchRestriction; code[unique = true]; restrictedType(code)[unique = true]; active
+                               ; Backend_visibility ; CatalogVersion                     ; false ;
+
+INSERT_UPDATE SearchRestriction; code[unique = true]    ; name[lang = en]          ; restrictedType(code); principal(uid); active; generate; query
+                               ; backendOrderVisibility ; Backend Order Visibility ; Order               ; employeegroup ; true  ; true    ; {versionID} IS NULL
+
+#Modify the personization
+UPDATE SearchRestriction; code[unique = true]              ; name[lang = en]            ; restrictedType(code); principal(uid)           ; active; generate; query
+                        ; vendoradmin_usergroup_restricted ;                            ; UserGroup           ; vendoradministratorgroup ; true  ; true    ; {uid} in ('vendoradministratorgroup','vendorproductmanagergroup','vendorcontentmanagergroup','vendorwarehousestaffgroup','deliveryPartnerUsergroup','handlingPartnerUsergroup','invoiceApprove1','invoiceApprove2','buAdmin','financeManager','backofficeproductmanagergroup','vendorproductmanagerrole','vendoradministratorrole','handlingproductadministratorrole','deliveryproductadministratorrole') or {uid} in ({{select {b.uid} from {vendor as a join usergroup as b on {a.pk} = {b.vendor}} where {b.vendor}=?session.user.vendor}})
+                        ; Frontend_ProductApprovalStatus   ; 'product published status' ; Product             ; customergroup            ; true  ; true    ; {approvalStatus} in  ({{ SELECT {pk} FROM {ArticleApprovalStatus} WHERE {code}='published' or {code}='delisted' }})
+                        ; Frontend_ProductOfflineDate      ;                            ; Product             ; customergroup            ; true  ; true    ; ( {onlineDate} IS NULL OR {onlineDate} <= ?session.user.currentTime) AND ( {offlineDate} IS NULL OR {offlineDate} >= ?session.user.currentTime)
+
+UPDATE SearchRestriction; code[unique = true]                         ; restrictedType(code); principal(uid)            ; active
+                        ; vendorproductmanager_product_restricted     ; Category            ; vendoradministratorgroup  ; false
+                        ; vendoradmin_category_restricted             ; Category            ; vendorproductmanagergroup ; false ;
+                        ; vendorproductmanager_stocklevel_restricted  ; Product             ; vendorproductmanagergroup ; false ;
+                        ; vendorwarehousestaff_consignment_restricted ; Consignment         ; vendorwarehousestaffgroup ; false ;
+                        ; vendoradmin_consignment_restricted          ; Consignment         ; vendoradministratorgroup  ; false ;
+
+UPDATE SearchRestriction;code[unique=true];restrictedType(code);principal(uid);query
+;HideSystemPrincipals;Principal;employeegroup;{uid} not in ('admin', 'admingroup')
+
+
+INSERT_UPDATE Country; isocode[unique = true]; name[lang = $lang]; name[lang = $lang_TW]; name[lang = $lang_zh]; name[lang = $lang_ja]; name[lang = $lang_ko]
+                     ; ZW                    ; Zimbabwe          ; 津巴布韋                 ; 津巴布韦                 ; ジンバブエ                ; 짐바브웨
+
+#### remove other language
+UPDATE Language; isocode[unique = true]; active[default = false]
+               ; pl                    ;
+               ; cs                    ;
+               ; id                    ;
+               ; hi                    ;
+               ; ru                    ;
+               ; pt                    ;
+               ; it                    ;
+               ; fr                    ;
+               ; es_CO                 ;
+               ; es                    ;
+               ; de                    ;
+               ; hu                    ;
+               ; sc                    ;
+               ; tc                    ;
+
+REMOVE Language; isocode[unique = true];
+               ; pl                    ;
+               ; cs                    ;
+               ; id                    ;
+               ; hi                    ;
+               ; ru                    ;
+               ; pt                    ;
+               ; it                    ;
+               ; fr                    ;
+               ; es_CO                 ;
+               ; es                    ;
+               ; de                    ;
+               ; hu                    ;
+               ; sc                    ;
+               ; tc                    ;
+               
+               
+$contentCatalog = asiamilesContentCatalog
+$contentCV = catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]), CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$lang = en
+INSERT_UPDATE CmsPageType; code[unique = true]; restrictionTypes(code)
+                         ; ContentPage        ; CMSCategoryRestriction,CMSTimeRestriction,CMSUserRestriction,CMSUserGroupRestriction,CMSZoneRestriction ;
+
+$solrIndexedType = asiamilesProductType
+REMOVE SolrSearchQueryProperty; indexedProperty(name, solrIndexedType(identifier))[unique = true]; searchQueryTemplate(name, indexedType(identifier))[unique = true][default = DEFAULT:$solrIndexedType]; facet; ftsPhraseQuery[default = false]; ftsPhraseQueryBoost; ftsQuery[default = false]; ftsQueryBoost; ftsFuzzyQuery[default = false]; ftsFuzzyQueryBoost; ftsWildcardQuery[default = false]; ftsWildcardQueryType(code)[default = POSTFIX]; ftsWildcardQueryBoost; ftsWildcardQueryMinTermLength; includeInResponse[default = true]; useForHighlighting[default = false]
+                                     ; code:$solrIndexedType                                            ; DEFAULT:$solrIndexedType                                                                             ;      ; TRUE                           ;                    ; TRUE                     ;              ;                               ;                   ; TRUE                             ; PREFIX_AND_POSTFIX                           ;                      ;                              ;                                  ; false
+                                     ; description:$solrIndexedType                                    ; DEFAULT:$solrIndexedType                                                                             ;      ; TRUE                           ;                    ; TRUE                     ;              ;                               ;                   ; TRUE                             ; PREFIX_AND_POSTFIX                           ;                      ;                              ;                                  ; false
+                                     ; itemtype:$solrIndexedType                                        ; DEFAULT:$solrIndexedType                                                                             ;      ; TRUE                           ;                    ; TRUE                     ;              ;                               ;                   ; TRUE                             ; PREFIX_AND_POSTFIX                           ;                      ;                              ;                                  ; false
+                                     ; manufacturerAID:$solrIndexedType                                   ; DEFAULT:$solrIndexedType                                                                             ;      ; TRUE                           ;                    ; TRUE                     ;              ;                               ;                   ; TRUE                             ; PREFIX_AND_POSTFIX                           ;                      ;                              ;                                  ; false
+                                     ; manufacturerName:$solrIndexedType                                   ; DEFAULT:$solrIndexedType                                                                             ;      ; TRUE                           ;                    ; TRUE                     ;              ;                               ;                   ; TRUE                             ; PREFIX_AND_POSTFIX                           ;                      ;                              ;                                  ; false
+                                     ; ean:$solrIndexedType                                   ; DEFAULT:$solrIndexedType                                                                             ;      ; TRUE                           ;                    ; TRUE                     ;              ;                               ;                   ; TRUE                             ; PREFIX_AND_POSTFIX                           ;                      ;                              ;                                  ; false
+                                     ; summary:$solrIndexedType                                   ; DEFAULT:$solrIndexedType                                                                             ;      ; TRUE                           ;                    ; TRUE                     ;              ;                               ;                   ; TRUE                             ; PREFIX_AND_POSTFIX                           ;                      ;                              ;                                  ; false
+                                     ; reviewAvgRating:$solrIndexedType                                   ; DEFAULT:$solrIndexedType                                                                             ;      ; TRUE                           ;                    ; TRUE                     ;              ;                               ;                   ; TRUE                             ; PREFIX_AND_POSTFIX                           ;                      ;                              ;                                  ; false
+                                     ; priceValue:$solrIndexedType                                   ; DEFAULT:$solrIndexedType                                                                             ;      ; TRUE                           ;                    ; TRUE                     ;              ;                               ;                   ; TRUE                             ; PREFIX_AND_POSTFIX                           ;                      ;                              ;                                  ; false
+                                     ; url:$solrIndexedType                                   ; DEFAULT:$solrIndexedType                                                                             ;      ; TRUE                           ;                    ; TRUE                     ;              ;                               ;                   ; TRUE                             ; PREFIX_AND_POSTFIX                           ;                      ;                              ;                                  ; false
+                                     ; primaryPromotionCode:$solrIndexedType                                   ; DEFAULT:$solrIndexedType                                                                             ;      ; TRUE                           ;                    ; TRUE                     ;              ;                               ;                   ; TRUE                             ; PREFIX_AND_POSTFIX                           ;                      ;                              ;                                  ; false
+                                     ; inStockFlag:$solrIndexedType                                   ; DEFAULT:$solrIndexedType                                                                             ;      ; TRUE                           ;                    ; TRUE                     ;              ;                               ;                   ; TRUE                             ; PREFIX_AND_POSTFIX                           ;                      ;                              ;                                  ; false
+                                     ; Configurable:$solrIndexedType                                   ; DEFAULT:$solrIndexedType                                                                             ;      ; TRUE                           ;                    ; TRUE                     ;              ;                               ;                   ; TRUE                             ; PREFIX_AND_POSTFIX                           ;                      ;                              ;                                  ; false
+                                     ; pickupAvailableFlag:$solrIndexedType                                   ; DEFAULT:$solrIndexedType                                                                             ;      ; TRUE                           ;                    ; TRUE                     ;              ;                               ;                   ; TRUE                             ; PREFIX_AND_POSTFIX                           ;                      ;                              ;                                  ; false
+                                     ; multidimensional:$solrIndexedType                                   ; DEFAULT:$solrIndexedType                                                                             ;      ; TRUE                           ;                    ; TRUE                     ;              ;                               ;                   ; TRUE                             ; PREFIX_AND_POSTFIX                           ;                      ;                              ;                                  ; false
+                                     ; category:$solrIndexedType                                   ; DEFAULT:$solrIndexedType                                                                             ;      ; TRUE                           ;                    ; TRUE                     ;              ;                               ;                   ; TRUE                             ; PREFIX_AND_POSTFIX                           ;                      ;                              ;                                  ; false
+                                     ; categoryPath:$solrIndexedType                                   ; DEFAULT:$solrIndexedType                                                                             ;      ; TRUE                           ;                    ; TRUE                     ;              ;                               ;                   ; TRUE                             ; PREFIX_AND_POSTFIX                           ;                      ;                              ;                                  ; false
+                                     ; price:$solrIndexedType                                   ; DEFAULT:$solrIndexedType                                                                             ;      ; TRUE                           ;                    ; TRUE                     ;              ;                               ;                   ; TRUE                             ; PREFIX_AND_POSTFIX                           ;                      ;                              ;                                  ; false
+                                     ; allPromotions:$solrIndexedType                                   ; DEFAULT:$solrIndexedType                                                                             ;      ; TRUE                           ;                    ; TRUE                     ;              ;                               ;                   ; TRUE                             ; PREFIX_AND_POSTFIX                           ;                      ;                              ;                                  ; false
+                                     ; brandName:$solrIndexedType                                   ; DEFAULT:$solrIndexedType                                                                             ;      ; TRUE                           ;                    ; TRUE                     ;              ;                               ;                   ; TRUE                             ; PREFIX_AND_POSTFIX                           ;                      ;                              ;                                  ; false
+                                     ; stockLevelStatus:$solrIndexedType                                   ; DEFAULT:$solrIndexedType                                                                             ;      ; TRUE                           ;                    ; TRUE                     ;              ;                               ;                   ; TRUE                             ; PREFIX_AND_POSTFIX                           ;                      ;                              ;                                  ; false
+                                     ; primaryPromotionBanner:$solrIndexedType                                   ; DEFAULT:$solrIndexedType                                                                             ;      ; TRUE                           ;                    ; TRUE                     ;              ;                               ;                   ; TRUE                             ; PREFIX_AND_POSTFIX                           ;                      ;                              ;                                  ; false
+
+#REMOVE UNUSED PROPERTIES ABOUT EARN MILES
+REMOVE AttributeDescriptor; qualifier[unique = true] ; enclosingType(code)[unique = true];
+                          ; accrualAccount           ; BaseStore                         ;
+                          ; accrualMilesTitle        ; BaseStore                         ;
+                          ; earnMilesRate            ; BaseStore                         ;
+                          ; isEarnMilesRateActive    ; BaseStore                         ;
+                          ; partnerEstablishmentCode ; BaseStore                         ;
+#REMOVE UNUSED PROPERTIES ABOUT EARN MILES IN CATEGORIES
+REMOVE AttributeDescriptor; qualifier[unique = true] ; enclosingType(code)[unique = true];
+                          ; accrualAccount           ; Category                          ;
+                          ; accrualMilesTitle        ; Category                          ;
+                          ; earnMilesRate            ; Category                          ;
+                          ; isEarnMilesRateActive    ; Category                          ;
+                          ; partnerEstablishmentCode ; Category                          ;
+#REMOVE UNUSED PROPERTIES ABOUT EARN MILES IN PRODUCT
+REMOVE AttributeDescriptor; qualifier[unique = true] ; enclosingType(code)[unique = true];
+                          ; accrualAccount           ; Product                           ;
+                          ; earnMilesRate            ; Product                           ;
+                          ; isEarnMilesRateActive    ; Product                           ;
+                          ; partnerEstablishmentCode ; Product                           ;
+
+
+
+UPDATE AttributeDescriptor ; qualifier[unique = true]            ; enclosingType (code)[unique = true] ; readOnlyForUI ;
+                           ; generatedByEvergreenBPRateIndicator ; PriceRow                            ; true          ;
+                           
+                           
+INSERT_UPDATE CxPersonalizationProcessCleanupCronJob ;code[unique = true];sessionLanguage(isocode);
+; cleanupCxPersonalizationProcessesCronJob ; en
+                           

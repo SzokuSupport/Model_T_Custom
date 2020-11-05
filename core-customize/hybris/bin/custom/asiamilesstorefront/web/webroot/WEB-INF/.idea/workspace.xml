@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="1c4e491a-1577-4a80-bef0-0b2f218e2485" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_frontend/WEB-INF/_ui-src/responsive/aml/js/modules/common/navigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/../_frontend/WEB-INF/_ui-src/responsive/aml/js/modules/common/navigation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_frontend/eslint.report.log" beforeDir="false" afterPath="$PROJECT_DIR$/../_frontend/eslint.report.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../_frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../_frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_frontend/webpack/plugins.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../_frontend/webpack/plugins.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_ui/responsive/aml/js/campaign.js" beforeDir="false" afterPath="$PROJECT_DIR$/../_ui/responsive/aml/js/campaign.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_ui/responsive/aml/js/campaignPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/../_ui/responsive/aml/js/campaignPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_ui/responsive/aml/js/cartPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/../_ui/responsive/aml/js/cartPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_ui/responsive/aml/js/cartPagePlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/../_ui/responsive/aml/js/cartPagePlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_ui/responsive/aml/js/checkOutStepOne.js" beforeDir="false" afterPath="$PROJECT_DIR$/../_ui/responsive/aml/js/checkOutStepOne.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_ui/responsive/aml/js/checkOutStepOnePlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/../_ui/responsive/aml/js/checkOutStepOnePlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_ui/responsive/aml/js/checkOutStepTwo.js" beforeDir="false" afterPath="$PROJECT_DIR$/../_ui/responsive/aml/js/checkOutStepTwo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_ui/responsive/aml/js/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/../_ui/responsive/aml/js/common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_ui/responsive/aml/js/demo.js" beforeDir="false" afterPath="$PROJECT_DIR$/../_ui/responsive/aml/js/demo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_ui/responsive/aml/js/eamilEvoucherChinese.js" beforeDir="false" afterPath="$PROJECT_DIR$/../_ui/responsive/aml/js/eamilEvoucherChinese.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_ui/responsive/aml/js/emailItemCharity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../_ui/responsive/aml/js/emailItemCharity.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_ui/responsive/aml/js/emailOrderSummary.js" beforeDir="false" afterPath="$PROJECT_DIR$/../_ui/responsive/aml/js/emailOrderSummary.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_ui/responsive/aml/js/emailShipped.js" beforeDir="false" afterPath="$PROJECT_DIR$/../_ui/responsive/aml/js/emailShipped.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_ui/responsive/aml/js/emialEvoucher.js" beforeDir="false" afterPath="$PROJECT_DIR$/../_ui/responsive/aml/js/emialEvoucher.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_ui/responsive/aml/js/emptyCart.js" beforeDir="false" afterPath="$PROJECT_DIR$/../_ui/responsive/aml/js/emptyCart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_ui/responsive/aml/js/homePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/../_ui/responsive/aml/js/homePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_ui/responsive/aml/js/homepagePlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/../_ui/responsive/aml/js/homepagePlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_ui/responsive/aml/js/maintenance.js" beforeDir="false" afterPath="$PROJECT_DIR$/../_ui/responsive/aml/js/maintenance.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_ui/responsive/aml/js/noResult.js" beforeDir="false" afterPath="$PROJECT_DIR$/../_ui/responsive/aml/js/noResult.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_ui/responsive/aml/js/orderDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/../_ui/responsive/aml/js/orderDetails.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_ui/responsive/aml/js/orderDetailsInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/../_ui/responsive/aml/js/orderDetailsInfo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_ui/responsive/aml/js/orderList.js" beforeDir="false" afterPath="$PROJECT_DIR$/../_ui/responsive/aml/js/orderList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_ui/responsive/aml/js/orderListPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/../_ui/responsive/aml/js/orderListPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_ui/responsive/aml/js/orderSummary.js" beforeDir="false" afterPath="$PROJECT_DIR$/../_ui/responsive/aml/js/orderSummary.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_ui/responsive/aml/js/orderSummaryFail.js" beforeDir="false" afterPath="$PROJECT_DIR$/../_ui/responsive/aml/js/orderSummaryFail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_ui/responsive/aml/js/plp.js" beforeDir="false" afterPath="$PROJECT_DIR$/../_ui/responsive/aml/js/plp.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_ui/responsive/aml/js/plpPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/../_ui/responsive/aml/js/plpPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_ui/responsive/aml/js/productLayout.js" beforeDir="false" afterPath="$PROJECT_DIR$/../_ui/responsive/aml/js/productLayout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_ui/responsive/aml/js/productLayoutPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/../_ui/responsive/aml/js/productLayoutPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_ui/responsive/aml/js/searchReaultsPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/../_ui/responsive/aml/js/searchReaultsPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_ui/responsive/aml/js/searchResults.js" beforeDir="false" afterPath="$PROJECT_DIR$/../_ui/responsive/aml/js/searchResults.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_ui/responsive/aml/js/wishlist.js" beforeDir="false" afterPath="$PROJECT_DIR$/../_ui/responsive/aml/js/wishlist.js" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+<<<<<<< HEAD
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/responsive/pages/product/productLayout2Page.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="532">
+=======
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/responsive/pages/product/productLayout2Page.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="94">
+>>>>>>> ce5766e42dbf9a7bd9e6a6cda69be5200746b127
+              <caret line="28" column="50" selection-start-line="28" selection-start-column="50" selection-end-line="28" selection-end-column="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/responsive/pages/search/searchListPage.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="1178">
+=======
+            <state relative-caret-position="114">
+>>>>>>> ce5766e42dbf9a7bd9e6a6cda69be5200746b127
+              <caret line="62" column="30" selection-start-line="62" selection-start-column="30" selection-end-line="62" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tags/responsive/common/header/header.tag">
+          <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="474">
+              <caret line="87" column="26" selection-start-line="87" selection-start-column="26" selection-end-line="87" selection-end-column="26" />
+=======
+            <state relative-caret-position="208">
+              <caret line="67" column="25" lean-forward="true" selection-start-line="67" selection-start-column="25" selection-end-line="67" selection-end-column="25" />
+>>>>>>> ce5766e42dbf9a7bd9e6a6cda69be5200746b127
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+<<<<<<< HEAD
+=======
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>plp-container-mobile</find>
+      <find>container-fluid-mobile</find>
+      <find>J-header-menu</find>
+    </findStrings>
+    <dirStrings>
+      <dir>C:\Users\bin.hou\Documents\amiredeem\custom\asiamilesstorefront\web\webroot\WEB-INF</dir>
+    </dirStrings>
+  </component>
+>>>>>>> ce5766e42dbf9a7bd9e6a6cda69be5200746b127
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../../.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/tags/responsive/common/header/header.tag" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-25" />
+    <option name="width" value="1135" />
+    <option name="height" value="1040" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+<<<<<<< HEAD
+=======
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="WEB-INF" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+>>>>>>> ce5766e42dbf9a7bd9e6a6cda69be5200746b127
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="WEB-INF" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../_frontend" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1c4e491a-1577-4a80-bef0-0b2f218e2485" name="Default Changelist" comment="" />
+      <created>1573716785861</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1573716785861</updated>
+      <workItem from="1573716788700" duration="65000" />
+      <workItem from="1574244061700" duration="597000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+<<<<<<< HEAD
+    <option name="totallyTimeSpent" value="2628000" />
+=======
+    <option name="totallyTimeSpent" value="4608000" />
+>>>>>>> ce5766e42dbf9a7bd9e6a6cda69be5200746b127
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24983476" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/views/responsive/pages/product/productLayout2Page.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="94">
+          <caret line="28" column="50" selection-start-line="28" selection-start-column="50" selection-end-line="28" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/responsive/pages/search/searchListPage.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="62" column="30" selection-start-line="62" selection-start-column="30" selection-end-line="62" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tags/responsive/common/header/header.tag">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="67" column="25" lean-forward="true" selection-start-line="67" selection-start-column="25" selection-end-line="67" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

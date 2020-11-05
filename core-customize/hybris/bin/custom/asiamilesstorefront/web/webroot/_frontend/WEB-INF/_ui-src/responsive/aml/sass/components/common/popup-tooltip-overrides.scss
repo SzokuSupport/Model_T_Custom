@@ -1,0 +1,161 @@
+.popup.earn-miles_offer-details {
+  .tooltip {
+    position: relative;
+
+    .title {
+      padding-top: 1.875rem;
+      text-align: center;
+      position: relative;
+      margin: 0 auto;
+
+      h2 {
+        @include media-query-down(768px){
+          font-size: 32px;
+        }
+      }
+
+      .tabs-wrapper {
+        margin-top: px2rem(10px);
+        @include media-query-down(768px){
+          margin-top: px2rem(20px);
+        }
+
+        .tabs {
+          overflow: hidden;
+          display: inline-block;
+  
+          .tabs_tab-item {
+            float: left;
+            line-height: 1.5rem;
+            margin: px2rem(10px) px2rem(20px);
+            border-bottom: 2px solid #fff;
+            &.selected {
+              font-family: OpenSans-SemiBold,Arial,sans-serif;
+              border-bottom: 4px solid #facf04;
+            }
+  
+            a {
+              height: 100%;
+              width: 100%;
+              @include media-query-down(768px){
+                font-size: 16px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .main {
+      height: px2rem(227px);
+      @include media-query-down(768px){
+        height: calc( 100% - 220px );
+        width: unset;
+      }
+      &.no-tabs {
+        height: px2rem(267px);
+        @include media-query-down(768px){
+          height: calc( 100% - 175px );
+          width: unset;
+        }
+      }
+
+      .popup-tooltip-details {
+        &.popup-tooltip-details--hide {
+          display: none;
+        }
+
+        .section {
+          @include media-query-down(768px){
+            padding-right: px2rem(15px);
+          }
+
+          &:first-child {
+            margin-top: 0px;
+          }
+
+          .earn-miles-offer-title-row {
+              display: flex;
+
+              .earn-miles-offer-title-row-left-item {
+                  padding-right: px2rem(3px);
+                  min-width: px2rem(35px);
+
+                  & > img {
+                    height: 24px;
+                    width: 32px;
+                  }
+              }
+
+              .earn-miles-offer-title-row-middle-item {
+                  flex-grow: 1;
+                  padding: 0 px2rem(5px);
+                  font-size: 14px;
+              }
+          }
+      
+          .detail {
+              font-size: 12px;
+              line-height: 20px;
+              padding-left: px2rem(40px);
+      
+              .icon-yellow{
+                  width: px2rem(10px);
+                  height: px2rem(10px);
+                  margin-left: px2rem(2px);
+              }
+          }
+
+          .time {
+              font-size: 12px;
+              line-height: 20px;
+              padding-top: 0;
+              padding-left: px2rem(40px);
+          }
+
+          .terms-conditions {
+              font-size: 12px;
+              color: #272f38;
+              text-decoration: underline;
+              padding-left: px2rem(40px);
+          }
+
+          .icon-tooltip-right {
+          //  width: px2rem(120px);
+              height: px2rem(19px);
+              line-height: 19px;
+              font-size: 10px;
+              font-weight: 600;
+              border-radius: 2px;
+              border: solid 1px #272f38;
+              display: flex;
+              padding: 0 px2rem(3px);
+
+              .earn-miles-icon {
+                  height: px2rem(12px);
+                  width: px2rem(12px);
+                  margin: px2rem(3px) px2rem(2px) 0 0;
+                  
+                  img {
+                      height: 100%;
+                      width: 100%;
+                  }
+              }
+
+              .earn-miles-tag-content-block {
+                  display: flex;
+
+                  .am-icon {
+                      height: px2rem(18px);
+                      width: px2rem(8px);
+                      margin-left: px2rem(2px);
+                      margin-right: px2rem(1px);
+                  }
+              }
+          }
+        }
+      }
+      
+    }
+  }
+}

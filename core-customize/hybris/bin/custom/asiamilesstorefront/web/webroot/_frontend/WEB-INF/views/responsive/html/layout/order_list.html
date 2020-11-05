@@ -1,0 +1,327 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  @require('../../tags/css.tag')
+</head>
+<body>
+    @require('../../tags/header.tag')
+
+
+    <div class="container order-list-container">
+        <!-- backend input -->
+        <input type="hidden" value="/initOrderListUrl" id="J-initOrderListUrl"/>
+        <input type="hidden" value="10" id="J-totalPage"/>
+        <input type="hidden" value="1" id="J-getCurrentPage"/>
+        <input type="hidden" value="20" id="J-getCurrentPageSize"/>
+        <input type="hidden" value="q=djfs:dhfeu:zonePrice:1000_40000:shenme:dd" id="J-q"/>
+        <!--/ -->
+        <h1 class="title font-light">Your orders</h1>
+        <p class="text">
+            To see how your order is doing or get tracking details, click ‘See order details’. If you have any questions, let’s have a chat.
+            <br>
+            <br>
+            For orders placed prior to 14 November 2019, you may find your order record in your Asia Miles Account History / Transaction History.
+        </p>
+        <div class="order-list-content clearfix J-order-list">
+
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item-list J-item-list">
+                    <div class="order-container order-date-num">
+                        <p class="order-title">Order date: <span class="order-text font-SemiBold date J-order-date">23 Nov 2019</span></p>
+                        <p class="order-title">Order date: <span class="order-text font-SemiBold number J-order-number">58359032</span></p>
+                    </div>
+                    <div class="order-container order-amount">
+                        <div class="order-amount__left">
+                            <svg class="icon-yellow">
+                                <use xlink:href="/_ui/responsive/aml/img/sprite.svg#icon-yellow" />
+                            </svg>
+                            <span class="integral font-bold J-total-miles">64,905</span>
+                            <span class="amount-money font-SemiBold">
+                                <span>+ HKD </span>
+                                <span class="J-total-cash">1,443.00</span>
+                            </span>
+                            <span class="item-num font-regular">(7 items)</span>
+                        </div>
+                        <div class="order-amount__right">
+                            <span class="font-bold">Earned</span>
+                            <svg class="icon-yellow">
+                                <use xlink:href="/_ui/responsive/aml/img/sprite.svg#icon-yellow" />
+                            </svg>
+                            <span class="font-bold">500</span>
+                        </div>
+                    </div>
+                    <div class="order-container order-image-button">
+                        <div class="order-image">
+                            <div class="image-list">
+                                <img src="/_ui/responsive/aml/img/product-img2.png" />
+                            </div>
+                            <div class="image-list">
+                                <img src="/_ui/responsive/aml/img/CX.png" />
+                            </div>
+                            <div class="image-list">
+                                <img src="/_ui/responsive/aml/img/Full.png" />
+                            </div>
+                            <span class="image-num font-regular">+4</span>
+                        </div>
+                        <a href="#" class="view-detial-button font-SemiBold" aria-label="See order details button- for order number <58359032> and order date on 23 Nov 2019">View details</a>
+                    </div>
+                </div>
+
+
+
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item-list J-item-list">
+                    <div class="order-container order-date-num">
+                        <p class="order-title">Order date: <span class="order-text font-SemiBold date">23 Nov 2019</span></p>
+                        <p class="order-title">Order date: <span class="order-text font-SemiBold number">58359032</span></p>
+                    </div>
+                    <div class="order-container order-amount">
+                        <div class="order-amount__left">
+                            <svg class="icon-yellow">
+                                <use xlink:href="/_ui/responsive/aml/img/sprite.svg#icon-yellow" />
+                            </svg>
+                            <span class="integral font-bold J-total-miles">64,905</span>
+                            <span class="amount-money font-SemiBold">
+                                <span>+ HKD </span>
+                                <span class="J-total-cash">1,443.00</span>
+                            </span>
+                            <span class="item-num font-regular">(7 items)</span>
+                        </div>
+                        <div class="order-amount__right">
+                            <span class="font-bold">Earned</span>
+                            <svg class="icon-yellow">
+                                <use xlink:href="/_ui/responsive/aml/img/sprite.svg#icon-yellow" />
+                            </svg>
+                            <span class="font-bold">100</span>
+                        </div>
+                    </div>
+                    <div class="order-container order-image-button">
+                        <div class="order-image">
+                            <div class="image-list">
+                                <img src="/_ui/responsive/aml/img/product-img2.png" alt="product-img2.png"/>
+                            </div>
+                            <div class="image-list">
+                                <img src="/_ui/responsive/aml/img/CX.png" />
+                            </div>
+                            <div class="image-list">
+                                <img src="/_ui/responsive/aml/img/Full.png" />
+                            </div>
+                            <span class="image-num font-regular">+4</span>
+                        </div>
+                        <a href="#" class="view-detial-button font-SemiBold">View details</a>
+                    </div>
+                </div>
+
+
+           
+
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item-list J-item-list">
+                    <div class="order-container order-date-num">
+                        <p class="order-title">Order date: <span class="order-text font-SemiBold date">23 Nov 2019</span></p>
+                        <p class="order-title">Order date: <span class="order-text font-SemiBold number">58359032</span></p>
+                    </div>
+                    <div class="order-container order-amount">
+                        <div class="order-amount__left">
+                            <svg class="icon-yellow">
+                                <use xlink:href="/_ui/responsive/aml/img/sprite.svg#icon-yellow" />
+                            </svg>
+                            <span class="integral font-bold J-total-miles">64,905</span>
+                            <span class="amount-money font-SemiBold">
+                                <span>+ HKD </span>
+                                <span class="J-total-cash">1,443.00</span>
+                            </span>
+                            <span class="item-num font-regular">(7 items)</span>
+                        </div>
+                        <div class="order-amount__right">
+                            <span class="font-bold">Earned</span>
+                            <svg class="icon-yellow">
+                                <use xlink:href="/_ui/responsive/aml/img/sprite.svg#icon-yellow" />
+                            </svg>
+                            <span class="font-bold">100</span>
+                        </div>
+                    </div>
+                    <div class="order-container order-image-button">
+                        <div class="order-image">
+                            <div class="image-list">
+                                <img src="/_ui/responsive/aml/img/product-img2.png" />
+                            </div>
+                            <div class="image-list">
+                                <img src="/_ui/responsive/aml/img/CX.png" />
+                            </div>
+                            <div class="image-list">
+                                <img src="/_ui/responsive/aml/img/Full.png" />
+                            </div>
+                            <span class="image-num font-regular">+4</span>
+                        </div>
+                        <a href="#" class="view-detial-button font-SemiBold">View details</a>
+                    </div>
+                </div>
+
+
+
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item-list J-item-list">
+                    <div class="order-container order-date-num">
+                        <p class="order-title">Order date: <span class="order-text font-SemiBold date">23 Nov 2019</span></p>
+                        <p class="order-title">Order date: <span class="order-text font-SemiBold number">58359032</span></p>
+                    </div>
+                    <div class="order-container order-amount">
+                        <div class="order-amount__left">
+                            <svg class="icon-yellow">
+                                <use xlink:href="/_ui/responsive/aml/img/sprite.svg#icon-yellow" />
+                            </svg>
+                            <span class="integral font-bold J-total-miles">64,905</span>
+                            <span class="amount-money font-SemiBold">
+                                <span>+ HKD </span>
+                                <span class="J-total-cash">1,443.00</span>
+                            </span>
+                            <span class="item-num font-regular">(7 items)</span>
+                        </div>
+                        <div class="order-amount__right">
+                            <span class="font-bold">Earned</span>
+                            <svg class="icon-yellow">
+                                <use xlink:href="/_ui/responsive/aml/img/sprite.svg#icon-yellow" />
+                            </svg>
+                            <span class="font-bold">100</span>
+                        </div>
+                    </div>
+                    <div class="order-container order-image-button">
+                        <a href="#" class="view-detial-button font-SemiBold">View details</a>
+                    </div>
+                </div>
+
+    
+
+
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item-list J-item-list">
+                    <div class="order-container order-date-num">
+                        <p class="order-title">Order date: <span class="order-text font-SemiBold date">23 Nov 2019</span></p>
+                        <p class="order-title">Order date: <span class="order-text font-SemiBold number">58359032</span></p>
+                    </div>
+                    <div class="order-container order-amount">
+                        <div class="order-amount__left">
+                            <svg class="icon-yellow">
+                                <use xlink:href="/_ui/responsive/aml/img/sprite.svg#icon-yellow" />
+                            </svg>
+                            <span class="integral font-bold J-total-miles">64,905</span>
+                            <span class="amount-money font-SemiBold">
+                                <span>+ HKD </span>
+                                <span class="J-total-cash">1,443.00</span>
+                            </span>
+                            <span class="item-num font-regular">(7 items)</span>
+                        </div>
+                        <div class="order-amount__right">
+                            <span class="font-bold">Earned</span>
+                            <svg class="icon-yellow">
+                                <use xlink:href="/_ui/responsive/aml/img/sprite.svg#icon-yellow" />
+                            </svg>
+                            <span class="font-bold">100</span>
+                        </div>
+                    </div>
+                    <div class="order-container order-image-button">
+                        <div class="order-image">
+                            <div class="image-list">
+                                <img src="/_ui/responsive/aml/img/product-img2.png" />
+                            </div>
+                            <div class="image-list">
+                                <img src="/_ui/responsive/aml/img/CX.png" />
+                            </div>
+                            <div class="image-list">
+                                <img src="/_ui/responsive/aml/img/Full.png" />
+                            </div>
+                            <span class="image-num font-regular">+4</span>
+                        </div>
+                        <a href="#" class="view-detial-button font-SemiBold">View details</a>
+                    </div>
+                </div>
+
+
+            
+
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item-list J-item-list">
+                    <div class="order-container order-date-num">
+                        <p class="order-title">Order date: <span class="order-text font-SemiBold date">23 Nov 2019</span></p>
+                        <p class="order-title">Order date: <span class="order-text font-SemiBold number">58359032</span></p>
+                    </div>
+                    <div class="order-container order-amount">
+                        <div class="order-amount__left">
+                            <svg class="icon-yellow">
+                                <use xlink:href="/_ui/responsive/aml/img/sprite.svg#icon-yellow" />
+                            </svg>
+                            <span class="integral font-bold J-total-miles">64,905</span>
+                            <span class="amount-money font-SemiBold">
+                                <span>+ HKD </span>
+                                <span class="J-total-cash">1,443.00</span>
+                            </span>
+                            <span class="item-num font-regular">(7 items)</span>
+                        </div>
+                        <div class="order-amount__right">
+                            <span class="font-bold">Earned</span>
+                            <svg class="icon-yellow">
+                                <use xlink:href="/_ui/responsive/aml/img/sprite.svg#icon-yellow" />
+                            </svg>
+                            <span class="font-bold">100</span>
+                        </div>
+                    </div>
+                    <div class="order-container order-image-button">
+                        <div class="order-image">
+                            <div class="image-list">
+                                <img src="/_ui/responsive/aml/img/product-img2.png" />
+                            </div>
+                            <div class="image-list">
+                                <img src="/_ui/responsive/aml/img/CX.png" />
+                            </div>
+                            <div class="image-list">
+                                <img src="/_ui/responsive/aml/img/Full.png" />
+                            </div>
+                            <span class="image-num font-regular">+4</span>
+                        </div>
+                        <a href="#" class="view-detial-button font-SemiBold">View details</a>
+                    </div>
+                </div>
+
+
+
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item-list J-item-list">
+                    <div class="order-container order-date-num">
+                        <p class="order-title">Order date: <span class="order-text font-SemiBold date">23 Nov 2019</span></p>
+                        <p class="order-title">Order date: <span class="order-text font-SemiBold number">58359032</span></p>
+                    </div>
+                    <div class="order-container order-amount">
+                        <div class="order-amount__left">
+                            <svg class="icon-yellow">
+                                <use xlink:href="/_ui/responsive/aml/img/sprite.svg#icon-yellow" />
+                            </svg>
+                            <span class="integral font-bold J-total-miles">64,905</span>
+                            <span class="amount-money font-SemiBold">
+                                <span>+ HKD </span>
+                                <span class="J-total-cash">1,443.00</span>
+                            </span>
+                            <span class="item-num font-regular">(7 items)</span>
+                        </div>
+                        <div class="order-amount__right">
+                            <span class="font-bold">Earned</span>
+                            <svg class="icon-yellow">
+                                <use xlink:href="/_ui/responsive/aml/img/sprite.svg#icon-yellow" />
+                            </svg>
+                            <span class="font-bold">100</span>
+                        </div>
+                    </div>
+                    <div class="order-container order-image-button">
+                        <a href="#" class="view-detial-button font-SemiBold">View details</a>
+                    </div>
+                </div>
+
+
+
+
+        </div>
+        <div class="loading-img J-loadingImg">
+            <img src="/_ui/responsive/aml/img/loading.png"/>
+        </div>
+        <p class="load-more-btn font-SemiBold" id="J-loadMore">Load more</p>
+    </div>
+
+    @require('../../tags/footer.tag')
+    @require('../../tags/js.tag')
+</body>
+</html>

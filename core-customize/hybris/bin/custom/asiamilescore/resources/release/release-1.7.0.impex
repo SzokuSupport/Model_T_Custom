@@ -1,0 +1,44 @@
+$indexBaseSite = asiamiles
+UPDATE BaseStore; uid[unique = true]; invoiceApproveThreshold;
+                ; $indexBaseSite    ; 1000000                ;
+                
+                
+                
+INSERT_UPDATE ServicelayerJob;code[unique=true];springId[unique=true]
+;precalculateBaseMilesCronjob;precalculateBaseMilesCronjob
+
+INSERT_UPDATE CronJob;code[unique=true];job(code);singleExecutable;sessionLanguage(isoCode)[default=en];
+;precalculateBaseMilesCronjob;precalculateBaseMilesCronjob;false;en;
+ 
+
+INSERT_UPDATE Trigger;cronjob(code)[unique=true];cronExpression
+;precalculateBaseMilesCronjob;0 30 3 * * ? 
+
+
+
+$contentCatalog = asiamilesContentCatalog
+$contentCatalogName = iRedeem Content Catalog
+$productCatalog = asiamilesProductCatalog
+$productCatalogName = iRedeem Product Catalog
+
+$contentCV = catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]), CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+INSERT_UPDATE ComponentTypeGroups2ComponentType; source(code)[unique = true]; target(code)[unique = true]
+                                               ; narrow                     ; CMSImagesGalleryComponent
+                                               ; mobile                     ; CMSImagesGalleryComponent
+
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$emailResource=$config-emailResourceValue
+$baseStore=asiamiles
+
+INSERT_UPDATE RendererTemplate;code[unique=true];rendererType(code)[default='velocity'];templateScript[lang=en,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;$baseStore_Email_Order_Confirmation_Body;;$config-emailResourceValue/email-orderConfirmationBody.vm
+
+INSERT_UPDATE RendererTemplate;code[unique=true];rendererType(code)[default='velocity'];templateScript[lang=zh,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;$baseStore_Email_Order_Confirmation_Body;;$config-emailResourceValue/email-orderConfirmationBody.vm
+
+INSERT_UPDATE RendererTemplate;code[unique=true];rendererType(code)[default='velocity'];templateScript[lang=zh_TW,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;$baseStore_Email_Order_Confirmation_Body;;$config-emailResourceValue/email-orderConfirmationBody.vm
+
+
+                                               

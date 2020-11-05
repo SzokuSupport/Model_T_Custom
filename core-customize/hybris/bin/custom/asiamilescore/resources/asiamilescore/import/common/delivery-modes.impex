@@ -1,0 +1,46 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+#
+# Import Delivery Modes / Zones
+#
+#% impex.setLocale(Locale.GERMAN)
+
+# Currencies
+$ukCurrency=GBP
+$jpCurrency=JPY
+$usCurrency=USD
+$europeCurrency=EUR
+
+# Delivery Zones
+INSERT_UPDATE Zone                  ; code[unique=true]               ; countries(isocode)
+                                    ; uk                              ; GB,GG,IM,JE
+                                    ; continentalEurope               ; AD,AL,AT,BA,BE,BG,BY,CH,CY,CZ,DE,DK,EE,ES,FI,FO,FR,GI,GL,GR,HR,HU,IE,IS,IT,LI,LT,LU,LV,MC,MD,ME,MK,MT,NL,NO,PL,PT,RO,RS,RU,SE,SI,SK,SM,TR,UA,VA
+                                    ; usa                             ; US
+                                    ; ca                              ; CA
+                                    ; japan                           ; JP
+                                    ; china                           ; CN
+
+# Zone Delivery Modes
+INSERT_UPDATE ZoneDeliveryMode;code[unique=true];net;active[default=true]
+                                    ;EMAIL_DELIVERY;false;
+                                    ;HOME_DELIVERY;false;
+                                    ;EVOUCHER_QR;false;;
+                                    ;EVOUCHER_QR_THIRDPARTY;false;
+                                    ;EVOUCHER_AN;false;
+                                    ;EVOUCHER_BAR;false;;
+                                    ;EVOUCHER_URL;false;
+                                    ;REDEMPTION_LETTER;false;
+                                    ;OFFLINE_REDEMPTION;false;;                                                                                                                                            ; false                          ;
+
+
+# Pickup Delivery Mode
+INSERT_UPDATE PickUpDeliveryMode    ; code[unique=true]               ; active[default=true]                                                                                                                            ; supportedMode(code)
+                                    ; pickup                          ;                                                                                                                                                 ; BUY_AND_COLLECT

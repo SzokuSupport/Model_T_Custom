@@ -1,0 +1,116 @@
+.campaign-terms-conditions-redeem{
+    padding: px2rem(10px)  px2rem(50px) px2rem(102px);
+    background-color:  #f4f4f5;
+
+    @include  media-query-down(1280px){
+        padding-bottom:px2rem(80px);
+    }
+
+    @include  media-query-down(768px){
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .promotion-campaign-content{
+        
+        max-width: 1340px;
+        margin: 0 auto;
+        padding: 0 15px;
+
+        @include  media-query-down(1280px){
+            max-width: 100%;
+            margin: 0 0;
+            padding: 0 0;
+        }
+
+        @include  media-query-down(768px){
+            max-width: 100%;
+            margin: 0 0;
+            padding: 0 0;
+        }
+    }
+
+
+    .drop-list{
+        .terms-conditions-content{
+            padding: px2rem(30px) 0 px2rem(11px);
+            overflow: hidden;
+            border-bottom: 1px solid #bec0c3;
+
+            @include  media-query-down(768px){
+                padding: px2rem(20px) 0 px2rem(11px);
+            }
+        }
+
+        .drop-name{
+            display: block;
+            float: left;
+            padding-left: px2rem(22px);
+            font-size: 18px;
+            line-height: px2rem(24px);
+
+            @include  media-query-down(768px){
+                font-size: 16px;
+                padding-left: px2rem(10px);
+            }
+        }
+
+        .drop-arrow{
+            float: right;
+            padding-right: px2rem(22px);
+
+            @include  media-query-down(768px){
+                padding-right: px2rem(10px);
+            }
+        }
+
+        .icon{
+            width: px2rem(30px);
+            height: px2rem(30px);
+
+            @include  media-query-down(768px){
+                width: px2rem(20px);
+                height: px2rem(20px);
+            }
+        }
+
+        .icon-pullup{
+            display: none;
+        }
+
+        .selected{
+            .icon-pullup{
+                display: inline-block;
+            }
+
+            .icon-dropdown{
+                display: none;
+            }
+        }
+
+        .drop-des-detail{
+            clear: both;
+            display: none;
+            padding: px2rem(15px) px2rem(22px) 0;
+
+            @include  media-query-down(768px){
+                padding: px2rem(15px) px2rem(10px) 0;
+            }
+
+            ol{
+                padding: 0 px2rem(20px);
+            }
+
+            li{
+                list-style: decimal;
+                margin: 0 0 10px 0;
+                padding-left: 6px;
+            }
+
+            a{
+                text-decoration: underline;
+            }
+        }
+    }
+
+}

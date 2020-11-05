@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+		
+	<context:annotation-config/> 
+
+	<alias alias="simpleSuggestionFacade" name="defaultSimpleSuggestionFacade"/>
+	<bean id="defaultSimpleSuggestionFacade" class="com.asiamiles.facades.suggestion.impl.DefaultSimpleSuggestionFacade" >
+		<property name="simpleSuggestionService" ref="simpleSuggestionService"/>
+		<property name="userService" ref="userService"/>
+		<property name="categoryService" ref="categoryService"/>
+		<property name="productService" ref="productService"/>
+		<property name="productConverter" ref="carouselProductConverter"/>
+		<property name="cartService" ref="cartService"/>
+	</bean>
+
+	<alias name="defaultProductPopulator" alias="productPopulator"/>
+	<bean id="defaultProductPopulator"
+		  class="de.hybris.platform.commercefacades.product.converters.populator.ProductPopulator"
+		  parent="defaultProductUrlPopulator">
+		<property name="productBasicPopulator" ref="productBasicPopulator"/>
+		<property name="variantSelectedPopulator" ref="variantSelectedPopulator"/>
+		<property name="productPrimaryImagePopulator" ref="productPrimaryImagePopulator"/>
+	</bean>
+
+
+	<alias name="asiamilesProductBasicPopulatorList" alias="productBasicPopulatorList"/>
+	<bean id="asiamilesProductBasicPopulatorList" parent="abstractPopulatorList">
+		<property name="populators">
+			<list>
+				<ref bean="productBasicPopulator"/>
+				<ref bean="extendedBasicProductPopulator"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="carouselProductConverter" parent="defaultProductConverter">
+		<property name="populators">
+			<list merge="true">
+				<ref bean="productPricePopulator"/>
+			</list>
+		</property>
+	</bean>
+
+	<alias name="asiamilesExtendedBasicProductPopulator" alias="extendedBasicProductPopulator"/>
+	<bean id="asiamilesExtendedBasicProductPopulator"  parent="baseProductPopulator"
+		  			class="com.asiamiles.facades.populators.AsiamilesExtendedBasicProductPopulator">
+		<property name="asiaMilesProductService" ref="asiaMilesProductService" />
+		<property name="asiaMilesPriceRowService" ref="asiaMilesPriceRowService" />
+		<property name="sessionService" ref="sessionService" />
+	</bean>
+
+	<alias name="acceleratorVariantOptionDataConverter" alias="variantOptionDataConverter"/> 
+	<bean id="acceleratorVariantOptionDataConverter" parent="abstractPopulatingConverter">
+		<lookup-method name="createTarget" bean="variantOptionData"/>
+		<property name="populators">
+			<list>
+				<ref bean="acceleratorVariantOptionDataPopulator"/>
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultAcceleratorVariantOptionDataPopulator" alias="acceleratorVariantOptionDataPopulator"/>
+	<bean id="defaultAcceleratorVariantOptionDataPopulator"  class="com.asiamiles.facades.populators.AcceleratorVariantOptionDataPopulator"
+	      parent="variantOptionDataPopulator" >
+		<property name="mediaService" ref="mediaService"/>
+		<property name="mediaContainerService" ref="mediaContainerService"/>
+		<property name="typeService" ref="typeService"/>
+		<property name="imageFormatMapping" ref="imageFormatMapping"/>
+		<property name="commerceCommonI18NService" ref="commerceCommonI18NService"/>
+		<property name="variantAttributeMapping">
+			<map>
+				<entry key="ApparelStyleVariantProduct.style" value="styleSwatch"/>
+			</map>
+		</property>
+	</bean>
+	
+	<alias name="defaultAsiamilesAssistedServiceFacade" alias="assistedServiceFacade"/>
+	<bean id="defaultAsiamilesAssistedServiceFacade"  class="com.asiamiles.facades.asm.impl.DefaultAsiamilesAssistedServiceFacade">
+		<property name="cartService" ref="cartService" />
+		<property name="sessionService" ref="sessionService" />
+		<property name="userService" ref="userService" />
+		<property name="passwordEncoderService" ref="passwordEncoderService" />
+		<property name="modelService" ref="modelService" />
+		<property name="eventService" ref="eventService" />
+		<property name="commerceCommonI18NService" ref="commerceCommonI18NService"/>
+		<property name="assistedServiceService" ref="assistedServiceService" />
+		<property name="customerConverter" ref="customerConverter"/>
+		<property name="cartConverter" ref="cartConverter"/>
+		<property name="suggestionCustomerConverter" ref="suggestionCustomerConverter"/>
+	</bean>
+
+	<alias name="amlConsentFacade" alias="consentFacade"/>
+	<bean id="amlConsentFacade" parent="defaultConsentFacade"
+		  class="com.asiamiles.facades.consents.impl.AmlConsentFacadeImpl" />
+
+
+	<alias name="acceleratorGenderConverter" alias="genderConverter"/> 
+	<bean id="acceleratorGenderConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.asiamiles.facades.product.data.GenderData"/>
+			<property name="populators">
+				<list>
+					<ref bean="genderDataPopulator"/>
+				</list>
+			</property>
+	</bean>
+
+	<alias name="defaultGenderDataPopulator" alias="genderDataPopulator"/>
+	<bean id="defaultGenderDataPopulator" class="com.asiamiles.facades.populators.GenderDataPopulator" >
+		<property name="typeService" ref="typeService"/>
+	</bean>
+
+	<bean id="apparelProductPopulator" class="com.asiamiles.facades.populators.ApparelProductPopulator" >
+		<property name="genderConverter" ref="genderConverter"/>
+	</bean>
+
+	<!-- Add the apparelProductPopulator to the productConverter -->
+	<bean parent="modifyPopulatorList">
+		<property name="list" ref="productConverter"/>
+		<property name="add" ref="apparelProductPopulator"/>
+	</bean>
+
+	<!-- accelerator Image Format Mappings -->
+	<alias name="acceleratorImageFormatMapping" alias="imageFormatMapping"/>
+	<bean id="acceleratorImageFormatMapping" parent="defaultImageFormatMapping">
+		<property name="mapping">
+			<map>
+				<entry key="superZoom" value="834Wx554H"/>
+				<entry key="zoom" value="571Wx379H"/>
+				<entry key="store" value="294Wx195H"/>
+				<entry key="product" value="105Wx70H"/>
+				<entry key="cartIcon" value="143Wx95H"/>
+				<entry key="orderSummary" value="143Wx95H"/>
+				<entry key="email" value="143Wx95H"/>
+				<entry key="orderHistoryListing" value="116Wx77H"/>
+				<entry key="orderHistoryDetails" value="186Wx123H"/>
+			</map>
+		</property>
+	</bean>
+
+	<alias name="acceleratorProductPrimaryImagePopulator" alias="productPrimaryImagePopulator" />
+	<bean id="acceleratorProductPrimaryImagePopulator" parent="defaultProductPrimaryImagePopulator">
+		<property name="imageFormats">
+			<list>
+				<value>zoom</value>
+				<value>product</value>
+				<value>cartIcon</value>
+				<value>store</value>
+				<value>orderSummary</value>
+				<value>email</value>
+			</list>
+		</property>
+	</bean>
+
+	<alias name="acceleratorProductGalleryImagesPopulator" alias="productGalleryImagesPopulator" />
+	<bean id="acceleratorProductGalleryImagesPopulator" parent="defaultProductGalleryImagesPopulator">
+		<property name="imageFormats">
+			<list>
+				<value>superZoom</value>
+				<value>zoom</value>
+				<value>store</value>
+				<value>product</value>
+				<value>store</value>
+				<value>orderSummary</value>
+				<value>email</value>
+				<value>orderHistoryListing</value>
+				<value>orderHistoryDetails</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="customerEmailContext" class="com.asiamiles.facades.process.email.context.CustomerEmailContext" parent="abstractEmailContext" scope="prototype" >
+		<property name="customerConverter" ref="customerConverter"/>
+	</bean>
+	
+	<bean id="reverseMilesEmailContext" class="com.asiamiles.facades.process.email.context.ReverseMilesEmailContext" parent="abstractEmailContext" scope="prototype" />
+	
+	<bean id="fraudCheckEmailContext" class="com.asiamiles.facades.process.email.context.FraudCheckEmailContext" parent="abstractEmailContext" scope="prototype" />
+
+	<bean id="forgottenPasswordEmailContext" class="com.asiamiles.facades.process.email.context.ForgottenPasswordEmailContext" parent="customerEmailContext" scope="prototype" >
+		<property name="customerConverter" ref="customerConverter"/>
+	</bean>
+
+	<bean id="orderNotificationEmailContext" class="com.asiamiles.facades.process.email.context.OrderNotificationEmailContext" parent="abstractEmailContext" scope="prototype" >
+		<property name="orderConverter" ref="asiamilesOrderConverter"/>
+		<property name="productConverter" ref="productConverter"/>
+		<property name="configurationService" ref="configurationService"/>
+		<property name="commonI18NService" ref="commonI18NService"/>
+		<property name="baseStoreService" ref="baseStoreService"/>
+	</bean>
+
+	<bean id="quoteNotificationEmailContext" class="com.asiamiles.facades.process.email.context.QuoteNotificationEmailContext" parent="abstractEmailContext" scope="prototype" >
+		<property name="quoteService" ref="quoteService"/>
+		<property name="quoteConverter" ref="quoteConverter"/>
+	</bean>
+	
+	<bean id="deliverySentEmailContext" class="com.asiamiles.facades.process.email.context.DeliverySentEmailContext" parent="abstractEmailContext" scope="prototype" >
+		<property name="consignmentConverter" ref="consignmentConverter"/>
+		<property name="commonI18NService" ref="commonI18NService"/>
+	</bean>
+	
+	<bean id="readyForPickupEmailContext" class="com.asiamiles.facades.process.email.context.ReadyForPickupEmailContext" parent="abstractEmailContext" scope="prototype" >
+		<property name="consignmentConverter" ref="consignmentConverter"/>
+	</bean>
+	
+	<bean id="orderCancelledEmailContext" class="com.asiamiles.facades.process.email.context.OrderCancelledEmailContext" parent="abstractEmailContext" scope="prototype" >
+		<property name="orderConverter" ref="asiamilesOrderConverter"/>
+	</bean>
+	
+	<bean id="orderRefundEmailContext" class="com.asiamiles.facades.process.email.context.OrderRefundEmailContext" parent="abstractEmailContext" scope="prototype" >
+		<property name="orderConverter" ref="asiamilesOrderConverter"/>
+	</bean>
+	<bean id="consignmentCollectionReminderEmailContext" class="com.asiamiles.facades.process.email.context.ConsignmentCollectionReminderEmailContext" parent="abstractEmailContext" scope="prototype">
+        <property name="consignmentConverter" ref="consignmentConverter"/>
+        <property name="formatFactory" ref="formatFactory"/>
+        <property name="customerServiceUncollectedConsignmentStrategy" ref="customerServiceUncollectedConsignmentStrategy" />
+        <property name="orderConverter" ref="asiamilesOrderConverter"/>
+    </bean>
+
+	<bean id="orderPartiallyModifiedEmailContext" class="com.asiamiles.facades.process.email.context.OrderPartiallyModifiedEmailContext" parent="abstractEmailContext" scope="prototype" >
+		<property name="orderConverter" ref="asiamilesOrderConverter"/>
+		<property name="orderEntryConverter" ref="orderEntryConverter"/>
+		<property name="priceDataFactory" ref="priceDataFactory"/>		
+	</bean>
+
+	<bean id="orderPartiallyCanceledEmailContext" class="com.asiamiles.facades.process.email.context.OrderPartiallyCanceledEmailContext" parent="orderPartiallyModifiedEmailContext" scope="prototype" >
+	</bean>
+
+	<bean id="orderPartiallyRefundedEmailContext" class="com.asiamiles.facades.process.email.context.OrderPartiallyRefundedEmailContext" parent="orderPartiallyModifiedEmailContext" scope="prototype" >
+	</bean>
+
+	<bean id="notPickedUpConsignmentCanceledEmailContext" class="com.asiamiles.facades.process.email.context.NotPickedUpConsignmentCanceledEmailContext" parent="abstractEmailContext" scope="prototype" >
+		<property name="consignmentConverter" ref="consignmentConverter"/>
+		<property name="priceDataFactory" ref="priceDataFactory"/>
+	</bean>
+
+	<alias name="yacceleratorSearchPagePointOfServiceDistancePopulator" alias="searchPagePointOfServiceDistancePopulator" />
+	<bean id="yacceleratorSearchPagePointOfServiceDistancePopulator" class="com.asiamiles.facades.storefinder.populators.SearchPagePointOfServiceDistancePopulator" >
+		<property name="pointOfServiceDistanceConverter" ref="pointOfServiceDistanceConverter"/>
+	</bean>
+
+	<bean id="genderData" class="com.asiamiles.facades.product.data.GenderData" scope="prototype"/>
+	
+	<alias name="asiamilesCartFacade" alias="cartFacade"/>
+	<bean id="asiamilesCartFacade" class="com.asiamiles.facades.order.impl.DefaultAsiamilesCartFacade"
+	      parent="defaultCartFacade">
+		<property name="sessionService" ref="sessionService" />
+		<property name="cartService" ref="cartService" />
+		<property name="asiaMilesPromotionPriceService" ref="asiaMilesPromotionPriceService"/>
+	</bean>
+	
+	<bean id="asiamilesProductPopulator" class="com.asiamiles.facades.populators.AsiamilesProductPopulator">
+		<property name="commerceCommonI18NService" ref="commerceCommonI18NService"/>
+		<property name="asiaMilesCashConversionService" ref="asiaMilesCashConversionService"/>
+		<property name="sessionService" ref="sessionService"/>
+		<property name="asiaMilesPriceRowService" ref="asiaMilesPriceRowService"/>
+		<property name="asiaMilesProductService" ref="asiaMilesProductService"/>
+		<property name="enumerationService" ref="enumerationService"/>
+		<property name="baseStoreService" ref="baseStoreService"/>
+	</bean>
+	
+	<bean parent="modifyPopulatorList">
+		<property name="list" ref="productConverter"/>
+		<property name="add" ref="asiamilesProductPopulator"/>
+	</bean>
+	
+	<alias name="asiamilesAddressPopulator" alias="addressPopulator"/>
+	<bean id="asiamilesAddressPopulator" class="com.asiamiles.facades.populators.AsiamilesAddressPopulator" parent="defaultAddressPopulator" />
+	
+	
+	<bean id="asiamilesCustomerPaymentInfoPopulator" class="com.asiamiles.facades.populators.AsiamilesCustomerPaymentInfoPopulator" >
+		<property name="creditCardPaymentInfoConverter" ref="creditCardPaymentInfoConverter"/>
+	</bean>
+	
+	<bean parent="modifyPopulatorList">
+		<property name="list" ref="customerConverter"/>
+		<property name="add" ref="asiamilesCustomerPaymentInfoPopulator"/>
+	</bean>
+	
+	<bean id="asiamilesCartParameterPopulator" class="com.asiamiles.facades.populators.AsiamilesCartParameterPopulator" />
+	
+	<bean parent="modifyPopulatorList">
+		<property name="list" ref="commerceCartParameterConverter"/>
+		<property name="add" ref="asiamilesCartParameterPopulator"/>
+	</bean>
+	
+	<bean id="asiamilesOrderPopulator" class="com.asiamiles.facades.populators.AsiamilesOrderPopulator">
+		<property name="priceDataFactory" ref="priceDataFactory"/>
+		<property name="enumerationService" ref="enumerationService"/>
+		<property name="i18nService" ref="i18nService"/>
+	</bean>
+	
+	<bean parent="modifyPopulatorList">
+		<property name="list" ref="defaultOrderConverter"/>
+		<property name="add" ref="asiamilesOrderPopulator"/>
+	</bean>
+	
+	<bean id="asiamilesOrderConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.commercefacades.order.data.OrderData"/>
+		<property name="populators">
+			<list>
+                <ref bean="orderPopulator"/>
+				<ref bean="orderAppliedVouchersPopulator"/>
+				<ref bean="pickupOrderEntryGroupPopulator"/>
+				<ref bean="deliveryOrderEntryGroupPopulator"/>
+                <ref bean="asiamilesOrderPopulator"/>
+                <ref bean="orderConsignmentPopulator"/>
+			</list>
+		</property>
+	</bean>
+
+	<alias name="asiamilesAddressReversePopulator" alias="addressReversePopulator"/>
+	<bean id="asiamilesAddressReversePopulator" class="com.asiamiles.facades.populators.AsiamilesAddressReversePopulator" parent="defaultAddressReversePopulator" />
+
+	<alias name="asiamilesCheckoutFacade" alias="checkoutFacade"/>
+   <alias name="asiamilesCheckoutFacade" alias="acceleratorCheckoutFacade"/>
+   <bean id="asiamilesCheckoutFacade" class="com.asiamiles.facades.checkout.impl.AsiamilesCheckoutFacadeImpl"
+          parent="defaultAcceleratorCheckoutFacade">
+		<property name="clsService" ref="clsService"/>
+		<property name="utilService" ref="utilService"/>
+		<property name="asiamilesCartFacade" ref="asiamilesCartFacade"/>
+		<property name="asiaMilesValidationService" ref="asiaMilesValidationService"/>
+		<property name="commonI18NService" ref="commonI18NService"/>
+		<property name="sessionService" ref="sessionService"/>
+		<property name="userService" ref="userService"/>
+	   <property name="i18nService" ref="i18nService"/>
+	   <property name="userFacade" ref="userFacade"/>
+    </bean>
+
+	<alias name="asiamilesCustomerPopulator" alias="customerPopulator"/>
+	<bean id="asiamilesCustomerPopulator"
+			class="com.asiamiles.facades.populators.AsiamilesCustomerPopulator">
+		<property name="currencyConverter" ref="currencyConverter"/>
+		<property name="languageConverter" ref="languageConverter"/>
+		<property name="customerNameStrategy" ref="customerNameStrategy"/>
+	</bean>
+	
+	<alias name="asiamilesCustomerFacadeImpl" alias="customerFacade"/>
+	<bean id="asiamilesCustomerFacadeImpl" class="com.asiamiles.facades.customer.impl.AsiamilesCustomerFacadeImpl" parent="defaultCustomerFacade" />
+	
+	<alias name="asiamilesOrderHistoryPopulator" alias="orderHistoryPopulator"/>
+	<bean id="asiamilesOrderHistoryPopulator"
+			class="com.asiamiles.facades.populators.AsiamilesOrderHistoryPopulator">
+		<property name="enumerationService" ref="enumerationService"/>
+		<property name="commonI18NService" ref="commonI18NService"/>
+		<property name="commerceCommonI18NService" ref="commerceCommonI18NService"/>
+		<property name="priceDataFactory" ref="priceDataFactory"/>
+		<property name="productConfiguredPopulator" ref="productConfiguredPopulator"/>
+		<property name="productConverter" ref="productConverter"/>
+	</bean>
+	
+	<alias name="asiamilesOrderFacade" alias="orderFacade"/>
+	<bean id="asiamilesOrderFacade" class="com.asiamiles.facades.order.impl.DefaultAsiamilesOrderFacade" parent="defaultOrderFacade">
+		<property name="orderConverter" ref="asiamilesOrderConverter"/>
+		<property name="productConfiguredPopulator" ref="productConfiguredPopulator"/>
+		<property name="productConverter" ref="productConverter"/>
+		<property name="productService" ref="productService"/>
+		<property name="consignmentService" ref="consignmentService"/>
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService" />
+		<property name="i18NService" ref="i18NService"/>
+	</bean>
+	
+	<alias name="asiamilesConsignmentPopulator" alias="consignmentPopulator"/>
+	<bean id="asiamilesConsignmentPopulator" class="com.asiamiles.facades.populators.AsiamilesConsignmentPopulator" parent="accConsignmentPopulator"/>
+	
+	<alias name="asiamilesProductPricePopulator" alias="productPricePopulator"/>
+	<bean id="asiamilesProductPricePopulator" parent="baseProductPopulator"
+			class="com.asiamiles.facades.populators.AsiamilesProductPricePopulator">
+		<property name="priceDataFactory" ref="priceDataFactory"/>
+		<property name="commercePriceService" ref="commercePriceService"/>
+		<property name="asiaMilesDiscountRowService" ref="asiaMilesDiscountRowService"/>
+		<property name="commerceCommonI18NService" ref="commerceCommonI18NService"/>
+		<property name="asiaMilesPromotionPriceService" ref="asiaMilesPromotionPriceService"/>
+		<property name="asiamilesSelectMiniMilesService" ref="asiamilesSelectMiniMilesService"/>
+		<property name="asiaMilesPriceRowService" ref="asiaMilesPriceRowService"/>
+	</bean>
+
+	<alias name="amlSearchResultProductPopulator" alias="commerceSearchResultProductPopulator"/>
+	<bean id="amlSearchResultProductPopulator"
+		  class="com.asiamiles.facades.search.converters.populator.AmlSearchResultProductPopulator"
+		  parent="variantOptionsCommerceSearchResultProductPopulator">
+		<property name="deliveryRegionService" ref="deliveryRegionService"/>
+		<property name="enumerationService" ref="enumerationService"/>
+		<property name="commerceCommonI18NService" ref="commerceCommonI18NService"/>
+		<property name="asiaMilesProductTagGroupBService" ref="asiaMilesProductTagGroupBService"/>
+		<property name="asiaMilesPromotionPriceService" ref="asiaMilesPromotionPriceService"/>
+		<property name="baseStoreService" ref="baseStoreService"/>
+		<property name="sessionService" ref="sessionService"/>
+		<property name="asiaMilesProductService" ref="asiaMilesProductService"/>
+		<property name="asiaMilesPriceRowService" ref="asiaMilesPriceRowService"/>
+	</bean>
+	
+	<alias alias="marketplaceSearchSolrQueryPopulator" name="asiamilesMarketplaceSearchSolrQueryPopulator" />
+	<bean id="asiamilesMarketplaceSearchSolrQueryPopulator" class="com.asiamiles.facades.populators.AsiamilesMarketplaceSearchSolrQueryPopulator"
+			parent="defaultCommerceSearchSolrQueryPopulator">
+			<property name="configurationService" ref="configurationService"/>
+       	<property name="catalogVersionService" ref="catalogVersionService"/>
+       	<property name="vendorService" ref="vendorService" />
+	</bean>
+
+	<bean id="asiamilesOrderEntryPopulator" class="com.asiamiles.facades.populators.AsiamilesOrderEntryPopulator">
+		<property name="priceDataFactory" ref="priceDataFactory"/>
+		<property name="userService" ref="userService"/>
+		<property name="asiaMilesProductService" ref="asiaMilesProductService"/>
+		<property name="i18NService" ref="i18NService"/>
+	</bean>
+	<bean parent="modifyPopulatorList">
+		<property name="list" ref="orderEntryConverter"/>
+		<property name="add" ref="asiamilesOrderEntryPopulator"/>
+	</bean>
+
+	<bean id="asiamilesLanguageFacade" class="com.asiamiles.facades.Language.impl.AsiamilesLanguageFacadeImpl">
+		<property name="asiaMilesLanguageService" ref="asiaMilesLanguageService"/>
+		<property name="languageConverter" ref="languageConverter"/>
+	</bean>
+
+	<bean id="asiamilesCountryFacade" class="com.asiamiles.facades.country.impl.AsiamilesCountryFacadeImpl">
+		<property name="asiaMilesCountryService" ref="asiaMilesCountryService"/>
+		<property name="countryConverter" ref="countryConverter"/>
+	</bean>
+	
+	<bean id="asiamilesCartPopulator" class="com.asiamiles.facades.populators.AsiamilesCartPopulator">
+		<property name="baseStoreService" ref="baseStoreService"/>
+		<property name="commerceCommonI18NService" ref="commerceCommonI18NService"/>
+		<property name="asiaMilesCartService" ref="cartService"/>
+		<property name="sessionService" ref="sessionService"/>
+		<property name="asiaMilesPromotionPriceService" ref="asiaMilesPromotionPriceService"/>
+		<property name="cartService" ref="cartService"/>
+	</bean>
+	<bean parent="modifyPopulatorList">
+		<property name="list" ref="cartConverter"/>
+		<property name="add" ref="asiamilesCartPopulator"/>
+	</bean>
+
+    <bean id="countryData" class="com.asiamiles.facades.Data.CountryData" scope="prototype"/>
+
+    <bean id="asiamilesCountryPopulator"
+          class="com.asiamiles.facades.populators.AsiamilesCountryPopulator"
+    />
+
+    <alias name="asiamilesCountryConverter" alias="asiaMilesCountryConverter"/>
+    <bean id="asiamilesCountryConverter" parent="abstractPopulatingConverter">
+        <property name="targetClass" value="com.asiamiles.facades.Data.CountryData"/>
+        <property name="populators">
+            <list>
+                <ref bean="asiamilesCountryPopulator"/>
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="amlPaymentCheckoutFacade" class="com.asiamiles.facades.payment.impl.AMLPaymentCheckoutFacadeImpl">
+		<property name="commerceCheckoutService" ref="commerceCheckoutService"/>
+		<property name="cartService" ref="cartService"/>
+		<property name="uiExperienceService" ref="uiExperienceService"/>
+		<property name="clsService" ref="clsService"/>
+		<property name="sessionService" ref="sessionService"/>
+		<property name="orderSplittingService" ref="orderSplittingService"/>
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+		<property name="stockService" ref="stockService"/>
+		<property name="orderService" ref="orderService"/>
+		<property name="warehouseService" ref="warehouseService"/>
+		<property name="configurationService" ref="configurationService"/>
+		<property name="cppSignatureService" ref="cppSignatureService"/>
+		<property name="cppOrderService" ref="cppOrderService"/>
+		<property name="commonI18NService" ref="commonI18NService"/>
+		<property name="eVoucherService" ref="eVoucherService"/>
+		<property name="transactionTemplate" ref="transactionTemplate"/>
+		<property name="couponService" ref="couponService"/>
+		<property name="couponRedemptionDao" ref="couponRedemptionDao"/>
+	</bean>
+	
+	<alias name="amlDefaultProductFacade" alias="productFacade"/>
+	<bean id="amlDefaultProductFacade" class="com.asiamiles.facades.product.impl.AsiamilesProductFacadeImpl">
+		<property name="productService" ref="productService"/>
+		<property name="asiaMilesDiscountRowService" ref="asiaMilesDiscountRowService"/>
+		<property name="asiaMilesDiscountService" ref="asiaMilesDiscountService"/>
+		<property name="asiaMilesPriceRowService" ref="asiaMilesPriceRowService"/>
+		<property name="customerReviewService" ref="customerReviewService"/>
+		<property name="userService" ref="userService"/>
+		<property name="modelService" ref="modelService"/>
+		<property name="commonI18NService" ref="commonI18NService"/>
+		<property name="baseStoreService" ref ="baseStoreService"/>
+		<property name="configurationService" ref="configurationService"/>
+
+		<property name="customerReviewConverter" ref="customerReviewConverter"/>
+		<property name="productConverter" ref="productConverter"/>
+		<property name="productConfiguredPopulator" ref="productConfiguredPopulator"/>
+
+		<property name="commerceProductReferenceService" ref="commerceProductReferenceService"/>
+		<property name="referenceDataProductReferenceConverter" ref="referenceDataProductReferenceConverter"/>
+		<property name="referenceProductConfiguredPopulator" ref="productConfiguredPopulator"/>
+      <property name="productConfigurationConverter" ref="orderEntryProductInfoConverter"/>
+      <property name="configurationHandlerFactory" ref="productConfigurationHandlerFactory"/>
+      <property name="configuratorSettingsService" ref="configuratorSettingsService"/>
+   </bean>
+   
+   <alias name="asiamilesVariantFullPopulator" alias="variantFullPopulator"/>
+	<bean id="asiamilesVariantFullPopulator"
+			class="com.asiamiles.facades.populators.AsiamilesVariantFullPopulator"
+			scope="prototype">
+		<property name="variantOptionDataConverter" ref="variantOptionDataConverter"/>
+		<property name="baseOptionDataConverter" ref="baseOptionDataConverter"/>
+	</bean>
+   
+   <alias name="asiaMilesContentZoneConverter" alias="contentZoneConverter"/>
+	<bean id="asiaMilesContentZoneConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.asiamiles.previewwebservices.data.ContentZoneData"/>
+		<property name="populators">
+			<list>
+				<ref bean="contentZonePopulator"/>
+			</list>
+		</property>
+	</bean>
+
+	<alias name="asiaMilesContentZonePopulator" alias="contentZonePopulator"/>
+	<bean id="asiaMilesContentZonePopulator" class="com.asiamiles.facades.populators.AsiaMilesContentZonePopulator"> 
+		<property name="commerceCommonI18NService" ref="commerceCommonI18NService"/>
+	</bean>
+	
+	<bean id="asiaMilesContentZoneFacade" class="com.asiamiles.facades.contentzone.impl.AsiaMilesContentZoneFacade">
+		<property name="contentZoneService" ref="contentZoneService"/>
+		<property name="contentZoneConverter" ref="contentZoneConverter"/>
+	</bean>
+	
+	<alias name="asiaMilesProductModelUrlResolver" alias="productModelUrlResolver"/>
+	<bean id="asiaMilesProductModelUrlResolver"
+			class="com.asiamiles.facades.url.impl.AsiaMilesProductModelUrlResolver">
+		<property name="threadContextService" ref="threadContextService"/>
+		<property name="commerceCategoryService" ref="commerceCategoryService"/>
+		<property name="baseSiteService" ref="baseSiteService"/>
+		<property name="defaultPattern" value="/{category-path}/{product-name}/p/{product-code}"/>
+	</bean>
+	
+	<alias name="asiaMilesCategoryModelUrlResolver" alias="categoryModelUrlResolver"/>
+	<bean id="asiaMilesCategoryModelUrlResolver"
+			class="com.asiamiles.facades.url.impl.AsiaMilesCategoryModelUrlResolver">
+		<property name="threadContextService" ref="threadContextService"/>
+		<property name="commerceCategoryService" ref="commerceCategoryService"/>
+		<property name="baseSiteService" ref="baseSiteService"/>
+		<property name="pattern" value="/{category-path}/c/{category-code}"/>
+	</bean>
+
+	<alias name="defaultCmsBasicMediaModelPopulator" alias="basicMediaModelPopulator"/>
+	<bean id="defaultCmsBasicMediaModelPopulator" class="com.asiamiles.facades.populators.AsiaMilesBasicMediaModelPopulator">
+		<property name="uniqueItemIdentifierService" ref="cmsUniqueItemIdentifierService"/>
+		<property name="i18NService" ref="i18NService"/>
+	</bean>
+
+</beans>

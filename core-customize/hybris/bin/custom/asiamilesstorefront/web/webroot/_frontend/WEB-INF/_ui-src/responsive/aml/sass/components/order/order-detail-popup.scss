@@ -1,0 +1,138 @@
+.delivery-information {
+    @include media-query-down(768px) {
+        background: #fff;
+        border-top: 3px solid #facf04;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 100%!important;
+        width: 100%;
+        margin: 0;
+        padding: px2rem(77px) 0 px2rem(30px)!important;
+        overflow-y: scroll!important;
+
+        .delivery-detail-headline {
+            text-align: center;
+            padding-bottom: px2rem(32px);
+        }
+
+        .delivery-status-bar {
+            padding-bottom: px2rem(50px);
+        }
+        .order-delivery-info {
+            padding: px2rem(20px) px2rem(15px) 0;
+            margin: 0;
+            flex-wrap: wrap;
+        }
+        .inquiries-title {
+            padding-bottom: px2rem(10px);
+        }
+        .reference-num-section {
+            border-top: 1px solid #d8d8d8;
+            padding: px2rem(20px) 0;
+            text-align: center;
+            .reference-num-title{
+                font-size: 12px;
+                font-weight: 500;
+                line-height: px2rem(17px);
+            }
+            .reference-num {
+                padding-top: px2rem(6px);
+                font-size: 14px;
+                line-height: px2rem(19px);
+            }
+        }
+        // .track-info {
+        //     width: 100%;
+        //     padding: px2rem(22px) px2rem(15px);
+        //     border-top: 1px solid #d4d5d7;
+        //     font-size: 14px;
+        //     line-height: px2rem(14px);
+        //     display: flex;
+        //     flex-wrap: wrap;
+        //     margin: 0;
+
+        //     .icon-linkout {
+        //         width: px2rem(16px);
+        //         height: px2rem(16px);
+        //     }
+        //     .icon-order-status {
+        //         width: px2rem(15px);
+        //         height: px2rem(15px);
+        //     }
+        //     .track-title {
+        //         display: flex;
+        //         padding-bottom: px2rem(15px);
+        //     }
+        //     .track-title-text {
+        //         padding-left: px2rem(5px);
+        //     }
+        //     .track-number {
+        //         display: flex;
+        //         padding-bottom: px2rem(15px);
+        //     }
+        //     .visit-courier {
+        //         display: flex;
+        //         align-items: center;
+        //         width: 100%;
+        //     }
+        //     .track-number-text {
+        //         padding-right: px2rem(22px);
+        //     }
+        //     .copy-track-number {
+        //         text-decoration: underline;
+        //         cursor: pointer;
+        //     }
+        //     .visit-courier-title {
+        //         line-height: px2rem(16px);
+        //         text-decoration: underline;
+        //         padding-right: px2rem(3px);
+        //     }
+        // }
+        .resend-voucher {
+            padding: px2rem(64px) 0 0;
+            border: 0;
+            width: 100%;
+            .resend-btn {
+                width: 100%;
+                height: px2rem(60px);
+                text-align: center;
+            }
+            .resend-btn-text {
+                line-height: px2rem(60px);
+                padding: 0;
+            }
+        }
+        .order-warning-msg {
+            margin: 0;
+            line-height: px2rem(19px);
+            border-top: 1px solid #d8d8d8;
+            span {
+                padding: px2rem(20px) px2rem(15px);
+            }
+            svg + span {
+                padding: 0;
+            }
+        }
+        .warning-message {
+            padding: px2rem(20px) px2rem(15px);
+            span {
+                flex: 1;
+            }
+        }
+        .icon-triangle-important {
+            width: px2rem(14px);
+            height: px2rem(14px);
+        }
+        .icon-close {
+            width: px2rem(20px);
+            height: px2rem(20px);
+            position: absolute;
+            right: px2rem(10px);
+            top: px2rem(10px);
+            cursor: pointer;
+        }
+    }
+
+}

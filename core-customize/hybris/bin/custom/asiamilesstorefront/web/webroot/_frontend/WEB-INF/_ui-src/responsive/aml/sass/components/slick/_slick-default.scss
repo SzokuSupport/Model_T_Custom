@@ -1,0 +1,40 @@
+.slick-slide {
+    transition: all ease-in-out .3s;
+    //opacity: .5;
+    height: auto;
+
+    img {
+        width: 100%;
+    }
+}
+
+// .slick-active {
+// opacity: .5;
+// }
+
+.slick-current {
+    opacity: 1;
+}
+
+.slick-prev {
+    z-index: 4;
+
+    .icon-back {
+        width: px2rem(40px);
+        height: px2rem(40px);
+    }
+}
+
+.slick-next {
+    z-index: 4;
+    
+    .icon-next {
+        width: px2rem(40px);
+        height: px2rem(40px);
+    }
+}
+
+.slick-disabled {
+    opacity: .3;
+}
+

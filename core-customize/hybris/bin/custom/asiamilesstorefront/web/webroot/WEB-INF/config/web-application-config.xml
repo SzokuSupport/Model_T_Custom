@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util
+		http://www.springframework.org/schema/util/spring-util.xsd
+		http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+		
+	<context:annotation-config/> 
+
+	<!--
+		Tenant
+	-->
+	<bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
+		<property name="scopes">
+			<map>
+				<entry key="tenant" value="de.hybris.platform.spring.TenantScope"/>
+			</map>
+		</property>
+	</bean>
+	
+	<!-- Load additional configuration -->
+	<import resource="spring-filter-config.xml"/>
+	<import resource="spring-security-config.xml"/>
+	<import resource="spring-mvc-config.xml"/>
+	<import resource="classpath:/acceleratorcms/spring/web-spring-context.xml"/>
+	<import resource="spring-cms-config.xml"/>
+	<import resource="multi-step-checkout-config.xml"/>
+	<import resource="classpath*:/accelerator/additional-web-spring-context.xml"/>
+	
+	<!-- <alias name="asiaMilesContextInformationLoader" alias="contextInformationLoader" />
+	<bean id="asiaMilesContextInformationLoader"
+		class="com.asiamiles.core.content.AsiaMilesContextInformationLoader" parent="defaultContextInformationLoader">
+	</bean>
+	
+	<bean id="loadContentZoneStrategy" parent="defaultContextInformationLoader"
+			class="com.asiamiles.core.content.AsiaMilesContextInformationLoader$LoadContentZoneStrategy" />
+	<bean depends-on="defaultContextLoadStrategiesList" parent="listMergeDirective">
+		<property name="add" ref="loadContentZoneStrategy"/>
+	</bean> -->
+	
+	<!-- Context information loader - bean that load context information -->
+	<alias name="asiaMilesContextInformationLoader" alias="contextInformationLoader" />
+	<bean id="asiaMilesContextInformationLoader"
+		class="com.asiamiles.core.content.AsiaMilesContextInformationLoader">
+		<property name="baseSiteService" ref="baseSiteService" />
+		<property name="cmsSiteService" ref="cmsSiteService" />
+		<property name="i18NService" ref="i18NService" />
+		<property name="modelService" ref="modelService" />
+		<property name="timeService" ref="timeService" />
+		<property name="userService" ref="userService" />
+		<property name="strategies" ref="contextLoadStrategiesList" />
+		<property name="previewRequestStrategies" ref="previewRequestStrategiesList" />
+		<property name="commonI18NService" ref="commonI18NService" />
+	</bean>
+
+	<alias name="asiaMilesContextLoadStrategiesList" alias="contextLoadStrategiesList" />
+	<util:list id="asiaMilesContextLoadStrategiesList">
+		<bean id="loadUserStrategy" parent="defaultContextInformationLoader"
+			class="de.hybris.platform.acceleratorcms.context.impl.DefaultContextInformationLoader$LoadUserStrategy" />
+		<bean id="loadUserGroupStrategy" parent="defaultContextInformationLoader"
+			class="de.hybris.platform.acceleratorcms.context.impl.DefaultContextInformationLoader$LoadUserGroupStrategy" />
+		<bean id="loadLanguageStrategy" parent="defaultContextInformationLoader"
+			class="de.hybris.platform.acceleratorcms.context.impl.DefaultContextInformationLoader$LoadLanguageStrategy" />
+		<bean id="loadDateStrategy" parent="defaultContextInformationLoader"
+			class="de.hybris.platform.acceleratorcms.context.impl.DefaultContextInformationLoader$LoadDateStrategy" />
+		<bean id="loadContentZoneStrategy" parent="defaultContextInformationLoader"
+			class="com.asiamiles.core.content.AsiaMilesContextInformationLoader$LoadContentZoneStrategy" />
+	</util:list>
+
+</beans>

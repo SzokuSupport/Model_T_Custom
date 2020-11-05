@@ -1,0 +1,20 @@
+.section__button {
+  @include  media-query-up(1024px){
+    margin-bottom: px2rem(20px);
+  }
+  
+  &--blue {
+    line-height: px2rem(20px);
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 3.2px;
+    margin-bottom: px2rem(8px);
+    text-transform: uppercase;
+
+    @include  media-query-up(1024px){
+      line-height: px2rem(22px);
+      font-size: 18px;
+      margin-bottom: px2rem(10px);
+    }
+  }
+}

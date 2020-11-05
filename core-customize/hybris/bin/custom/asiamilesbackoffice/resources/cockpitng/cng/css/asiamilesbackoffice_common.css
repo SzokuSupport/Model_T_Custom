@@ -1,0 +1,15 @@
+  
+div.yw-explorerTree .y-tree-icon-customersupport_backoffice_explorerTree_amlReport .y-tree-icon{
+    background-image: url("images/amlReport.png");
+}
+
+div.yw-explorerTree .y-tree-icon-PurchasedOrder{
+  background-image: url("images/063_orders.png"); }
+  
+.yw-solrfacetchart-bottompanel-onepoint .yw-solrfacetchart-bottompanel-onepoint-label{
+	font-size:18px;
+}
+	
+div.y-tree-icon-AbstractBaseMiles{
+	 background-image: url("images/abstractBaseMiles.svg"); 
+}

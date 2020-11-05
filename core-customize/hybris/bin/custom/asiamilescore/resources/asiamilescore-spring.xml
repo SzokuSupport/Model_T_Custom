@@ -1,0 +1,1829 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <context:annotation-config/>
+
+    <!-- Spring Integration -->
+    <import resource="classpath:/asiamilescore/integration/hot-folder-store-electronics-spring.xml"/>
+    <import resource="classpath:/asiamilescore/integration/hot-folder-store-apparel-spring.xml"/>
+    <import resource="classpath:/asiamilescore/integration/hot-folder-common-spring.xml"/>
+    <import resource="classpath:/asiamilescore/integration/hot-folder-store-asiamiles-spring.xml"/>
+
+    <!-- SystemSetup for the AsiamilesCore -->
+    <bean id="acceleratorCoreSystemSetup" class="com.asiamiles.core.setup.CoreSystemSetup"
+          parent="abstractCoreSystemSetup"/>
+
+    <!-- Solr field value providers -->
+
+    <bean id="volumeAwareProductPriceValueProvider"
+          class="com.asiamiles.core.search.solrfacetsearch.provider.impl.VolumeAwareProductPriceValueProvider"
+          parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+        <property name="priceService" ref="priceService"/>
+        <property name="commonI18NService" ref="commonI18NService"/>
+        <property name="sessionService" ref="sessionService"/>
+        <property name="userService" ref="userService"/>
+        <property name="priceComparator" ref="volumePriceComparator"/>
+        <property name="catalogVersionService" ref="catalogVersionService"/>
+    </bean>
+
+    <bean id="volumePriceComparator" class="com.asiamiles.core.comparators.VolumeAwarePriceInformationComparator"
+          scope="singleton"/>
+
+    <bean id="productVolumePricesProvider"
+          class="com.asiamiles.core.search.solrfacetsearch.provider.impl.ProductVolumePricesProvider"
+          parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+        <property name="priceService" ref="priceService"/>
+    </bean>
+
+    <bean id="image515ValueProvider" parent="abstractImageValueProvider">
+        <property name="mediaFormat" value="515Wx515H"/>
+    </bean>
+    <bean id="image300ValueProvider" parent="abstractImageValueProvider">
+        <property name="mediaFormat" value="300Wx300H"/>
+    </bean>
+    <bean id="image96ValueProvider" parent="abstractImageValueProvider">
+        <property name="mediaFormat" value="96Wx96H"/>
+    </bean>
+    <bean id="image65ValueProvider" parent="abstractImageValueProvider">
+        <property name="mediaFormat" value="65Wx65H"/>
+    </bean>
+    <bean id="image30ValueProvider" parent="abstractImageValueProvider">
+        <property name="mediaFormat" value="30Wx30H"/>
+    </bean>
+
+
+    <bean id="productUrlValueProvider"
+          class="de.hybris.platform.commerceservices.search.solrfacetsearch.provider.impl.ProductUrlValueProvider"
+          parent="abstractPropertyFieldValueProvider">
+        <property name="urlResolver" ref="productModelUrlResolver"/>
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+        <property name="i18nService" ref="i18nService"/>
+        <property name="commonI18NService" ref="commonI18NService"/>
+    </bean>
+
+    <bean id="promotionCodeValueProvider"
+          class="de.hybris.platform.commerceservices.search.solrfacetsearch.provider.impl.PromotionCodeValueProvider"
+          parent="abstractPropertyFieldValueProvider">
+        <property name="promotionsService" ref="promotionsService"/>
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+    </bean>
+
+    <bean id="promotionImageValueProvider"
+          class="de.hybris.platform.commerceservices.search.solrfacetsearch.provider.impl.PrimaryPromotionImageValueProvider"
+          parent="abstractPropertyFieldValueProvider">
+        <property name="promotionsService" ref="promotionsService"/>
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+    </bean>
+
+    <bean id="colorFacetValueProvider"
+          class="com.asiamiles.core.search.solrfacetsearch.provider.impl.ColorFacetValueProvider"
+          parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+    </bean>
+
+    <bean id="colorFacetDisplayNameProvider"
+          class="com.asiamiles.core.search.solrfacetsearch.provider.impl.ColorFacetDisplayNameProvider"
+    >
+        <property name="enumerationService" ref="enumerationService"/>
+        <property name="i18nService" ref="i18nService"/>
+        <property name="commonI18NService" ref="commonI18NService"/>
+    </bean>
+
+    <bean id="apparelPointOfServiceFacetDisplayNameProvider"
+          class="com.asiamiles.core.search.solrfacetsearch.provider.impl.PointOfServiceFacetDisplayNameProvider"
+    >
+        <property name="pointOfServiceService" ref="pointOfServiceService"/>
+    </bean>
+
+    <bean id="electronicsPointOfServiceFacetDisplayNameProvider"
+          class="com.asiamiles.core.search.solrfacetsearch.provider.impl.PointOfServiceFacetDisplayNameProvider"
+    >
+        <property name="pointOfServiceService" ref="pointOfServiceService"/>
+    </bean>
+
+    <bean id="genderValueProvider"
+          class="com.asiamiles.core.search.solrfacetsearch.provider.impl.GenderValueProvider"
+          parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+    </bean>
+
+    <bean id="genderFacetDisplayNameProvider"
+          class="com.asiamiles.core.search.solrfacetsearch.provider.impl.GenderFacetDisplayNameProvider"
+    >
+        <property name="enumerationService" ref="enumerationService"/>
+        <property name="i18nService" ref="i18nService"/>
+        <property name="commonI18NService" ref="commonI18NService"/>
+    </bean>
+
+    <!--
+        Event listeners are singletons, therefore the dependency for a bean in tenant-scope
+        must be configured with a lookup method.
+    -->
+    <bean id="orderCancelledEventListener"
+          class="com.asiamiles.core.event.OrderCancelledEventListener" parent="abstractAcceleratorSiteEventListener">
+        <property name="modelService" ref="modelService"/>
+        <property name="businessProcessService" ref="businessProcessService"/>
+    </bean>
+    <bean id="orderRefundEventListener"
+          class="com.asiamiles.core.event.OrderRefundEventListener" parent="abstractAcceleratorSiteEventListener">
+        <property name="modelService" ref="modelService"/>
+        <property name="businessProcessService" ref="businessProcessService"/>
+    </bean>
+    <!-- unnecessary for Asiamiles User Cases, for sending user related email -->
+    <!--
+    <bean id="customerRegistrationEventListener"
+          class="com.asiamiles.core.event.RegistrationEventListener" parent="abstractAcceleratorSiteEventListener">
+        <property name="modelService" ref="modelService"/>
+        <property name="businessProcessService" ref="businessProcessService"/>
+    </bean>
+    <bean id="forgottenPasswordEventListener"
+          class="com.asiamiles.core.event.ForgottenPasswordEventListener" parent="abstractAcceleratorSiteEventListener">
+        <property name="modelService" ref="modelService"/>
+        <property name="businessProcessService" ref="businessProcessService"/>
+    </bean>
+    -->
+    <bean id="submitOrderEventListener" class="com.asiamiles.core.event.SubmitOrderEventListener"
+          parent="abstractAcceleratorSiteEventListener">
+        <property name="businessProcessService" ref="businessProcessService"/>
+        <property name="modelService" ref="modelService"/>
+        <property name="baseStoreService" ref="baseStoreService"/>
+    </bean>
+    <bean id="orderConfirmationEventListener"
+          class="com.asiamiles.core.event.OrderConfirmationEventListener" parent="abstractAcceleratorSiteEventListener">
+        <property name="modelService" ref="modelService"/>
+        <property name="businessProcessService" ref="businessProcessService"/>
+    </bean>
+    <bean id="sendDeliveryMessageEventListener"
+          class="com.asiamiles.core.event.SendDeliveryMessageEventListener"
+          parent="abstractAcceleratorSiteEventListener">
+        <property name="modelService" ref="modelService"/>
+        <property name="businessProcessService" ref="businessProcessService"/>
+    </bean>
+
+    <bean id="vendorDeliveryNotificationEventListener"
+          class="com.asiamiles.core.event.VendorDeliveryNotificationEventListener"
+          parent="abstractAcceleratorSiteEventListener">
+        <property name="modelService" ref="modelService"/>
+        <property name="businessProcessService" ref="businessProcessService"/>
+    </bean>
+    <!-- Process resources definition -->
+    <!-- Remove for uncessary process for Asiamiles -->
+    <!--
+    <bean id="customerRegistrationEmailProcessDefinitionResource"
+          class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+        <property name="resource" value="classpath:/asiamilescore/processes/customerRegistrationEmailProcess.xml"/>
+    </bean>
+    <bean id="forgottenPasswordEmailProcessDefinitionResource"
+          class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+        <property name="resource" value="classpath:/asiamilescore/processes/forgottenPasswordEmailProcess.xml"/>
+    </bean>
+    -->
+    <bean id="orderConfirmationEmailProcessDefinitionResource"
+          class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+        <property name="resource" value="classpath:/asiamilescore/processes/orderConfirmationEmailProcess.xml"/>
+    </bean>
+    <bean id="reverseMilesEmailProcessDefinitionResource"
+          class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+        <property name="resource" value="classpath:/asiamilescore/processes/sendReverseMilesFailedEmailProcess.xml"/>
+    </bean>
+    <bean id="sendDeliveryEmailProcessDefinitionResource"
+          class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+        <property name="resource" value="classpath:/asiamilescore/processes/sendDeliveryEmailProcess.xml"/>
+    </bean>
+    <bean id="sendOrderCancelledEmailProcessDefinitionResource"
+          class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+        <property name="resource" value="classpath:/asiamilescore/processes/sendOrderCancelledEmailProcess.xml"/>
+    </bean>
+    <bean id="sendOrderRefundEmailProcessDefinitionResource"
+          class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+        <property name="resource" value="classpath:/asiamilescore/processes/sendOrderRefundEmailProcess.xml"/>
+    </bean>
+    <bean id="vendorDeliveryNotificationEmailProcessDefinitionResource"
+          class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+        <property name="resource"
+                  value="classpath:/asiamilescore/processes/vendorDeliveryNotificationEmailProcess.xml"/>
+    </bean>
+    <bean id="fraudCheckEmailProcessDefinitionResource"
+          class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+        <property name="resource" value="classpath:/asiamilescore/processes/sendFraudCheckEmailProcess.xml"/>
+    </bean>
+    <!-- Actions -->
+    <bean id="abstractAction" class="de.hybris.platform.processengine.action.AbstractAction"
+          abstract="true">
+        <property name="modelService" ref="modelService"/>
+        <property name="processParameterHelper" ref="processParameterHelper"/>
+    </bean>
+
+    <bean id="sendEmail" class="de.hybris.platform.acceleratorservices.process.email.actions.SendEmailAction"
+          parent="abstractAction">
+        <property name="emailService" ref="emailService"/>
+    </bean>
+
+    <bean id="abstractGenerateEmailAction"
+          class="de.hybris.platform.acceleratorservices.process.email.actions.GenerateEmailAction"
+          parent="abstractAction" abstract="true">
+        <property name="modelService" ref="modelService"/>
+        <property name="cmsEmailPageService" ref="cmsEmailPageService"/>
+        <property name="contextResolutionStrategy" ref="processContextResolutionStrategy"/>
+        <property name="emailGenerationService" ref="emailGenerationService"/>
+    </bean>
+
+    <bean id="generateCustomerRegistrationEmail" parent="abstractGenerateEmailAction">
+        <property name="frontendTemplateName" value="CustomerRegistrationEmailTemplate"/>
+    </bean>
+
+    <bean id="generateForgottenPasswordEmail" parent="abstractGenerateEmailAction">
+        <property name="frontendTemplateName" value="ForgottenPasswordEmailTemplate"/>
+    </bean>
+
+    <bean id="generateOrderConfirmationEmail" class="com.asiamiles.core.process.email.actions.GenerateOrderConfirmationEmail"
+    parent="abstractGenerateEmailAction">
+        <property name="frontendTemplateName" value="OrderConfirmationEmailTemplate"/>
+        <property name="commonI18NService" ref="commonI18NService"/>
+    </bean>
+    
+    <bean id="generateReverseMilesFailedEmail" parent="abstractGenerateEmailAction">
+        <property name="frontendTemplateName" value="ReverseMilesEmailTemplate"/>
+    </bean>
+    
+    <bean id="generateFraudCheckEmail" parent="abstractGenerateEmailAction">
+        <property name="frontendTemplateName" value="FraudCheckEmailTemplate"/>
+    </bean>
+
+    <util:map id="deliveryModeTemplateMap">
+        <entry key="EMAIL_DELIVERY" value="DeliveryEmailSentEmailTemplate"/>
+        <entry key="OFFLINE_REDEMPTION" value="DeliveryEnterSentEmailTemplate"/>
+        <entry key="EVOUCHER_QR" value="DeliverySentEmailTemplate"/>
+        <entry key="EVOUCHER_AN" value="DeliverySentEmailTemplate"/>
+        <entry key="EVOUCHER_BAR" value="DeliverySentEmailTemplate"/>
+        <entry key="EVOUCHER_URL" value="DeliverySentEmailTemplate"/>
+        <entry key="EVOUCHER_QR_THIRDPARTY" value="DeliverySentEmailTemplate"/>
+    </util:map>
+
+    <bean id="generateDeliverySentEmail" class="com.asiamiles.core.process.email.actions.GenerateDeliverySentEmail"
+          parent="abstractGenerateEmailAction">
+        <property name="frontendTemplateName" value="DeliverySentEmailTemplate"/>
+        <property name="deliveryModeTemplateMap" ref="deliveryModeTemplateMap"/>
+        <property name="commonI18NService" ref="commonI18NService"/>
+    </bean>
+
+    <bean id="generateReadyForPickupEmail" parent="abstractGenerateEmailAction">
+        <property name="frontendTemplateName" value="ReadyForPickupEmailTemplate"/>
+    </bean>
+
+    <bean id="generateOrderCancelledEmail" parent="abstractGenerateEmailAction">
+        <property name="frontendTemplateName" value="OrderCancelledEmailTemplate"/>
+    </bean>
+
+    <bean id="generateOrderRefundEmail" parent="abstractGenerateEmailAction">
+        <property name="frontendTemplateName" value="OrderRefundEmailTemplate"/>
+    </bean>
+
+    <bean id="generateOrderPartiallyCanceledEmail" parent="abstractGenerateEmailAction">
+        <property name="frontendTemplateName" value="OrderPartiallyCanceledEmailTemplate"/>
+    </bean>
+    <bean id="generateOrderPartiallyRefundedEmail" parent="abstractGenerateEmailAction">
+        <property name="frontendTemplateName" value="OrderPartiallyRefundedEmailTemplate"/>
+    </bean>
+    <bean id="generateNotPickedUpConsignmentCanceledEmail" parent="abstractGenerateEmailAction">
+        <property name="frontendTemplateName" value="NotPickedUpConsignmentCanceledEmailTemplate"/>
+    </bean>
+    <bean id="generateVendorDeliveryNotificationEmail" parent="abstractGenerateEmailAction">
+        <property name="frontendTemplateName" value="VendorDeliveryNotificationEmailTemplate"/>
+    </bean>
+
+    <bean id="removeSentEmail"
+          class="de.hybris.platform.acceleratorservices.process.email.actions.RemoveSentEmailAction"
+          parent="abstractAction">
+        <property name="modelService" ref="modelService"/>
+    </bean>
+
+    <bean id="markQuoteNotificationAsSent"
+          class="com.asiamiles.core.actions.quote.MarkQuoteNotificationAsSentAction"
+          parent="abstractAction" abstract="true">
+        <property name="quoteService" ref="quoteService"/>
+    </bean>
+
+
+    <bean id="mccSiteUrlHelper" class="com.asiamiles.core.util.MccSiteUrlHelper">
+        <property name="siteChannelValidationStrategy" ref="siteChannelValidationStrategy"/>
+        <property name="siteBaseUrlResolutionService" ref="siteBaseUrlResolutionService"/>
+        <property name="cmsSiteService" ref="cmsSiteService"/>
+    </bean>
+
+    <!-- Product Reference Lookup Strategies-->
+    <alias name="apparelCrossSellingProductReferenceTargetStrategy" alias="crossSellingProductReferenceTargetStrategy"/>
+    <bean id="apparelCrossSellingProductReferenceTargetStrategy"
+          parent="defaultCrossSellingProductReferenceTargetStrategy">
+        <property name="productReferenceTargetStrategies">
+            <list merge="true">
+                <ref bean="apparelSizeProductReferenceTargetStrategy"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="apparelSizeProductReferenceTargetStrategy"
+          class="com.asiamiles.core.strategies.impl.ApparelSizeProductReferenceTargetStrategy">
+        <property name="commerceCategoryService" ref="commerceCategoryService"/>
+        <property name="rootCategoryCode" value="categories"/>
+    </bean>
+
+    <!-- Sales quote process actions -->
+
+    <!-- quote-->
+    <bean id="quoteBuyerSubmitEventListener" class="com.asiamiles.core.event.QuoteBuyerSubmitEventListener"
+          parent="abstractEventListener">
+        <property name="modelService" ref="modelService"/>
+        <property name="businessProcessService" ref="businessProcessService"/>
+    </bean>
+
+    <bean id="quoteSalesRepSubmitEventListener" class="com.asiamiles.core.event.QuoteSalesRepSubmitEventListener"
+          parent="abstractEventListener">
+        <property name="modelService" ref="modelService"/>
+        <property name="businessProcessService" ref="businessProcessService"/>
+    </bean>
+
+    <bean id="quoteSellerApprovalSubmitEventListener"
+          class="com.asiamiles.core.event.QuoteSellerApprovalSubmitEventListener"
+          parent="abstractEventListener">
+        <property name="modelService" ref="modelService"/>
+        <property name="businessProcessService" ref="businessProcessService"/>
+    </bean>
+
+    <bean id="quoteBuyerOrderPlacedEventListener" class="com.asiamiles.core.event.QuoteBuyerOrderPlacedEventListener"
+          parent="abstractEventListener">
+        <property name="commerceQuoteService" ref="commerceQuoteService"/>
+        <property name="modelService" ref="modelService"/>
+    </bean>
+
+    <bean id="quoteToExpireSoonEventListener" class="com.asiamiles.core.event.QuoteToExpireSoonEventListener"
+          parent="abstractEventListener">
+        <property name="modelService" ref="modelService"/>
+        <property name="businessProcessService" ref="businessProcessService"/>
+    </bean>
+
+    <bean id="quoteExpiredEventListener" class="com.asiamiles.core.event.QuoteExpiredEventListener"
+          parent="abstractEventListener">
+        <property name="modelService" ref="modelService"/>
+        <property name="businessProcessService" ref="businessProcessService"/>
+    </bean>
+
+    <bean id="quoteCancelEventListener" class="com.asiamiles.core.event.QuoteCancelEventListener"
+          parent="abstractEventListener">
+        <property name="modelService" ref="modelService"/>
+        <property name="businessProcessService" ref="businessProcessService"/>
+    </bean>
+
+    <bean id="quoteBuyerProcessDefinitionResource"
+          class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+        <property name="resource" value="classpath:/asiamilescore/processes/quote/quote-buyer-process.xml"/>
+    </bean>
+
+    <bean id="quoteSalesRepProcessDefinitionResource"
+          class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+        <property name="resource" value="classpath:/asiamilescore/processes/quote/quote-salesrep-process.xml"/>
+    </bean>
+
+
+    <bean id="quoteSellerApprovalProcessDefinitionResource"
+          class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+        <property name="resource" value="classpath:/asiamilescore/processes/quote/quote-seller-approval-process.xml"/>
+    </bean>
+
+    <bean id="quotePostCancellationProcessDefinitionResource"
+          class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+        <property name="resource" value="classpath:/asiamilescore/processes/quote/quote-post-cancellation-process.xml"/>
+    </bean>
+
+    <bean id="quoteToExpireSoonProcessDefinitionResource"
+          class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+        <property name="resource"
+                  value="classpath:/asiamilescore/processes/quote/quote-to-expire-soon-email-process.xml"/>
+    </bean>
+
+    <bean id="quoteExpiredProcessDefinitionResource"
+          class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+        <property name="resource" value="classpath:/asiamilescore/processes/quote/quote-expired-email-process.xml"/>
+    </bean>
+
+    <!-- Quotes email notification jobs -->
+    <bean id="quoteToExpireSoonJobPerformable"
+          class="com.asiamiles.core.job.QuoteToExpireSoonJobPerformable"
+          parent="abstractJobPerformable">
+        <property name="supportedQuoteStatuses">
+            <set value-type="de.hybris.platform.core.enums.QuoteState">
+                <value>BUYER_OFFER</value>
+            </set>
+        </property>
+        <property name="commerceQuoteDao" ref="commerceQuoteDao"/>
+        <property name="eventService" ref="eventService"/>
+        <property name="configurationService" ref="configurationService"/>
+        <property name="timeService" ref="timeService"/>
+    </bean>
+
+    <bean id="quoteExpiredJobPerformable"
+          class="com.asiamiles.core.job.QuoteExpiredJobPerformable"
+          parent="abstractJobPerformable">
+        <property name="supportedQuoteStatuses">
+            <set value-type="de.hybris.platform.core.enums.QuoteState">
+                <value>BUYER_OFFER</value>
+            </set>
+        </property>
+        <property name="commerceQuoteDao" ref="commerceQuoteDao"/>
+        <property name="eventService" ref="eventService"/>
+        <property name="timeService" ref="timeService"/>
+    </bean>
+
+    <import resource="/asiamilescore/processes/quote/quote-buyer-process-spring.xml"/>
+    <import resource="/asiamilescore/processes/quote/quote-salesrep-process-spring.xml"/>
+    <import resource="/asiamilescore/processes/quote/quote-seller-approval-process-spring.xml"/>
+
+    <import resource="/asiamilescore/processes/quote/quote-to-expire-soon-email-process-spring.xml"/>
+    <import resource="/asiamilescore/processes/quote/quote-expired-email-process-spring.xml"/>
+
+    <import resource="/asiamilescore/processes/quote/quote-post-cancellation-process-spring.xml"/>
+
+    <!-- Customer cleanup -->
+    <alias name="defaultCustomerCleanupRelatedObjectsAction" alias="customerCleanupRelatedObjectsAction"/>
+    <bean id="defaultCustomerCleanupRelatedObjectsAction"
+          class="com.asiamiles.core.retention.impl.DefaultCustomerCleanupRelatedObjectsAction"
+          parent="abstractExtensibleRemoveCleanupAction">
+        <property name="itemCleanupHooks" ref="customerCleanupHooks"/>
+    </bean>
+
+    <!-- Cleanup the customers not owning any order currently and the current date has past deactivation date+retention date. Also removes customers audit records. -->
+    <alias name="defaultCustomerNotOwningOrdersRemoveCleanupAction" alias="customerNotOwningOrdersRemoveCleanupAction"/>
+    <bean id="defaultCustomerNotOwningOrdersRemoveCleanupAction"
+          class="de.hybris.platform.retention.impl.DefaultExtensibleRemoveCleanupAction"
+          parent="abstractExtensibleRemoveCleanupAction">
+        <property name="itemCleanupHooks" ref="customerCleanupHooks"/>
+    </bean>
+
+    <!-- Order cleanup -->
+    <!-- Cleanup the order related objects and then remove order and its audit records. -->
+    <alias name="defaultOrderRemoveCleanupAction" alias="orderRemoveCleanupAction"/>
+    <bean id="defaultOrderRemoveCleanupAction"
+          class="de.hybris.platform.retention.impl.DefaultExtensibleRemoveCleanupAction"
+          parent="abstractExtensibleRemoveCleanupAction">
+        <property name="itemCleanupHooks" ref="orderCleanupHooks"/>
+    </bean>
+
+    <!-- CsTicket Remove action -->
+    <alias name="defaultCSTicketRemoveCleanupAction" alias="csTicketRemoveCleanupAction"/>
+    <bean id="defaultCSTicketRemoveCleanupAction"
+          class="de.hybris.platform.retention.impl.DefaultExtensibleRemoveCleanupAction"
+          parent="abstractExtensibleRemoveCleanupAction">
+        <property name="itemCleanupHooks" ref="csTicketCleanupHooks"/>
+    </bean>
+
+    <!-- CsTicket Stagnation action -->
+    <alias name="defaultCSTicketStagnationAction" alias="csTicketStagnationAction"/>
+    <bean id="defaultCSTicketStagnationAction" class="com.asiamiles.core.retention.impl.DefaultCSTicketStagnationAction"
+          parent="abstractExtensibleRemoveCleanupAction">
+        <property name="itemCleanupHooks" ref="csTicketRetentionHooks"/>
+        <property name="ticketBusinessService" ref="ticketBusinessService"/>
+    </bean>
+
+    <alias alias="marketplaceActivateBaseSiteInSessionStrategy"
+           name="asiaMilesMarketplaceActivateBaseSiteInSessionStrategy"/>
+    <bean id="asiaMilesMarketplaceActivateBaseSiteInSessionStrategy"
+          class="com.asiamiles.core.catalog.impl.AsiaMilesMarketplaceActivateBaseSiteInSessionStrategy">
+        <property name="catalogVersionService" ref="catalogVersionService"/>
+        <property name="vendorService" ref="vendorService"/>
+    </bean>
+
+    <alias name="defaultAsiamilesCalculationService" alias="calculationService"/>
+    <bean id="defaultAsiamilesCalculationService"
+          class="com.asiamiles.core.service.order.impl.AsiamilesCalculationService"
+          parent="defaultCalculationService">
+        <property name="orderRequiresCalculationStrategy" ref="orderRequiresCalculationStrategy"/>
+        <property name="commonI18NService" ref="commonI18NService"/>
+        <property name="asiaMilesDiscountRowService" ref="asiaMilesDiscountRowService"/>
+        <property name="asiaMilesDiscountService" ref="asiaMilesDiscountService"/>
+        <property name="asiaMilesCashConversionService" ref="asiaMilesCashConversionService"/>
+        <property name="asiaMilesCartService" ref="cartService"/>
+        <property name="sessionService" ref="sessionService"/>
+    </bean>
+
+    <!-- mingming.wang start  -->
+    <bean id="eVoucherService" class="com.asiamiles.core.service.impl.EVoucherServiceImpl">
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+        <property name="modelService" ref="modelService"/>
+        <property name="eVoucherDao" ref="eVoucherDao"/>
+    </bean>
+
+    <alias name="asiaMilesConsignmentService" alias="consignmentService"/>
+    <bean id="asiaMilesConsignmentService" class="com.asiamiles.core.service.impl.AsiaMilesConsignmentServiceImpl"
+          parent="defaultConsignmentService">
+        <property name="asiamilesConsignmentDao" ref="consignmentDao"/>
+    </bean>
+
+    <alias alias="emailService" name="asiaMilesEmailService"/>
+    <bean id="asiaMilesEmailService" class="com.asiamiles.core.service.impl.AsiaMilesEmailServiceImpl"
+          parent="defaultEmailService"/>
+    <!-- mingming.wang end -->
+
+    <alias name="asiamilesAddToCartStrategyImpl" alias="commerceAddToCartStrategy"/>
+    <bean id="asiamilesAddToCartStrategyImpl"
+          class="com.asiamiles.core.strategies.order.impl.AsiamilesAddToCartStrategyImpl"
+          parent="defaultCommerceAddToCartStrategy">
+        <property name="asiaMilesProductService" ref="asiaMilesProductService"/>
+    </bean>
+
+    <bean id="consignmentAutoDeliveryJob" class="com.asiamiles.core.cronjob.ConsignmentAutoDeliveryJob"
+          parent="abstractJobPerformable">
+    </bean>
+
+
+    <!-- solr value providers start added by Ethan.Chow -->
+    <bean id="amlGiftWithProductProvider"
+          class="com.asiamiles.core.search.solrfacetsearch.provider.impl.AmlGiftWithProductProvider"
+          parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+    </bean>
+
+    <bean id="amlProductTagGroupBCodeProvider"
+          class="com.asiamiles.core.search.solrfacetsearch.provider.impl.AmlProductTagGroupBCodeProvider"
+          parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+    </bean>
+
+    <bean id="amlProductOfflineDateValueProvider"
+          class="com.asiamiles.core.search.solrfacetsearch.provider.impl.AmlProductOfflineDateValueProvider"
+          parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+    </bean>
+
+    <bean id="amlProductTagGroupBColorCodeProvider"
+          class="com.asiamiles.core.search.solrfacetsearch.provider.impl.AmlProductTagGroupBColorCodeProvider"
+          parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+    </bean>
+
+    <bean id="amlProductPartnerCodeProvider" class="com.asiamiles.core.search.solrfacetsearch.provider.impl.AmlProductPartnerCodeProvider"
+          parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+    </bean>
+    <bean id="amlDeliveryPartnerCodeProvider" class="com.asiamiles.core.search.solrfacetsearch.provider.impl.AmlDeliveryPartnerCodeProvider"
+          parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+    </bean>
+    <bean id="amlHandlingPartnerCodeProvider" class="com.asiamiles.core.search.solrfacetsearch.provider.impl.AmlHandlingPartnerCodeProvider"
+          parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+    </bean>
+
+    <bean id="amlProductTagGroupANameProvider"
+          class="com.asiamiles.core.search.solrfacetsearch.provider.impl.AmlProductTagGroupANameProvider">
+        <property name="commonI18NService" ref="commonI18NService"/>
+        <property name="enumerationService" ref="enumerationService"/>
+        <property name="i18nService" ref="i18nService"/>
+    </bean>
+
+    <bean id="amlProductTagGroupACodeProvider"
+          class="com.asiamiles.core.search.solrfacetsearch.provider.impl.AmlProductTagGroupACodeProvider"
+          parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+        <property name="asiaMilesProductService" ref="asiaMilesProductService"/>
+    </bean>
+
+    <bean id="amlCategoryUrlValueProvider"
+          class="com.asiamiles.core.search.solrfacetsearch.provider.impl.AmlCategoryUrlValueProvider"
+          parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+        <property name="categoryService" ref="categoryService"/>
+        <property name="commonI18NService" ref="commonI18NService"/>
+        <property name="configurationService" ref="configurationService"/>
+    </bean>
+
+    <bean id="amlProductTagGroupBNameProvider"
+          class="com.asiamiles.core.search.solrfacetsearch.provider.impl.AmlProductTagGroupBNameProvider">
+        <property name="asiaMilesProductTagGroupBService" ref="asiaMilesProductTagGroupBService"/>
+        <property name="commonI18NService" ref="commonI18NService"/>
+        <property name="enumerationService" ref="enumerationService"/>
+        <property name="i18nService" ref="i18nService"/>
+    </bean>
+
+    <bean id="amlMarcoPoloClubDiscountTypeProvider"
+          class="com.asiamiles.core.search.solrfacetsearch.provider.impl.AmlMarcoPoloClubDiscountTypeProvider"
+          parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+        <property name="asiaMilesDiscountRowService" ref="asiaMilesDiscountRowService"/>
+        <property name="timeService" ref="timeService"/>
+    </bean>
+
+    <bean id="amlCobrandedCreditCardDiscountProvider"
+          class="com.asiamiles.core.search.solrfacetsearch.provider.impl.AmlCobrandedCreditCardDiscountProvider"
+          parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+        <property name="asiaMilesDiscountRowService" ref="asiaMilesDiscountRowService"/>
+        <property name="timeService" ref="timeService"/>
+    </bean>
+
+    <bean id="amlProductBestDealValueProvider"
+          class="com.asiamiles.core.search.solrfacetsearch.provider.impl.AmlProductBestDealValueProvider"
+          parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+        <property name="asiaMilesDiscountRowService" ref="asiaMilesDiscountRowService"/>
+        <property name="timeService" ref="timeService"/>
+        <property name="asiaMilesProductService" ref="asiaMilesProductService"/>
+    </bean>
+
+    <bean id="amlProductBestDealNameProvider"
+          class="com.asiamiles.core.search.solrfacetsearch.provider.impl.AmlProductBestDealNameProvider">
+        <property name="commonI18NService" ref="commonI18NService"/>
+        <property name="enumerationService" ref="enumerationService"/>
+        <property name="i18nService" ref="i18nService"/>
+    </bean>
+
+    <bean id="amlProductWays2ShopValueProvider"
+          class="com.asiamiles.core.search.solrfacetsearch.provider.impl.AmlProductWays2ShopValueProvider"
+          parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+        <property name="asiaMilesProductService" ref="asiaMilesProductService"/>
+    </bean>
+
+    <bean id="amlProductWays2ShopNameProvider"
+          class="com.asiamiles.core.search.solrfacetsearch.provider.impl.AmlProductWays2ShopNameProvider">
+        <property name="commonI18NService" ref="commonI18NService"/>
+        <property name="enumerationService" ref="enumerationService"/>
+        <property name="i18nService" ref="i18nService"/>
+    </bean>
+
+    <bean id="amlCategoryLevelCodeProvider"
+          class="com.asiamiles.core.search.solrfacetsearch.provider.impl.AmlCategoryLevelCodeProvider"
+          parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+        <property name="categoryService" ref="categoryService"/>
+        <property name="categorySource" ref="amlCategorySource"/>
+        <property name="categoryLevel" value="${aml.core.category.filter.provider.level.one}"/>
+    </bean>
+
+    <bean id="amlCategoryFilterLevelOneCodeValueProvider" parent="amlCategoryLevelCodeProvider">
+        <property name="categoryLevel" value="${aml.core.category.filter.provider.level.one}"/>
+    </bean>
+
+    <bean id="amlCategoryFilterLevelTwoCodeValueProvider" parent="amlCategoryLevelCodeProvider">
+        <property name="categoryLevel" value="${aml.core.category.filter.provider.level.two}"/>
+    </bean>
+
+    <bean id="amlCategoryFilterLevelThreeCodeValueProvider" parent="amlCategoryLevelCodeProvider">
+        <property name="categoryLevel" value="${aml.core.category.filter.provider.level.three}"/>
+    </bean>
+
+    <bean id="amlCategoryFilterLevelFourCodeValueProvider" parent="amlCategoryLevelCodeProvider">
+        <property name="categoryLevel" value="${aml.core.category.filter.provider.level.four}"/>
+    </bean>
+
+    <bean id="amlCategorySource" parent="abstractCategorySource">
+        <property name="rootCategory" value="1"/>
+    </bean>
+
+    <bean id="amlBrandCategorySource" parent="abstractCategorySource">
+        <property name="rootCategory" value="brands"/>
+        <!-- 'brands' is the root of the brands hierarchy -->
+    </bean>
+
+
+    <bean id="amlCategoryLevelNameProvider"
+          class="com.asiamiles.core.search.solrfacetsearch.provider.impl.AmlCategoryLevelNameProvider"
+          parent="abstractPropertyFieldValueProvider">
+        <property name="categoryService" ref="categoryService"/>
+        <property name="categorySource" ref="amlCategorySource"/>
+        <property name="modelService" ref="modelService"/>
+        <property name="categoryLevel" value="${aml.core.category.filter.provider.level.one}"/>
+    </bean>
+
+    <bean id="amlCategoryFilterLevelOneDisplayNameProvider" parent="amlCategoryLevelNameProvider">
+        <property name="categoryLevel" value="${aml.core.category.filter.provider.level.one}"/>
+    </bean>
+
+    <bean id="amlCategoryFilterLevelTwoDisplayNameProvider" parent="amlCategoryLevelNameProvider">
+        <property name="categoryLevel" value="${aml.core.category.filter.provider.level.two}"/>
+    </bean>
+
+    <bean id="amlCategoryFilterLevelThreeDisplayNameProvider" parent="amlCategoryLevelNameProvider">
+        <property name="categoryLevel" value="${aml.core.category.filter.provider.level.three}"/>
+    </bean>
+
+    <bean id="amlCategoryFilterLevelFourDisplayNameProvider" parent="amlCategoryLevelNameProvider">
+        <property name="categoryLevel" value="${aml.core.category.filter.provider.level.four}"/>
+    </bean>
+
+
+    <bean id="amlAbstractImageURLCodeProvider"
+          class="com.asiamiles.core.search.solrfacetsearch.provider.impl.AmlAbstractImageURLCodeProvider">
+        <property name="mediaSequence" value="${aml.core.image.sequence.first}"/>
+        <property name="mediaService" ref="mediaService"/>
+        <property name="mediaContainerService" ref="mediaContainerService"/>
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+    </bean>
+
+
+    <bean id="aml294FirstMediaCodeProvider" parent="amlAbstractImageURLCodeProvider">
+        <property name="mediaSequence" value="${aml.core.image.sequence.first}"/>
+        <property name="mediaFormat" value="294Wx195H"/>
+    </bean>
+    <bean id="aml294SecondMediaCodeProvider" parent="amlAbstractImageURLCodeProvider">
+        <property name="mediaSequence" value="${aml.core.image.sequence.second}"/>
+        <property name="mediaFormat" value="294Wx195H"/>
+    </bean>
+
+    <bean id="amlProductOnlineDateValueProvider"
+          class="com.asiamiles.core.search.solrfacetsearch.provider.impl.AmlProductOnlineDateValueProvider"
+          parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+    </bean>
+
+
+    <!-- Category Abstract Name and Code Providers Start-->
+    <bean id="abstractCategoryNameValueProvider" abstract="true"
+          class="com.asiamiles.core.search.solrfacetsearch.provider.impl.AmlCategoryNameValueProvider"
+          parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+        <property name="commonI18NService" ref="commonI18NService"/>
+    </bean>
+
+    <bean id="abstractCategoryCodeValueProvider" abstract="true"
+          class="com.asiamiles.core.search.solrfacetsearch.provider.impl.AmlBrandCategoryCodeValueProvider"
+          parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+        <property name="commonI18NService" ref="commonI18NService"/>
+    </bean>
+
+    <!-- Category Abstract Name and Code Providers End-->
+
+    <bean id="amlBrandCategoryNameValueProvider" parent="abstractCategoryNameValueProvider">
+        <property name="categorySource" ref="amlBrandCategorySource"/>
+        <property name="categoryPrefix" value="brand_"/>
+    </bean>
+
+    <bean id="amlBrandCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider">
+        <property name="categorySource" ref="amlBrandCategorySource"/>
+        <property name="categoryPrefix" value="brand_"/>
+    </bean>
+
+    <bean id="amlCategoryNameValueProvider" parent="abstractCategoryNameValueProvider">
+        <property name="categorySource" ref="amlCategorySource"/>
+        <property name="categoryPrefix" value=""/>
+    </bean>
+
+
+    <bean id="amlCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider">
+        <property name="categorySource" ref="amlCategorySource"/>
+        <property name="categoryPrefix" value=""/>
+    </bean>
+
+
+    <!--     solr value providers end added by Ethan.Chow-->
+
+    <alias name="amlProductZonePricesValueProvider" alias="productZonePricesValueProvider"/>
+    <bean id="amlProductZonePricesValueProvider"
+          class="com.asiamiles.core.search.solrfacetsearch.provider.impl.AmlProductZonePricesValueProvider"
+          parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+        <property name="defaultZoneDeliveryModeDao" ref="defaultZoneDeliveryModeDao"/>
+    </bean>
+
+    <alias name="amlProductZonesValueProvider" alias="productZonesValueProvider"/>
+    <bean id="amlProductZonesValueProvider"
+          class="com.asiamiles.core.search.solrfacetsearch.provider.impl.AmlProductZonesValueProvider"
+          parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+        <property name="defaultZoneDeliveryModeDao" ref="defaultZoneDeliveryModeDao"/>
+    </bean>
+
+    <alias name="amlProductExcludeCountriesValueProvider" alias="productExcludeCountriesValueProvider"/>
+    <bean id="amlProductExcludeCountriesValueProvider"
+          class="com.asiamiles.core.search.solrfacetsearch.provider.impl.AmlProductExcludeCountriesValueProvider"
+          parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+        <property name="deliveryRegionService" ref="deliveryRegionService"/>
+    </bean>
+
+    <alias alias="facetSearchQueryConverter" name="amlFacetSearchQueryConverter"/>
+    <bean id="amlFacetSearchQueryConverter" parent="abstractPopulatingConverter">
+        <property name="targetClass" value="org.apache.solr.client.solrj.SolrQuery"/>
+        <property name="populators">
+            <list>
+                <ref bean="facetSearchQueryBasicPopulator"/>
+                <ref bean="facetSearchQueryFilterQueriesPopulator"/>
+                <ref bean="facetSearchQueryExcludedItemsFilterPopulator"/>
+                <ref bean="facetSearchQueryCatalogVersionsFilterPopulator"/>
+                <ref bean="facetSearchQueryGroupingPopulator"/>
+                <ref bean="facetSearchQuerySortsPopulator"/>
+                <ref bean="facetSearchQueryPagingPopulator"/>
+                <ref bean="facetSearchQueryFacetsPopulator"/>
+                <ref bean="amlGroupSortAdjustPopulator"/>
+                <ref bean="amlPriceRangeAdjustPopulator"/>
+                <ref bean="amlPriceSortAdjustPopulator"/>
+                <ref bean="amlOfflineDateRangeAdjustPopulator"/>
+                <ref bean="amlOnlineDateRangeAdjustPopulator"/>
+                <ref bean="amlProductNameSortAdjustPopulator"/>
+                <ref bean="facetSearchQueryFieldsPopulator"/>
+                <ref bean="facetSearchQueryHighlightingFieldsPopulator"/>
+                <ref bean="facetSearchQuerySpellcheckPopulator"/>
+                <ref bean="facetSearchQueryParamsPopulator"/>
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="amlGroupSortAdjustPopulator"
+          class="com.asiamiles.core.search.solrfacetsearch.processor.impl.AmlGroupSortAdjustPopulator">
+        <property name="sessionService" ref="sessionService"></property>
+    </bean>
+
+    <bean id="amlPriceRangeAdjustPopulator"
+          class="com.asiamiles.core.search.solrfacetsearch.processor.impl.AmlPriceRangeAdjustPopulator">
+        <property name="sessionService" ref="sessionService"></property>
+    </bean>
+
+    <bean id="amlPriceSortAdjustPopulator"
+          class="com.asiamiles.core.search.solrfacetsearch.processor.impl.AmlPriceSortAdjustPopulator">
+        <property name="baseStoreService" ref="baseStoreService"></property>
+        <property name="sessionService" ref="sessionService"></property>
+    </bean>
+
+    <bean id="amlOnlineDateRangeAdjustPopulator"
+          class="com.asiamiles.core.search.solrfacetsearch.processor.impl.AmlOnlineDateRangeAdjustPopulator">
+    </bean>
+
+    <bean id="amlOfflineDateRangeAdjustPopulator"
+          class="com.asiamiles.core.search.solrfacetsearch.processor.impl.AmlOfflineDateRangeAdjustPopulator">
+    </bean>
+
+    <bean id="amlProductNameSortAdjustPopulator"
+          class="com.asiamiles.core.search.solrfacetsearch.processor.impl.AmlProductNameSortAdjustPopulator">
+        <property name="sessionService" ref="sessionService"/>
+        <property name="commonI18NService" ref="commonI18NService"/>
+        <property name="i18nService" ref="i18nService"/>
+        <property name="baseStoreService" ref="baseStoreService"/>
+    </bean>
+
+    <!-- solr result populator -->
+
+
+    <!-- MemberID hashing algorithum -->
+    <alias name="asiamilesMemberIdHashingStrategy" alias="memberIdHashingStrategy"/>
+    <bean id="asiamilesMemberIdHashingStrategy" class="com.asiamiles.core.customer.strategies.impl.AsiamilesMemberIdHasingStrategyImpl">
+        <property name="configurationService" ref="configurationService" />
+        <property name="encoderFactory" ref="core.passwordEncoderFactory" />
+    </bean>
+
+    <alias name="amlSearchResponseResultsPopulator" alias="commerceSearchResponseResultsPopulator"/>
+    <bean id="amlSearchResponseResultsPopulator"
+          class="com.asiamiles.core.search.solrfacetsearch.populators.AmlSearchResponseResultsPopulator"
+          parent="defaultCommerceSearchResponseResultsPopulator">
+    </bean>
+
+    <alias name="amlSearchResponseBreadcrumbsPopulator" alias="commerceSearchResponseBreadcrumbsPopulator"/>
+    <bean name="amlSearchResponseBreadcrumbsPopulator" class="com.asiamiles.core.search.solrfacetsearch.populators.AmlSearchResponseBreadcrumbsPopulator"
+          parent="defaultCommerceSearchResponseBreadcrumbsPopulator">
+    </bean>
+
+    <alias name="amlFacetSearchQueryFacetsPopulator" alias="facetSearchQueryFacetsPopulator"/>
+    <bean id="amlFacetSearchQueryFacetsPopulator" class="com.asiamiles.core.search.solrfacetsearch.populators.AmlFacetSearchQueryFacetsPopulator"
+          parent="abstractFacetSearchQueryPopulator">
+        <property name="defaultFacetSort" value="count" />
+        <property name="defaultLimit" value="${facet.limit.default}"/>
+    </bean>
+
+    <alias name="amlSearchResponseFacetsPopulator" alias="commerceSearchResponseFacetsPopulator"/>
+    <bean name="amlSearchResponseFacetsPopulator" class="com.asiamiles.core.search.solrfacetsearch.populators.AmlSearchResponseFacetsPopulator">
+    </bean>
+
+    <alias name="defaultCommerceSearchPagePopulator" alias="commerceSearchPagePopulator" />
+    <bean id="defaultCommerceSearchPagePopulator" class="de.hybris.platform.commerceservices.search.solrfacetsearch.populators.SearchPagePopulator" >
+        <property name="maximumPageSize" value="10000"/>
+    </bean>
+
+    <alias name="amlSolrProductSearchService" alias="commerceProductSearchService"/>
+    <bean id="amlSolrProductSearchService"
+          class="com.asiamiles.core.search.solrfacetsearch.impl.AmlSolrProductSearchService"
+          parent="defaultCommerceSolrProductSearchService">
+        <property name="deliveryRegionService" ref="deliveryRegionService"/>
+    </bean>
+
+    <alias name="amlDeliveryRegionService" alias="deliveryRegionService"/>
+    <bean id="amlDeliveryRegionService" class="com.asiamiles.core.region.impl.AmlDeliveryRegionService">
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+        <property name="sessionService" ref="sessionService"/>
+        <property name="commerceCommonI18NService" ref="commerceCommonI18NService"/>
+    </bean>
+
+    <alias alias="europe1.manager" name="amlPriceFactory"/>
+    <bean id="amlPriceFactory" class="com.asiamiles.core.price.AmlPriceFactory" init-method="init"
+          destroy-method="destroy">
+        <property name="retrieveChannelStrategy" ref="retrieveChannelStrategy"/>
+        <property name="modelService" ref="modelService"/>
+        <property name="userService" ref="userService"/>
+        <property name="deliveryRegionService" ref="deliveryRegionService"/>
+        <property name="amlRetrieveChannelStrategy" ref="retrieveChannelStrategy"/>
+    </bean>
+    
+   <alias name="amlPDTCriteriaFactory" alias="PDTCriteriaFactory"/>
+	<bean id="amlPDTCriteriaFactory" class="com.asiamiles.core.price.AmlPDTCriteriaFactory">
+		<property name="pdtEnumGroupsHelper" ref="pdtEnumGroupsHelper"/>
+		<property name="sessionService" ref="sessionService"/>
+		<property name="userService" ref="userService"/>
+	</bean>
+
+    <bean id="asiaMilesValidationService" class="com.asiamiles.core.service.impl.AsiaMilesValidationServiceImpl">
+        <property name="configurationService" ref="configurationService"/>
+    </bean>
+
+    <alias name="amlCommerceUpdateCartEntryStrategy" alias="commerceUpdateCartEntryStrategy"/>
+    <bean id="amlCommerceUpdateCartEntryStrategy"
+          class="com.asiamiles.core.strategies.order.impl.AMLCommerceUpdateCartEntryStrategyImpl"
+          parent="defaultCommerceUpdateCartEntryStrategy">
+        <property name="productService" ref="productService"/>
+        <property name="asiaMilesPriceRowService" ref="asiaMilesPriceRowService"/>
+        <property name="sessionService" ref="sessionService"/>
+    </bean>
+
+    <!-- site service to override marketplace logic -->
+    <alias alias="cmsSiteService" name="amlCMSSiteService"/>
+    <bean id="amlCMSSiteService" class="com.asiamiles.core.service.impl.AmlCMSSiteService"
+          parent="marketplaceCMSSiteService">
+        <property name="configurationService" ref="configurationService"/>
+    </bean>
+
+    <alias name="amlVendorService" alias="vendorService"/>
+    <bean id="amlVendorService" class="com.asiamiles.core.service.impl.AmlVendorService" parent="defaultVendorService">
+        <property name="configurationService" ref="configurationService"/>
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+    </bean>
+
+
+    <alias name="asiamilesConsignmentDao" alias="consignmentDao"/>
+    <bean id="asiamilesConsignmentDao" class="com.asiamiles.core.dao.consignment.impl.AsiamilesConsignmentDaoImpl"
+          parent="defaultConsignmentDao"/>
+
+    <bean id="productBaseProductCodeProvider"
+          class="com.asiamiles.core.search.solrfacetsearch.provider.impl.AMLProductBaseProductCodeProvider"
+          parent="abstractMultidimensionalProductFieldValueProvider"/>
+
+    <alias name="amlProductProductTypeProvider" alias="productProductTypeProvider"/>
+    <bean id="amlProductProductTypeProvider"
+          class="com.asiamiles.core.search.solrfacetsearch.provider.impl.AMLProductProductTypeProvider"
+          parent="abstractMultidimensionalProductFieldValueProvider"/>
+
+    <alias alias="priceService" name="defaultPriceService"/>
+
+    <bean id="asiaMilesPriceRowDao" class="com.asiamiles.core.dao.price.impl.AsiaMilesPriceRowDaoImpl"/>
+
+    <!-- Product code creation by Michael start -->
+    
+   	<!-- Variant proudct code generator added by Michael start-->
+	   <bean id="variantProductGenerator" class="de.hybris.platform.servicelayer.keygenerator.impl.PersistentKeyGenerator">
+			<property name="key" value="${keygen.variant.product.code.name}"/>
+			<property name="digits" value="${keygen.variant.product.code.digits}"/>
+			<property name="start" value="${keygen.variant.product.code.start}"/>
+	      <property name="type" value="${keygen.variant.product.code.type}"/>
+			<property name="template" value="${keygen.variant.product.code.template}"/>
+		</bean>
+    <bean id="asiaMilesProductNumberSequenceDao"
+          class="com.asiamiles.core.dao.product.impl.AsiaMilesProductNumberSequenceDaoImpl">
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+    </bean>
+    <alias alias="productService" name="asiaMilesProductService"/>
+    <bean id="asiaMilesProductService" class="com.asiamiles.core.service.impl.AsiaMilesProductServiceImpl"
+          parent="defaultProductService">
+        <property name="asiaMilesProductNumberSequenceDao" ref="asiaMilesProductNumberSequenceDao"/>
+        <property name="baseStoreService" ref="baseStoreService"/>
+        <property name="timeService" ref="timeService"/>
+        <property name="commerceCommonI18NService" ref="commerceCommonI18NService"/>
+        <property name="sessionService" ref="sessionService"/>
+        <property name="asiaMilesPriceRowService" ref="asiaMilesPriceRowService"/>
+        <property name="configurationService" ref="configurationService"/>
+        <property name="userService" ref="userService"/>
+        <property name="variantProductGenerator" ref="variantProductGenerator"/>
+        <property name="enumerationService" ref="enumerationService"/>
+        <property name="baseMilesService" ref="baseMilesService"/>
+     </bean>
+
+
+    <bean id="asiaMilesProductTagGroupBService"
+          class="com.asiamiles.core.service.impl.AsiaMilesProductTagGroupBServiceImpl">
+        <property name="asiaMilesProductTagGroupBDao" ref="asiaMilesProductTagGroupBDao"/>
+    </bean>
+
+    <bean id="asiaMilesSearchService"
+          class="com.asiamiles.core.service.impl.AsiaMilesSearchServiceImpl">
+        <property name="i18NService" ref="i18NService"/>
+        <property name="categoryService" ref="categoryService"/>
+    </bean>
+
+    <bean id="asiaMilesCategoryService"
+          class="com.asiamiles.core.service.impl.AsiaMilesCategoryServiceImpl">
+        <property name="categoryService" ref="categoryService"/>
+        <property name="i18NService" ref="i18NService"/>
+    </bean>
+    <!-- Product code creation by Michael end -->
+
+    <bean id="asiaMilesPriceRowService" class="com.asiamiles.core.service.impl.AsiaMilesPriceRowServiceImpl">
+        <property name="productService" ref="productService"/>
+        <property name="commonI18NService" ref="commonI18NService"/>
+        <property name="modelService" ref="modelService"/>
+        <property name="asiaMilesPriceRowDao" ref="asiaMilesPriceRowDao"/>
+        <property name="timeService" ref="timeService"/>
+        <property name="sessionService" ref="amlSessionService"/>
+        <property name="asiaMilesCashConversionService" ref="asiaMilesCashConversionService"/>
+    </bean>
+
+    <alias name="asiaMilesSyncJobService" alias="setupSyncJobService"/>
+    <bean id="asiaMilesSyncJobService" class="com.asiamiles.core.service.impl.AsiaMilesSyncJobServiceImpl"
+          parent="defaultSetupSyncJobService">
+        <property name="asiaMilesCatalogId" value="${merchant.catalog.master}"/>
+    </bean>
+
+    <alias name="asiaMilesVendorCreationStrategy" alias="vendorCreationStrategy"/>
+    <bean id="asiaMilesVendorCreationStrategy"
+          class="com.asiamiles.core.strategies.impl.AsiaMilesVendorCreationStrategy"
+          parent="defaultVendorCreationStrategy">
+        <property name="asiaMilesSyncJobService" ref="setupSyncJobService"/>
+    </bean>
+
+
+    <bean id="asiaMilesDiscountRowDao" class="com.asiamiles.core.dao.price.impl.AsiaMilesDiscountRowDaoImpl"/>
+    <bean id="asiaMilesDiscountRowService" class="com.asiamiles.core.service.impl.AsiaMilesDiscountRowServiceImpl">
+        <property name="asiaMilesDiscountRowDao" ref="asiaMilesDiscountRowDao"/>
+        <property name="userService" ref="userService"/>
+        <property name="discountService" ref="discountService"/>
+    </bean>
+
+    <bean id="asiaMilesCashConversionService"
+          class="com.asiamiles.core.service.impl.AsiaMilesCashConversionServiceImpl">
+        <property name="productService" ref="productService"/>
+        <property name="sessionService" ref="sessionService"/>
+        <property name="configurationService" ref="configurationService"/>
+        <property name="catalogVersionService" ref="catalogVersionService"/>
+        <property name="asiaMilesPriceRowService" ref="asiaMilesPriceRowService"/>
+    </bean>
+
+    <bean id="updatePriceRowByBusinessPointJob"
+          class="com.asiamiles.core.job.UpdatePriceRowByBusinessPointJobPerformable" parent="abstractJobPerformable">
+        <property name="asiaMilesPriceRowService" ref="asiaMilesPriceRowService"/>
+        <property name="productService" ref="productService"/>
+        <property name="commonI18NService" ref="commonI18NService"/>
+        <property name="modelService1" ref="modelService"/>
+        <property name="timeService" ref="timeService"/>
+    </bean>
+
+    <alias alias="priceRowInfoFilter" name="aisaMilesPriceRowInfoFilter"/>
+    <bean id="aisaMilesPriceRowInfoFilter"
+          class="com.asiamiles.core.strategies.order.filter.AisaMilesPriceRowInfoFilter"
+          parent="defaultPriceRowInfoFilter">
+        <property name="commonI18NService" ref="commonI18NService"/>
+        <property name="retrieveChannelStrategy" ref="retrieveChannelStrategy"/>
+        <property name="sessionService" ref="sessionService"/>
+        <property name="asiaMilesPriceRowService" ref="asiaMilesPriceRowService"/>
+    </bean>
+
+    <bean id="asiaMilesUserGroupDao" class="com.asiamiles.core.dao.user.impl.AsiaMilesUserGroupDaoImpl"/>
+
+    <bean id="asiaMilesUsergroupService" class="com.asiamiles.core.service.impl.AsiaMilesUserGroupServiceImpl">
+        <property name="asiaMilesUserGroupDao" ref="asiaMilesUserGroupDao"/>
+    </bean>
+    <bean id="asiaMilesVendorProductTipsDao" class="com.asiamiles.core.dao.tip.impl.AsiaMilesVendorProductTipsDaoImpl"/>
+    <bean id="asiaMilesProductTagGroupBDao"
+          class="com.asiamiles.core.dao.producttaggroupb.impl.AsiaMilesProductTagGroupBDaoImpl"/>
+
+    <bean id="asiaMilesDiscountDao" class="com.asiamiles.core.dao.price.impl.AsiaMilesDiscountDaoImpl"/>
+    <bean id="asiaMilesdiscountValueConverter" class="de.hybris.platform.servicelayer.DiscountValueConverter"/>
+    <bean id="asiaMilesDiscountService" class="com.asiamiles.core.service.impl.AsiaMilesDiscountServiceImpl">
+        <property name="asiaMilesDiscountDao" ref="asiaMilesDiscountDao"/>
+        <property name="valueConverter" ref="asiaMilesdiscountValueConverter"/>
+        <property name="asiaMilesDiscountRowService" ref="asiaMilesDiscountRowService"/>
+        <property name="asiaMilesPriceRowService" ref="asiaMilesPriceRowService"/>
+        <property name="userService" ref="userService"/>
+    </bean>
+    <bean id="asiaMilesPromotionPriceService"
+          class="com.asiamiles.core.service.impl.AsiaMilesPromotionPriceServiceImpl">
+        <property name="asiaMilesProductService" ref="asiaMilesProductService"/>
+        <property name="asiaMilesDiscountRowService" ref="asiaMilesDiscountRowService"/>
+        <property name="commerceCommonI18NService" ref="commerceCommonI18NService"/>
+        <property name="commercePriceService" ref="commercePriceService"/>
+        <property name="priceDataFactory" ref="priceDataFactory"/>
+        <property name="userService" ref="userService"/>
+    </bean>
+    <bean id="asiaMilesCurrencyDao" class="com.asiamiles.core.dao.price.impl.AsiaMilesCurrencyDaoImpl"/>
+    <bean id="asiaMilesCurrencyService" class="com.asiamiles.core.service.impl.AsiaMilesCurrencyServiceImpl">
+        <property name="asiaMilesCurrencyDao" ref="asiaMilesCurrencyDao"/>
+    </bean>
+
+    <alias alias="priceQueryProvider" name="amlPriceQueryProvider"/>
+    <bean id="amlPriceQueryProvider" class="com.asiamiles.core.providers.impl.AMLPriceQueryProvider">
+        <property name="sessionService" ref="sessionService"/>
+    </bean>
+
+    <bean id="assignedPartnerProvider" class="com.asiamiles.core.search.solrfacetsearch.provider.impl.AssignedPartnerProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+    </bean>
+    
+    <bean id="catalogIdProvider" class="com.asiamiles.core.search.solrfacetsearch.provider.impl.CatalogIdProvider">
+     		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+    </bean>
+
+    <bean id="mlcService" class="com.asiamiles.core.thirdparty.mlc.impl.AsiaMilesMlcServiceImpl">
+        <property name="mlcv2Client" ref="mlcv2Client"/>
+    </bean>
+
+    <bean id="clsService" class="com.asiamiles.core.thirdparty.cls.impl.AsiaMilesClsServiceImpl">
+        <property name="clsClient" ref="clsClient"/>
+        <property name="mlcv2Client" ref="mlcv2Client"/>
+        <property name="sessionService" ref="sessionService"/>
+        <property name="idpTokenService" ref="idpTokenService"/>
+    </bean>
+
+    <bean id="utilService" class="com.asiamiles.core.service.impl.UtilServiceImpl">
+        <property name="sessionService" ref="sessionService"/>
+        <property name="userService" ref="userService"/>
+    </bean>
+
+    <alias alias="permissionCRUDService" name="defaultPermissionCRUDService"/>
+    <bean id="defaultPermissionCRUDService"
+          class="de.hybris.platform.servicelayer.security.permissions.impl.DefaultPermissionCRUDService">
+        <property name="permissionCheckingService" ref="permissionCheckingService"/>
+    </bean>
+
+    <!--  Deprecated at 1811_Patch 18. rewrite AsiamilesCustomerAccountService, and detach from Asiamiels Spring Context-->
+<!--	<alias name="profileCustomerAccountService" alias="customerAccountService" />-->
+<!--	<bean id="profileCustomerAccountService" class="com.hybris.yprofile.services.customer.ProfileCustomerAccountService"-->
+<!--		parent="defaultCustomerAccountService">-->
+<!--		<property name="profileTransactionService" ref="profileTransactionService" />-->
+<!--		<property name="consentService" ref="consentService" />-->
+<!--		<property name="defaultSessionTokenService" ref="defaultSessionTokenService" />-->
+<!--		<property name="profileConfigurationService" ref="profileConfigurationService" />-->
+<!--	</bean>-->
+
+
+    <alias name="asiaMilesCustomerAccountService" alias="customerAccountService"/>
+    <bean id="asiaMilesCustomerAccountService"
+          class="com.asiamiles.core.customer.impl.AsiaMilesCustomerAccountServiceImpl"
+          parent="defaultCustomerAccountService">
+        <property name="clsService" ref="clsService"/>
+        <property name="asiaMilesUsergroupService" ref="asiaMilesUsergroupService"/>
+        <property name="memberIdHashingStrategy" ref="memberIdHashingStrategy" />
+    </bean>
+
+    <alias name="asiaMilesCartService" alias="cartService"/>
+    <bean id="asiaMilesCartService" class="com.asiamiles.core.service.impl.AsiaMilesCartServiceImpl"
+          parent="defaultCartServiceForAccelerator">
+        <property name="amlCommerceUpdateCartEntryStrategy" ref="commerceUpdateCartEntryStrategy"/>
+    </bean>
+
+    <bean id="asiaMilesCountryService" class="com.asiamiles.core.service.impl.AsiaMilesCountryServiceImpl">
+        <property name="commonI18NService" ref="commonI18NService"/>
+        <property name="countryDao" ref="countryDao"/>
+    </bean>
+    <bean id="asiaMilesLanguageService" class="com.asiamiles.core.service.impl.AsiaMilesLanguageServiceImpl">
+        <property name="commonI18NService" ref="commonI18NService"/>
+    </bean>
+
+    <alias alias="createOrderFromCartStrategy" name="amlCreateOrderFromCartStrategy"/>
+    <bean id="amlCreateOrderFromCartStrategy"
+          class="com.asiamiles.core.strategies.order.impl.AMLCreateOrderFromCartStrategy"
+          parent="defaultCreateOrderFromCartStrategy"/>
+
+    <bean id="amlProductCategoryCodeValueProvider"
+          class="com.asiamiles.core.search.solrfacetsearch.provider.impl.AmlProductCategoryCodeValueProvider"
+          parent="categoryCodeValueProvider">
+    </bean>
+
+    <alias name="amlCartValidationStrategy" alias="cartValidationStrategy"/>
+    <bean id="amlCartValidationStrategy" class="com.asiamiles.core.strategies.order.impl.AMLCartValidationStrategyImpl"
+          parent="defaultCartValidationStrategy">
+        <property name="productService" ref="productService"/>
+        <property name="asiaMilesPriceRowService" ref="asiaMilesPriceRowService"/>
+        <property name="sessionService" ref="sessionService"/>
+        <property name="asiaMilesDiscountService" ref="asiaMilesDiscountService"/>
+        <property name="baseStoreService" ref="baseStoreService"/>
+    </bean>
+
+    <alias name="amlOrderDao" alias="orderDao"/>
+    <bean id="amlOrderDao" class="com.asiamiles.core.dao.impl.AMLOrderDaoImpl" parent="defaultOrderDao">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+        <property name="typeService" ref="typeService"/>
+        <property name="paginatedFlexibleSearchService" ref="paginatedFlexibleSearchService"/>
+    </bean>
+
+    <alias name="amlOrderService" alias="orderService"/>
+    <bean id="amlOrderService" class="com.asiamiles.core.service.order.impl.AMLOrderServiceImpl"
+          parent="acceleratorDefaultOrderService">
+        <property name="orderDao" ref="orderDao"/>
+        <property name="transactionTemplate" ref="transactionTemplate"/>
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+        <property name="typeService" ref="typeService"/>
+        <property name="stockService" ref="stockService"/>
+        <property name="warehouseService" ref="warehouseService"/>
+        <property name="modelService" ref="modelService"/>
+    </bean>
+
+    <bean id="asiamilesSelectMiniMilesService"
+          class="com.asiamiles.core.service.impl.AsiamilesSelectMiniMilesServiceImpl">
+        <property name="userService" ref="userService"/>
+        <property name="sessionService" ref="sessionService"/>
+    </bean>
+
+    <alias alias="commercePlaceOrderStrategy" name="amlCommercePlaceOrderStrategy"/>
+    <bean id="amlCommercePlaceOrderStrategy" class="com.asiamiles.core.strategies.impl.AMLCommercePlaceOrderStrategy"
+          parent="defaultCommercePlaceOrderStrategy">
+          <property name="sessionService" ref="sessionService"/>
+    </bean>
+
+    <alias name="amlSessionService" alias="sessionService"/>
+    <bean id="amlSessionService" class="com.asiamiles.core.service.impl.AMLSessionServiceImpl"
+          parent="defaultSessionService"/>
+
+    <bean id="cppOrderService" class="com.asiamiles.core.thirdparty.cpp.impl.CPPOrderServiceImpl">
+        <property name="cppClient" ref="cppClient"/>
+        <property name="cppSignatureService" ref="cppSignatureService"/>
+        <property name="orderService" ref="orderService"/>
+        <property name="modelService" ref="modelService"/>
+        <property name="transactionTemplate" ref="transactionTemplate"/>
+        <property name="configurationService" ref="configurationService"/>
+        <property name="eventService" ref="eventService"/>
+        <property name="eVoucherService" ref="eVoucherService"/>
+        <property name="businessProcessService" ref="businessProcessService"/>
+        <property name="couponRedemptionDao" ref="couponRedemptionDao"/>
+    </bean>
+
+    <bean id="cppNotPaidValidatedOrderCancelJob" class="com.asiamiles.core.cronjob.CPPNotPaidValidatedOrderCancelJob"
+          parent="abstractJobPerformable">
+        <property name="orderService" ref="orderService"/>
+        <property name="cppOrderService" ref="cppOrderService"/>
+    </bean>
+
+    <bean id="cppAuthorizedDeductMilesFailedOrderCancelJob"
+          class="com.asiamiles.core.cronjob.CPPAuthorizedDeductMilesFailedOrderCancelJob"
+          parent="abstractJobPerformable">
+        <property name="orderService" ref="orderService"/>
+        <property name="cppOrderService" ref="cppOrderService"/>
+    </bean>
+
+    <bean id="amlTaskRunner" class="com.asiamiles.core.task.AMLTaskRunner" abstract="true">
+        <property name="retryInterval" value="${task.retry.interval}"/>
+        <property name="maxRetryTimes" value="${task.retry.max.times}"/>
+    </bean>
+
+    <bean id="amlPaymentCaptureTaskRunnerListener" class="com.asiamiles.core.event.AmlPaymentCaptureTaskRunnerListener"
+          parent="abstractSiteEventListener">
+        <property name="modelService" ref="modelService"/>
+        <property name="taskService" ref="taskService"/>
+    </bean>
+    <bean id="amlPaymentCaptureTaskRunner" class="com.asiamiles.core.task.AmlPaymentCaptureTaskRunner"
+          parent="amlTaskRunner">
+        <property name="cppOrderService" ref="cppOrderService"/>
+    </bean>
+
+    <bean id="eVoucherDao" class="com.asiamiles.core.dao.impl.EVoucherDaoImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+        <property name="typeService" ref="typeService"/>
+    </bean>
+
+    <alias name="amlOrderSplittingService" alias="orderSplittingService"/>
+    <bean id="amlOrderSplittingService" class="com.asiamiles.core.service.impl.AMLOrderSplittingServiceImpl"
+          parent="defaultOrderSplittingService">
+        <property name="warehouseService" ref="warehouseService"/>
+        <property name="asiaMilesPriceRowService" ref="asiaMilesPriceRowService"/>
+        <property name="sessionService" ref="sessionService"/>
+        <property name="mediaService" ref="mediaService"/>
+        <property name="configurationService" ref="configurationService"/>
+        <property name="variantsService" ref="variantsService"/>
+
+    </bean>
+
+    <bean id="asiaMilesSelectionCartCalculationMethodHook"
+          class="com.asiamiles.core.service.order.hook.AsiaMilesSelectionCartCalculationMethodHook">
+        <property name="modelService" ref="modelService"/>
+        <property name="asiaMilesCartService" ref="cartService"/>
+        <property name="sessionService" ref="sessionService"/>
+        <property name="calculationService" ref="calculationService"/>
+        <property name="asiaMilesProductService" ref="asiaMilesProductService"/>
+        <property name="promotionsService" ref="promotionsService"/>
+    </bean>
+
+    <bean id="asiaMilesSelectionCartCalculationMethodHookMergeDirective" depends-on="commerceCartCalculationMethodHooks"
+          parent="listMergeDirective">
+        <property name="add" ref="asiaMilesSelectionCartCalculationMethodHook"/>
+    </bean>
+
+    <bean id="poProductStockDeductionDetailDao"
+          class="com.asiamiles.core.dao.impl.POProductStockDeductionDetailDaoImpl">
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+    </bean>
+
+    <bean id="purchaseOrderService" class="com.asiamiles.core.service.impl.PurchaseOrderServiceImpl">
+        <property name="modelService" ref="modelService"/>
+        <property name="poProductStockDeductionDetailDao" ref="poProductStockDeductionDetailDao"/>
+        <property name="transactionTemplate" ref="transactionTemplate"/>
+        <property name="purchaseOrderDao" ref="purchaseOrderDao"/>
+    </bean>
+    
+    <bean id="redemptionRestrictionService" class="com.asiamiles.core.service.impl.AMLRedemptionRestrictionServiceImpl">
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+    </bean>
+
+    <bean id="poStockDeductDetaiProccessJob" class="com.asiamiles.core.cronjob.POStockDeductDetaiProccessJob"
+          parent="abstractJobPerformable">
+        <property name="purchaseOrderService" ref="purchaseOrderService"/>
+    </bean>
+
+    <bean id="purchaseOrderDao" class="com.asiamiles.core.dao.impl.PurchaseOrderDaoImpl">
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+    </bean>
+
+
+    <alias alias="responsiveImageFormats" name="responsiveImageFormats"/>
+    <util:map id="responsiveImageFormats" map-class="java.util.LinkedHashMap" value-type="java.lang.Integer">
+        <entry key="widescreen" value="1440"/>
+        <entry key="desktop" value="1440"/>
+        <entry key="tablet" value="1280"/>
+        <entry key="mobile" value="768"/>
+    </util:map>
+
+    <bean id="asiaMilesContentZoneDao" class="com.asiamiles.core.dao.impl.AsiaMilesContentZoneDao"/>
+    <alias alias="contentZoneService" name="asiaMilesContentZoneService"/>
+    <bean id="asiaMilesContentZoneService" class="com.asiamiles.core.service.impl.AsiaMilesContentZoneService">
+        <property name="contentZoneDao" ref="asiaMilesContentZoneDao"/>
+    </bean>
+    
+    <bean id="amlProductImportImageDao" class="com.asiamiles.core.dao.impl.AmlProductImportImageDaoImpl"/>
+    <bean id="amlProductImportImageService" class="com.asiamiles.core.service.impl.AmlProductImportImageServiceImpl">
+        <property name="amlProductImportImageDao" ref="amlProductImportImageDao"/>
+        <property name="modelService" ref="modelService"/>
+        <property name="easyMediaService" ref="easyMediaService"/>
+    </bean>
+    <bean id="excelImportImageCronJob" class="com.asiamiles.core.cronjob.AMLExcelImportImageCronJob"
+          parent="abstractJobPerformable">
+        <property name="amlProductImportImageService" ref="amlProductImportImageService"/>
+    </bean>
+
+    <bean id="clsReconciliationDao" class="com.asiamiles.core.dao.impl.ClsReconciliationDaoImpl">
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+    </bean>
+
+    <bean id="asiaMilesClsReconciliationService"
+          class="com.asiamiles.core.service.impl.AsiaMilesClsReconciliationServiceImpl">
+        <property name="asiaMilesConsignmentService" ref="consignmentService"/>
+        <property name="modelService" ref="modelService"/>
+        <property name="clsReconciliationDao" ref="clsReconciliationDao"/>
+        <property name="transactionTemplate" ref="transactionTemplate"/>
+    </bean>
+
+    <bean id="clsReconciliationJob" class="com.asiamiles.core.cronjob.ClsReconciliationJob"
+          parent="abstractJobPerformable">
+        <property name="asiaMilesClsReconciliationService" ref="asiaMilesClsReconciliationService"/>
+    </bean>
+
+    <bean id="cmsZoneRestrictionEvaluator"
+          class="com.asiamiles.core.service.evaluator.impl.CMSZoneRestrictionEvaluator"/>
+
+    <bean id="cmsZoneRestrictionEvaluatorMapping"
+          class="de.hybris.platform.cms2.servicelayer.services.evaluator.CMSRestrictionEvaluatorMapping">
+        <property name="restrictionTypeCode" value="CMSZoneRestriction"/>
+        <property name="restrictionEvaluator" ref="cmsZoneRestrictionEvaluator"/>
+    </bean>
+
+    <bean id="asiaMilesBillingCostDao" class="com.asiamiles.core.dao.billing.impl.AsiaMilesBillingCostDaoImpl">
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+    </bean>
+
+    <bean id="asiaMilesBillingService" class="com.asiamiles.core.service.impl.AsiaMilesBillingServiceImpl">
+        <property name="asiaMilesBillingCostDao" ref="asiaMilesBillingCostDao"/>
+    </bean>
+
+    <bean id="asiaMilesBaseStoreDao" class="com.asiamiles.core.dao.baseStore.impl.AsiaMilesBaseStoreDaoImpl">
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+    </bean>
+
+    <bean id="asiaMilesBaseStoreService" class="com.asiamiles.core.service.impl.AsiaMilesBaseStoreServiceImpl">
+        <property name="asiaMilesBaseStoreDao" ref="asiaMilesBaseStoreDao"/>
+    </bean>
+
+    <!-- add by Eddy for redemptionLetterReport one configure at 8:30 am, one configure at 12:00 pm -->
+    <bean id="redemptionLetterReportFirstJob" class="com.asiamiles.core.cronjob.RedemptionLetterReportJob"
+          parent="abstractJobPerformable">
+        <property name="asiaMilesRedemptionLetterReportService" ref="asiaMilesRedemptionLetterReportService"/>
+    </bean>
+
+    <bean id="redemptionLetterReportSecondJob" class="com.asiamiles.core.cronjob.RedemptionLetterReportJob"
+          parent="abstractJobPerformable">
+        <property name="asiaMilesRedemptionLetterReportService" ref="asiaMilesRedemptionLetterReportService"/>
+    </bean>
+    
+    <bean id="reverseMilesCronJob" class="com.asiamiles.core.cronjob.AMLReverseMilesCronJob"
+          parent="abstractJobPerformable">
+        <property name="consignmentService" ref="consignmentService"/>
+        <property name="businessProcessService" ref="businessProcessService"/>
+        <property name="clsService" ref="clsService"/>
+    </bean>
+    
+    <bean id="categorySyncCronJob" class="com.asiamiles.core.cronjob.AMLCategorySyncCronJob"
+          parent="abstractJobPerformable">
+        <property name="catalogVersionService" ref="catalogVersionService"/>
+        <property name="categoryService" ref="categoryService"/>
+        <property name="catalogSynchronizationService" ref="catalogSynchronizationService"/>
+    </bean>
+
+    <bean id="asiaMilesRedemptionLetterReportService"
+          class="com.asiamiles.core.service.impl.AsiaMilesRedemptionLetterReportServiceImpl">
+        <property name="asiaMilesConsignmentService" ref="consignmentService"/>
+        <property name="modelService" ref="modelService"/>
+        <property name="transactionTemplate" ref="transactionTemplate"/>
+    </bean>
+
+    <bean id="consignmentValidateInterceptor"
+          class="com.asiamiles.core.interceptor.ConsignmentValidateInterceptor">
+        <property name="modelService" ref="modelService"/>
+    </bean>
+
+    <bean id="cmsImagesGalleryComponentValidateInterceptorMapping"
+          class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+        <property name="interceptor" ref="cmsImagesGalleryComponentValidateInterceptor"/>
+        <property name="typeCode" value="CMSImagesGalleryComponent"/>
+    </bean>
+
+    <bean id="cmsImagesGalleryComponentValidateInterceptor"
+          class="com.asiamiles.core.interceptor.CMSImagesGalleryComponentValidateInterceptor"/>
+
+    <bean id="earnedMilesControllerValidateInterceptor" class="com.asiamiles.core.interceptor.EarnedMilesValidateInterceptor"/>
+
+    <bean id="consignmentInterceptorMapping"
+          class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+        <property name="interceptor" ref="consignmentValidateInterceptor"/>
+        <property name="typeCode" value="Consignment"/>
+    </bean>
+    
+    <bean id="earnedMilesControlInterceptorMapping"
+          class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+        <property name="interceptor" ref="earnedMilesControllerValidateInterceptor"/>
+        <property name="typeCode" value="EarnedMilesControl"/>
+    </bean>
+
+    <!-- BillingInvoice code generator -->
+    <bean id="billingInvoiceCodeGenerator" class="de.hybris.platform.servicelayer.keygenerator.impl.PersistentKeyGenerator">
+        <property name="key" value="${keygen.billingIninvoice.code.name}"/>
+        <property name="digits" value="${keygen.billingIninvoice.code.digits}"/>
+        <property name="start" value="${keygen.billingIninvoice.code.start}"/>
+        <property name="type" value="${keygen.billingIninvoice.code.type}"/>
+        <property name="template" value="${keygen.billingIninvoice.code.template}"/>
+    </bean>
+
+    <!-- Discount code generator -->
+    <bean id="discountCodeGenerator" class="de.hybris.platform.servicelayer.keygenerator.impl.PersistentKeyGenerator">
+        <property name="key" value="${keygen.discount.code.name}"/>
+        <property name="digits" value="${keygen.discount.code.digits}"/>
+        <property name="start" value="${keygen.discount.code.start}"/>
+        <property name="type" value="${keygen.discount.code.type}"/>
+        <property name="template" value="${keygen.discount.code.template}"/>
+    </bean>
+    
+    <bean id="sapAccountingKeyGenerator" class="de.hybris.platform.servicelayer.keygenerator.impl.PersistentKeyGenerator">
+		<property name="key" value="${keygen.sap.accounting.name}"/>
+		<property name="digits" value="${keygen.sap.accounting.digits}"/>
+		<property name="start" value="${keygen.sap.accounting.start}"/>
+	    <property name="type" value="${keygen.sap.accounting.type}"/>
+		<property name="template" value="${keygen.sap.accounting.template}"/>
+	</bean>
+	
+	<bean id="asiaMilesSapAccountingService" class="com.asiamiles.core.service.impl.AsiaMilesSapAccountingServiceImpl">
+        <property name="asiaMilesConsignmentService" ref="consignmentService"/>
+        <property name="modelService" ref="modelService"/>
+        <property name="transactionTemplate" ref="transactionTemplate"/>
+        <property name="sapAccountingKeyGenerator" ref="sapAccountingKeyGenerator"/>
+        <property name="sapAccountingDao" ref="sapAccountingDao"/>
+        <property name="asiaMilesBillingInvoiceDao" ref="asiaMilesBillingInvoiceDao"/>
+        <property name="batchSize" value="${sap.idoc.item.batch.size}"/>
+    </bean>
+    
+    <bean id="sapAccountingDao" class="com.asiamiles.core.dao.impl.SapAccountingDaoImpl">
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+    </bean>
+    
+    <bean id="asiaMilesBillingInvoiceDao" class="com.asiamiles.core.dao.billing.impl.AsiaMilesBillingInvoiceDaoImpl">
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+    </bean>
+    
+    <bean id="sapAccountingGlJob" class="com.asiamiles.core.cronjob.SapAccountingGlJob" parent="abstractJobPerformable">
+        <property name="asiaMilesSapAccountingService" ref="asiaMilesSapAccountingService"/>
+    </bean>
+    
+    <bean id="sapAccountingApJob" class="com.asiamiles.core.cronjob.SapAccountingApJob" parent="abstractJobPerformable">
+        <property name="asiaMilesSapAccountingService" ref="asiaMilesSapAccountingService"/>
+    </bean>
+
+    <bean id="cleanTokenRelationCronJob" class="com.asiamiles.core.cronjob.CleanTokenRelationCronJob" parent="abstractJobPerformable">
+        <property name="tokenRelationService" ref="tokenRelationService"/>
+    </bean>
+    
+    <bean id="amlCleanTransactionsAndMediaCronJob" class="com.asiamiles.core.cronjob.AmlCleanTransactionsAndMediaCronJob" parent="abstractJobPerformable">
+        <property name="modelService" ref="modelService"/>
+        <property name="orderService" ref="orderService"/>
+        <property name="consignmentService" ref="consignmentService"/>
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+    </bean>
+    
+     <bean id="amlCleanProductMediaCronJob" class="com.asiamiles.core.cronjob.AmlCleanProductMediaCronJob" parent="abstractJobPerformable">
+        <property name="modelService" ref="modelService"/>
+        <property name="mediaService" ref="mediaService"/>
+        <property name="amlMediaDao" ref="amlMediaDao"/>
+        <property name="mediaContainerDao" ref="mediaContainerDao"/>
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+        <property name="catalogVersionService" ref="catalogVersionService"/>
+    </bean>
+
+	<bean id="idpTokenService" class="com.asiamiles.core.idp.impl.IdpTokenServiceImpl">
+		<property name="idpClient" ref="idpClient" />
+	</bean>
+
+    <bean id="idpCodeService" class="com.asiamiles.core.idp.impl.IdpCodeServiceImpl">
+        <property name="configurationService" ref="configurationService"/>
+    </bean>
+    
+   <alias alias="commerceCartCalculationStrategy" name="asiaMilesCommerceCartCalculationStrategy"/>
+	<bean id="asiaMilesCommerceCartCalculationStrategy"
+			class="com.asiamiles.core.strategies.order.impl.AsiaMilesCommerceCartCalculationStrategy"
+			parent="defaultCommerceCartCalculationStrategy">
+	</bean>
+    
+    <bean id="idpUserService" class="com.asiamiles.core.service.impl.IdpUserServiceImpl">
+        <property name="modelService" ref="modelService"/>
+        <property name="userService" ref="userService"/>
+    </bean>
+
+    <bean id="tokenRelationService" class="com.asiamiles.core.idp.impl.DefaultTokenRelationServiceImpl">
+        <property name="modelService" ref="modelService"/>
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+    </bean>
+    
+   <alias name="amlCustomerAccountDao" alias="customerAccountDao"/>
+	<bean id="amlCustomerAccountDao" class="com.asiamiles.core.dao.account.AMLCustomerAccountDaoImpl" 
+		parent="defaultCustomerAccountDao">
+	</bean>
+
+    <bean id="productEvouchersHandler" class="com.asiamiles.core.attributes.ProductEvouchersHandler">
+        <property name="modelService" ref="modelService"/>
+        <property name="eVoucherService" ref="eVoucherService"/>
+    </bean>
+    
+    <bean id="productPurchaseOrdersHandler" class="com.asiamiles.core.attributes.ProductPurchaseOrdersHandler">
+        <property name="purchaseOrderService" ref="purchaseOrderService"/>
+        <property name="modelService" ref="modelService"/>
+    </bean>
+    
+    <bean id="redemptionRestrictionsHandler" class="com.asiamiles.core.attributes.RedemptionRestrictionsHandler">
+        <property name="redemptionRestrictionService" ref="redemptionRestrictionService"/>
+        <property name="modelService" ref="modelService"/>
+    </bean>
+    
+    <bean id="productProductCostsHandler" class="com.asiamiles.core.attributes.ProductProductCostsHandler">
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+        <property name="modelService" ref="modelService"/>
+    </bean>
+
+    <bean id="seasonalBusinessPointHandler" class="com.asiamiles.core.attributes.SeasonalBusinessPointHandler">
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+        <property name="modelService" ref="modelService"/>
+    </bean>
+    
+    <bean id="productDeliveryCostsHandler" class="com.asiamiles.core.attributes.ProductDeliveryCostsHandler">
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+        <property name="modelService" ref="modelService"/>
+    </bean>
+    
+    <alias name="amleurope1DiscountsAttributeHandler" alias="Product_europe1DiscountsAttributeHandler"/>
+    <bean id="amleurope1DiscountsAttributeHandler" class="com.asiamiles.core.attributes.AMLEurope1DiscountsAttributeHandler" 
+    	parent="pdtRowEurope1AttributeHandler">
+    	 <property name="modelService" ref="modelService"/>
+    </bean>
+    
+    <bean id="asiaMilesReportService" class="com.asiamiles.core.service.impl.AsiaMilesReportServiceImpl">
+        <property name="asiaMilesBillingCostDao" ref="asiaMilesBillingCostDao"/>
+        <property name="modelService" ref="modelService"/>
+        <property name="mediaService" ref="mediaService"/>
+        <property name="asiaMilesDiscountRowService" ref="asiaMilesDiscountRowService"/>
+        <property name="orderDao" ref="orderDao"/>
+        <property name="couponManagementService" ref="couponManagementService"/>
+        <property name="excelWorkbookService" ref="excelWorkbookService"/>
+        <property name="templatePath" value="/excel/"/>
+    </bean>
+    
+    <bean id="monthlyRedemptionAccrualsReportJob" class="com.asiamiles.core.cronjob.MonthlyRedemptionAccrualsReportJob" parent="abstractJobPerformable">
+        <property name="asiaMilesReportService" ref="asiaMilesReportService"/>
+    </bean>
+    <bean id="dailyRedemptionAccrualsReportJob" class="com.asiamiles.core.cronjob.DailyRedemptionAccrualsReportJob" parent="abstractJobPerformable">
+        <property name="asiaMilesReportService" ref="asiaMilesReportService"/>
+    </bean>
+    <bean id="pendingRedemptionAccrualsReportJob" class="com.asiamiles.core.cronjob.PendingRedemptionAccrualsReportJob" parent="abstractJobPerformable">
+        <property name="asiaMilesReportService" ref="asiaMilesReportService"/>
+    </bean>
+    <bean id="masterConsignmentReportJob" class="com.asiamiles.core.cronjob.MasterConsignmentReportJob" parent="abstractJobPerformable">
+        <property name="asiaMilesReportService" ref="asiaMilesReportService"/>
+    </bean>
+    <bean id="dailyEarnMilesCronJob" class="com.asiamiles.core.cronjob.DailyEarnMilesCronJob" parent="abstractJobPerformable">
+        <property name="clsClient" ref="clsClient"/>
+        <property name="consignmentService" ref="consignmentService"/>
+    </bean>
+
+	<bean id="asiaMilesPlaceOrderRecalculateMethodHook" class="com.asiamiles.core.service.order.hook.AsiaMilesPlaceOrderRecalculateMethodHook">
+		<property name="commerceCartCalculationStrategy" ref="commerceCartCalculationStrategy"/>
+		<property name="couponManagementService" ref="couponManagementService"/>
+		<property name="modelService" ref="modelService"/>
+	</bean>
+
+	<bean id="asiaMilesPlaceOrderRecalculateMethodHooksMergeDirective" depends-on="commercePlaceOrderMethodHooks" parent="listMergeDirective">
+		<property name="add" ref="asiaMilesPlaceOrderRecalculateMethodHook"/>
+	</bean>
+	
+	<alias alias="emailGenerationService" name="amlEmailGenerationService"/>
+	<bean id="amlEmailGenerationService" class="com.asiamiles.core.service.impl.AMLEmailGenerationService" parent="defaultEmailGenerationService" />
+	
+	<bean id="amlMediaDao" class="com.asiamiles.core.dao.impl.AmlMediaDaoImpl" parent="defaultMediaDao">
+		 <property name="jdbcTemplate" ref="jdbcTemplate"/>
+		 <property name="flexibleSearchService" ref="flexibleSearchService"/>
+		 <property name="paginatedFlexibleSearchService" ref="paginatedFlexibleSearchService"/>
+	</bean>
+	
+	<bean id="baseMilesDao" class="com.asiamiles.core.dao.basemiles.impl.AMLBaseMilesDaoImpl">
+		 <property name="flexibleSearchService" ref="flexibleSearchService"/>
+		 <property name="jdbcTemplate" ref="jdbcTemplate"/>
+	</bean>
+	
+	<bean id="baseMilesService" class="com.asiamiles.core.service.basemiles.impl.AMLBaseMilesServiceImpl">
+		 <property name="baseMilesDao" ref="baseMilesDao"/>
+	</bean>
+	
+	<bean id="precalculateBaseMilesCronjob" class="com.asiamiles.core.cronjob.AMLPreCalculateBaseMilesCronJob" parent="abstractJobPerformable">
+		 <property name="catalogVersionService" ref="catalogVersionService"/>
+		 <property name="baseMilesService" ref="baseMilesService"/>
+	</bean>
+	
+	<util:map id="productCatalogEditSyncDescriptors" key-type="java.lang.Class" value-type="java.util.List">
+		<entry key="de.hybris.platform.jalo.Item">
+			<list>
+				<bean class="de.hybris.platform.commerceservices.setup.data.EditSyncAttributeDescriptorData">
+					<property name="includeInSync" value="false"/>
+					<property name="qualifier" value="comments"/>
+				</bean>
+			</list>
+		</entry>
+		<entry key="de.hybris.platform.jalo.product.Product">
+			<list>
+				<bean class="de.hybris.platform.commerceservices.setup.data.EditSyncAttributeDescriptorData">
+					<property name="includeInSync" value="false"/>
+					<property name="qualifier" value="sequenceId"/>
+				</bean>
+				<bean class="de.hybris.platform.commerceservices.setup.data.EditSyncAttributeDescriptorData">
+					<property name="includeInSync" value="false"/>
+					<property name="qualifier" value="productReviews"/>
+				</bean>
+				<bean class="de.hybris.platform.commerceservices.setup.data.EditSyncAttributeDescriptorData">
+					<property name="includeInSync" value="false"/>
+					<property name="qualifier" value="restrictions"/>
+				</bean>
+				<bean class="de.hybris.platform.commerceservices.setup.data.EditSyncAttributeDescriptorData">
+					<property name="includeInSync" value="false"/>
+					<property name="qualifier" value="productCarouselComponents"/>
+				</bean>
+				<bean class="de.hybris.platform.commerceservices.setup.data.EditSyncAttributeDescriptorData">
+					<property name="includeInSync" value="false"/>
+					<property name="qualifier" value="productListComponents"/>
+				</bean>
+				<bean class="de.hybris.platform.commerceservices.setup.data.EditSyncAttributeDescriptorData">
+					<property name="includeInSync" value="false"/>
+					<property name="qualifier" value="productDetailComponents"/>
+				</bean>
+				<bean class="de.hybris.platform.commerceservices.setup.data.EditSyncAttributeDescriptorData">
+					<property name="includeInSync" value="false"/>
+					<property name="qualifier" value="productFeatureComponents"/>
+				</bean>
+				<bean class="de.hybris.platform.commerceservices.setup.data.EditSyncAttributeDescriptorData">
+					<property name="copyByValue" value="true"/>
+					<property name="qualifier" value="galleryImages"/>
+				</bean>
+				<bean class="de.hybris.platform.commerceservices.setup.data.EditSyncAttributeDescriptorData">
+					<property name="includeInSync" value="false"/>
+					<property name="qualifier" value="promotions"/>
+				</bean>
+				<bean class="de.hybris.platform.commerceservices.setup.data.EditSyncAttributeDescriptorData">
+					<property name="includeInSync" value="false"/>
+					<property name="qualifier" value="comments"/>
+				</bean>
+				<bean class="de.hybris.platform.commerceservices.setup.data.EditSyncAttributeDescriptorData">
+					<property name="includeInSync" value="false"/>
+					<property name="qualifier" value="purchaseOrders"/>
+				</bean>
+				<bean class="de.hybris.platform.commerceservices.setup.data.EditSyncAttributeDescriptorData">
+					<property name="includeInSync" value="false"/>
+					<property name="qualifier" value="productCosts"/>
+				</bean>
+				<bean class="de.hybris.platform.commerceservices.setup.data.EditSyncAttributeDescriptorData">
+					<property name="includeInSync" value="false"/>
+					<property name="qualifier" value="deliveryCosts"/>
+				</bean>
+				<bean class="de.hybris.platform.commerceservices.setup.data.EditSyncAttributeDescriptorData">
+					<property name="includeInSync" value="false"/>
+					<property name="qualifier" value="variants"/>
+				</bean>
+				<bean class="de.hybris.platform.commerceservices.setup.data.EditSyncAttributeDescriptorData">
+					<property name="copyByValue" value="true"/>
+					<property name="qualifier" value="rrp"/>
+				</bean>
+				<bean class="de.hybris.platform.commerceservices.setup.data.EditSyncAttributeDescriptorData">
+					<property name="includeInSync" value="false"/>
+					<property name="qualifier" value="Evoucher"/>
+				</bean>
+				<bean class="de.hybris.platform.commerceservices.setup.data.EditSyncAttributeDescriptorData">
+					<property name="includeInSync" value="false"/>
+					<property name="qualifier" value="redemptionRestriction"/>
+				</bean>
+			</list>
+		</entry>
+		<entry key="de.hybris.platform.europe1.jalo.PriceRow">
+			<list>
+				<bean class="de.hybris.platform.commerceservices.setup.data.EditSyncAttributeDescriptorData">
+					<property name="includeInSync" value="false"/>
+					<property name="qualifier" value="sequenceId"/>
+				</bean>
+			</list>
+		</entry>
+
+		<entry key="de.hybris.platform.category.jalo.Category">
+			<list>
+				<bean class="de.hybris.platform.commerceservices.setup.data.EditSyncAttributeDescriptorData">
+					<property name="includeInSync" value="false"/>
+					<property name="qualifier" value="linkcomponents"/>
+				</bean>
+				<bean class="de.hybris.platform.commerceservices.setup.data.EditSyncAttributeDescriptorData">
+					<property name="includeInSync" value="false"/>
+					<property name="qualifier" value="productCarouselComponents"/>
+				</bean>
+				<bean class="de.hybris.platform.commerceservices.setup.data.EditSyncAttributeDescriptorData">
+					<property name="includeInSync" value="false"/>
+					<property name="qualifier" value="restrictions"/>
+				</bean>
+				<bean class="de.hybris.platform.commerceservices.setup.data.EditSyncAttributeDescriptorData">
+					<property name="includeInSync" value="false"/>
+					<property name="qualifier" value="products"/>
+				</bean>
+				<bean class="de.hybris.platform.commerceservices.setup.data.EditSyncAttributeDescriptorData">
+					<property name="includeInSync" value="false"/>
+					<property name="qualifier" value="order"/>
+				</bean>
+				<bean class="de.hybris.platform.commerceservices.setup.data.EditSyncAttributeDescriptorData">
+					<property name="includeInSync" value="false"/>
+					<property name="qualifier" value="vendors"/>
+				</bean>
+				<bean class="de.hybris.platform.commerceservices.setup.data.EditSyncAttributeDescriptorData">
+					<property name="includeInSync" value="false"/>
+					<property name="qualifier" value="promotions"/>
+				</bean>
+				<bean class="de.hybris.platform.commerceservices.setup.data.EditSyncAttributeDescriptorData">
+					<property name="includeInSync" value="false"/>
+					<property name="qualifier" value="productListComponents"/>
+				</bean>
+				<bean class="de.hybris.platform.commerceservices.setup.data.EditSyncAttributeDescriptorData">
+					<property name="includeInSync" value="false"/>
+					<property name="qualifier" value="categoryFeatureComponents"/>
+				</bean>
+				<bean class="de.hybris.platform.commerceservices.setup.data.EditSyncAttributeDescriptorData">
+					<property name="includeInSync" value="false"/>
+					<property name="qualifier" value="businessPoint"/>
+				</bean>
+				<bean class="de.hybris.platform.commerceservices.setup.data.EditSyncAttributeDescriptorData">
+					<property name="includeInSync" value="false"/>
+					<property name="qualifier" value="bannerImage"/>
+				</bean>
+				<bean class="de.hybris.platform.commerceservices.setup.data.EditSyncAttributeDescriptorData">
+					<property name="includeInSync" value="false"/>
+					<property name="qualifier" value="brandLogo"/>
+				</bean>
+				<bean class="de.hybris.platform.commerceservices.setup.data.EditSyncAttributeDescriptorData">
+					<property name="includeInSync" value="false"/>
+					<property name="qualifier" value="featuredBrandComponent"/>
+				</bean>
+			</list>
+		</entry>
+	</util:map>
+</beans>
