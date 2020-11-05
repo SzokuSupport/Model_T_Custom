@@ -113,11 +113,8 @@
                 "location": "/config/local-prod.properties",
                 "persona": "production"
             }
-        ],
-        "solr": {
-            "location": "/custom/asiamilescore/solrConfig"
-        }
-	},
+        ]      
+    },
     "properties": [
         {
             "key": "test.property.1",
