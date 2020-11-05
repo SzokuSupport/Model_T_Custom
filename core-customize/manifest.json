@@ -113,8 +113,8 @@
                 "location": "/hybris/config/environments/local-prod.properties",
                 "persona": "production"
             }
-        ]
-	},
+        ]      
+    },
     "properties": [
         {
             "key": "test.property.1",
